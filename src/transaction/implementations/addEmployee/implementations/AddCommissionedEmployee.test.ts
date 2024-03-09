@@ -1,8 +1,8 @@
 import { gpayrollDatabase } from '@/src/PayrollDatabase';
-import { CommissionedClassification } from '@/src/paymentClassification/implementations/CommissionedClassification';
+import { CommissionedClassification } from '@/src/paymentClassification/implementations/commissioned/CommissionedClassification';
 import { HoldMethod } from '@/src/paymentMethod/implementation/HoldMethod';
 import { BiweeklySchedule } from '@/src/paymentSchedule/implementations/BiweeklySchedule';
-import { AddCommissionedEmployee } from '../AddCommissionedEmployee';
+import { AddCommissionedEmployee } from './AddCommissionedEmployee';
 
 describe('AddCommissionedEmployee', () => {
   it('should add a commissioned employee', () => {

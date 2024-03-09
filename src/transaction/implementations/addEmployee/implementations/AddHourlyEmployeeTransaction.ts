@@ -1,8 +1,8 @@
 import { WeeklySchedule } from '@/src/paymentSchedule/implementations/WeeklySchedule';
-import { HourlyClassification } from '../../../paymentClassification/implementations/HourlyClassification';
+import { HourlyClassification } from '../../../../paymentClassification/implementations/hourly/HourlyClassification';
 import { AddEmployeeTransaction } from '../AddEmployeeTransaction.base';
 
-export class AddHourlyEmployee extends AddEmployeeTransaction {
+export class AddHourlyEmployeeTransaction extends AddEmployeeTransaction {
   constructor(
     empId: number,
     name: string,

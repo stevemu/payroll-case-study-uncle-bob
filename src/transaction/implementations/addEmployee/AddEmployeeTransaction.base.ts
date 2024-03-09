@@ -1,9 +1,9 @@
-import { gpayrollDatabase } from '../../PayrollDatabase';
-import { Employee } from '../../Employee';
-import { PaymentClassification } from '../../paymentClassification/PaymentClassification.interface';
-import { HoldMethod } from '../../paymentMethod/implementation/HoldMethod';
-import { PaymentSchedule } from '../../paymentSchedule/PaymentSchedule.interface';
-import { Transaction } from '../Transaction.interface';
+import { gpayrollDatabase } from '../../../PayrollDatabase';
+import { Employee } from '../../../Employee';
+import { PaymentClassification } from '../../../paymentClassification/PaymentClassification.interface';
+import { HoldMethod } from '../../../paymentMethod/implementation/HoldMethod';
+import { PaymentSchedule } from '../../../paymentSchedule/PaymentSchedule.interface';
+import { Transaction } from '../../Transaction.interface';
 
 export abstract class AddEmployeeTransaction extends Transaction {
   constructor(

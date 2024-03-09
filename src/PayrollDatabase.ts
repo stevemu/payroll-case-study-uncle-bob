@@ -11,6 +11,10 @@ export class PayrollDatabase {
     return this.employees.get(empId) || new NullEmployee();
   }
 
+  deleteEmployee(empId: number): void {
+    this.employees.delete(empId);
+  }
+
   clear() {
     this.employees.clear();
   }

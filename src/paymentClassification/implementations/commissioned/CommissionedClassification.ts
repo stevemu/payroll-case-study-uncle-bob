@@ -1,4 +1,4 @@
-import { PaymentClassification } from '../PaymentClassification.interface';
+import { PaymentClassification } from '../../PaymentClassification.interface';
 
 export class CommissionedClassification implements PaymentClassification {
   constructor(
