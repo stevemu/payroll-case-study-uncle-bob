@@ -1,6 +1,6 @@
-import { PaymentClassification } from '../paymentClassification/PaymentClassification.interface';
-import { PaymentMethod } from '../paymentMethod/PaymentMethod.interface';
-import { PaymentSchedule } from '../paymentSchedule/PaymentSchedule.interface';
+import { PaymentClassification } from './paymentClassification/PaymentClassification.interface';
+import { PaymentMethod } from './paymentMethod/PaymentMethod.interface';
+import { PaymentSchedule } from './paymentSchedule/PaymentSchedule.interface';
 
 export class Employee {
   constructor(

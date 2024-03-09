@@ -17,7 +17,7 @@ describe('AddSalariedEmployee', () => {
     expect(pc instanceof SalariedClassification).toBe(true);
 
     const sc = pc as SalariedClassification;
-    expect(sc.getSalary()).toBe(1000.0);
+    expect(sc.salary).toBe(1000.0);
 
     const ps = e.paymentSchedule;
     expect(ps instanceof MonthlySchedule).toBe(true);

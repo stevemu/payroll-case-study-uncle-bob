@@ -1,5 +1,5 @@
 import { gpayrollDatabase } from '../../PayrollDatabase';
-import { Employee } from '../../employee/Employee.base';
+import { Employee } from '../../Employee';
 import { PaymentClassification } from '../../paymentClassification/PaymentClassification.interface';
 import { HoldMethod } from '../../paymentMethod/implementation/HoldMethod';
 import { PaymentSchedule } from '../../paymentSchedule/PaymentSchedule.interface';

@@ -1,4 +1,4 @@
-import { Employee, NullEmployee } from './employee/Employee.base';
+import { Employee, NullEmployee } from './Employee';
 
 export class PayrollDatabase {
   private employees: Map<number, Employee> = new Map();
