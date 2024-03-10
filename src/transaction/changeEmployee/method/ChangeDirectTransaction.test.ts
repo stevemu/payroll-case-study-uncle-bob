@@ -1,7 +1,7 @@
 import { gpayrollDatabase } from '@/src/PayrollDatabase';
 import { DirectMethod } from '@/src/method/DirectMethod';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/implementations/AddHourlyEmployeeTransaction';
-import { ChangeDirectTransaction } from './ChangeDirectionTransaction';
+import { ChangeDirectTransaction } from './ChangeDirectTransaction';
 
 describe('ChangeDirectTransaction', () => {
   it('should change employee to direct', () => {
