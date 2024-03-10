@@ -1,4 +1,4 @@
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { HoldMethod } from '@/src/method/HoldMethod';
 import { AddSalariedEmployeeTransaction } from '../../addEmployee/implementations/AddSalariedEmployeeTransaction';
 import { ChangeHoldTransaction } from './ChangeHoldTransaction';
@@ -12,7 +12,7 @@ describe('ChangeHoldTransaction', () => {
     const changeHold = new ChangeHoldTransaction(empId);
     changeHold.execute();
 
-    const employee = gpayrollDatabase.getEmployee(empId);
+    const employee = gPayrollDatabase.getEmployee(empId);
     expect(employee.method).toBeInstanceOf(HoldMethod);
     expect((employee.method as HoldMethod).address).toBe('Hold');
   });

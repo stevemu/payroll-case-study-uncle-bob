@@ -1,5 +1,5 @@
 import { AddSalariedEmployeeTransaction } from './AddSalariedEmployeeTransaction';
-import { gpayrollDatabase } from '../../../PayrollDatabase';
+import { gPayrollDatabase } from '../../../PayrollDatabase';
 import { SalariedClassification } from '../../../classification/SalariedClassification';
 import { MonthlySchedule } from '../../../schedule/MonthlySchedule';
 import { HoldMethod } from '../../../method/HoldMethod';
@@ -10,7 +10,7 @@ describe('AddSalariedEmployee', () => {
     const t = new AddSalariedEmployeeTransaction(empId, 'Bob', 'Home', 1000.0);
     t.execute();
 
-    const e = gpayrollDatabase.getEmployee(empId);
+    const e = gPayrollDatabase.getEmployee(empId);
     expect(e.name).toBe('Bob');
 
     const pc = e.classification;

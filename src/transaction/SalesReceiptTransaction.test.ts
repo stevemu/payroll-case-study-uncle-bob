@@ -1,4 +1,4 @@
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { AddCommissionedEmployeeTransaction } from './addEmployee/implementations/AddCommissionedEmployeeTransaction';
 import { SalesReceiptTransaction } from './SalesReceiptTransaction';
 import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
@@ -17,7 +17,7 @@ describe('SalesReceiptTransaction', () => {
     const transaction = new SalesReceiptTransaction(1, '2022-01-01', 100);
     transaction.execute();
 
-    const employee = gpayrollDatabase.getEmployee(1);
+    const employee = gPayrollDatabase.getEmployee(1);
     const cc = employee.classification as CommissionedClassification;
 
     const receipt = cc.getSalesReceipt('2022-01-01');

@@ -1,4 +1,4 @@
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
 import { SalesReceipt } from '@/src/classification/commissioned/SalesReceipt';
 import { Transaction } from './Transaction.interface';
@@ -14,7 +14,7 @@ export class SalesReceiptTransaction extends Transaction {
   }
 
   execute(): void {
-    const e = gpayrollDatabase.getEmployee(this.empId);
+    const e = gPayrollDatabase.getEmployee(this.empId);
 
     if (e instanceof NullEmployee) {
       throw new Error('No such employee');

@@ -1,4 +1,4 @@
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
 import { HoldMethod } from '@/src/method/HoldMethod';
 import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
@@ -10,7 +10,7 @@ describe('AddCommissionedEmployee', () => {
     const t = new AddCommissionedEmployeeTransaction(empId, 'Bob', 'Home', 1000.0, 0.5);
     t.execute();
 
-    const e = gpayrollDatabase.getEmployee(empId);
+    const e = gPayrollDatabase.getEmployee(empId);
     expect(e.name).toBe('Bob');
 
     const pc = e.classification;

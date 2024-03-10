@@ -1,4 +1,4 @@
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { HourlyClassification } from '@/src/classification/hourly/HourlyClassification';
 import { HoldMethod } from '@/src/method/HoldMethod';
 import { WeeklySchedule } from '@/src/schedule/WeeklySchedule';
@@ -10,7 +10,7 @@ describe('AddHourlyEmployee', () => {
     const t = new AddHourlyEmployeeTransaction(empId, 'Bob', 'Home', 1000.0);
     t.execute();
 
-    const e = gpayrollDatabase.getEmployee(empId);
+    const e = gPayrollDatabase.getEmployee(empId);
     expect(e.name).toBe('Bob');
 
     const pc = e.classification;

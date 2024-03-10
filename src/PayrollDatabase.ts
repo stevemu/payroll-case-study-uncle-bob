@@ -29,4 +29,4 @@ export class PayrollDatabase {
   }
 }
 
-export const gpayrollDatabase = new PayrollDatabase();
+export const gPayrollDatabase = new PayrollDatabase();

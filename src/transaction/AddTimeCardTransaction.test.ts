@@ -1,4 +1,4 @@
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { AddTimeCardTransaction } from './AddTimeCardTransaction';
 import { AddHourlyEmployeeTransaction } from './addEmployee/implementations/AddHourlyEmployeeTransaction';
 import { HourlyClassification } from '@/src/classification/hourly/HourlyClassification';
@@ -19,7 +19,7 @@ describe('AddTimeCardTransaction', () => {
     const addTimeCardTransaction = new AddTimeCardTransaction(employeeId, '2021-07-01', hours);
     addTimeCardTransaction.execute();
 
-    const employee = gpayrollDatabase.getEmployee(employeeId);
+    const employee = gPayrollDatabase.getEmployee(employeeId);
     const timeCard = (employee.classification as HourlyClassification).getTimeCard('2021-07-01');
     expect(timeCard).toBeDefined();
     expect(timeCard.hours).toBe(hours);

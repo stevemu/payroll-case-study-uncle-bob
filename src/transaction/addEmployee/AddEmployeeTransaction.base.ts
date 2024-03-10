@@ -1,4 +1,4 @@
-import { gpayrollDatabase } from '../../PayrollDatabase';
+import { gPayrollDatabase } from '../../PayrollDatabase';
 import { Employee } from '../../Employee';
 import { Classification } from '../../classification/Classification.interface';
 import { HoldMethod } from '../../method/HoldMethod';
@@ -25,6 +25,6 @@ export abstract class AddEmployeeTransaction extends Transaction {
     e.classification = pc;
     e.schedule = ps;
     e.method = pm;
-    gpayrollDatabase.addEmployee(this.empId, e);
+    gPayrollDatabase.addEmployee(this.empId, e);
   }
 }

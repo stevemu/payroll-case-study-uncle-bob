@@ -1,4 +1,4 @@
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
 import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/implementations/AddHourlyEmployeeTransaction';
@@ -13,7 +13,7 @@ describe('ChangeCommissionedTransaction', () => {
     const changeCommissioned = new ChangeCommissionedTransaction(empId, 1000, 0.5);
     changeCommissioned.execute();
 
-    const employee = gpayrollDatabase.getEmployee(empId);
+    const employee = gPayrollDatabase.getEmployee(empId);
     expect(employee.classification).toBeInstanceOf(CommissionedClassification);
     expect((employee.classification as CommissionedClassification).salary).toBe(1000);
     expect((employee.classification as CommissionedClassification).commissionRate).toBe(0.5);

@@ -1,4 +1,4 @@
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { MailMethod } from '@/src/method/MailMethod';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/implementations/AddHourlyEmployeeTransaction';
 import { ChangeMailTransaction } from './ChangeMailTransaction';
@@ -12,7 +12,7 @@ describe('ChangeMailTransaction', () => {
     const changeMail = new ChangeMailTransaction(empId, 'Mail');
     changeMail.execute();
 
-    const employee = gpayrollDatabase.getEmployee(empId);
+    const employee = gPayrollDatabase.getEmployee(empId);
     expect(employee.method).toBeInstanceOf(MailMethod);
     expect((employee.method as MailMethod).address).toBe('Mail');
   });

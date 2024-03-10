@@ -1,4 +1,4 @@
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { DirectMethod } from '@/src/method/DirectMethod';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/implementations/AddHourlyEmployeeTransaction';
 import { ChangeDirectTransaction } from './ChangeDirectTransaction';
@@ -12,7 +12,7 @@ describe('ChangeDirectTransaction', () => {
     const changeDirect = new ChangeDirectTransaction(empId, 'Bank', 'Account');
     changeDirect.execute();
 
-    const employee = gpayrollDatabase.getEmployee(empId);
+    const employee = gPayrollDatabase.getEmployee(empId);
     expect(employee.method).toBeInstanceOf(DirectMethod);
     expect((employee.method as DirectMethod).bank).toBe('Bank');
     expect((employee.method as DirectMethod).account).toBe('Account');

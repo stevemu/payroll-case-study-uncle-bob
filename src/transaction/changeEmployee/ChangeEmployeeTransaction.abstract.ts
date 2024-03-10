@@ -1,6 +1,6 @@
 import { Employee, NullEmployee } from '@/src/Employee';
 import { Transaction } from '../Transaction.interface';
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 
 export abstract class ChangeEmployeeTransaction extends Transaction {
   constructor(private empId: number) {
@@ -10,7 +10,7 @@ export abstract class ChangeEmployeeTransaction extends Transaction {
   protected abstract change(employee: Employee): void;
 
   execute(): void {
-    const employee = gpayrollDatabase.getEmployee(this.empId);
+    const employee = gPayrollDatabase.getEmployee(this.empId);
     if (!(employee instanceof NullEmployee)) {
       this.change(employee);
     }

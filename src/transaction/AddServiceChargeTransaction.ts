@@ -1,6 +1,6 @@
 import { ServiceCharge } from '@/src/affiliation/union/ServiceCharge';
 import { Transaction } from './Transaction.interface';
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation';
 
 export class AddServiceChargeTransaction implements Transaction {
@@ -11,7 +11,7 @@ export class AddServiceChargeTransaction implements Transaction {
   ) {}
 
   public execute(): void {
-    const member = gpayrollDatabase.getUnionMember(this.memberId);
+    const member = gPayrollDatabase.getUnionMember(this.memberId);
     const af = member.affiliation;
     if (af instanceof UnionAffiliation) {
       af.addServiceCharge(new ServiceCharge(this.date, this.amount));

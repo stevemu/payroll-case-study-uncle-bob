@@ -1,4 +1,4 @@
-import { gpayrollDatabase } from '@/src/PayrollDatabase';
+import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { AddHourlyEmployeeTransaction } from '../addEmployee/implementations/AddHourlyEmployeeTransaction';
 import { ChangeEmployeeNameTransaction } from './ChangeEmployeeNameTransaction';
 
@@ -17,7 +17,7 @@ describe('ChangeEmployeeNameTransaction', () => {
     const transaction = new ChangeEmployeeNameTransaction(employeeId, 'Bob');
     transaction.execute();
 
-    const employee = gpayrollDatabase.getEmployee(employeeId);
+    const employee = gPayrollDatabase.getEmployee(employeeId);
     expect(employee.name).toBe('Bob');
   });
 });
