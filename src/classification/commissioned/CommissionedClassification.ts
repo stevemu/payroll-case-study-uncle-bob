@@ -1,7 +1,7 @@
-import { PaymentClassification } from '../Classification.interface';
+import { Classification } from '../Classification.interface';
 import { NullSalesReceipt, SalesReceipt } from './SalesReceipt';
 
-export class CommissionedClassification implements PaymentClassification {
+export class CommissionedClassification implements Classification {
   private salesReceipts: SalesReceipt[] = [];
 
   constructor(

@@ -1,4 +1,4 @@
-import { PaymentClassification } from '@/src/classification/Classification.interface';
+import { Classification } from '@/src/classification/Classification.interface';
 import { ChangeEmployeeTransaction } from '../ChangeEmployeeTransaction.abstract';
 import { Employee } from '@/src/Employee';
 import { PaymentSchedule } from '@/src/paymentSchedule/PaymentSchedule.interface';
@@ -8,7 +8,7 @@ export abstract class ChangeClassification extends ChangeEmployeeTransaction {
     super(empId);
   }
 
-  abstract get paymentClassification(): PaymentClassification;
+  abstract get paymentClassification(): Classification;
   abstract get paymentSchedule(): PaymentSchedule;
 
   change(employee: Employee) {

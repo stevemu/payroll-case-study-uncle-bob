@@ -1,6 +1,6 @@
-import { PaymentClassification } from './Classification.interface';
+import { Classification } from './Classification.interface';
 
-export class SalariedClassification implements PaymentClassification {
+export class SalariedClassification implements Classification {
   constructor(public salary: number) {}
 
   calculatePay() {

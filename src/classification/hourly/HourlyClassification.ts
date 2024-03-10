@@ -1,7 +1,7 @@
-import { PaymentClassification } from '../Classification.interface';
+import { Classification } from '../Classification.interface';
 import { NullTimeCard, TimeCard } from './TimeCard';
 
-export class HourlyClassification implements PaymentClassification {
+export class HourlyClassification implements Classification {
   private timeCards: TimeCard[] = [];
 
   constructor(public hourlyRate: number) {}

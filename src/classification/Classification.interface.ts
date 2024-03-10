@@ -1,3 +1,3 @@
-export interface PaymentClassification {
+export interface Classification {
   calculatePay(): number;
 }

@@ -1,6 +1,6 @@
 import { gpayrollDatabase } from '../../PayrollDatabase';
 import { Employee } from '../../Employee';
-import { PaymentClassification } from '../../classification/Classification.interface';
+import { Classification } from '../../classification/Classification.interface';
 import { HoldMethod } from '../../paymentMethod/HoldMethod';
 import { PaymentSchedule } from '../../paymentSchedule/PaymentSchedule.interface';
 import { Transaction } from '../Transaction.interface';
@@ -14,7 +14,7 @@ export abstract class AddEmployeeTransaction extends Transaction {
     super();
   }
 
-  abstract getClassification(): PaymentClassification;
+  abstract getClassification(): Classification;
   abstract getSchedule(): PaymentSchedule;
 
   execute(): void {
