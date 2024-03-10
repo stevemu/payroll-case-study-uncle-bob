@@ -27,6 +27,10 @@ export class PayrollDatabase {
   addUnionMember(memberId: number, employee: Employee) {
     this.unionMembers.set(memberId, employee);
   }
+
+  deleteUnionMember(memberId: number) {
+    this.unionMembers.delete(memberId);
+  }
 }
 
 export const gPayrollDatabase = new PayrollDatabase();

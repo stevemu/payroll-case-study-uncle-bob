@@ -4,7 +4,10 @@ import { NullServiceCharge, ServiceCharge } from './ServiceCharge';
 export class UnionAffiliation implements Affiliation {
   private serviceCharges: ServiceCharge[] = [];
 
-  constructor(public dues: number) {}
+  constructor(
+    public memberId: number,
+    public dues: number,
+  ) {}
 
   getFee(date: string): number {
     return 0;
