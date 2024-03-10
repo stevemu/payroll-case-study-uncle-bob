@@ -1,5 +1,5 @@
 import { AddEmployeeTransaction } from '../AddEmployeeTransaction.base';
-import { SalariedClassification } from '../../../../paymentClassification/implementations/SalariedClassification';
+import { SalariedClassification } from '../../../../classification/implementations/SalariedClassification';
 import { MonthlySchedule } from '../../../../paymentSchedule/implementations/MonthlySchedule';
 
 export class AddSalariedEmployeeTransaction extends AddEmployeeTransaction {

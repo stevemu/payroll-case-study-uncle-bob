@@ -1,4 +1,4 @@
-import { PaymentClassification } from '../../PaymentClassification.interface';
+import { PaymentClassification } from '../../Classification.interface';
 import { NullTimeCard, TimeCard } from './TimeCard';
 
 export class HourlyClassification implements PaymentClassification {

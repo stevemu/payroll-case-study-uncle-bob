@@ -1,5 +1,5 @@
 import { gpayrollDatabase } from '@/src/PayrollDatabase';
-import { CommissionedClassification } from '@/src/paymentClassification/implementations/commissioned/CommissionedClassification';
+import { CommissionedClassification } from '@/src/classification/implementations/commissioned/CommissionedClassification';
 import { HoldMethod } from '@/src/paymentMethod/implementation/HoldMethod';
 import { BiweeklySchedule } from '@/src/paymentSchedule/implementations/BiweeklySchedule';
 import { AddCommissionedEmployeeTransaction } from './AddCommissionedEmployeeTransaction';
@@ -13,7 +13,7 @@ describe('AddCommissionedEmployee', () => {
     const e = gpayrollDatabase.getEmployee(empId);
     expect(e.name).toBe('Bob');
 
-    const pc = e.paymentClassification;
+    const pc = e.classification;
     expect(pc instanceof CommissionedClassification).toBe(true);
 
     const cc = pc as CommissionedClassification;

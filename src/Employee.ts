@@ -1,5 +1,5 @@
 import { Affiliation } from './affiliation/Affiliation.interface';
-import { PaymentClassification } from './paymentClassification/PaymentClassification.interface';
+import { PaymentClassification } from './classification/Classification.interface';
 import { PaymentMethod } from './paymentMethod/PaymentMethod.interface';
 import { PaymentSchedule } from './paymentSchedule/PaymentSchedule.interface';
 
@@ -10,7 +10,7 @@ export class Employee {
     public address: string,
   ) {}
 
-  public paymentClassification!: PaymentClassification;
+  public classification!: PaymentClassification;
   public paymentSchedule!: PaymentSchedule;
   public paymentMethod!: PaymentMethod;
   public affiliation!: Affiliation;

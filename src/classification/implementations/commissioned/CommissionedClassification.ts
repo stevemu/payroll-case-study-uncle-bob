@@ -1,4 +1,4 @@
-import { PaymentClassification } from '../../PaymentClassification.interface';
+import { PaymentClassification } from '../../Classification.interface';
 import { NullSalesReceipt, SalesReceipt } from './SalesReceipt';
 
 export class CommissionedClassification implements PaymentClassification {
