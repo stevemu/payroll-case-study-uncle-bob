@@ -1,7 +1,7 @@
 import { gpayrollDatabase } from '@/src/PayrollDatabase';
 import { AddCommissionedEmployeeTransaction } from '../../addEmployee/implementations/AddCommissionedEmployeeTransaction';
 import { HourlyClassification } from '@/src/classification/hourly/HourlyClassification';
-import { WeeklySchedule } from '@/src/paymentSchedule/WeeklySchedule';
+import { WeeklySchedule } from '@/src/schedule/WeeklySchedule';
 import { ChangeHourlyTransaction } from './ChangeHourlyTransaction';
 
 describe('ChangeHourlyTransaction', () => {
@@ -16,6 +16,6 @@ describe('ChangeHourlyTransaction', () => {
     const employee = gpayrollDatabase.getEmployee(empId);
     expect(employee.classification).toBeInstanceOf(HourlyClassification);
     expect((employee.classification as HourlyClassification).hourlyRate).toBe(27.52);
-    expect(employee.paymentSchedule).toBeInstanceOf(WeeklySchedule);
+    expect(employee.schedule).toBeInstanceOf(WeeklySchedule);
   });
 });

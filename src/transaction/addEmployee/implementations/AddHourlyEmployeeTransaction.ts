@@ -1,4 +1,4 @@
-import { WeeklySchedule } from '@/src/paymentSchedule/WeeklySchedule';
+import { WeeklySchedule } from '@/src/schedule/WeeklySchedule';
 import { HourlyClassification } from '../../../classification/hourly/HourlyClassification';
 import { AddEmployeeTransaction } from '../AddEmployeeTransaction.base';
 

@@ -1,5 +1,5 @@
 import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
-import { BiweeklySchedule } from '@/src/paymentSchedule/BiweeklySchedule';
+import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
 import { ChangeClassification } from './ChangeClassification.abstract';
 
 export class ChangeCommissionedTransaction extends ChangeClassification {

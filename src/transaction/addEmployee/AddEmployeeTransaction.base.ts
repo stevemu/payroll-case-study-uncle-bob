@@ -1,8 +1,8 @@
 import { gpayrollDatabase } from '../../PayrollDatabase';
 import { Employee } from '../../Employee';
 import { Classification } from '../../classification/Classification.interface';
-import { HoldMethod } from '../../paymentMethod/HoldMethod';
-import { PaymentSchedule } from '../../paymentSchedule/PaymentSchedule.interface';
+import { HoldMethod } from '../../method/HoldMethod';
+import { Schedule } from '../../schedule/Schedule.interface';
 import { Transaction } from '../Transaction.interface';
 
 export abstract class AddEmployeeTransaction extends Transaction {
@@ -15,7 +15,7 @@ export abstract class AddEmployeeTransaction extends Transaction {
   }
 
   abstract getClassification(): Classification;
-  abstract getSchedule(): PaymentSchedule;
+  abstract getSchedule(): Schedule;
 
   execute(): void {
     const pc = this.getClassification();
@@ -23,8 +23,8 @@ export abstract class AddEmployeeTransaction extends Transaction {
     const pm = new HoldMethod();
     const e = new Employee(this.empId, this.name, this.address);
     e.classification = pc;
-    e.paymentSchedule = ps;
-    e.paymentMethod = pm;
+    e.schedule = ps;
+    e.method = pm;
     gpayrollDatabase.addEmployee(this.empId, e);
   }
 }

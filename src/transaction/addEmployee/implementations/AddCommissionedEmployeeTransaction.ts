@@ -1,8 +1,8 @@
 import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
-import { BiweeklySchedule } from '@/src/paymentSchedule/BiweeklySchedule';
+import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
 import { AddEmployeeTransaction } from '../AddEmployeeTransaction.base';
 import { Classification } from '@/src/classification/Classification.interface';
-import { PaymentSchedule } from '@/src/paymentSchedule/PaymentSchedule.interface';
+import { Schedule } from '@/src/schedule/Schedule.interface';
 
 export class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction {
   constructor(
@@ -18,7 +18,7 @@ export class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction {
   getClassification(): Classification {
     return new CommissionedClassification(this.salary, this.commissionRate);
   }
-  getSchedule(): PaymentSchedule {
+  getSchedule(): Schedule {
     return new BiweeklySchedule();
   }
 }

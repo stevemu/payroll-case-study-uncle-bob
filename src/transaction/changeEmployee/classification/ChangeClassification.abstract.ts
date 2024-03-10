@@ -1,7 +1,7 @@
 import { Classification } from '@/src/classification/Classification.interface';
 import { ChangeEmployeeTransaction } from '../ChangeEmployeeTransaction.abstract';
 import { Employee } from '@/src/Employee';
-import { PaymentSchedule } from '@/src/paymentSchedule/PaymentSchedule.interface';
+import { Schedule } from '@/src/schedule/Schedule.interface';
 
 export abstract class ChangeClassification extends ChangeEmployeeTransaction {
   constructor(empId: number) {
@@ -9,10 +9,10 @@ export abstract class ChangeClassification extends ChangeEmployeeTransaction {
   }
 
   abstract get paymentClassification(): Classification;
-  abstract get paymentSchedule(): PaymentSchedule;
+  abstract get paymentSchedule(): Schedule;
 
   change(employee: Employee) {
     employee.classification = this.paymentClassification;
-    employee.paymentSchedule = this.paymentSchedule;
+    employee.schedule = this.paymentSchedule;
   }
 }

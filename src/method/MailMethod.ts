@@ -1,6 +1,6 @@
-import { PaymentMethod } from './PaymentMethod.interface';
+import { Method } from './Method.interface';
 
-export class MailMethod implements PaymentMethod {
+export class MailMethod implements Method {
   constructor(private address: string) {}
 
   pay(): void {

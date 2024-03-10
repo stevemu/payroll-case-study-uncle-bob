@@ -1,6 +1,6 @@
 import { gpayrollDatabase } from '@/src/PayrollDatabase';
 import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
-import { BiweeklySchedule } from '@/src/paymentSchedule/BiweeklySchedule';
+import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/implementations/AddHourlyEmployeeTransaction';
 import { ChangeCommissionedTransaction } from './ChangeComissionedTransaction';
 
@@ -17,6 +17,6 @@ describe('ChangeCommissionedTransaction', () => {
     expect(employee.classification).toBeInstanceOf(CommissionedClassification);
     expect((employee.classification as CommissionedClassification).salary).toBe(1000);
     expect((employee.classification as CommissionedClassification).commissionRate).toBe(0.5);
-    expect(employee.paymentSchedule).toBeInstanceOf(BiweeklySchedule);
+    expect(employee.schedule).toBeInstanceOf(BiweeklySchedule);
   });
 });

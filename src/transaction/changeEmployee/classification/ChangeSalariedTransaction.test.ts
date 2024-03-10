@@ -1,6 +1,6 @@
 import { gpayrollDatabase } from '@/src/PayrollDatabase';
 import { SalariedClassification } from '@/src/classification/SalariedClassification';
-import { MonthlySchedule } from '@/src/paymentSchedule/MonthlySchedule';
+import { MonthlySchedule } from '@/src/schedule/MonthlySchedule';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/implementations/AddHourlyEmployeeTransaction';
 import { ChangeSalariedTransaction } from './ChangeSalariedTransaction';
 
@@ -16,6 +16,6 @@ describe('ChangeSalariedTransaction', () => {
     const employee = gpayrollDatabase.getEmployee(empId);
     expect(employee.classification).toBeInstanceOf(SalariedClassification);
     expect((employee.classification as SalariedClassification).salary).toBe(1000);
-    expect(employee.paymentSchedule).toBeInstanceOf(MonthlySchedule);
+    expect(employee.schedule).toBeInstanceOf(MonthlySchedule);
   });
 });

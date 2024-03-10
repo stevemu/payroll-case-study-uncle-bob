@@ -1,7 +1,7 @@
 import { Affiliation } from './affiliation/Affiliation.interface';
 import { Classification } from './classification/Classification.interface';
-import { PaymentMethod } from './paymentMethod/PaymentMethod.interface';
-import { PaymentSchedule } from './paymentSchedule/PaymentSchedule.interface';
+import { Method } from './method/Method.interface';
+import { Schedule } from './schedule/Schedule.interface';
 
 export class Employee {
   constructor(
@@ -11,8 +11,8 @@ export class Employee {
   ) {}
 
   public classification!: Classification;
-  public paymentSchedule!: PaymentSchedule;
-  public paymentMethod!: PaymentMethod;
+  public schedule!: Schedule;
+  public method!: Method;
   public affiliation!: Affiliation;
 }
 

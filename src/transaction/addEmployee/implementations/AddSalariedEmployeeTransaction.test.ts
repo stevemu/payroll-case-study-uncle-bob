@@ -1,8 +1,8 @@
 import { AddSalariedEmployeeTransaction } from './AddSalariedEmployeeTransaction';
 import { gpayrollDatabase } from '../../../PayrollDatabase';
 import { SalariedClassification } from '../../../classification/SalariedClassification';
-import { MonthlySchedule } from '../../../paymentSchedule/MonthlySchedule';
-import { HoldMethod } from '../../../paymentMethod/HoldMethod';
+import { MonthlySchedule } from '../../../schedule/MonthlySchedule';
+import { HoldMethod } from '../../../method/HoldMethod';
 
 describe('AddSalariedEmployee', () => {
   it('should add a salaried employee', () => {
@@ -19,10 +19,10 @@ describe('AddSalariedEmployee', () => {
     const sc = pc as SalariedClassification;
     expect(sc.salary).toBe(1000.0);
 
-    const ps = e.paymentSchedule;
+    const ps = e.schedule;
     expect(ps instanceof MonthlySchedule).toBe(true);
 
-    const pm = e.paymentMethod;
+    const pm = e.method;
     expect(pm instanceof HoldMethod).toBe(true);
   });
 });

@@ -1,7 +1,7 @@
 import { gpayrollDatabase } from '@/src/PayrollDatabase';
 import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
-import { HoldMethod } from '@/src/paymentMethod/HoldMethod';
-import { BiweeklySchedule } from '@/src/paymentSchedule/BiweeklySchedule';
+import { HoldMethod } from '@/src/method/HoldMethod';
+import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
 import { AddCommissionedEmployeeTransaction } from './AddCommissionedEmployeeTransaction';
 
 describe('AddCommissionedEmployee', () => {
@@ -20,10 +20,10 @@ describe('AddCommissionedEmployee', () => {
     expect(cc.salary).toBe(1000.0);
     expect(cc.commissionRate).toBe(0.5);
 
-    const ps = e.paymentSchedule;
+    const ps = e.schedule;
     expect(ps instanceof BiweeklySchedule).toBe(true);
 
-    const pm = e.paymentMethod;
+    const pm = e.method;
     expect(pm instanceof HoldMethod).toBe(true);
   });
 });

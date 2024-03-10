@@ -1,7 +1,7 @@
 import { gpayrollDatabase } from '@/src/PayrollDatabase';
 import { HourlyClassification } from '@/src/classification/hourly/HourlyClassification';
-import { HoldMethod } from '@/src/paymentMethod/HoldMethod';
-import { WeeklySchedule } from '@/src/paymentSchedule/WeeklySchedule';
+import { HoldMethod } from '@/src/method/HoldMethod';
+import { WeeklySchedule } from '@/src/schedule/WeeklySchedule';
 import { AddHourlyEmployeeTransaction } from './AddHourlyEmployeeTransaction';
 
 describe('AddHourlyEmployee', () => {
@@ -19,10 +19,10 @@ describe('AddHourlyEmployee', () => {
     const hc = pc as HourlyClassification;
     expect(hc.hourlyRate).toBe(1000.0);
 
-    const ps = e.paymentSchedule;
+    const ps = e.schedule;
     expect(ps instanceof WeeklySchedule).toBe(true);
 
-    const pm = e.paymentMethod;
+    const pm = e.method;
     expect(pm instanceof HoldMethod).toBe(true);
   });
 });
