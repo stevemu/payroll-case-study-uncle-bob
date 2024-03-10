@@ -2,6 +2,7 @@ import { Employee, NullEmployee } from './Employee';
 
 export class PayrollDatabase {
   private employees: Map<number, Employee> = new Map();
+  private unionMembers: Map<number, Employee> = new Map();
 
   addEmployee(empId: number, employee: Employee): void {
     this.employees.set(empId, employee);
@@ -17,6 +18,14 @@ export class PayrollDatabase {
 
   clear() {
     this.employees.clear();
+  }
+
+  getUnionMember(memberId: number): Employee {
+    return this.unionMembers.get(memberId) || new NullEmployee();
+  }
+
+  addUnionMember(memberId: number, employee: Employee) {
+    this.unionMembers.set(memberId, employee);
   }
 }
 

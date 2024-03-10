@@ -4,3 +4,9 @@ export class ServiceCharge {
     public amount: number,
   ) {}
 }
+
+export class NullServiceCharge extends ServiceCharge {
+  constructor() {
+    super('Null Date', -1);
+  }
+}

@@ -13,6 +13,7 @@ export class AddTimeCardTransaction implements Transaction {
 
   execute(): void {
     const employee = gpayrollDatabase.getEmployee(this.employeeId);
+
     if (employee instanceof NullEmployee) {
       throw new Error('No such employee.');
     }

@@ -4,7 +4,7 @@ import { AddEmployeeTransaction } from '../AddEmployeeTransaction.base';
 import { PaymentClassification } from '@/src/paymentClassification/PaymentClassification.interface';
 import { PaymentSchedule } from '@/src/paymentSchedule/PaymentSchedule.interface';
 
-export class AddCommissionedEmployee extends AddEmployeeTransaction {
+export class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction {
   constructor(
     empId: number,
     name: string,
