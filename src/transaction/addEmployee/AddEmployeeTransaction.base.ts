@@ -20,7 +20,7 @@ export abstract class AddEmployeeTransaction extends Transaction {
   execute(): void {
     const pc = this.getClassification();
     const ps = this.getSchedule();
-    const pm = new HoldMethod();
+    const pm = new HoldMethod('Office');
     const e = new Employee(this.empId, this.name, this.address);
     e.classification = pc;
     e.schedule = ps;
