@@ -1,3 +1,3 @@
 export interface Schedule {
-  isPayday(): boolean;
+  isPayDate(date: Date): boolean;
 }

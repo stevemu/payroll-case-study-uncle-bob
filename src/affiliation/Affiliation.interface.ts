@@ -1,3 +1,3 @@
 export interface Affiliation {
-  getFee(date: string): number;
+  calculateDeductions(date: Date): number;
 }

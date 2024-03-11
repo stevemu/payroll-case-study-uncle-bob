@@ -1,3 +1,4 @@
+import { PayCheck } from './PayCheck';
 import { Affiliation } from './affiliation/Affiliation.interface';
 import { Classification } from './classification/Classification.interface';
 import { Method } from './method/Method.interface';
@@ -14,6 +15,18 @@ export class Employee {
   public schedule!: Schedule;
   public method!: Method;
   public affiliation!: Affiliation;
+
+  isPayDate(payDate: Date): boolean {
+    return this.schedule.isPayDate(payDate);
+  }
+
+  payDay(payDate: Date): PayCheck {
+    const grossPay = this.classification.calculatePay(payDate);
+    const deductions = this.affiliation.calculateDeductions(payDate);
+    const netPay = grossPay - deductions;
+
+    return new PayCheck(payDate, grossPay, deductions, netPay);
+  }
 }
 
 export class NullEmployee extends Employee {

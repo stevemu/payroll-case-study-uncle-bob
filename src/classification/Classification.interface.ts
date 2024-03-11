@@ -1,3 +1,3 @@
 export interface Classification {
-  calculatePay(): number;
+  calculatePay(date: Date): number;
 }

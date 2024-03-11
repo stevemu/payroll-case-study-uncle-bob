@@ -31,6 +31,10 @@ export class PayrollDatabase {
   deleteUnionMember(memberId: number) {
     this.unionMembers.delete(memberId);
   }
+
+  getAllEmployees(): Employee[] {
+    return Array.from(this.employees.values());
+  }
 }
 
 export const gPayrollDatabase = new PayrollDatabase();
