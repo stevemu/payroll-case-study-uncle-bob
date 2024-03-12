@@ -7,7 +7,7 @@ import { TimeCard } from '@/src/classification/hourly/TimeCard';
 export class AddTimeCardTransaction implements Transaction {
   constructor(
     private employeeId: number,
-    private date: string,
+    private date: Date,
     private hours: number,
   ) {}
 

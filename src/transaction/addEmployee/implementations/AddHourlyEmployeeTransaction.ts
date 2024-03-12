@@ -15,6 +15,7 @@ export class AddHourlyEmployeeTransaction extends AddEmployeeTransaction {
   getClassification() {
     return new HourlyClassification(this.hourlyRate);
   }
+
   getSchedule() {
     return new WeeklySchedule();
   }

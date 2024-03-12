@@ -1,12 +1,6 @@
 export class SalesReceipt {
   constructor(
-    public date: string,
+    public date: Date,
     public amount: number,
   ) {}
-}
-
-export class NullSalesReceipt extends SalesReceipt {
-  constructor() {
-    super('', 0);
-  }
 }

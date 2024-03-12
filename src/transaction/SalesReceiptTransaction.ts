@@ -7,7 +7,7 @@ import { NullEmployee } from '@/src/Employee';
 export class SalesReceiptTransaction extends Transaction {
   constructor(
     private empId: number,
-    private date: string,
+    private date: Date,
     private amount: number,
   ) {
     super();

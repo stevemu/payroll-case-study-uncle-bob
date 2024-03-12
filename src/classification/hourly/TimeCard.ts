@@ -1,12 +1,12 @@
 export class TimeCard {
   constructor(
-    public date: string,
+    public date: Date,
     public hours: number,
   ) {}
 }
 
 export class NullTimeCard extends TimeCard {
   constructor() {
-    super('', 0);
+    super(new Date(), 0);
   }
 }

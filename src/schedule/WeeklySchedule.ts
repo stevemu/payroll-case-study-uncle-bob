@@ -1,7 +1,11 @@
 import { Schedule } from './Schedule.interface';
 
 export class WeeklySchedule implements Schedule {
-  isPayday(): boolean {
-    throw new Error('Method not implemented.');
+  isFriday(date: Date): boolean {
+    return date.getDay() === 5;
+  }
+
+  isPayDate(date: Date): boolean {
+    return this.isFriday(date);
   }
 }
