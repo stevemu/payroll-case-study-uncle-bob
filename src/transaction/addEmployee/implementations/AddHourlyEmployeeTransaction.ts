@@ -1,5 +1,5 @@
 import { WeeklySchedule } from '@/src/schedule/WeeklySchedule';
-import { HourlyClassification } from '../../../classification/hourly/HourlyClassification';
+import { HourlyClassification } from '../../../paymentClassification/hourly/HourlyClassification';
 import { AddEmployeeTransaction } from '../AddEmployeeTransaction.base';
 
 export class AddHourlyEmployeeTransaction extends AddEmployeeTransaction {

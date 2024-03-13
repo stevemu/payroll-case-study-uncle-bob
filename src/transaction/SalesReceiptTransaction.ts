@@ -1,6 +1,6 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
-import { SalesReceipt } from '@/src/classification/commissioned/SalesReceipt';
+import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification';
+import { SalesReceipt } from '@/src/paymentClassification/commissioned/SalesReceipt';
 import { Transaction } from './Transaction.interface';
 import { NullEmployee } from '@/src/Employee';
 

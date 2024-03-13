@@ -1,4 +1,4 @@
-import { Classification } from '@/src/classification/Classification.interface';
+import { Classification } from '@/src/paymentClassification/Classification.abstract';
 import { ChangeEmployeeTransaction } from '../ChangeEmployeeTransaction.abstract';
 import { Employee } from '@/src/Employee';
 import { Schedule } from '@/src/schedule/Schedule.interface';

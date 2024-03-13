@@ -17,13 +17,7 @@ describe('PayTransaction', () => {
     const pt = new PayTransaction(payDate);
     pt.execute();
 
-    const pc = pt.getPayCheck(empId);
-    expect(pc).not.toBeNull();
-    expect(pc!.payDate).toEqual(payDate);
-    expect(pc!.grossPay).toBe(1000);
-    expect(pc!.disposition).toBe('Hold');
-    expect(pc!.deductions).toBe(0);
-    expect(pc!.netPay).toBe(1000);
+    validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 1000);
   });
 
   test('pay single salaried employee on wrong date', () => {
@@ -51,7 +45,7 @@ describe('PayTransaction', () => {
     const pt = new PayTransaction(payDate);
     pt.execute();
 
-    validatePaycheck(pt, empId, payDate, 0);
+    validatePaycheck(pt, empId, new Date(2001, 10, 4), payDate, 0);
   });
 
   test('pay single hourly employee one time card', () => {
@@ -66,7 +60,7 @@ describe('PayTransaction', () => {
     const pt = new PayTransaction(payDate);
     pt.execute();
 
-    validatePaycheck(pt, empId, payDate, 30.5);
+    validatePaycheck(pt, empId, new Date(2001, 10, 4), payDate, 30.5);
   });
 
   test('pay single hourly employee on wrong date', () => {
@@ -99,7 +93,7 @@ describe('PayTransaction', () => {
     const pt = new PayTransaction(payDate);
     pt.execute();
 
-    validatePaycheck(pt, empId, payDate, 7 * 15.25);
+    validatePaycheck(pt, empId, new Date(2001, 10, 4), payDate, 7 * 15.25);
   });
 
   test('pay single hourly employee with time cards spanning two pay periods', () => {
@@ -117,10 +111,10 @@ describe('PayTransaction', () => {
     const pt = new PayTransaction(payDate);
     pt.execute();
 
-    validatePaycheck(pt, empId, payDate, 2 * 15.25);
+    validatePaycheck(pt, empId, new Date(2001, 10, 4), payDate, 2 * 15.25);
   });
 
-  test('pay single commission employee no sales', () => {
+  test('pay single commission employee no sales - pay day is 15th', () => {
     const empId = 2;
     const addCommissionedEmployee = new AddCommissionedEmployeeTransaction(
       empId,
@@ -131,11 +125,29 @@ describe('PayTransaction', () => {
     );
     addCommissionedEmployee.execute();
 
-    const payDate = new Date(2001, 10, 9); // second Friday
+    const payDate = new Date(2001, 10, 15); // second Friday
     const pt = new PayTransaction(payDate);
     pt.execute();
 
-    validatePaycheck(pt, empId, payDate, 500);
+    validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 500);
+  });
+
+  test('pay single commission employee no sales - pay day is last day of month', () => {
+    const empId = 2;
+    const addCommissionedEmployee = new AddCommissionedEmployeeTransaction(
+      empId,
+      'Bill',
+      'Home',
+      1000,
+      0.1,
+    );
+    addCommissionedEmployee.execute();
+
+    const payDate = new Date(2001, 10, 30); // second Friday
+    const pt = new PayTransaction(payDate);
+    pt.execute();
+
+    validatePaycheck(pt, empId, new Date(2001, 10, 16), payDate, 500);
   });
 
   test('pay single commission employee one sale', () => {
@@ -149,14 +161,14 @@ describe('PayTransaction', () => {
     );
     addCommissionedEmployee.execute();
 
-    const payDate = new Date(2001, 10, 9); // second Friday
+    const payDate = new Date(2001, 10, 15); // second Friday
     const salesReceiptTransaction = new SalesReceiptTransaction(empId, payDate, 100);
     salesReceiptTransaction.execute();
 
     const pt = new PayTransaction(payDate);
     pt.execute();
 
-    validatePaycheck(pt, empId, payDate, 500 + 100 * 0.1);
+    validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 500 + 100 * 0.1);
   });
 
   test('pay single commission employee one sale spanning two pay periods', () => {
@@ -170,14 +182,18 @@ describe('PayTransaction', () => {
     );
     addCommissionedEmployee.execute();
 
-    const payDate = new Date(2001, 10, 9); // second Friday
-    const salesReceiptTransaction = new SalesReceiptTransaction(empId, new Date(2001, 1, 22), 100);
+    const payDate = new Date(2001, 10, 15);
+
+    const salesReceiptTransaction = new SalesReceiptTransaction(empId, new Date(2001, 10, 15), 100);
     salesReceiptTransaction.execute();
+
+    const salesReceiptTransaction2 = new SalesReceiptTransaction(empId, new Date(2001, 9, 30), 100);
+    salesReceiptTransaction2.execute();
 
     const pt = new PayTransaction(payDate);
     pt.execute();
 
-    validatePaycheck(pt, empId, payDate, 500);
+    validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 500 + 100 * 0.1);
   });
 
   test('pay single commission employee two sales', () => {
@@ -191,7 +207,8 @@ describe('PayTransaction', () => {
     );
     addCommissionedEmployee.execute();
 
-    const payDate = new Date(2001, 10, 9); // second Friday
+    const payDate = new Date(2001, 10, 15);
+
     const salesReceiptTransaction = new SalesReceiptTransaction(empId, payDate, 100);
     salesReceiptTransaction.execute();
 
@@ -201,7 +218,7 @@ describe('PayTransaction', () => {
     const pt = new PayTransaction(payDate);
     pt.execute();
 
-    validatePaycheck(pt, empId, payDate, 500 + 300 * 0.1);
+    validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 500 + 300 * 0.1);
   });
 
   test('pay single commissioned employee on wrong date', () => {
@@ -215,7 +232,7 @@ describe('PayTransaction', () => {
     );
     addCommissionedEmployee.execute();
 
-    const payDate = new Date(2001, 10, 8); // Thursday
+    const payDate = new Date(2001, 10, 8);
     const pt = new PayTransaction(payDate);
     pt.execute();
 
@@ -223,9 +240,16 @@ describe('PayTransaction', () => {
   });
 });
 
-function validatePaycheck(pt: PayTransaction, empId: number, payDate: Date, pay: number) {
+function validatePaycheck(
+  pt: PayTransaction,
+  empId: number,
+  payPeriodStartDate: Date,
+  payDate: Date,
+  pay: number,
+) {
   const pc = pt.getPayCheck(empId);
   expect(pc).not.toBeNull();
+  expect(pc!.payPeriodStartDate).toEqual(payPeriodStartDate);
   expect(pc!.payDate).toEqual(payDate);
   expect(pc!.grossPay).toBe(pay);
   expect(pc!.disposition).toBe('Hold');

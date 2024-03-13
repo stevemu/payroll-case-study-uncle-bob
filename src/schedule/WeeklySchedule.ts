@@ -8,4 +8,8 @@ export class WeeklySchedule implements Schedule {
   isPayDate(date: Date): boolean {
     return this.isFriday(date);
   }
+
+  getPayPeriodStartDate(payDate: Date): Date {
+    return new Date(payDate.getFullYear(), payDate.getMonth(), payDate.getDate() - 5);
+  }
 }

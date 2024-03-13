@@ -1,17 +1,20 @@
-import { Classification } from '../Classification.interface';
+import { PayCheck } from '@/src/PayCheck';
+import { Classification } from '../Classification.abstract';
 import { SalesReceipt } from './SalesReceipt';
 
-export class CommissionedClassification implements Classification {
+export class CommissionedClassification extends Classification {
   private salesReceipts: SalesReceipt[] = [];
 
   constructor(
     public salary: number,
     public commissionRate: number,
-  ) {}
+  ) {
+    super();
+  }
 
-  calculatePay(payDate: Date): number {
+  calculatePay(payCheck: PayCheck): number {
     const halfOfSalary = this.salary / 2;
-    const commission = this.calculateCommissions(payDate);
+    const commission = this.calculateCommissions(payCheck.payDate);
     return halfOfSalary + commission;
   }
 

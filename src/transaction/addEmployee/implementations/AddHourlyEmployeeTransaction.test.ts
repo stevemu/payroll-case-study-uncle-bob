@@ -1,5 +1,5 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { HourlyClassification } from '@/src/classification/hourly/HourlyClassification';
+import { HourlyClassification } from '@/src/paymentClassification/hourly/HourlyClassification';
 import { HoldMethod } from '@/src/method/HoldMethod';
 import { WeeklySchedule } from '@/src/schedule/WeeklySchedule';
 import { AddHourlyEmployeeTransaction } from './AddHourlyEmployeeTransaction';

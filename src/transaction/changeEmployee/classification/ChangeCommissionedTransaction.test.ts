@@ -1,5 +1,5 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
+import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification';
 import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/implementations/AddHourlyEmployeeTransaction';
 import { ChangeCommissionedTransaction } from './ChangeComissionedTransaction';

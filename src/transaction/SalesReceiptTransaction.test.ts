@@ -1,7 +1,7 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { AddCommissionedEmployeeTransaction } from './addEmployee/implementations/AddCommissionedEmployeeTransaction';
 import { SalesReceiptTransaction } from './SalesReceiptTransaction';
-import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
+import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification';
 
 describe('SalesReceiptTransaction', () => {
   it('should create a sales receipt', () => {

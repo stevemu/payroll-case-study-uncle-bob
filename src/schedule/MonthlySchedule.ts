@@ -19,4 +19,20 @@ export class MonthlySchedule implements Schedule {
   isPayDate(date: Date): boolean {
     return this.isLastDayOfMonth(date);
   }
+
+  getPayPeriodStartDate(payDate: Date): Date {
+    const month = payDate.getMonth();
+    const year = payDate.getFullYear();
+    const lastDay = new Date(year, month + 1, 0);
+    const firstDay = new Date(year, month, 1);
+
+    const d1 = payDate.getDate();
+    const d2 = lastDay.getDate();
+
+    if (d1 === d2) {
+      return firstDay;
+    }
+
+    return new Date(year, month, 16);
+  }
 }

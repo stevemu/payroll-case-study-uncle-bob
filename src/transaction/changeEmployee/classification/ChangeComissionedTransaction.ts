@@ -1,4 +1,4 @@
-import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
+import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification';
 import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
 import { ChangeClassification } from './ChangeClassification.abstract';
 

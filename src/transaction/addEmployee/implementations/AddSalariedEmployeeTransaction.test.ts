@@ -1,6 +1,6 @@
 import { AddSalariedEmployeeTransaction } from './AddSalariedEmployeeTransaction';
 import { gPayrollDatabase } from '../../../PayrollDatabase';
-import { SalariedClassification } from '../../../classification/SalariedClassification';
+import { SalariedClassification } from '../../../paymentClassification/SalariedClassification';
 import { MonthlySchedule } from '../../../schedule/MonthlySchedule';
 import { HoldMethod } from '../../../method/HoldMethod';
 

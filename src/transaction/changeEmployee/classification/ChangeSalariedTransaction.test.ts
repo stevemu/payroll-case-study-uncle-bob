@@ -1,5 +1,5 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { SalariedClassification } from '@/src/classification/SalariedClassification';
+import { SalariedClassification } from '@/src/paymentClassification/SalariedClassification';
 import { MonthlySchedule } from '@/src/schedule/MonthlySchedule';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/implementations/AddHourlyEmployeeTransaction';
 import { ChangeSalariedTransaction } from './ChangeSalariedTransaction';

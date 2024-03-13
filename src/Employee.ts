@@ -1,6 +1,6 @@
 import { PayCheck } from './PayCheck';
 import { Affiliation } from './affiliation/Affiliation.interface';
-import { Classification } from './classification/Classification.interface';
+import { Classification } from './paymentClassification/Classification.abstract';
 import { Method } from './method/Method.interface';
 import { Schedule } from './schedule/Schedule.interface';
 
@@ -20,12 +20,18 @@ export class Employee {
     return this.schedule.isPayDate(payDate);
   }
 
-  payDay(payDate: Date): PayCheck {
-    const grossPay = this.classification.calculatePay(payDate);
-    const deductions = this.affiliation.calculateDeductions(payDate);
+  getPayPeriodStartDate(payDate: Date): Date {
+    return this.schedule.getPayPeriodStartDate(payDate);
+  }
+
+  payDay(payCheck: PayCheck) {
+    const grossPay = this.classification.calculatePay(payCheck);
+    const deductions = this.affiliation.calculateDeductions(payCheck.payDate);
     const netPay = grossPay - deductions;
 
-    return new PayCheck(payDate, grossPay, deductions, netPay);
+    payCheck.grossPay = grossPay;
+    payCheck.deductions = deductions;
+    payCheck.netPay = netPay;
   }
 }
 

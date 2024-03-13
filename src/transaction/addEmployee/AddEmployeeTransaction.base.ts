@@ -1,6 +1,6 @@
 import { gPayrollDatabase } from '../../PayrollDatabase';
 import { Employee } from '../../Employee';
-import { Classification } from '../../classification/Classification.interface';
+import { Classification } from '../../paymentClassification/Classification.abstract';
 import { HoldMethod } from '../../method/HoldMethod';
 import { Schedule } from '../../schedule/Schedule.interface';
 import { Transaction } from '../Transaction.interface';

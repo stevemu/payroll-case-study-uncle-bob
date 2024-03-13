@@ -1,7 +1,7 @@
-import { SalariedClassification } from '@/src/classification/SalariedClassification';
+import { SalariedClassification } from '@/src/paymentClassification/SalariedClassification';
 import { MonthlySchedule } from '@/src/schedule/MonthlySchedule';
 import { ChangeClassification } from './ChangeClassification.abstract';
-import { Classification } from '@/src/classification/Classification.interface';
+import { Classification } from '@/src/paymentClassification/Classification.abstract';
 import { Schedule } from '@/src/schedule/Schedule.interface';
 
 export class ChangeSalariedTransaction extends ChangeClassification {

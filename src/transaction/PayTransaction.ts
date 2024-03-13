@@ -15,7 +15,8 @@ export class PayTransaction extends Transaction {
     for (const employee of employees) {
       const isPayDate = employee.isPayDate(this.payDate);
       if (isPayDate) {
-        const payCheck = employee.payDay(this.payDate);
+        const payCheck = new PayCheck(employee.getPayPeriodStartDate(this.payDate), this.payDate);
+        employee.payDay(payCheck);
         this.payCheck.set(employee.empId, payCheck);
       }
     }

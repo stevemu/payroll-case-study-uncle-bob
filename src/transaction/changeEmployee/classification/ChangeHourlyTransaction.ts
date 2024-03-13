@@ -1,7 +1,7 @@
-import { HourlyClassification } from '@/src/classification/hourly/HourlyClassification';
+import { HourlyClassification } from '@/src/paymentClassification/hourly/HourlyClassification';
 import { WeeklySchedule } from '@/src/schedule/WeeklySchedule';
 import { ChangeClassification } from './ChangeClassification.abstract';
-import { Classification } from '@/src/classification/Classification.interface';
+import { Classification } from '@/src/paymentClassification/Classification.abstract';
 import { Schedule } from '@/src/schedule/Schedule.interface';
 
 export class ChangeHourlyTransaction extends ChangeClassification {

@@ -1,18 +1,29 @@
 import { Schedule } from './Schedule.interface';
 
 export class BiweeklySchedule implements Schedule {
-  isSecondOrFourthFriday(date: Date): boolean {
-    const dayOfWeek = date.getDay();
-    const dayOfMonth = date.getDate();
+  isFifteenthOrLastDayOfMonth(date: Date): boolean {
+    return date.getDate() === 15 || this.isLastDayOfMonth(date);
+  }
 
-    // Check if the day is Friday and if it is either the second or fourth occurrence in the month
-    return (
-      dayOfWeek === 5 &&
-      (Math.floor((dayOfMonth - 1) / 7) === 1 || Math.floor((dayOfMonth - 1) / 7) === 3)
-    );
+  isLastDayOfMonth(date: Date): boolean {
+    const month = date.getMonth();
+    const nextDay = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+    return nextDay.getMonth() !== month;
   }
 
   isPayDate(payDate: Date): boolean {
-    return this.isSecondOrFourthFriday(payDate);
+    return this.isFifteenthOrLastDayOfMonth(payDate);
+  }
+
+  getPayPeriodStartDate(payDate: Date): Date {
+    const startOfMonth = new Date(payDate.getFullYear(), payDate.getMonth(), 1);
+    const sixteenthDay = new Date(payDate.getFullYear(), payDate.getMonth(), 16);
+
+    if (payDate.getDate() === 15) {
+      return startOfMonth;
+    } else if (this.isLastDayOfMonth(payDate)) {
+      return sixteenthDay;
+    }
+    throw new Error('Invalid pay date');
   }
 }

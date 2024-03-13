@@ -1,7 +1,7 @@
-import { CommissionedClassification } from '@/src/classification/commissioned/CommissionedClassification';
+import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification';
 import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
 import { AddEmployeeTransaction } from '../AddEmployeeTransaction.base';
-import { Classification } from '@/src/classification/Classification.interface';
+import { Classification } from '@/src/paymentClassification/Classification.abstract';
 import { Schedule } from '@/src/schedule/Schedule.interface';
 
 export class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction {
