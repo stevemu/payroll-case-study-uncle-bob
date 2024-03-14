@@ -1,6 +1,6 @@
-import { WeeklySchedule } from '@/src/schedule/WeeklySchedule';
-import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification';
-import { AddEmployeeTransaction } from './AddEmployeeTransaction.base';
+import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification.ts';
+import { WeeklySchedule } from '../../schedule/WeeklySchedule.ts';
+import { AddEmployeeTransaction } from './AddEmployeeTransaction.base.ts';
 
 export class AddHourlyEmployeeTransaction extends AddEmployeeTransaction {
   constructor(

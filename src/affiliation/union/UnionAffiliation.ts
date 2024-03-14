@@ -1,7 +1,7 @@
-import { PayCheck } from '@/src/PayCheck';
-import { Affiliation } from '../Affiliation.interface';
-import { ServiceCharge } from './ServiceCharge';
-import { isBetween } from '@/src/utils/date';
+import { PayCheck } from '../../PayCheck.ts';
+import { isBetween } from '../../utils/date.ts';
+import { Affiliation } from '../Affiliation.interface.ts';
+import { ServiceCharge } from './ServiceCharge.ts';
 
 export class UnionAffiliation implements Affiliation {
   private serviceCharges: ServiceCharge[] = [];
