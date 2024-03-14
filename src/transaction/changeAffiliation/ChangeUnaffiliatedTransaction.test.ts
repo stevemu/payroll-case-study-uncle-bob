@@ -1,6 +1,6 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { NoAffiliation } from '@/src/affiliation/no/NoAffiliation';
-import { AddHourlyEmployeeTransaction } from '../addEmployee/implementations/AddHourlyEmployeeTransaction';
+import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction';
 import { ChangeMemberTransaction } from './ChangeMemberTransaction';
 import { ChangeUnaffiliatedTransaction } from './ChangeUnaffiliatedTransaction';
 

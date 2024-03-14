@@ -3,9 +3,9 @@ import { AddServiceChargeTransaction } from './AddServiceChargeTransaction';
 import { AddTimeCardTransaction } from './AddTimeCardTransaction';
 import { PayTransaction } from './PayTransaction';
 import { SalesReceiptTransaction } from './SalesReceiptTransaction';
-import { AddCommissionedEmployeeTransaction } from './addEmployee/implementations/AddCommissionedEmployeeTransaction';
-import { AddHourlyEmployeeTransaction } from './addEmployee/implementations/AddHourlyEmployeeTransaction';
-import { AddSalariedEmployeeTransaction } from './addEmployee/implementations/AddSalariedEmployeeTransaction';
+import { AddCommissionedEmployeeTransaction } from './addEmployee/AddCommissionedEmployeeTransaction';
+import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction';
+import { AddSalariedEmployeeTransaction } from './addEmployee/AddSalariedEmployeeTransaction';
 import { ChangeMemberTransaction } from './changeAffiliation/ChangeMemberTransaction';
 
 describe('PayTransaction', () => {

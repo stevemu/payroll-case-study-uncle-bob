@@ -1,3 +1,5 @@
+import { PayCheck } from '../PayCheck';
+
 export interface Method {
-  pay(): void;
+  pay(payCheck: PayCheck): void;
 }

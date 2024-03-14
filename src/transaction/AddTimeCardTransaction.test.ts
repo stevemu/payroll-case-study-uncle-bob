@@ -1,6 +1,6 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { AddTimeCardTransaction } from './AddTimeCardTransaction';
-import { AddHourlyEmployeeTransaction } from './addEmployee/implementations/AddHourlyEmployeeTransaction';
+import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction';
 import { HourlyClassification } from '@/src/paymentClassification/hourly/HourlyClassification';
 
 describe('AddTimeCardTransaction', () => {

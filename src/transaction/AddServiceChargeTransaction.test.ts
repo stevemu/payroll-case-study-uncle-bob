@@ -1,7 +1,7 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { AddServiceChargeTransaction } from './AddServiceChargeTransaction';
 import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation';
-import { AddHourlyEmployeeTransaction } from './addEmployee/implementations/AddHourlyEmployeeTransaction';
+import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction';
 
 describe('AddServiceChargeTransaction', () => {
   it('should add service charge to the membership', () => {

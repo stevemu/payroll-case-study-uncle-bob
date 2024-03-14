@@ -1,6 +1,6 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { MailMethod } from '@/src/method/MailMethod';
-import { AddHourlyEmployeeTransaction } from '../../addEmployee/implementations/AddHourlyEmployeeTransaction';
+import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction';
 import { ChangeMailTransaction } from './ChangeMailTransaction';
 
 describe('ChangeMailTransaction', () => {

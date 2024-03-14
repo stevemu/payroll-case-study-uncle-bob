@@ -1,8 +1,8 @@
 import { AddSalariedEmployeeTransaction } from './AddSalariedEmployeeTransaction';
-import { gPayrollDatabase } from '../../../PayrollDatabase';
-import { SalariedClassification } from '../../../paymentClassification/SalariedClassification';
-import { MonthlySchedule } from '../../../schedule/MonthlySchedule';
-import { HoldMethod } from '../../../method/HoldMethod';
+import { gPayrollDatabase } from '../../PayrollDatabase';
+import { SalariedClassification } from '../../paymentClassification/SalariedClassification';
+import { MonthlySchedule } from '../../schedule/MonthlySchedule';
+import { HoldMethod } from '../../method/HoldMethod';
 
 describe('AddSalariedEmployee', () => {
   it('should add a salaried employee', () => {

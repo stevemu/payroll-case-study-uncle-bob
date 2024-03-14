@@ -1,6 +1,6 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { HoldMethod } from '@/src/method/HoldMethod';
-import { AddSalariedEmployeeTransaction } from '../../addEmployee/implementations/AddSalariedEmployeeTransaction';
+import { AddSalariedEmployeeTransaction } from '../../addEmployee/AddSalariedEmployeeTransaction';
 import { ChangeHoldTransaction } from './ChangeHoldTransaction';
 
 describe('ChangeHoldTransaction', () => {

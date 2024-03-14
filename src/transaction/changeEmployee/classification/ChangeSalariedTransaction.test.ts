@@ -1,7 +1,7 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { SalariedClassification } from '@/src/paymentClassification/SalariedClassification';
 import { MonthlySchedule } from '@/src/schedule/MonthlySchedule';
-import { AddHourlyEmployeeTransaction } from '../../addEmployee/implementations/AddHourlyEmployeeTransaction';
+import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction';
 import { ChangeSalariedTransaction } from './ChangeSalariedTransaction';
 
 describe('ChangeSalariedTransaction', () => {

@@ -4,7 +4,6 @@ import { Classification } from '../../paymentClassification/Classification.abstr
 import { HoldMethod } from '../../method/HoldMethod';
 import { Schedule } from '../../schedule/Schedule.interface';
 import { Transaction } from '../Transaction.interface';
-import { NoAffiliation } from '@/src/affiliation/no/NoAffiliation';
 
 export abstract class AddEmployeeTransaction extends Transaction {
   constructor(
@@ -26,7 +25,6 @@ export abstract class AddEmployeeTransaction extends Transaction {
     e.classification = pc;
     e.schedule = ps;
     e.method = pm;
-    e.affiliation = new NoAffiliation();
     gPayrollDatabase.addEmployee(this.empId, e);
   }
 }

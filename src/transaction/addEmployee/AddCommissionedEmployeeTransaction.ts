@@ -1,6 +1,6 @@
 import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification';
 import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
-import { AddEmployeeTransaction } from '../AddEmployeeTransaction.base';
+import { AddEmployeeTransaction } from './AddEmployeeTransaction.base';
 import { Classification } from '@/src/paymentClassification/Classification.abstract';
 import { Schedule } from '@/src/schedule/Schedule.interface';
 

@@ -1,6 +1,6 @@
 import { gPayrollDatabase } from '../PayrollDatabase';
 import { DeleteEmployeeTransaction } from './DeleteEmployeeTransaction';
-import { AddSalariedEmployeeTransaction } from './addEmployee/implementations/AddSalariedEmployeeTransaction';
+import { AddSalariedEmployeeTransaction } from './addEmployee/AddSalariedEmployeeTransaction';
 
 describe('DeleteEmployeeTransaction', () => {
   it('should delete an employee', () => {

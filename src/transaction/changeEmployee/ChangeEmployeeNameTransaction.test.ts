@@ -1,5 +1,5 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { AddHourlyEmployeeTransaction } from '../addEmployee/implementations/AddHourlyEmployeeTransaction';
+import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction';
 import { ChangeEmployeeNameTransaction } from './ChangeEmployeeNameTransaction';
 
 describe('ChangeEmployeeNameTransaction', () => {

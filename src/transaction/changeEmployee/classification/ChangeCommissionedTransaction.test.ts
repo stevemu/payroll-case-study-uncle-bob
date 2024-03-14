@@ -1,7 +1,7 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification';
 import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
-import { AddHourlyEmployeeTransaction } from '../../addEmployee/implementations/AddHourlyEmployeeTransaction';
+import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction';
 import { ChangeCommissionedTransaction } from './ChangeComissionedTransaction';
 
 describe('ChangeCommissionedTransaction', () => {

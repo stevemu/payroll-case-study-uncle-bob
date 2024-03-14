@@ -1,5 +1,5 @@
 import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation';
-import { AddHourlyEmployeeTransaction } from '../addEmployee/implementations/AddHourlyEmployeeTransaction';
+import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction';
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { ChangeMemberTransaction } from './ChangeMemberTransaction';
 
