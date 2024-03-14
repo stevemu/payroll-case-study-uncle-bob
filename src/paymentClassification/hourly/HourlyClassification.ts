@@ -13,6 +13,10 @@ export class HourlyClassification extends Classification {
     this.timeCards.push(timeCard);
   }
 
+  getTimeCard(date: Date): TimeCard | undefined {
+    return this.timeCards.find((timeCard) => timeCard.date === date);
+  }
+
   calculatePay(payCheck: PayCheck): number {
     const timeCards = this.timeCards.filter((timeCard) =>
       this.isInPayPeriod(timeCard.date, payCheck),

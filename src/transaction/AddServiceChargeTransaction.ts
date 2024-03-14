@@ -6,7 +6,7 @@ import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation';
 export class AddServiceChargeTransaction implements Transaction {
   constructor(
     private memberId: number,
-    private date: string,
+    private date: Date,
     private amount: number,
   ) {}
 

@@ -16,12 +16,13 @@ describe('AddTimeCardTransaction', () => {
     );
     addEmployeeTransaction.execute();
 
-    const addTimeCardTransaction = new AddTimeCardTransaction(employeeId, '2021-07-01', hours);
+    const date = new Date(2021, 6, 1);
+    const addTimeCardTransaction = new AddTimeCardTransaction(employeeId, date, hours);
     addTimeCardTransaction.execute();
 
     const employee = gPayrollDatabase.getEmployee(employeeId);
-    const timeCard = (employee.classification as HourlyClassification).getTimeCard('2021-07-01');
+    const timeCard = (employee.classification as HourlyClassification).getTimeCard(date);
     expect(timeCard).toBeDefined();
-    expect(timeCard.hours).toBe(hours);
+    expect(timeCard!.hours).toBe(hours);
   });
 });

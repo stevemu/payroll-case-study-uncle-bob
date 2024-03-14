@@ -1,5 +1,6 @@
+import { PayCheck } from '@/src/PayCheck';
 import { Affiliation } from '../Affiliation.interface';
-import { NullServiceCharge, ServiceCharge } from './ServiceCharge';
+import { ServiceCharge } from './ServiceCharge';
 
 export class UnionAffiliation implements Affiliation {
   private serviceCharges: ServiceCharge[] = [];
@@ -9,8 +10,22 @@ export class UnionAffiliation implements Affiliation {
     public dues: number,
   ) {}
 
-  getFee(date: string): number {
-    return 0;
+  numberOfFridaysInPayPeriod(startDate: Date, endDate: Date): number {
+    let fridays = 0;
+    for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)) {
+      if (date.getDay() === 5) {
+        fridays++;
+      }
+    }
+    return fridays;
+  }
+
+  calculateDeductions(payCheck: PayCheck): number {
+    const fridays = this.numberOfFridaysInPayPeriod(
+      payCheck.payPeriodStartDate,
+      payCheck.payPeriodEndDate,
+    );
+    return this.dues * fridays + this.getServiceCharges().reduce((acc, sc) => acc + sc.amount, 0);
   }
 
   addServiceCharge(serviceCharge: ServiceCharge) {
@@ -21,7 +36,7 @@ export class UnionAffiliation implements Affiliation {
     return this.serviceCharges;
   }
 
-  getServiceCharge(date: string): ServiceCharge | NullServiceCharge {
-    return this.serviceCharges.find((sc) => sc.date === date) || new NullServiceCharge();
+  getServiceCharge(date: Date): ServiceCharge | undefined {
+    return this.serviceCharges.find((sc) => sc.date === date);
   }
 }

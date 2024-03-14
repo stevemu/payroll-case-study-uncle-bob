@@ -1,11 +1,13 @@
 import { NullEmployee } from '../Employee';
 import { gPayrollDatabase } from '../PayrollDatabase';
+import { AddServiceChargeTransaction } from './AddServiceChargeTransaction';
 import { AddTimeCardTransaction } from './AddTimeCardTransaction';
 import { PayTransaction } from './PayTransaction';
 import { SalesReceiptTransaction } from './SalesReceiptTransaction';
 import { AddCommissionedEmployeeTransaction } from './addEmployee/implementations/AddCommissionedEmployeeTransaction';
 import { AddHourlyEmployeeTransaction } from './addEmployee/implementations/AddHourlyEmployeeTransaction';
 import { AddSalariedEmployeeTransaction } from './addEmployee/implementations/AddSalariedEmployeeTransaction';
+import { ChangeMemberTransaction } from './changeAffiliation/ChangeMemberTransaction';
 
 describe('PayTransaction', () => {
   test('pay single salaried employee', () => {
@@ -18,6 +20,28 @@ describe('PayTransaction', () => {
     pt.execute();
 
     validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 1000);
+  });
+
+  test('pay single salaried employee union dues', () => {
+    const empId = 2;
+    const addSalariedEmployee = new AddSalariedEmployeeTransaction(empId, 'Bill', 'Home', 1000);
+    addSalariedEmployee.execute();
+
+    const changeMemberTransaction = new ChangeMemberTransaction(empId, 7734, 9.42);
+    changeMemberTransaction.execute();
+
+    const payDate = new Date(2001, 10, 30); // last day of month
+    const pt = new PayTransaction(payDate);
+    pt.execute();
+
+    const e = gPayrollDatabase.getEmployee(empId);
+    expect(e).not.toBeInstanceOf(NullEmployee);
+
+    const pc = pt.getPayCheck(empId);
+    expect(pc).not.toBeNull();
+    expect(pc!.grossPay).toBe(1000);
+    expect(pc!.deductions).toBe(5 * 9.42);
+    expect(pc!.netPay).toBe(1000 - 5 * 9.42);
   });
 
   test('pay single salaried employee on wrong date', () => {
@@ -112,6 +136,32 @@ describe('PayTransaction', () => {
     pt.execute();
 
     validatePaycheck(pt, empId, new Date(2001, 10, 4), payDate, 2 * 15.25);
+  });
+
+  test('pay single hourly employee with service charge', () => {
+    const empId = 2;
+    const addHourlyEmployee = new AddHourlyEmployeeTransaction(empId, 'Bill', 'Home', 15.25);
+    addHourlyEmployee.execute();
+
+    const payDate = new Date(2001, 10, 9); // Friday
+    const timeCardTransaction = new AddTimeCardTransaction(empId, payDate, 2.0);
+    timeCardTransaction.execute();
+
+    const changeMemberTransaction = new ChangeMemberTransaction(empId, 7734, 9.42);
+    changeMemberTransaction.execute();
+
+    const addServiceChargeTransaction = new AddServiceChargeTransaction(7734, payDate, 19.42);
+    addServiceChargeTransaction.execute();
+
+    const pt = new PayTransaction(payDate);
+    pt.execute();
+
+    const paycheck = pt.getPayCheck(empId);
+    expect(paycheck).not.toBeNull();
+    expect(paycheck!.grossPay).toBe(2 * 15.25);
+    expect(paycheck!.deductions).toBe(9.42 + 19.42);
+    expect(paycheck!.netPay).toBe(2 * 15.25 - (9.42 + 19.42));
+    expect(paycheck!.disposition).toBe('Hold');
   });
 
   test('pay single commission employee no sales - pay day is 15th', () => {
@@ -250,7 +300,7 @@ function validatePaycheck(
   const pc = pt.getPayCheck(empId);
   expect(pc).not.toBeNull();
   expect(pc!.payPeriodStartDate).toEqual(payPeriodStartDate);
-  expect(pc!.payDate).toEqual(payDate);
+  expect(pc!.payPeriodEndDate).toEqual(payDate);
   expect(pc!.grossPay).toBe(pay);
   expect(pc!.disposition).toBe('Hold');
   expect(pc!.deductions).toBe(0);

@@ -5,7 +5,7 @@ export abstract class Classification {
 
   isInPayPeriod(date: Date, payCheck: PayCheck) {
     const payPeriodStartDate = payCheck.payPeriodStartDate;
-    const payPeriodEndDate = payCheck.payDate;
+    const payPeriodEndDate = payCheck.payPeriodEndDate;
     return date >= payPeriodStartDate && date <= payPeriodEndDate;
   }
 }

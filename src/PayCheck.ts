@@ -6,6 +6,6 @@ export class PayCheck {
 
   constructor(
     public payPeriodStartDate: Date,
-    public payDate: Date,
+    public payPeriodEndDate: Date,
   ) {}
 }

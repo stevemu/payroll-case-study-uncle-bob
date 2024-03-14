@@ -10,13 +10,14 @@ describe('AddServiceChargeTransaction', () => {
     addHourlyEmployee.execute();
 
     const e = gPayrollDatabase.getEmployee(empId);
-    const af = new UnionAffiliation(12.5);
-    e.affiliation = af;
 
     const memberId = 86;
+    const af = new UnionAffiliation(memberId, 12.5);
+    e.affiliation = af;
+
     gPayrollDatabase.addUnionMember(memberId, e);
 
-    const date = '2021-01-01';
+    const date = new Date(2021, 8, 10);
     const amount = 100;
     const transaction = new AddServiceChargeTransaction(memberId, date, amount);
     transaction.execute();
@@ -25,7 +26,7 @@ describe('AddServiceChargeTransaction', () => {
     const ua = member.affiliation as UnionAffiliation;
 
     expect(ua).toBeInstanceOf(UnionAffiliation);
-    expect(ua.getServiceCharge(date).amount).toBe(amount);
-    expect(ua.getServiceCharge(date).date).toBe(date);
+    expect(ua.getServiceCharge(date)!.amount).toBe(amount);
+    expect(ua.getServiceCharge(date)!.date).toBe(date);
   });
 });

@@ -14,7 +14,7 @@ export class CommissionedClassification extends Classification {
 
   calculatePay(payCheck: PayCheck): number {
     const halfOfSalary = this.salary / 2;
-    const commission = this.calculateCommissions(payCheck.payDate);
+    const commission = this.calculateCommissions(payCheck.payPeriodEndDate);
     return halfOfSalary + commission;
   }
 

@@ -7,7 +7,7 @@
     "lint": "eslint --fix",
     "ts": "tsc -b",
     "test": "jest",
-    "all": "yarn lint && yarn ts && yarn test"
+    "checkall": "yarn lint && yarn ts && yarn test"
   },
   "keywords": [],
   "author": "",

@@ -26,7 +26,7 @@ export class Employee {
 
   payDay(payCheck: PayCheck) {
     const grossPay = this.classification.calculatePay(payCheck);
-    const deductions = this.affiliation.calculateDeductions(payCheck.payDate);
+    const deductions = this.affiliation.calculateDeductions(payCheck);
     const netPay = grossPay - deductions;
 
     payCheck.grossPay = grossPay;

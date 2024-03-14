@@ -1,3 +1,5 @@
+import { PayCheck } from '../PayCheck';
+
 export interface Affiliation {
-  calculateDeductions(date: Date): number;
+  calculateDeductions(payCheck: PayCheck): number;
 }

@@ -14,14 +14,15 @@ describe('SalesReceiptTransaction', () => {
     );
     addEmployeeTransaction.execute();
 
-    const transaction = new SalesReceiptTransaction(1, '2022-01-01', 100);
+    const date = new Date(2022, 0, 1);
+    const transaction = new SalesReceiptTransaction(1, date, 100);
     transaction.execute();
 
     const employee = gPayrollDatabase.getEmployee(1);
     const cc = employee.classification as CommissionedClassification;
 
-    const receipt = cc.getSalesReceipt('2022-01-01');
+    const receipt = cc.getSalesReceipt(date);
     expect(receipt).toBeDefined();
-    expect(receipt.amount).toBe(100);
+    expect(receipt!.amount).toBe(100);
   });
 });
