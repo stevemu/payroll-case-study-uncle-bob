@@ -287,6 +287,45 @@ describe('PayTransaction', () => {
 
     expect(pt.getPayCheck(empId)).toBeNull();
   });
+
+  test('service charge spanning multiple pay periods', () => {
+    const empId = 2;
+    const addHourlyEmployee = new AddHourlyEmployeeTransaction(empId, 'Bill', 'Home', 15.25);
+    addHourlyEmployee.execute();
+
+    const payDate = new Date(2001, 10, 9); // Friday
+    const earlyDate = new Date(2001, 10, 2);
+    const lateDate = new Date(2001, 10, 16);
+
+    const timeCardTransaction = new AddTimeCardTransaction(empId, payDate, 2.0);
+    timeCardTransaction.execute();
+
+    const changeMemberTransaction = new ChangeMemberTransaction(empId, 7734, 9.42);
+    changeMemberTransaction.execute();
+
+    const addServiceChargeTransaction = new AddServiceChargeTransaction(7734, payDate, 19.42);
+    addServiceChargeTransaction.execute();
+
+    const addServiceChargeTransactionEarly = new AddServiceChargeTransaction(
+      7734,
+      earlyDate,
+      19.42,
+    );
+    addServiceChargeTransactionEarly.execute();
+
+    const addServiceChargeTransactionLate = new AddServiceChargeTransaction(7734, lateDate, 19.42);
+    addServiceChargeTransactionLate.execute();
+
+    const pt = new PayTransaction(payDate);
+    pt.execute();
+
+    const paycheck = pt.getPayCheck(empId);
+    expect(paycheck).not.toBeNull();
+    expect(paycheck!.grossPay).toBe(2 * 15.25);
+    expect(paycheck!.deductions).toBe(9.42 + 19.42);
+    expect(paycheck!.netPay).toBe(2 * 15.25 - (9.42 + 19.42));
+    expect(paycheck!.disposition).toBe('Hold');
+  });
 });
 
 function validatePaycheck(

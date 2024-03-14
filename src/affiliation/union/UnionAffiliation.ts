@@ -1,6 +1,7 @@
 import { PayCheck } from '@/src/PayCheck';
 import { Affiliation } from '../Affiliation.interface';
 import { ServiceCharge } from './ServiceCharge';
+import { isBetween } from '@/src/utils/date';
 
 export class UnionAffiliation implements Affiliation {
   private serviceCharges: ServiceCharge[] = [];
@@ -20,12 +21,22 @@ export class UnionAffiliation implements Affiliation {
     return fridays;
   }
 
+  getServiceChargesInPayPeriod(startDate: Date, endDate: Date): number {
+    return this.serviceCharges
+      .filter((sc) => isBetween(sc.date, startDate, endDate))
+      .reduce((acc, sc) => acc + sc.amount, 0);
+  }
+
   calculateDeductions(payCheck: PayCheck): number {
     const fridays = this.numberOfFridaysInPayPeriod(
       payCheck.payPeriodStartDate,
       payCheck.payPeriodEndDate,
     );
-    return this.dues * fridays + this.getServiceCharges().reduce((acc, sc) => acc + sc.amount, 0);
+
+    return (
+      this.dues * fridays +
+      this.getServiceChargesInPayPeriod(payCheck.payPeriodStartDate, payCheck.payPeriodEndDate)
+    );
   }
 
   addServiceCharge(serviceCharge: ServiceCharge) {

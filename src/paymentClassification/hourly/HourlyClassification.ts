@@ -1,6 +1,7 @@
 import { PayCheck } from '@/src/PayCheck';
 import { Classification } from '../Classification.abstract';
 import { TimeCard } from './TimeCard';
+import { isBetween } from '@/src/utils/date';
 
 export class HourlyClassification extends Classification {
   private timeCards: TimeCard[] = [];
@@ -19,7 +20,7 @@ export class HourlyClassification extends Classification {
 
   calculatePay(payCheck: PayCheck): number {
     const timeCards = this.timeCards.filter((timeCard) =>
-      this.isInPayPeriod(timeCard.date, payCheck),
+      isBetween(timeCard.date, payCheck.payPeriodStartDate, payCheck.payPeriodEndDate),
     );
 
     return timeCards.reduce((acc, timeCard) => {
