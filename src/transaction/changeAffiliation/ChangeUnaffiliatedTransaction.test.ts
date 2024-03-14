@@ -1,8 +1,8 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { NoAffiliation } from '@/src/affiliation/noAffiliation/NoAffiliation';
-import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction';
-import { ChangeMemberTransaction } from './ChangeMemberTransaction';
-import { ChangeUnaffiliatedTransaction } from './ChangeUnaffiliatedTransaction';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { NoAffiliation } from '@/src/affiliation/noAffiliation/NoAffiliation.ts';
+import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction.ts';
+import { ChangeMemberTransaction } from './ChangeMemberTransaction.ts';
+import { ChangeUnaffiliatedTransaction } from './ChangeUnaffiliatedTransaction.ts';
 
 describe('ChangeUnaffiliatedTransaction', () => {
   test('changeUnaffiliated', () => {

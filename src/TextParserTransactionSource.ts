@@ -1,7 +1,7 @@
-import { Reader } from './Reader';
-import { TransactionSource } from './TransactionSource.interface';
-import { Transaction } from './transaction/Transaction.interface';
-import { AddHourlyEmployeeTransaction } from './transaction/addEmployee/AddHourlyEmployeeTransaction';
+import { Reader } from './Reader.ts';
+import { TransactionSource } from './TransactionSource.interface.ts';
+import { Transaction } from './transaction/Transaction.interface.ts';
+import { AddHourlyEmployeeTransaction } from './transaction/addEmployee/AddHourlyEmployeeTransaction.ts';
 
 export class TextParserTransactionSource implements TransactionSource {
   private reader: Reader = new Reader();

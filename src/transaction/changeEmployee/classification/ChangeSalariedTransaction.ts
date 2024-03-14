@@ -1,8 +1,8 @@
-import { SalariedClassification } from '@/src/paymentClassification/SalariedClassification';
-import { MonthlySchedule } from '@/src/schedule/MonthlySchedule';
-import { ChangeClassification } from './ChangeClassification.abstract';
-import { Classification } from '@/src/paymentClassification/Classification.abstract';
-import { Schedule } from '@/src/schedule/Schedule.interface';
+import { SalariedClassification } from '@/src/paymentClassification/SalariedClassification.ts';
+import { MonthlySchedule } from '@/src/schedule/MonthlySchedule.ts';
+import { ChangeClassification } from './ChangeClassification.abstract.ts';
+import { Classification } from '@/src/paymentClassification/Classification.abstract.ts';
+import { Schedule } from '@/src/schedule/Schedule.interface.ts';
 
 export class ChangeSalariedTransaction extends ChangeClassification {
   constructor(

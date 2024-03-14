@@ -1,7 +1,7 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { HoldMethod } from '@/src/method/HoldMethod';
-import { AddSalariedEmployeeTransaction } from '../../addEmployee/AddSalariedEmployeeTransaction';
-import { ChangeHoldTransaction } from './ChangeHoldTransaction';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { HoldMethod } from '@/src/method/HoldMethod.ts';
+import { AddSalariedEmployeeTransaction } from '../../addEmployee/AddSalariedEmployeeTransaction.ts';
+import { ChangeHoldTransaction } from './ChangeHoldTransaction.ts';
 
 describe('ChangeHoldTransaction', () => {
   it('should change employee to hold', () => {

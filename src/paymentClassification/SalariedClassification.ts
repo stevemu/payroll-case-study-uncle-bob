@@ -1,4 +1,4 @@
-import { Classification } from './Classification.abstract';
+import { Classification } from './Classification.abstract.ts';
 
 export class SalariedClassification extends Classification {
   constructor(public salary: number) {

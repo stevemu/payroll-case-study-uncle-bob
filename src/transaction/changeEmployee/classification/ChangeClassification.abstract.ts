@@ -1,7 +1,7 @@
-import { Classification } from '@/src/paymentClassification/Classification.abstract';
-import { ChangeEmployeeTransaction } from '../ChangeEmployeeTransaction.abstract';
-import { Employee } from '@/src/Employee';
-import { Schedule } from '@/src/schedule/Schedule.interface';
+import { Classification } from '@/src/paymentClassification/Classification.abstract.ts';
+import { ChangeEmployeeTransaction } from '../ChangeEmployeeTransaction.abstract.ts';
+import { Employee } from '@/src/Employee.ts';
+import { Schedule } from '@/src/schedule/Schedule.interface.ts';
 
 export abstract class ChangeClassification extends ChangeEmployeeTransaction {
   constructor(empId: number) {

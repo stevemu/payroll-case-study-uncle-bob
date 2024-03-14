@@ -1,8 +1,8 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification';
-import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
-import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction';
-import { ChangeCommissionedTransaction } from './ChangeComissionedTransaction';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification.ts';
+import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule.ts';
+import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction.ts';
+import { ChangeCommissionedTransaction } from './ChangeComissionedTransaction.ts';
 
 describe('ChangeCommissionedTransaction', () => {
   it('should change employee to commissioned', () => {

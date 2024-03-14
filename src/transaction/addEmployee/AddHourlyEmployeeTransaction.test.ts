@@ -1,8 +1,8 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { HourlyClassification } from '@/src/paymentClassification/hourly/HourlyClassification';
-import { HoldMethod } from '@/src/method/HoldMethod';
-import { WeeklySchedule } from '@/src/schedule/WeeklySchedule';
-import { AddHourlyEmployeeTransaction } from './AddHourlyEmployeeTransaction';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { HourlyClassification } from '@/src/paymentClassification/hourly/HourlyClassification.ts';
+import { HoldMethod } from '@/src/method/HoldMethod.ts';
+import { WeeklySchedule } from '@/src/schedule/WeeklySchedule.ts';
+import { AddHourlyEmployeeTransaction } from './AddHourlyEmployeeTransaction.ts';
 
 describe('AddHourlyEmployee', () => {
   it('should add an hourly employee', () => {

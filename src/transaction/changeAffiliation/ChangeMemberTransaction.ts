@@ -1,8 +1,8 @@
-import { Employee } from '@/src/Employee';
-import { Affiliation } from '@/src/affiliation/Affiliation.interface';
-import { ChangeAffiliationTransaction } from './ChangeAffiliationTransaction.abstract';
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation';
+import { Employee } from '@/src/Employee.ts';
+import { Affiliation } from '@/src/affiliation/Affiliation.interface.ts';
+import { ChangeAffiliationTransaction } from './ChangeAffiliationTransaction.abstract.ts';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation.ts';
 
 export class ChangeMemberTransaction extends ChangeAffiliationTransaction {
   constructor(

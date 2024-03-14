@@ -1,6 +1,6 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction';
-import { ChangeEmployeeAddressTransaction } from './ChangeEmployeeAddressTransaction';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction.ts';
+import { ChangeEmployeeAddressTransaction } from './ChangeEmployeeAddressTransaction.ts';
 
 describe('ChangeEmployeeAddressTransaction', () => {
   it('should change employee address', () => {

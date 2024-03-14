@@ -1,8 +1,8 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification';
-import { HoldMethod } from '@/src/method/HoldMethod';
-import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule';
-import { AddCommissionedEmployeeTransaction } from './AddCommissionedEmployeeTransaction';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification.ts';
+import { HoldMethod } from '@/src/method/HoldMethod.ts';
+import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule.ts';
+import { AddCommissionedEmployeeTransaction } from './AddCommissionedEmployeeTransaction.ts';
 
 describe('AddCommissionedEmployee', () => {
   it('should add a commissioned employee', () => {

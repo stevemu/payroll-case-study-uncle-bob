@@ -1,7 +1,7 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { AddServiceChargeTransaction } from './AddServiceChargeTransaction';
-import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation';
-import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { AddServiceChargeTransaction } from './AddServiceChargeTransaction.ts';
+import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation.ts';
+import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction.ts';
 
 describe('AddServiceChargeTransaction', () => {
   it('should add service charge to the membership', () => {

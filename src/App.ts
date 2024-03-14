@@ -1,4 +1,4 @@
-import { TextParserTransactionSource } from './TextParserTransactionSource';
+import { TextParserTransactionSource } from './TextParserTransactionSource.ts';
 
 const transactionSource = new TextParserTransactionSource();
 

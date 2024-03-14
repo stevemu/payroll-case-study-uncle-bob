@@ -1,5 +1,5 @@
-import { ChangeEmployeeTransaction } from './ChangeEmployeeTransaction.abstract';
-import { Employee } from '@/src/Employee';
+import { ChangeEmployeeTransaction } from './ChangeEmployeeTransaction.abstract.ts';
+import { Employee } from '@/src/Employee.ts';
 
 export class ChangeEmployeeAddressTransaction extends ChangeEmployeeTransaction {
   constructor(

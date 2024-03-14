@@ -1,6 +1,6 @@
-import { Employee } from '@/src/Employee';
-import { Method } from '@/src/method/Method.interface';
-import { ChangeEmployeeTransaction } from '../ChangeEmployeeTransaction.abstract';
+import { Employee } from '@/src/Employee.ts';
+import { Method } from '@/src/method/Method.interface.ts';
+import { ChangeEmployeeTransaction } from '../ChangeEmployeeTransaction.abstract.ts';
 
 export abstract class ChangeMethodTransaction extends ChangeEmployeeTransaction {
   constructor(empId: number) {

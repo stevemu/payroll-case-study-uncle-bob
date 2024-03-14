@@ -1,7 +1,7 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { DirectMethod } from '@/src/method/DirectMethod';
-import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction';
-import { ChangeDirectTransaction } from './ChangeDirectTransaction';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { DirectMethod } from '@/src/method/DirectMethod.ts';
+import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction.ts';
+import { ChangeDirectTransaction } from './ChangeDirectTransaction.ts';
 
 describe('ChangeDirectTransaction', () => {
   it('should change employee to direct', () => {

@@ -1,6 +1,6 @@
-import { Employee } from '@/src/Employee';
-import { Transaction } from '../Transaction.interface';
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
+import { Employee } from '@/src/Employee.ts';
+import { Transaction } from '../Transaction.interface.ts';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
 
 export abstract class ChangeEmployeeTransaction extends Transaction {
   constructor(private empId: number) {

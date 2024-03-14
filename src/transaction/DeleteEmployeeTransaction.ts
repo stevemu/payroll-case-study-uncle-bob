@@ -1,5 +1,5 @@
-import { gPayrollDatabase } from '../PayrollDatabase';
-import { Transaction } from './Transaction.interface';
+import { gPayrollDatabase } from '../PayrollDatabase.ts';
+import { Transaction } from './Transaction.interface.ts';
 
 export class DeleteEmployeeTransaction implements Transaction {
   constructor(private employeeId: number) {}

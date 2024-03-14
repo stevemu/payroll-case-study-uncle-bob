@@ -1,7 +1,7 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { MailMethod } from '@/src/method/MailMethod';
-import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction';
-import { ChangeMailTransaction } from './ChangeMailTransaction';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { MailMethod } from '@/src/method/MailMethod.ts';
+import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction.ts';
+import { ChangeMailTransaction } from './ChangeMailTransaction.ts';
 
 describe('ChangeMailTransaction', () => {
   it('should change to mail method', () => {

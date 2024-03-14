@@ -1,6 +1,6 @@
-import { AddEmployeeTransaction } from './AddEmployeeTransaction.base';
-import { SalariedClassification } from '../../paymentClassification/SalariedClassification';
-import { MonthlySchedule } from '../../schedule/MonthlySchedule';
+import { AddEmployeeTransaction } from './AddEmployeeTransaction.base.ts';
+import { SalariedClassification } from '../../paymentClassification/SalariedClassification.ts';
+import { MonthlySchedule } from '../../schedule/MonthlySchedule.ts';
 
 export class AddSalariedEmployeeTransaction extends AddEmployeeTransaction {
   constructor(

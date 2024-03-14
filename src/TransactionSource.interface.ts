@@ -1,4 +1,4 @@
-import { Transaction } from './transaction/Transaction.interface';
+import { Transaction } from './transaction/Transaction.interface.ts';
 
 export interface TransactionSource {
   getTransaction(): Promise<Transaction>;

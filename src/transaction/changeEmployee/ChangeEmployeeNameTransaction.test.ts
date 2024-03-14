@@ -1,6 +1,6 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction';
-import { ChangeEmployeeNameTransaction } from './ChangeEmployeeNameTransaction';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction.ts';
+import { ChangeEmployeeNameTransaction } from './ChangeEmployeeNameTransaction.ts';
 
 describe('ChangeEmployeeNameTransaction', () => {
   it('should change employee name', () => {

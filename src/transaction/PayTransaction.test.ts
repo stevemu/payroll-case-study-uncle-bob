@@ -1,12 +1,12 @@
-import { gPayrollDatabase } from '../PayrollDatabase';
-import { AddServiceChargeTransaction } from './AddServiceChargeTransaction';
-import { AddTimeCardTransaction } from './AddTimeCardTransaction';
-import { PayTransaction } from './PayTransaction';
-import { SalesReceiptTransaction } from './SalesReceiptTransaction';
-import { AddCommissionedEmployeeTransaction } from './addEmployee/AddCommissionedEmployeeTransaction';
-import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction';
-import { AddSalariedEmployeeTransaction } from './addEmployee/AddSalariedEmployeeTransaction';
-import { ChangeMemberTransaction } from './changeAffiliation/ChangeMemberTransaction';
+import { gPayrollDatabase } from '../PayrollDatabase.ts';
+import { AddServiceChargeTransaction } from './AddServiceChargeTransaction.ts';
+import { AddTimeCardTransaction } from './AddTimeCardTransaction.ts';
+import { PayTransaction } from './PayTransaction.ts';
+import { SalesReceiptTransaction } from './SalesReceiptTransaction.ts';
+import { AddCommissionedEmployeeTransaction } from './addEmployee/AddCommissionedEmployeeTransaction.ts';
+import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction.ts';
+import { AddSalariedEmployeeTransaction } from './addEmployee/AddSalariedEmployeeTransaction.ts';
+import { ChangeMemberTransaction } from './changeAffiliation/ChangeMemberTransaction.ts';
 
 describe('PayTransaction', () => {
   test('pay single salaried employee', () => {

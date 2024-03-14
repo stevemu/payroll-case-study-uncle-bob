@@ -1,4 +1,4 @@
-import { Schedule } from './Schedule.interface';
+import { Schedule } from './Schedule.interface.ts';
 
 export class MonthlySchedule implements Schedule {
   isLastDayOfMonth(date: Date): boolean {

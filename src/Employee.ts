@@ -1,9 +1,9 @@
-import { PayCheck } from './PayCheck';
-import { Affiliation } from './affiliation/Affiliation.interface';
-import { Classification } from './paymentClassification/Classification.abstract';
-import { Method } from './method/Method.interface';
-import { Schedule } from './schedule/Schedule.interface';
-import { NoAffiliation } from './affiliation/noAffiliation/NoAffiliation';
+import { PayCheck } from './PayCheck.ts';
+import { Affiliation } from './affiliation/Affiliation.interface.ts';
+import { Classification } from './paymentClassification/Classification.abstract.ts';
+import { Method } from './method/Method.interface.ts';
+import { Schedule } from './schedule/Schedule.interface.ts';
+import { NoAffiliation } from './affiliation/noAffiliation/NoAffiliation.ts';
 
 export class Employee {
   constructor(

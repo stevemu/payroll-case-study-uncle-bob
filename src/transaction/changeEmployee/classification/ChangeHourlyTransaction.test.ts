@@ -1,8 +1,8 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { AddCommissionedEmployeeTransaction } from '../../addEmployee/AddCommissionedEmployeeTransaction';
-import { HourlyClassification } from '@/src/paymentClassification/hourly/HourlyClassification';
-import { WeeklySchedule } from '@/src/schedule/WeeklySchedule';
-import { ChangeHourlyTransaction } from './ChangeHourlyTransaction';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { AddCommissionedEmployeeTransaction } from '../../addEmployee/AddCommissionedEmployeeTransaction.ts';
+import { HourlyClassification } from '@/src/paymentClassification/hourly/HourlyClassification.ts';
+import { WeeklySchedule } from '@/src/schedule/WeeklySchedule.ts';
+import { ChangeHourlyTransaction } from './ChangeHourlyTransaction.ts';
 
 describe('ChangeHourlyTransaction', () => {
   it('should change employee to hourly', () => {

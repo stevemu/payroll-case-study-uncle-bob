@@ -1,7 +1,7 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { Transaction } from './Transaction.interface';
-import { HourlyClassification } from '@/src/paymentClassification/hourly/HourlyClassification';
-import { TimeCard } from '@/src/paymentClassification/hourly/TimeCard';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { Transaction } from './Transaction.interface.ts';
+import { HourlyClassification } from '@/src/paymentClassification/hourly/HourlyClassification.ts';
+import { TimeCard } from '@/src/paymentClassification/hourly/TimeCard.ts';
 
 export class AddTimeCardTransaction implements Transaction {
   constructor(

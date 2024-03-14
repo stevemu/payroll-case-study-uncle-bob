@@ -1,7 +1,7 @@
-import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation';
-import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction';
-import { gPayrollDatabase } from '@/src/PayrollDatabase';
-import { ChangeMemberTransaction } from './ChangeMemberTransaction';
+import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation.ts';
+import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction.ts';
+import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { ChangeMemberTransaction } from './ChangeMemberTransaction.ts';
 
 describe('ChangeMemberTransaction', () => {
   test('changeMember', () => {

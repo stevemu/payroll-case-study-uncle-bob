@@ -1,4 +1,4 @@
-import { Schedule } from './Schedule.interface';
+import { Schedule } from './Schedule.interface.ts';
 
 export class BiweeklySchedule implements Schedule {
   isFifteenthOrLastDayOfMonth(date: Date): boolean {
