@@ -1,6 +1,6 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
+import { gPayrollDatabase } from '../PayrollDatabase.ts';
+import { UnionAffiliation } from '../affiliation/union/UnionAffiliation.ts';
 import { AddServiceChargeTransaction } from './AddServiceChargeTransaction.ts';
-import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation.ts';
 import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction.ts';
 
 describe('AddServiceChargeTransaction', () => {

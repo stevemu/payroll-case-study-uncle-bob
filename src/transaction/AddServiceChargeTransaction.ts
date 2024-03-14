@@ -1,7 +1,7 @@
-import { ServiceCharge } from '@/src/affiliation/union/ServiceCharge.ts';
-import { Transaction } from './Transaction.interface.ts';
-import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
-import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation.ts';
+import { gPayrollDatabase } from '../PayrollDatabase';
+import { ServiceCharge } from '../affiliation/union/ServiceCharge';
+import { UnionAffiliation } from '../affiliation/union/UnionAffiliation';
+import { Transaction } from './Transaction.interface';
 
 export class AddServiceChargeTransaction implements Transaction {
   constructor(

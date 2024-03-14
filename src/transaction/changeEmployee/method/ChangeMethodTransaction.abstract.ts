@@ -1,5 +1,5 @@
-import { Employee } from '@/src/Employee.ts';
-import { Method } from '@/src/method/Method.interface.ts';
+import { Employee } from '../../../Employee.ts';
+import { Method } from '../../../method/Method.interface.ts';
 import { ChangeEmployeeTransaction } from '../ChangeEmployeeTransaction.abstract.ts';
 
 export abstract class ChangeMethodTransaction extends ChangeEmployeeTransaction {

@@ -1,4 +1,4 @@
-import nodeReadline from 'readline.ts';
+import nodeReadline from 'readline';
 
 export class Reader {
   private rl: nodeReadline.ReadLine;

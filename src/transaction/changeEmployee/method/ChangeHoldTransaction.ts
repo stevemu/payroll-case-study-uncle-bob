@@ -1,5 +1,5 @@
-import { HoldMethod } from '@/src/method/HoldMethod.ts';
-import { ChangeMethodTransaction } from './ChangeMethodTransaction.abstract.ts';
+import { HoldMethod } from '../../../method/HoldMethod';
+import { ChangeMethodTransaction } from './ChangeMethodTransaction.abstract';
 
 export class ChangeHoldTransaction extends ChangeMethodTransaction {
   constructor(empId: number) {

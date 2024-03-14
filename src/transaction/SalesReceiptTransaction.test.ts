@@ -1,7 +1,7 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
-import { AddCommissionedEmployeeTransaction } from './addEmployee/AddCommissionedEmployeeTransaction.ts';
-import { SalesReceiptTransaction } from './SalesReceiptTransaction.ts';
-import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification.ts';
+import { gPayrollDatabase } from '../PayrollDatabase';
+import { CommissionedClassification } from '../paymentClassification/commissioned/CommissionedClassification';
+import { SalesReceiptTransaction } from './SalesReceiptTransaction';
+import { AddCommissionedEmployeeTransaction } from './addEmployee/AddCommissionedEmployeeTransaction';
 
 describe('SalesReceiptTransaction', () => {
   it('should create a sales receipt', () => {

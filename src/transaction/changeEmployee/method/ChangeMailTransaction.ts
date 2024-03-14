@@ -1,4 +1,4 @@
-import { MailMethod } from '@/src/method/MailMethod.ts';
+import { MailMethod } from '../../../method/MailMethod.ts';
 import { ChangeMethodTransaction } from './ChangeMethodTransaction.abstract.ts';
 
 export class ChangeMailTransaction extends ChangeMethodTransaction {

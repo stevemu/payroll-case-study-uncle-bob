@@ -1,7 +1,7 @@
-import { PayCheck } from '@/src/PayCheck.ts';
-import { Classification } from '../Classification.abstract.ts';
-import { TimeCard } from './TimeCard.ts';
-import { isBetween } from '@/src/utils/date.ts';
+import { PayCheck } from '../../PayCheck';
+import { isBetween } from '../../utils/date';
+import { Classification } from '../Classification.abstract';
+import { TimeCard } from './TimeCard';
 
 export class HourlyClassification extends Classification {
   private timeCards: TimeCard[] = [];

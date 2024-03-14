@@ -1,8 +1,8 @@
-import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification.ts';
-import { BiweeklySchedule } from '@/src/schedule/BiweeklySchedule.ts';
-import { AddEmployeeTransaction } from './AddEmployeeTransaction.base.ts';
-import { Classification } from '@/src/paymentClassification/Classification.abstract.ts';
-import { Schedule } from '@/src/schedule/Schedule.interface.ts';
+import { Classification } from '../../paymentClassification/Classification.abstract';
+import { CommissionedClassification } from '../../paymentClassification/commissioned/CommissionedClassification';
+import { BiweeklySchedule } from '../../schedule/BiweeklySchedule';
+import { Schedule } from '../../schedule/Schedule.interface';
+import { AddEmployeeTransaction } from './AddEmployeeTransaction.base';
 
 export class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction {
   constructor(

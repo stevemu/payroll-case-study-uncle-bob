@@ -1,9 +1,9 @@
-import { Employee } from '@/src/Employee.ts';
-import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
-import { Affiliation } from '@/src/affiliation/Affiliation.interface.ts';
-import { NoAffiliation } from '@/src/affiliation/noAffiliation/NoAffiliation.ts';
-import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation.ts';
-import { ChangeAffiliationTransaction } from './ChangeAffiliationTransaction.abstract.ts';
+import { Employee } from '../../Employee';
+import { gPayrollDatabase } from '../../PayrollDatabase';
+import { Affiliation } from '../../affiliation/Affiliation.interface';
+import { NoAffiliation } from '../../affiliation/noAffiliation/NoAffiliation';
+import { UnionAffiliation } from '../../affiliation/union/UnionAffiliation';
+import { ChangeAffiliationTransaction } from './ChangeAffiliationTransaction.abstract';
 
 export class ChangeUnaffiliatedTransaction extends ChangeAffiliationTransaction {
   recordMembership(employee: Employee): void {

@@ -1,6 +1,6 @@
-import { gPayrollDatabase } from '@/src/PayrollDatabase.ts';
-import { SalariedClassification } from '@/src/paymentClassification/SalariedClassification.ts';
-import { MonthlySchedule } from '@/src/schedule/MonthlySchedule.ts';
+import { gPayrollDatabase } from '../../../PayrollDatabase.ts';
+import { SalariedClassification } from '../../../paymentClassification/SalariedClassification.ts';
+import { MonthlySchedule } from '../../../schedule/MonthlySchedule.ts';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction.ts';
 import { ChangeSalariedTransaction } from './ChangeSalariedTransaction.ts';
 

@@ -1,4 +1,4 @@
-import { Employee } from '@/src/Employee.ts';
+import { Employee } from '../../Employee.ts';
 import { ChangeEmployeeTransaction } from './ChangeEmployeeTransaction.abstract.ts';
 
 export class ChangeEmployeeNameTransaction extends ChangeEmployeeTransaction {
