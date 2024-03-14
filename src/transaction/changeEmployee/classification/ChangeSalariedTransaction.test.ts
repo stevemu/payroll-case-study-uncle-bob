@@ -14,8 +14,8 @@ describe('ChangeSalariedTransaction', () => {
     changeSalaried.execute();
 
     const employee = gPayrollDatabase.getEmployee(empId);
-    expect(employee.classification).toBeInstanceOf(SalariedClassification);
-    expect((employee.classification as SalariedClassification).salary).toBe(1000);
-    expect(employee.schedule).toBeInstanceOf(MonthlySchedule);
+    expect(employee!.classification).toBeInstanceOf(SalariedClassification);
+    expect((employee!.classification as SalariedClassification).salary).toBe(1000);
+    expect(employee!.schedule).toBeInstanceOf(MonthlySchedule);
   });
 });

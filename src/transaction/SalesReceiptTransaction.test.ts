@@ -18,7 +18,7 @@ describe('SalesReceiptTransaction', () => {
     const transaction = new SalesReceiptTransaction(1, date, 100);
     transaction.execute();
 
-    const employee = gPayrollDatabase.getEmployee(1);
+    const employee = gPayrollDatabase.getEmployee(1)!;
     const cc = employee.classification as CommissionedClassification;
 
     const receipt = cc.getSalesReceipt(date);

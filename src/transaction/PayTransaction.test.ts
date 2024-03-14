@@ -1,4 +1,3 @@
-import { NullEmployee } from '../Employee';
 import { gPayrollDatabase } from '../PayrollDatabase';
 import { AddServiceChargeTransaction } from './AddServiceChargeTransaction';
 import { AddTimeCardTransaction } from './AddTimeCardTransaction';
@@ -35,7 +34,7 @@ describe('PayTransaction', () => {
     pt.execute();
 
     const e = gPayrollDatabase.getEmployee(empId);
-    expect(e).not.toBeInstanceOf(NullEmployee);
+    expect(e).not.toBeUndefined();
 
     const pc = pt.getPayCheck(empId);
     expect(pc).not.toBeNull();
@@ -54,7 +53,7 @@ describe('PayTransaction', () => {
     payTransaction.execute();
 
     const e = gPayrollDatabase.getEmployee(empId);
-    expect(e).not.toBeInstanceOf(NullEmployee);
+    expect(e).not.toBeUndefined();
 
     const pc = payTransaction.getPayCheck(empId);
     expect(pc).toBeNull();

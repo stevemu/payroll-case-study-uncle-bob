@@ -2,7 +2,6 @@ import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { CommissionedClassification } from '@/src/paymentClassification/commissioned/CommissionedClassification';
 import { SalesReceipt } from '@/src/paymentClassification/commissioned/SalesReceipt';
 import { Transaction } from './Transaction.interface';
-import { NullEmployee } from '@/src/Employee';
 
 export class SalesReceiptTransaction extends Transaction {
   constructor(
@@ -16,7 +15,7 @@ export class SalesReceiptTransaction extends Transaction {
   execute(): void {
     const e = gPayrollDatabase.getEmployee(this.empId);
 
-    if (e instanceof NullEmployee) {
+    if (!e) {
       throw new Error('No such employee');
     }
 

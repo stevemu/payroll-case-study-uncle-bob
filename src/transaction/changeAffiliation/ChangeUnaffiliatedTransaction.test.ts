@@ -1,4 +1,3 @@
-import { NullEmployee } from '@/src/Employee';
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { NoAffiliation } from '@/src/affiliation/no/NoAffiliation';
 import { AddHourlyEmployeeTransaction } from '../addEmployee/implementations/AddHourlyEmployeeTransaction';
@@ -20,9 +19,9 @@ describe('ChangeUnaffiliatedTransaction', () => {
     changeUnaffiliatedTransaction.execute();
 
     const e = gPayrollDatabase.getEmployee(empId);
-    expect(e).not.toBeInstanceOf(NullEmployee);
+    expect(e).not.toBeUndefined();
 
-    const af = e.affiliation;
+    const af = e!.affiliation;
     expect(af).toBeInstanceOf(NoAffiliation);
   });
 });

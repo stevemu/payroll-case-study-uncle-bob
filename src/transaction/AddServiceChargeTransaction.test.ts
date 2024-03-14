@@ -9,7 +9,7 @@ describe('AddServiceChargeTransaction', () => {
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(empId, 'Bill', 'Home', 15.25);
     addHourlyEmployee.execute();
 
-    const e = gPayrollDatabase.getEmployee(empId);
+    const e = gPayrollDatabase.getEmployee(empId)!;
 
     const memberId = 86;
     const af = new UnionAffiliation(memberId, 12.5);
@@ -22,7 +22,7 @@ describe('AddServiceChargeTransaction', () => {
     const transaction = new AddServiceChargeTransaction(memberId, date, amount);
     transaction.execute();
 
-    const member = gPayrollDatabase.getUnionMember(memberId);
+    const member = gPayrollDatabase.getUnionMember(memberId)!;
     const ua = member.affiliation as UnionAffiliation;
 
     expect(ua).toBeInstanceOf(UnionAffiliation);

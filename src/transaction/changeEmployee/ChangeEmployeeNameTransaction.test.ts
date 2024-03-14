@@ -18,6 +18,6 @@ describe('ChangeEmployeeNameTransaction', () => {
     transaction.execute();
 
     const employee = gPayrollDatabase.getEmployee(employeeId);
-    expect(employee.name).toBe('Bob');
+    expect(employee!.name).toBe('Bob');
   });
 });

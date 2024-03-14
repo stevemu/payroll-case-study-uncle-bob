@@ -13,7 +13,7 @@ describe('ChangeHoldTransaction', () => {
     changeHold.execute();
 
     const employee = gPayrollDatabase.getEmployee(empId);
-    expect(employee.method).toBeInstanceOf(HoldMethod);
-    expect((employee.method as HoldMethod).address).toBe('Hold');
+    expect(employee!.method).toBeInstanceOf(HoldMethod);
+    expect((employee!.method as HoldMethod).address).toBe('Hold');
   });
 });

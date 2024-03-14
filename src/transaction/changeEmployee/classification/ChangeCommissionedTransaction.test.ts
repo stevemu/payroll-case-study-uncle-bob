@@ -14,9 +14,9 @@ describe('ChangeCommissionedTransaction', () => {
     changeCommissioned.execute();
 
     const employee = gPayrollDatabase.getEmployee(empId);
-    expect(employee.classification).toBeInstanceOf(CommissionedClassification);
-    expect((employee.classification as CommissionedClassification).salary).toBe(1000);
-    expect((employee.classification as CommissionedClassification).commissionRate).toBe(0.5);
-    expect(employee.schedule).toBeInstanceOf(BiweeklySchedule);
+    expect(employee!.classification).toBeInstanceOf(CommissionedClassification);
+    expect((employee!.classification as CommissionedClassification).salary).toBe(1000);
+    expect((employee!.classification as CommissionedClassification).commissionRate).toBe(0.5);
+    expect(employee!.schedule).toBeInstanceOf(BiweeklySchedule);
   });
 });

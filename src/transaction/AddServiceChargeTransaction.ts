@@ -11,7 +11,7 @@ export class AddServiceChargeTransaction implements Transaction {
   ) {}
 
   public execute(): void {
-    const member = gPayrollDatabase.getUnionMember(this.memberId);
+    const member = gPayrollDatabase.getUnionMember(this.memberId)!;
     const af = member.affiliation;
     if (af instanceof UnionAffiliation) {
       af.addServiceCharge(new ServiceCharge(this.date, this.amount));

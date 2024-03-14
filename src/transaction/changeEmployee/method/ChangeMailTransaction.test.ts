@@ -13,7 +13,7 @@ describe('ChangeMailTransaction', () => {
     changeMail.execute();
 
     const employee = gPayrollDatabase.getEmployee(empId);
-    expect(employee.method).toBeInstanceOf(MailMethod);
-    expect((employee.method as MailMethod).address).toBe('Mail');
+    expect(employee!.method).toBeInstanceOf(MailMethod);
+    expect((employee!.method as MailMethod).address).toBe('Mail');
   });
 });

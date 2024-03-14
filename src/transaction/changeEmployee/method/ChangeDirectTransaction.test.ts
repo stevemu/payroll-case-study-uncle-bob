@@ -13,8 +13,8 @@ describe('ChangeDirectTransaction', () => {
     changeDirect.execute();
 
     const employee = gPayrollDatabase.getEmployee(empId);
-    expect(employee.method).toBeInstanceOf(DirectMethod);
-    expect((employee.method as DirectMethod).bank).toBe('Bank');
-    expect((employee.method as DirectMethod).account).toBe('Account');
+    expect(employee!.method).toBeInstanceOf(DirectMethod);
+    expect((employee!.method as DirectMethod).bank).toBe('Bank');
+    expect((employee!.method as DirectMethod).account).toBe('Account');
   });
 });

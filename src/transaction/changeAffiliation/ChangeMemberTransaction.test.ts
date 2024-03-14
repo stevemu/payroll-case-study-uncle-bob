@@ -1,4 +1,3 @@
-import { NullEmployee } from '@/src/Employee';
 import { UnionAffiliation } from '@/src/affiliation/union/UnionAffiliation';
 import { AddHourlyEmployeeTransaction } from '../addEmployee/implementations/AddHourlyEmployeeTransaction';
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
@@ -16,9 +15,9 @@ describe('ChangeMemberTransaction', () => {
     changeMemberTransaction.execute();
 
     const e = gPayrollDatabase.getEmployee(empId);
-    expect(e).not.toBeInstanceOf(NullEmployee);
+    expect(e).not.toBeUndefined();
 
-    const af = e.affiliation;
+    const af = e!.affiliation;
     expect(af).toBeInstanceOf(UnionAffiliation);
     expect((af as UnionAffiliation).dues).toBe(99.42);
 

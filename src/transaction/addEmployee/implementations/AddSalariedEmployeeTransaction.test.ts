@@ -10,7 +10,7 @@ describe('AddSalariedEmployee', () => {
     const t = new AddSalariedEmployeeTransaction(empId, 'Bob', 'Home', 1000.0);
     t.execute();
 
-    const e = gPayrollDatabase.getEmployee(empId);
+    const e = gPayrollDatabase.getEmployee(empId)!;
     expect(e.name).toBe('Bob');
 
     const pc = e.classification;

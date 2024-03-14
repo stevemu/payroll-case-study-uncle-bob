@@ -34,9 +34,3 @@ export class Employee {
     payCheck.netPay = netPay;
   }
 }
-
-export class NullEmployee extends Employee {
-  constructor() {
-    super(-1, 'Null Employee', 'Null Address');
-  }
-}

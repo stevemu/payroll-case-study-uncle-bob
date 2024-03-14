@@ -1,7 +1,6 @@
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 import { Transaction } from './Transaction.interface';
 import { HourlyClassification } from '@/src/paymentClassification/hourly/HourlyClassification';
-import { NullEmployee } from '@/src/Employee';
 import { TimeCard } from '@/src/paymentClassification/hourly/TimeCard';
 
 export class AddTimeCardTransaction implements Transaction {
@@ -14,9 +13,10 @@ export class AddTimeCardTransaction implements Transaction {
   execute(): void {
     const employee = gPayrollDatabase.getEmployee(this.employeeId);
 
-    if (employee instanceof NullEmployee) {
+    if (!employee) {
       throw new Error('No such employee.');
     }
+
     if (!(employee.classification instanceof HourlyClassification)) {
       throw new Error('Tried to add time card to non-hourly employee.');
     }

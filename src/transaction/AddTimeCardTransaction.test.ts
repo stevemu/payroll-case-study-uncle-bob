@@ -20,7 +20,7 @@ describe('AddTimeCardTransaction', () => {
     const addTimeCardTransaction = new AddTimeCardTransaction(employeeId, date, hours);
     addTimeCardTransaction.execute();
 
-    const employee = gPayrollDatabase.getEmployee(employeeId);
+    const employee = gPayrollDatabase.getEmployee(employeeId)!;
     const timeCard = (employee.classification as HourlyClassification).getTimeCard(date);
     expect(timeCard).toBeDefined();
     expect(timeCard!.hours).toBe(hours);

@@ -17,7 +17,7 @@ describe('ChangeEmployeeAddressTransaction', () => {
     const transaction = new ChangeEmployeeAddressTransaction(employeeId, 'Office');
     transaction.execute();
 
-    const employee = gPayrollDatabase.getEmployee(employeeId);
+    const employee = gPayrollDatabase.getEmployee(employeeId)!;
     expect(employee.address).toBe('Office');
   });
 });

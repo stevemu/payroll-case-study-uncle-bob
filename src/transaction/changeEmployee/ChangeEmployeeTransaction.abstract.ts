@@ -1,4 +1,4 @@
-import { Employee, NullEmployee } from '@/src/Employee';
+import { Employee } from '@/src/Employee';
 import { Transaction } from '../Transaction.interface';
 import { gPayrollDatabase } from '@/src/PayrollDatabase';
 
@@ -11,7 +11,7 @@ export abstract class ChangeEmployeeTransaction extends Transaction {
 
   execute(): void {
     const employee = gPayrollDatabase.getEmployee(this.empId);
-    if (!(employee instanceof NullEmployee)) {
+    if (employee) {
       this.change(employee);
     }
   }

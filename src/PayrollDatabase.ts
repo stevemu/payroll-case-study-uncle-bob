@@ -1,4 +1,4 @@
-import { Employee, NullEmployee } from './Employee';
+import { Employee } from './Employee';
 
 export class PayrollDatabase {
   private employees: Map<number, Employee> = new Map();
@@ -8,8 +8,8 @@ export class PayrollDatabase {
     this.employees.set(empId, employee);
   }
 
-  getEmployee(empId: number): Employee {
-    return this.employees.get(empId) || new NullEmployee();
+  getEmployee(empId: number): Employee | undefined {
+    return this.employees.get(empId);
   }
 
   deleteEmployee(empId: number): void {
@@ -20,8 +20,8 @@ export class PayrollDatabase {
     this.employees.clear();
   }
 
-  getUnionMember(memberId: number): Employee {
-    return this.unionMembers.get(memberId) || new NullEmployee();
+  getUnionMember(memberId: number): Employee | undefined {
+    return this.unionMembers.get(memberId);
   }
 
   addUnionMember(memberId: number, employee: Employee) {

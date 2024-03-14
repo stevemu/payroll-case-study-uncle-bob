@@ -14,8 +14,8 @@ describe('ChangeHourlyTransaction', () => {
     changeHourly.execute();
 
     const employee = gPayrollDatabase.getEmployee(empId);
-    expect(employee.classification).toBeInstanceOf(HourlyClassification);
-    expect((employee.classification as HourlyClassification).hourlyRate).toBe(27.52);
-    expect(employee.schedule).toBeInstanceOf(WeeklySchedule);
+    expect(employee!.classification).toBeInstanceOf(HourlyClassification);
+    expect((employee!.classification as HourlyClassification).hourlyRate).toBe(27.52);
+    expect(employee!.schedule).toBeInstanceOf(WeeklySchedule);
   });
 });
