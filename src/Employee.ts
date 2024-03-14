@@ -3,7 +3,7 @@ import { Affiliation } from './affiliation/Affiliation.interface';
 import { Classification } from './paymentClassification/Classification.abstract';
 import { Method } from './method/Method.interface';
 import { Schedule } from './schedule/Schedule.interface';
-import { NoAffiliation } from './affiliation/no/NoAffiliation';
+import { NoAffiliation } from './affiliation/noAffiliation/NoAffiliation';
 
 export class Employee {
   constructor(
