@@ -10,13 +10,13 @@ ts-node --esm ./src/App.ts
 
 ## commands
 
-AddEmp <EmpId> "<name>" "<address>" H <hourly-rate>
+AddEmp <EmpId> <name> <address> H <hourly-rate>
 AddEmp 1 bill home H 10
 
-AddEmp <EmpId> "<name>" "<address>" S <monthly-salary>
+AddEmp <EmpId> <name> <address> S <monthly-salary>
 AddEmp 1 bill home S 100
 
-AddEmp <EmpId> "<name>" "<address>" C <monthly-salary>
+AddEmp <EmpId> <name> <address> C <monthly-salary>
 AddEmp 1 bill home C 100 .1
 
 DelEmp <EmpId>
@@ -37,7 +37,6 @@ ChgEmp 1 Name john
 ChgEmp <EmpId> Address <Name>
 ChgEmp 1 Address office
 
-
 ChgEmp <EmpId> Hourly <hourlyRate>
 ChgEmp 1 Hourly 50
 
@@ -47,7 +46,7 @@ ChgEmp 1 Salaried 5000
 Commissioned <salary> <rate>
 ChgEmp 1 Commissioned 5000 0.5
 
-`ChgEmp <EmpId> Hold
+ChgEmp <EmpId> Hold
 ChgEmp 1 Hold
 
 ChgEmp <EmpId> Direct <bank> <account>

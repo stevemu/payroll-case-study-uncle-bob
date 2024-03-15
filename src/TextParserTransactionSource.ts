@@ -25,22 +25,31 @@ export class TextParserTransactionSource implements TransactionSource {
 
   private createAddEmployeeTransaction(parts: string[]): Transaction {
     const empId = parseInt(parts[1]);
-    const name = parts[2].replace(/"/g, ''); // Assuming name is enclosed in quotes
-    const address = parts[3].replace(/"/g, ''); // Assuming address is enclosed in quotes
+    const name = parts[2];
+    const address = parts[3];
     const type = parts[4];
-    const salary = parseFloat(parts[5]);
+    const payRate = parseFloat(parts[5]);
     const commissionRate = type === 'C' ? parseFloat(parts[6]) : undefined;
 
     switch (type) {
       case 'H':
-        return new Transactions.AddHourlyEmployeeTransaction(empId, name, address, salary);
+        // Here, payRate is interpreted as an hourly rate
+        return new Transactions.AddHourlyEmployeeTransaction(empId, name, address, payRate);
       case 'S':
-        return new Transactions.AddSalariedEmployeeTransaction(empId, name, address, salary);
+        // Here, payRate is interpreted as a monthly salary
+        return new Transactions.AddSalariedEmployeeTransaction(empId, name, address, payRate);
       case 'C':
+        // For commissioned employees, payRate is a monthly salary, and commissionRate is required
         if (commissionRate === undefined) {
           throw new Error('Commission rate must be provided for commissioned employee');
         }
-        return new Transactions.AddCommissionedEmployeeTransaction(empId, name, address, salary, commissionRate);
+        return new Transactions.AddCommissionedEmployeeTransaction(
+          empId,
+          name,
+          address,
+          payRate,
+          commissionRate,
+        );
       default:
         throw new Error('Invalid employee type');
     }
