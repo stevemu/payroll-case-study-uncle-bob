@@ -19,10 +19,10 @@ export class TextParserTransactionSource implements TransactionSource {
       const empId = parseInt(parts[1]);
       const name = parts[2];
       const address = parts[3];
-      const employeeType = parts[5];
+      const employeeType = parts[4];
 
       if (employeeType === 'H') {
-        const hourlyRate = parseInt(parts[6]);
+        const hourlyRate = parseInt(parts[5]);
         const addHourlyEmployeeTransaction = new AddHourlyEmployeeTransaction(
           empId,
           name,
