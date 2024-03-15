@@ -1,7 +1,7 @@
-import { gPayrollDatabase } from '../PayrollDatabase';
-import { HourlyClassification } from '../paymentClassification/hourly/HourlyClassification';
-import { AddTimeCardTransaction } from './AddTimeCardTransaction';
-import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction';
+import { gPayrollDatabase } from '../PayrollDatabase.ts';
+import { HourlyClassification } from '../paymentClassification/hourly/HourlyClassification.ts';
+import { AddTimeCardTransaction } from './AddTimeCardTransaction.ts';
+import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction.ts';
 
 describe('AddTimeCardTransaction', () => {
   it('should add a time card to an employee', () => {

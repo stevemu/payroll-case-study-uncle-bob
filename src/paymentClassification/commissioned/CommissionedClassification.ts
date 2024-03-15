@@ -1,6 +1,6 @@
-import { PayCheck } from '../../PayCheck';
-import { Classification } from '../Classification.abstract';
-import { SalesReceipt } from './SalesReceipt';
+import { PayCheck } from '../../PayCheck.ts';
+import { Classification } from '../Classification.abstract.ts';
+import { SalesReceipt } from './SalesReceipt.ts';
 
 export class CommissionedClassification extends Classification {
   private salesReceipts: SalesReceipt[] = [];
