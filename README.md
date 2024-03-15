@@ -1,65 +1,131 @@
-## Setup
+# Payroll
 
-* install ts-node globally: `npm install -g ts-node`
+The payroll case study in Uncle Bob's Agile Software Development book implemented with typescript
 
-## run
+## Setup Instructions
 
-```
+### Prerequisites
+
+- Node.js installed on your machine
+
+### Installation
+
+1. **Install ts-node globally:**
+
+   This project requires `ts-node` to execute TypeScript files directly.
+
+   ```bash
+   npm install -g ts-node
+   ```
+
+## Running the Application
+
+To run the application, execute the following command in your terminal:
+
+```bash
 ts-node --esm ./src/App.ts
 ```
 
-## commands
+## Using the Application
 
-AddEmp <EmpId> <name> <address> H <hourly-rate>
-AddEmp 1 bill home H 10
+The application supports various commands to manage employees and their transactions. Below is a guide on how to use each command:
 
-AddEmp <EmpId> <name> <address> S <monthly-salary>
-AddEmp 1 bill home S 100
+### Adding Employees
 
-AddEmp <EmpId> <name> <address> C <monthly-salary>
-AddEmp 1 bill home C 100 .1
+- **Add Hourly Employee:**
+  ```
+  AddEmp <EmpId> <name> <address> H <hourly-rate>
+  Example: AddEmp 1 bill home H 10
+  ```
 
+- **Add Salaried Employee:**
+  ```
+  AddEmp <EmpId> <name> <address> S <monthly-salary>
+  Example: AddEmp 1 bill home S 100
+  ```
+
+- **Add Commissioned Employee:**
+  ```
+  AddEmp <EmpId> <name> <address> C <monthly-salary> <commission-rate>
+  Example: AddEmp 1 bill home C 100 .1
+  ```
+
+### Deleting an Employee
+
+```
 DelEmp <EmpId>
-DelEmp 1
+Example: DelEmp 1
+```
 
+### Time Cards
+
+```
 TimeCard <EmpId> <date> <hours>
-TimeCard 1 2024-01-01 8
+Example: TimeCard 1 2024-01-01 8
+```
 
+### Sales Receipts
+
+```
 SalesReceipt <EmpId> <date> <amount>
-SalesReceipt 1 2024-01-01 300
+Example: SalesReceipt 1 2024-01-01 300
+```
 
+### Service Charges
+
+```
 ServiceCharge <MemberId> <amount> <date>
-ServiceCharge 1 300 2024-02-10
+Example: ServiceCharge 1 300 2024-02-10
+```
 
-ChgEmp <EmpId> Name <Name>
-ChgEmp 1 Name john
+### Employee Changes
 
-ChgEmp <EmpId> Address <Name>
-ChgEmp 1 Address office
+- **Change Name:**
+  ```
+  ChgEmp <EmpId> Name <Name>
+  Example: ChgEmp 1 Name john
+  ```
 
-ChgEmp <EmpId> Hourly <hourlyRate>
-ChgEmp 1 Hourly 50
+- **Change Address:**
+  ```
+  ChgEmp <EmpId> Address <address>
+  Example: ChgEmp 1 Address office
+  ```
 
-ChgEmp <EmpId> Salaried <salary>
-ChgEmp 1 Salaried 5000
+- **Change to Hourly:**
+  ```
+  ChgEmp <EmpId> Hourly <hourlyRate>
+  Example: ChgEmp 1 Hourly 50
+  ```
 
-Commissioned <salary> <rate>
-ChgEmp 1 Commissioned 5000 0.5
+- **Change to Salaried:**
+  ```
+  ChgEmp <EmpId> Salaried <salary>
+  Example: ChgEmp 1 Salaried 5000
+  ```
 
-ChgEmp <EmpId> Hold
-ChgEmp 1 Hold
+- **Change to Commissioned:**
+  ```
+  Commissioned <salary> <rate>
+  Example: ChgEmp 1 Commissioned 5000 0.5
+  ```
 
-ChgEmp <EmpId> Direct <bank> <account>
-ChgEmp 1 Direct boa 123
+- **Payment Methods:**
+  ```
+  - Hold: ChgEmp <EmpId> Hold
+  - Direct: ChgEmp <EmpId> Direct <bank> <account>
+  - Mail: ChgEmp <EmpId> Mail <address>
+  ```
 
-ChgEmp <EmpId> Mail <address>
-ChgEmp 1 Mail office
+- **Union Membership:**
+  ```
+  - Join: ChgEmp <EmpId> Member <memberId> Dues <rate>
+  - Leave: ChgEmp <EmpId> NoMember
+  ```
 
-ChgEmp <EmpId> Member <memberId> Dues <rate>
-ChgEmp 1 Member 10 Dues 20
+### Running Payroll
 
-ChgEmp <EmpId> NoMember
-ChgEmp 1 NoMember
-
+```
 Payday <date>
-Payday 2024-01-02
+Example: Payday 2024-01-02
+```
