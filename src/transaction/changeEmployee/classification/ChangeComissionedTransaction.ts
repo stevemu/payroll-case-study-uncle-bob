@@ -1,6 +1,6 @@
-import { CommissionedClassification } from '../../../paymentClassification/commissioned/CommissionedClassification';
-import { BiweeklySchedule } from '../../../schedule/BiweeklySchedule';
-import { ChangeClassification } from './ChangeClassification.abstract';
+import { CommissionedClassification } from '../../../paymentClassification/commissioned/CommissionedClassification.ts';
+import { BiweeklySchedule } from '../../../schedule/BiweeklySchedule.ts';
+import { ChangeClassification } from './ChangeClassification.abstract.ts';
 
 export class ChangeCommissionedTransaction extends ChangeClassification {
   constructor(
