@@ -37,3 +37,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 .eslintcache
+
+prisma/test.db
+prisma/dev.db
+dev.db-journal
