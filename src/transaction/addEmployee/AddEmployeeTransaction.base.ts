@@ -1,4 +1,4 @@
-import { gPayrollDatabase } from '../../PayrollDatabase.ts';
+import { gPayrollDatabase } from '../../database/PayrollDatabase.ts';
 import { Employee } from '../../Employee.ts';
 import { Classification } from '../../paymentClassification/Classification.abstract.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';

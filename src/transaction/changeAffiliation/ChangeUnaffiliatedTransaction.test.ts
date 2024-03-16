@@ -1,4 +1,4 @@
-import { gPayrollDatabase } from '../../PayrollDatabase.ts';
+import { gPayrollDatabase } from '../../database/PayrollDatabase.ts';
 import { NoAffiliation } from '../../affiliation/noAffiliation/NoAffiliation.ts';
 import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction.ts';
 import { ChangeMemberTransaction } from './ChangeMemberTransaction.ts';

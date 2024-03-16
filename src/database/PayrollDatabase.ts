@@ -1,4 +1,4 @@
-import { Employee } from './Employee.ts';
+import { Employee } from '../Employee.ts';
 
 export class PayrollDatabase {
   private employees: Map<number, Employee> = new Map();

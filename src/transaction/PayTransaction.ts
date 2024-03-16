@@ -1,5 +1,5 @@
 import { PayCheck } from '../PayCheck.ts';
-import { gPayrollDatabase } from '../PayrollDatabase.ts';
+import { gPayrollDatabase } from '../database/PayrollDatabase.ts';
 import { Transaction } from './Transaction.interface.ts';
 
 export class PayTransaction extends Transaction {

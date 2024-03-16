@@ -1,4 +1,4 @@
-import { gPayrollDatabase } from '../../../PayrollDatabase.ts';
+import { gPayrollDatabase } from '../../../database/PayrollDatabase.ts';
 import { DirectMethod } from '../../../method/DirectMethod.ts';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction.ts';
 import { ChangeDirectTransaction } from './ChangeDirectTransaction.ts';
