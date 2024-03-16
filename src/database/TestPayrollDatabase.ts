@@ -4,35 +4,35 @@ export class TestPayrollDatabase {
   private employees: Map<number, Employee> = new Map();
   private unionMembers: Map<number, Employee> = new Map();
 
-  addEmployee(empId: number, employee: Employee): void {
+  async addEmployee(empId: number, employee: Employee): Promise<void> {
     this.employees.set(empId, employee);
   }
 
-  getEmployee(empId: number): Employee | undefined {
+  async getEmployee(empId: number): Promise<Employee | undefined> {
     return this.employees.get(empId);
   }
 
-  deleteEmployee(empId: number): void {
+  async deleteEmployee(empId: number): Promise<void> {
     this.employees.delete(empId);
   }
 
-  clear() {
+  async clear() {
     this.employees.clear();
   }
 
-  getUnionMember(memberId: number): Employee | undefined {
+  async getUnionMember(memberId: number): Promise<Employee | undefined> {
     return this.unionMembers.get(memberId);
   }
 
-  addUnionMember(memberId: number, employee: Employee) {
+  async addUnionMember(memberId: number, employee: Employee) {
     this.unionMembers.set(memberId, employee);
   }
 
-  deleteUnionMember(memberId: number) {
+  async deleteUnionMember(memberId: number) {
     this.unionMembers.delete(memberId);
   }
 
-  getAllEmployees(): Employee[] {
+  async getAllEmployees(): Promise<Employee[]> {
     return Array.from(this.employees.values());
   }
 }
