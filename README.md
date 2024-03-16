@@ -74,7 +74,7 @@ Example: SalesReceipt 1 2024-01-01 300
 ### Service Charges
 
 ```
-ServiceCharge <MemberId> <amount> <date>
+ServiceCharge <MemberId> <date> <amount> 
 Example: ServiceCharge 1 300 2024-02-10
 ```
 
@@ -106,7 +106,7 @@ Example: ServiceCharge 1 300 2024-02-10
 
 - **Change to Commissioned:**
   ```
-  Commissioned <salary> <rate>
+  ChgEmp <EmpId> Commissioned <salary> <rate>
   Example: ChgEmp 1 Commissioned 5000 0.5
   ```
 
