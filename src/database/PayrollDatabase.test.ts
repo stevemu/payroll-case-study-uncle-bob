@@ -6,6 +6,9 @@ const prisma = new PrismaClient();
 async function runMigrations() {
   console.log('Applying migrations...');
   const databaseUrl = process.env.DATABASE_URL;
+  execSync(`DATABASE_URL="${databaseUrl}" npx prisma migrate reset --force --skip-generate`, {
+    stdio: 'inherit',
+  });
   execSync(`DATABASE_URL="${databaseUrl}" npx prisma migrate deploy`, { stdio: 'inherit' });
 }
 
