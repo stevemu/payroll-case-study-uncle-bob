@@ -7,7 +7,7 @@ describe('AddServiceChargeTransaction', () => {
   it('should add service charge to the membership', async () => {
     const empId = 2;
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(empId, 'Bill', 'Home', 15.25);
-    addHourlyEmployee.execute();
+    await addHourlyEmployee.execute();
 
     const e = (await gPayrollDatabase.getEmployee(empId))!;
 
@@ -20,7 +20,7 @@ describe('AddServiceChargeTransaction', () => {
     const date = new Date(2021, 8, 10);
     const amount = 100;
     const transaction = new AddServiceChargeTransaction(memberId, date, amount);
-    transaction.execute();
+    await transaction.execute();
 
     const member = await gPayrollDatabase.getUnionMember(memberId);
     const ua = member!.affiliation as UnionAffiliation;

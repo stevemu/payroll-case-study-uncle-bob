@@ -12,11 +12,11 @@ describe('SalesReceiptTransaction', () => {
       1000,
       0.1,
     );
-    addEmployeeTransaction.execute();
+    await addEmployeeTransaction.execute();
 
     const date = new Date(2022, 0, 1);
     const transaction = new SalesReceiptTransaction(1, date, 100);
-    transaction.execute();
+    await transaction.execute();
 
     const employee = await gPayrollDatabase.getEmployee(1)!;
     const cc = employee!.classification as CommissionedClassification;

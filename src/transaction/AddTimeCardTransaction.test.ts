@@ -14,11 +14,11 @@ describe('AddTimeCardTransaction', () => {
       'Home',
       15.25,
     );
-    addEmployeeTransaction.execute();
+    await addEmployeeTransaction.execute();
 
     const date = new Date(2021, 6, 1);
     const addTimeCardTransaction = new AddTimeCardTransaction(employeeId, date, hours);
-    addTimeCardTransaction.execute();
+    await addTimeCardTransaction.execute();
 
     const employee = await gPayrollDatabase.getEmployee(employeeId);
     const timeCard = (employee!.classification as HourlyClassification).getTimeCard(date);

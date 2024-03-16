@@ -7,10 +7,10 @@ describe('ChangeMailTransaction', () => {
   it('should change to mail method', async () => {
     const empId = 1;
     const addEmp = new AddHourlyEmployeeTransaction(empId, 'Bob', 'Home', 27.52);
-    addEmp.execute();
+    await addEmp.execute();
 
     const changeMail = new ChangeMailTransaction(empId, 'Mail');
-    changeMail.execute();
+    await changeMail.execute();
 
     const employee = await gPayrollDatabase.getEmployee(empId);
     expect(employee!.method).toBeInstanceOf(MailMethod);

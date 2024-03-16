@@ -10,13 +10,13 @@ describe('ChangeUnaffiliatedTransaction', () => {
     const memberId = 7734;
 
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(empId, 'Bill', 'Home', 15.25);
-    addHourlyEmployee.execute();
+    await addHourlyEmployee.execute();
 
     const changeMemberTransaction = new ChangeMemberTransaction(empId, memberId, 99.42);
-    changeMemberTransaction.execute();
+    await changeMemberTransaction.execute();
 
     const changeUnaffiliatedTransaction = new ChangeUnaffiliatedTransaction(empId);
-    changeUnaffiliatedTransaction.execute();
+    await changeUnaffiliatedTransaction.execute();
 
     const e = await gPayrollDatabase.getEmployee(empId);
     expect(e).not.toBeUndefined();

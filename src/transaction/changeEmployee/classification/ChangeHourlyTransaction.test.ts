@@ -8,10 +8,10 @@ describe('ChangeHourlyTransaction', () => {
   it('should change employee to hourly', async () => {
     const empId = 1;
     const addEmp = new AddCommissionedEmployeeTransaction(empId, 'Bob', 'Home', 1000, 10);
-    addEmp.execute();
+    await addEmp.execute();
 
     const changeHourly = new ChangeHourlyTransaction(empId, 27.52);
-    changeHourly.execute();
+    await changeHourly.execute();
 
     const employee = await gPayrollDatabase.getEmployee(empId);
     expect(employee!.classification).toBeInstanceOf(HourlyClassification);

@@ -8,7 +8,7 @@ describe('AddCommissionedEmployee', () => {
   it('should add a commissioned employee', async () => {
     const empId = 1;
     const t = new AddCommissionedEmployeeTransaction(empId, 'Bob', 'Home', 1000.0, 0.5);
-    t.execute();
+    await t.execute();
 
     const e = await gPayrollDatabase.getEmployee(empId)!;
     expect(e!.name).toBe('Bob');

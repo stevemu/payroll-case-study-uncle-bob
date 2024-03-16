@@ -12,10 +12,10 @@ describe('ChangeEmployeeNameTransaction', () => {
       'Home',
       15.25,
     );
-    addEmployeeTransaction.execute();
+    await addEmployeeTransaction.execute();
 
     const transaction = new ChangeEmployeeNameTransaction(employeeId, 'Bob');
-    transaction.execute();
+    await transaction.execute();
 
     const employee = await gPayrollDatabase.getEmployee(employeeId);
     expect(employee!.name).toBe('Bob');

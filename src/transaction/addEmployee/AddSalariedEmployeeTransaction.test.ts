@@ -8,7 +8,7 @@ describe('AddSalariedEmployee', () => {
   it('should add a salaried employee', async () => {
     const empId = 1;
     const t = new AddSalariedEmployeeTransaction(empId, 'Bob', 'Home', 1000.0);
-    t.execute();
+    await t.execute();
 
     const e = (await gPayrollDatabase.getEmployee(empId))!;
     expect(e.name).toBe('Bob');

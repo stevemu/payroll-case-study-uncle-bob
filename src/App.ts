@@ -4,5 +4,5 @@ const transactionSource = new TextParserTransactionSource();
 
 while (true) {
   const transaction = await transactionSource.getTransaction();
-  transaction.execute();
+  await transaction.execute();
 }

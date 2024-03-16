@@ -7,10 +7,10 @@ describe('ChangeDirectTransaction', () => {
   it('should change employee to direct', async () => {
     const empId = 1;
     const addEmp = new AddHourlyEmployeeTransaction(empId, 'Bob', 'Home', 27.52);
-    addEmp.execute();
+    await addEmp.execute();
 
     const changeDirect = new ChangeDirectTransaction(empId, 'Bank', 'Account');
-    changeDirect.execute();
+    await changeDirect.execute();
 
     const employee = await gPayrollDatabase.getEmployee(empId);
     expect(employee!.method).toBeInstanceOf(DirectMethod);

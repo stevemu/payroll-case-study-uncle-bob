@@ -7,10 +7,10 @@ describe('ChangeHoldTransaction', () => {
   it('should change employee to hold', async () => {
     const empId = 1;
     const addEmp = new AddSalariedEmployeeTransaction(empId, 'Bob', 'Home', 1000);
-    addEmp.execute();
+    await addEmp.execute();
 
     const changeHold = new ChangeHoldTransaction(empId);
-    changeHold.execute();
+    await changeHold.execute();
 
     const employee = await gPayrollDatabase.getEmployee(empId);
     expect(employee!.method).toBeInstanceOf(HoldMethod);

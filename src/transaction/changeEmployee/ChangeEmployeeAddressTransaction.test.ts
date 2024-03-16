@@ -12,10 +12,10 @@ describe('ChangeEmployeeAddressTransaction', () => {
       'Home',
       15.25,
     );
-    addEmployeeTransaction.execute();
+    await addEmployeeTransaction.execute();
 
     const transaction = new ChangeEmployeeAddressTransaction(employeeId, 'Office');
-    transaction.execute();
+    await transaction.execute();
 
     const employee = await gPayrollDatabase.getEmployee(employeeId)!;
     expect(employee!.address).toBe('Office');
