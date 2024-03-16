@@ -1,7 +1,7 @@
 import { Reader } from './Reader.ts';
 import { TransactionSource } from './TransactionSource.interface.ts';
 import { Transaction } from './transaction/Transaction.interface.ts';
-import * as Transactions from './transaction/index.ts'; // Assuming all transaction classes are exported from an index.ts file in the transaction folder
+import * as Transactions from './transaction/index.ts';
 
 export class TextParserTransactionSource implements TransactionSource {
   private reader: Reader = new Reader();

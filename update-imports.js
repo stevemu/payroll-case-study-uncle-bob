@@ -1,3 +1,6 @@
+//  Usage: node update-imports.js
+//  Description: This script updates import statements in .js and .ts files to include the ".ts" extension.
+
 import fs from 'fs';
 import path from 'path';
 
