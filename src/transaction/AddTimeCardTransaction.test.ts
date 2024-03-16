@@ -4,7 +4,7 @@ import { AddTimeCardTransaction } from './AddTimeCardTransaction.ts';
 import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction.ts';
 
 describe('AddTimeCardTransaction', () => {
-  it('should add a time card to an employee', () => {
+  it('should add a time card to an employee', async () => {
     const hours = 8;
 
     const employeeId = 1;
@@ -20,8 +20,8 @@ describe('AddTimeCardTransaction', () => {
     const addTimeCardTransaction = new AddTimeCardTransaction(employeeId, date, hours);
     addTimeCardTransaction.execute();
 
-    const employee = gPayrollDatabase.getEmployee(employeeId)!;
-    const timeCard = (employee.classification as HourlyClassification).getTimeCard(date);
+    const employee = await gPayrollDatabase.getEmployee(employeeId);
+    const timeCard = (employee!.classification as HourlyClassification).getTimeCard(date);
     expect(timeCard).toBeDefined();
     expect(timeCard!.hours).toBe(hours);
   });

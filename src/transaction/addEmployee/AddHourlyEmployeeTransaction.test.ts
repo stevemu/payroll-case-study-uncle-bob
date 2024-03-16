@@ -5,12 +5,12 @@ import { WeeklySchedule } from '../../schedule/WeeklySchedule.ts';
 import { AddHourlyEmployeeTransaction } from './AddHourlyEmployeeTransaction.ts';
 
 describe('AddHourlyEmployee', () => {
-  it('should add an hourly employee', () => {
+  it('should add an hourly employee', async () => {
     const empId = 1;
     const t = new AddHourlyEmployeeTransaction(empId, 'Bob', 'Home', 1000.0);
     t.execute();
 
-    const e = gPayrollDatabase.getEmployee(empId)!;
+    const e = (await gPayrollDatabase.getEmployee(empId))!;
     expect(e.name).toBe('Bob');
 
     const pc = e.classification;

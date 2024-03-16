@@ -21,7 +21,7 @@ describe('PayTransaction', () => {
     validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 1000);
   });
 
-  test('pay single salaried employee union dues', () => {
+  test('pay single salaried employee union dues', async () => {
     const empId = 2;
     const addSalariedEmployee = new AddSalariedEmployeeTransaction(empId, 'Bill', 'Home', 1000);
     addSalariedEmployee.execute();
@@ -33,7 +33,7 @@ describe('PayTransaction', () => {
     const pt = new PayTransaction(payDate);
     pt.execute();
 
-    const e = gPayrollDatabase.getEmployee(empId);
+    const e = await gPayrollDatabase.getEmployee(empId);
     expect(e).not.toBeUndefined();
 
     const pc = pt.getPayCheck(empId);
@@ -43,7 +43,7 @@ describe('PayTransaction', () => {
     expect(pc!.netPay).toBe(1000 - 5 * 9.42);
   });
 
-  test('pay single salaried employee on wrong date', () => {
+  test('pay single salaried employee on wrong date', async () => {
     const empId = 2;
     const payDate = new Date(2001, 10, 29); // not last day of month
     const addSalariedEmployee = new AddSalariedEmployeeTransaction(empId, 'Bill', 'Home', 1000);
@@ -52,7 +52,7 @@ describe('PayTransaction', () => {
     const payTransaction = new PayTransaction(payDate);
     payTransaction.execute();
 
-    const e = gPayrollDatabase.getEmployee(empId);
+    const e = await gPayrollDatabase.getEmployee(empId);
     expect(e).not.toBeUndefined();
 
     const pc = payTransaction.getPayCheck(empId);

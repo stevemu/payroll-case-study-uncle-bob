@@ -4,7 +4,7 @@ import { SalesReceiptTransaction } from './SalesReceiptTransaction.ts';
 import { AddCommissionedEmployeeTransaction } from './addEmployee/AddCommissionedEmployeeTransaction.ts';
 
 describe('SalesReceiptTransaction', () => {
-  it('should create a sales receipt', () => {
+  it('should create a sales receipt', async () => {
     const addEmployeeTransaction = new AddCommissionedEmployeeTransaction(
       1,
       'Bob',
@@ -18,8 +18,8 @@ describe('SalesReceiptTransaction', () => {
     const transaction = new SalesReceiptTransaction(1, date, 100);
     transaction.execute();
 
-    const employee = gPayrollDatabase.getEmployee(1)!;
-    const cc = employee.classification as CommissionedClassification;
+    const employee = await gPayrollDatabase.getEmployee(1)!;
+    const cc = employee!.classification as CommissionedClassification;
 
     const receipt = cc.getSalesReceipt(date);
     expect(receipt).toBeDefined();

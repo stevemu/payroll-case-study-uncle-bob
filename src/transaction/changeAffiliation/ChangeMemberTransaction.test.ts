@@ -4,7 +4,7 @@ import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTr
 import { ChangeMemberTransaction } from './ChangeMemberTransaction.ts';
 
 describe('ChangeMemberTransaction', () => {
-  test('changeMember', () => {
+  test('changeMember', async () => {
     const empId = 2;
     const memberId = 7734;
 
@@ -14,14 +14,14 @@ describe('ChangeMemberTransaction', () => {
     const changeMemberTransaction = new ChangeMemberTransaction(empId, memberId, 99.42);
     changeMemberTransaction.execute();
 
-    const e = gPayrollDatabase.getEmployee(empId);
+    const e = (await gPayrollDatabase.getEmployee(empId))!;
     expect(e).not.toBeUndefined();
 
     const af = e!.affiliation;
     expect(af).toBeInstanceOf(UnionAffiliation);
     expect((af as UnionAffiliation).dues).toBe(99.42);
 
-    const member = gPayrollDatabase.getUnionMember(memberId);
+    const member = await gPayrollDatabase.getUnionMember(memberId);
     expect(member).toBe(e);
   });
 });

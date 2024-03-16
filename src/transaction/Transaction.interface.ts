@@ -1,3 +1,3 @@
 export abstract class Transaction {
-  abstract execute(): void;
+  abstract execute(): Promise<void>;
 }

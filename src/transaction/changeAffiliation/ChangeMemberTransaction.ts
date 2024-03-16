@@ -13,8 +13,8 @@ export class ChangeMemberTransaction extends ChangeAffiliationTransaction {
     super(empId);
   }
 
-  recordMembership(employee: Employee): void {
-    gPayrollDatabase.addUnionMember(this.memberId, employee);
+  async recordMembership(employee: Employee): Promise<void> {
+    await gPayrollDatabase.addUnionMember(this.memberId, employee);
   }
 
   getAffiliation(): Affiliation {

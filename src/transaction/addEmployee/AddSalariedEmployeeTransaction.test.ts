@@ -5,12 +5,12 @@ import { MonthlySchedule } from '../../schedule/MonthlySchedule.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';
 
 describe('AddSalariedEmployee', () => {
-  it('should add a salaried employee', () => {
+  it('should add a salaried employee', async () => {
     const empId = 1;
     const t = new AddSalariedEmployeeTransaction(empId, 'Bob', 'Home', 1000.0);
     t.execute();
 
-    const e = gPayrollDatabase.getEmployee(empId)!;
+    const e = (await gPayrollDatabase.getEmployee(empId))!;
     expect(e.name).toBe('Bob');
 
     const pc = e.classification;

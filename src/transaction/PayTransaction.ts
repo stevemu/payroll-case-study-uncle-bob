@@ -9,8 +9,8 @@ export class PayTransaction extends Transaction {
     super();
   }
 
-  execute(): void {
-    const employees = gPayrollDatabase.getAllEmployees();
+  async execute(): Promise<void> {
+    const employees = await gPayrollDatabase.getAllEmployees();
 
     for (const employee of employees) {
       const isPayDate = employee.isPayDate(this.payDate);

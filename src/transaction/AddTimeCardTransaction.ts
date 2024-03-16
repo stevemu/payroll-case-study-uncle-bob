@@ -10,8 +10,8 @@ export class AddTimeCardTransaction implements Transaction {
     private hours: number,
   ) {}
 
-  execute(): void {
-    const employee = gPayrollDatabase.getEmployee(this.employeeId);
+  async execute(): Promise<void> {
+    const employee = await gPayrollDatabase.getEmployee(this.employeeId);
 
     if (!employee) {
       throw new Error('No such employee.');

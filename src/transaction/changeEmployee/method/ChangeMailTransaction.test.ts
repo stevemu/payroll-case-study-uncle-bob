@@ -4,7 +4,7 @@ import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmploye
 import { ChangeMailTransaction } from './ChangeMailTransaction.ts';
 
 describe('ChangeMailTransaction', () => {
-  it('should change to mail method', () => {
+  it('should change to mail method', async () => {
     const empId = 1;
     const addEmp = new AddHourlyEmployeeTransaction(empId, 'Bob', 'Home', 27.52);
     addEmp.execute();
@@ -12,7 +12,7 @@ describe('ChangeMailTransaction', () => {
     const changeMail = new ChangeMailTransaction(empId, 'Mail');
     changeMail.execute();
 
-    const employee = gPayrollDatabase.getEmployee(empId);
+    const employee = await gPayrollDatabase.getEmployee(empId);
     expect(employee!.method).toBeInstanceOf(MailMethod);
     expect((employee!.method as MailMethod).address).toBe('Mail');
   });

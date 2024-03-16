@@ -6,9 +6,9 @@ import { UnionAffiliation } from '../../affiliation/union/UnionAffiliation.ts';
 import { ChangeAffiliationTransaction } from './ChangeAffiliationTransaction.abstract.ts';
 
 export class ChangeUnaffiliatedTransaction extends ChangeAffiliationTransaction {
-  recordMembership(employee: Employee): void {
+  async recordMembership(employee: Employee): Promise<void> {
     if (employee.affiliation instanceof UnionAffiliation) {
-      gPayrollDatabase.deleteUnionMember(employee.affiliation.memberId);
+      await gPayrollDatabase.deleteUnionMember(employee.affiliation.memberId);
     }
   }
 

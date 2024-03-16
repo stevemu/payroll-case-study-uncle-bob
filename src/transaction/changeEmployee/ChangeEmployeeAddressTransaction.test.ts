@@ -3,7 +3,7 @@ import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTr
 import { ChangeEmployeeAddressTransaction } from './ChangeEmployeeAddressTransaction.ts';
 
 describe('ChangeEmployeeAddressTransaction', () => {
-  it('should change employee address', () => {
+  it('should change employee address', async () => {
     const employeeId = 1;
 
     const addEmployeeTransaction = new AddHourlyEmployeeTransaction(
@@ -17,7 +17,7 @@ describe('ChangeEmployeeAddressTransaction', () => {
     const transaction = new ChangeEmployeeAddressTransaction(employeeId, 'Office');
     transaction.execute();
 
-    const employee = gPayrollDatabase.getEmployee(employeeId)!;
-    expect(employee.address).toBe('Office');
+    const employee = await gPayrollDatabase.getEmployee(employeeId)!;
+    expect(employee!.address).toBe('Office');
   });
 });

@@ -4,7 +4,7 @@ import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmploye
 import { ChangeDirectTransaction } from './ChangeDirectTransaction.ts';
 
 describe('ChangeDirectTransaction', () => {
-  it('should change employee to direct', () => {
+  it('should change employee to direct', async () => {
     const empId = 1;
     const addEmp = new AddHourlyEmployeeTransaction(empId, 'Bob', 'Home', 27.52);
     addEmp.execute();
@@ -12,7 +12,7 @@ describe('ChangeDirectTransaction', () => {
     const changeDirect = new ChangeDirectTransaction(empId, 'Bank', 'Account');
     changeDirect.execute();
 
-    const employee = gPayrollDatabase.getEmployee(empId);
+    const employee = await gPayrollDatabase.getEmployee(empId);
     expect(employee!.method).toBeInstanceOf(DirectMethod);
     expect((employee!.method as DirectMethod).bank).toBe('Bank');
     expect((employee!.method as DirectMethod).account).toBe('Account');

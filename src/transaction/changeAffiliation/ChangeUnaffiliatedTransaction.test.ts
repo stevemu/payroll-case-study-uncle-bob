@@ -5,7 +5,7 @@ import { ChangeMemberTransaction } from './ChangeMemberTransaction.ts';
 import { ChangeUnaffiliatedTransaction } from './ChangeUnaffiliatedTransaction.ts';
 
 describe('ChangeUnaffiliatedTransaction', () => {
-  test('changeUnaffiliated', () => {
+  test('changeUnaffiliated', async () => {
     const empId = 2;
     const memberId = 7734;
 
@@ -18,7 +18,7 @@ describe('ChangeUnaffiliatedTransaction', () => {
     const changeUnaffiliatedTransaction = new ChangeUnaffiliatedTransaction(empId);
     changeUnaffiliatedTransaction.execute();
 
-    const e = gPayrollDatabase.getEmployee(empId);
+    const e = await gPayrollDatabase.getEmployee(empId);
     expect(e).not.toBeUndefined();
 
     const af = e!.affiliation;

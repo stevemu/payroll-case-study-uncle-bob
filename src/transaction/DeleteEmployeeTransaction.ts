@@ -4,7 +4,7 @@ import { Transaction } from './Transaction.interface.ts';
 export class DeleteEmployeeTransaction implements Transaction {
   constructor(private employeeId: number) {}
 
-  execute(): void {
-    gPayrollDatabase.deleteEmployee(this.employeeId);
+  async execute(): Promise<void> {
+    await gPayrollDatabase.deleteEmployee(this.employeeId);
   }
 }

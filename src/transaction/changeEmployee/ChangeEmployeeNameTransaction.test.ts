@@ -3,7 +3,7 @@ import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTr
 import { ChangeEmployeeNameTransaction } from './ChangeEmployeeNameTransaction.ts';
 
 describe('ChangeEmployeeNameTransaction', () => {
-  it('should change employee name', () => {
+  it('should change employee name', async () => {
     const employeeId = 1;
 
     const addEmployeeTransaction = new AddHourlyEmployeeTransaction(
@@ -17,7 +17,7 @@ describe('ChangeEmployeeNameTransaction', () => {
     const transaction = new ChangeEmployeeNameTransaction(employeeId, 'Bob');
     transaction.execute();
 
-    const employee = gPayrollDatabase.getEmployee(employeeId);
+    const employee = await gPayrollDatabase.getEmployee(employeeId);
     expect(employee!.name).toBe('Bob');
   });
 });

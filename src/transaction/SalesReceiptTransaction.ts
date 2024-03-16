@@ -12,8 +12,8 @@ export class SalesReceiptTransaction extends Transaction {
     super();
   }
 
-  execute(): void {
-    const e = gPayrollDatabase.getEmployee(this.empId);
+  async execute(): Promise<void> {
+    const e = await gPayrollDatabase.getEmployee(this.empId);
 
     if (!e) {
       throw new Error('No such employee');

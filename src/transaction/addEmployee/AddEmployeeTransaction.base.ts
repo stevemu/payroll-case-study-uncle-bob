@@ -17,7 +17,7 @@ export abstract class AddEmployeeTransaction extends Transaction {
   abstract getClassification(): Classification;
   abstract getSchedule(): Schedule;
 
-  execute(): void {
+  async execute(): Promise<void> {
     const pc = this.getClassification();
     const ps = this.getSchedule();
     const pm = new HoldMethod('Office');
@@ -25,6 +25,6 @@ export abstract class AddEmployeeTransaction extends Transaction {
     e.classification = pc;
     e.schedule = ps;
     e.method = pm;
-    gPayrollDatabase.addEmployee(this.empId, e);
+    await gPayrollDatabase.addEmployee(this.empId, e);
   }
 }

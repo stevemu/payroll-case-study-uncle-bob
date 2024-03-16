@@ -9,8 +9,8 @@ export abstract class ChangeEmployeeTransaction extends Transaction {
 
   protected abstract change(employee: Employee): void;
 
-  execute(): void {
-    const employee = gPayrollDatabase.getEmployee(this.empId);
+  async execute(): Promise<void> {
+    const employee = await gPayrollDatabase.getEmployee(this.empId);
     if (employee) {
       this.change(employee);
     }
