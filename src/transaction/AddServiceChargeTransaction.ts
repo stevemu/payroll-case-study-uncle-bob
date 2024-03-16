@@ -1,4 +1,4 @@
-import { gPayrollDatabase } from '../database/PayrollDatabase.ts';
+import { gPayrollDatabase } from '../database/index.ts';
 import { ServiceCharge } from '../affiliation/union/ServiceCharge.ts';
 import { UnionAffiliation } from '../affiliation/union/UnionAffiliation.ts';
 import { Transaction } from './Transaction.interface.ts';

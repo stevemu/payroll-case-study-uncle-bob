@@ -1,4 +1,4 @@
-import { gPayrollDatabase } from '../database/PayrollDatabase.ts';
+import { gPayrollDatabase } from '../database/index.ts';
 import { DeleteEmployeeTransaction } from './DeleteEmployeeTransaction.ts';
 import { AddSalariedEmployeeTransaction } from './addEmployee/AddSalariedEmployeeTransaction.ts';
 

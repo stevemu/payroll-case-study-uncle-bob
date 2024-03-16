@@ -1,4 +1,4 @@
-import { gPayrollDatabase } from '../database/PayrollDatabase.ts';
+import { gPayrollDatabase } from '../database/index.ts';
 import { HourlyClassification } from '../paymentClassification/hourly/HourlyClassification.ts';
 import { TimeCard } from '../paymentClassification/hourly/TimeCard.ts';
 import { Transaction } from './Transaction.interface.ts';

@@ -1,4 +1,4 @@
-import { gPayrollDatabase } from '../../database/PayrollDatabase.ts';
+import { gPayrollDatabase } from '../../database/index.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';
 import { CommissionedClassification } from '../../paymentClassification/commissioned/CommissionedClassification.ts';
 import { BiweeklySchedule } from '../../schedule/BiweeklySchedule.ts';

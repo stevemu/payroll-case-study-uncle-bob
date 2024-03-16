@@ -1,5 +1,5 @@
 import { AddSalariedEmployeeTransaction } from './AddSalariedEmployeeTransaction.ts';
-import { gPayrollDatabase } from '../../database/PayrollDatabase.ts';
+import { gPayrollDatabase } from '../../database/index.ts';
 import { SalariedClassification } from '../../paymentClassification/SalariedClassification.ts';
 import { MonthlySchedule } from '../../schedule/MonthlySchedule.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';

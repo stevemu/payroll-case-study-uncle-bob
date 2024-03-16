@@ -1,4 +1,4 @@
-import { gPayrollDatabase } from '../database/PayrollDatabase.ts';
+import { gPayrollDatabase } from '../database/index.ts';
 import { AddServiceChargeTransaction } from './AddServiceChargeTransaction.ts';
 import { AddTimeCardTransaction } from './AddTimeCardTransaction.ts';
 import { PayTransaction } from './PayTransaction.ts';

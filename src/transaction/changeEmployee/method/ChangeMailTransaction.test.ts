@@ -1,4 +1,4 @@
-import { gPayrollDatabase } from '../../../database/PayrollDatabase.ts';
+import { gPayrollDatabase } from '../../../database/index.ts';
 import { MailMethod } from '../../../method/MailMethod.ts';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction.ts';
 import { ChangeMailTransaction } from './ChangeMailTransaction.ts';

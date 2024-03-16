@@ -1,5 +1,5 @@
 import { Employee } from '../../Employee.ts';
-import { gPayrollDatabase } from '../../database/PayrollDatabase.ts';
+import { gPayrollDatabase } from '../../database/index.ts';
 import { Affiliation } from '../../affiliation/Affiliation.interface.ts';
 import { NoAffiliation } from '../../affiliation/noAffiliation/NoAffiliation.ts';
 import { UnionAffiliation } from '../../affiliation/union/UnionAffiliation.ts';
