@@ -8,17 +8,6 @@ import { CommissionedClassification } from '../paymentClassification/commissione
  * used by unit tests for PrismaPayrollDatabase and production code
  */
 
-const getClassificationString = (emp: Employee) => {
-  if (emp.classification instanceof HourlyClassification) {
-    return 'hourly';
-  } else if (emp.classification instanceof SalariedClassification) {
-    return 'salaried';
-  } else if (emp.classification instanceof CommissionedClassification) {
-    return 'commissioned';
-  }
-  throw new Error('Invalid classification');
-};
-
 export class PrismaPayrollDatabase {
   private employees: Map<number, Employee> = new Map();
   private unionMembers: Map<number, Employee> = new Map();
@@ -35,6 +24,10 @@ export class PrismaPayrollDatabase {
       },
     });
 
+    await this.addEmployeeClassification(empId, employee);
+  }
+
+  private async addEmployeeClassification(empId: number, employee: Employee) {
     if (employee.classification instanceof HourlyClassification) {
       await this.prismaClient.hourlyClassification.create({
         data: {
@@ -75,7 +68,17 @@ export class PrismaPayrollDatabase {
 
     const employee = new Employee(employeRow.empId, employeRow.name, employeRow.address);
 
-    if (employeRow.classification === 'hourly') {
+    await this.getClassification(empId, employee, employeRow.classification);
+
+    return employee;
+  }
+
+  private async getClassification(
+    empId: number,
+    employee: Employee,
+    classificationString: string,
+  ): Promise<void> {
+    if (classificationString === 'hourly') {
       const hourlyClassificationRow = await this.prismaClient.hourlyClassification.findUnique({
         where: {
           empId,
@@ -84,7 +87,7 @@ export class PrismaPayrollDatabase {
       employee.classification = new HourlyClassification(hourlyClassificationRow!.rate);
     }
 
-    if (employeRow.classification === 'salaried') {
+    if (classificationString === 'salaried') {
       const salariedClassificationRow = await this.prismaClient.salariedClassification.findUnique({
         where: {
           empId,
@@ -93,7 +96,7 @@ export class PrismaPayrollDatabase {
       employee.classification = new SalariedClassification(salariedClassificationRow!.salary);
     }
 
-    if (employeRow.classification === 'commissioned') {
+    if (classificationString === 'commissioned') {
       const commissionedClassificationRow =
         await this.prismaClient.commissionedClassification.findUnique({
           where: {
@@ -105,8 +108,6 @@ export class PrismaPayrollDatabase {
         commissionedClassificationRow!.commissionRate,
       );
     }
-
-    return employee;
   }
 
   async deleteEmployee(empId: number): Promise<void> {
@@ -137,3 +138,16 @@ export class PrismaPayrollDatabase {
     return Array.from(this.employees.values());
   }
 }
+
+type Classification = 'hourly' | 'salaried' | 'commissioned';
+
+const getClassificationString = (emp: Employee): Classification => {
+  if (emp.classification instanceof HourlyClassification) {
+    return 'hourly';
+  } else if (emp.classification instanceof SalariedClassification) {
+    return 'salaried';
+  } else if (emp.classification instanceof CommissionedClassification) {
+    return 'commissioned';
+  }
+  throw new Error('Invalid classification');
+};
