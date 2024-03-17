@@ -1,5 +1,4 @@
 import { MapPayrollDatabase } from './MapPayrollDatabase';
-import { PrismaPayrollDatabase } from './PrismaPayrollDatabase';
 import { Employee } from '../Employee';
 
 export interface PayrollDatabase {
@@ -13,5 +12,5 @@ export interface PayrollDatabase {
   getAllEmployees(): Promise<Employee[]>;
 }
 
-export const gPayrollDatabase: PayrollDatabase =
-  process.env.NODE_ENV === 'test' ? new MapPayrollDatabase() : new PrismaPayrollDatabase();
+// to be removed. currently used by transaction tests
+export const gPayrollDatabase: PayrollDatabase = new MapPayrollDatabase();

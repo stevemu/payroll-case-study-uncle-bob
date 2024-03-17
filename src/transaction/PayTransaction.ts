@@ -1,16 +1,19 @@
 import { PayCheck } from '../PayCheck.ts';
-import { gPayrollDatabase } from '../database/index.ts';
+import { PayrollDatabase } from '../database/index.ts';
 import { Transaction } from './Transaction.interface.ts';
 
 export class PayTransaction extends Transaction {
   private payCheck: Map<number, PayCheck> = new Map();
 
-  constructor(private payDate: Date) {
+  constructor(
+    private db: PayrollDatabase,
+    private payDate: Date,
+  ) {
     super();
   }
 
   async execute(): Promise<void> {
-    const employees = await gPayrollDatabase.getAllEmployees();
+    const employees = await this.db.getAllEmployees();
 
     for (const employee of employees) {
       const isPayDate = employee.isPayDate(this.payDate);
