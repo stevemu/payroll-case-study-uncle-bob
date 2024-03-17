@@ -136,3 +136,6 @@ Example: Payday 2024-01-02
   ```
   npx prisma migrate dev --name name 
   ```
+- **Merge migrations**
+  - delete all migrations files
+  - `npx prisma migrate dev --name merged_migration`

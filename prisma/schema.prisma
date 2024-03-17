@@ -22,6 +22,11 @@ model HourlyClassification {
   rate     Float
 }
 
+model SalariedClassification {
+  empId    Int @unique
+  salary   Float
+}
+
 model TimeCard {
   empId     Int
   date      DateTime

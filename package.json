@@ -7,7 +7,8 @@
     "lint": "eslint --fix",
     "ts": "tsc -b",
     "test": "jest",
-    "checkall": "yarn lint && yarn ts && yarn test"
+    "checkall": "yarn lint && yarn ts && yarn test",
+    "db:migrate": "npx prisma migrate dev"
   },
   "keywords": [],
   "author": "",

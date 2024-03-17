@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Employee } from '../Employee.ts';
 import { HourlyClassification } from '../paymentClassification/hourly/HourlyClassification.ts';
+import { SalariedClassification } from '../paymentClassification/SalariedClassification.ts';
 
 const prisma = new PrismaClient();
 
@@ -33,6 +34,15 @@ export class PrismaPayrollDatabase {
         },
       });
     }
+
+    if (employee.classification instanceof SalariedClassification) {
+      await prisma.salariedClassification.create({
+        data: {
+          empId,
+          salary: employee.classification.salary,
+        },
+      });
+    }
   }
 
   async getEmployee(empId: number): Promise<Employee | undefined> {
@@ -53,6 +63,15 @@ export class PrismaPayrollDatabase {
         },
       });
       employee.classification = new HourlyClassification(hourlyClassificationRow!.rate);
+    }
+
+    if (employeRow.classification === 'salaried') {
+      const salariedClassificationRow = await prisma.salariedClassification.findUnique({
+        where: {
+          empId,
+        },
+      });
+      employee.classification = new SalariedClassification(salariedClassificationRow!.salary);
     }
 
     return employee;
