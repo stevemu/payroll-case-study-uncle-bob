@@ -1,5 +1,9 @@
 import { Employee } from '../Employee.js';
 
+/**
+ * used by unit tests for transactions
+ */
+
 export class MapPayrollDatabase {
   private employees: Map<number, Employee> = new Map();
   private unionMembers: Map<number, Employee> = new Map();

@@ -4,6 +4,10 @@ import { HourlyClassification } from '../paymentClassification/hourly/HourlyClas
 import { SalariedClassification } from '../paymentClassification/SalariedClassification.ts';
 import { CommissionedClassification } from '../paymentClassification/commissioned/CommissionedClassification.ts';
 
+/**
+ * used by unit tests for PrismaPayrollDatabase and production code
+ */
+
 const getClassificationString = (emp: Employee) => {
   if (emp.classification instanceof HourlyClassification) {
     return 'hourly';

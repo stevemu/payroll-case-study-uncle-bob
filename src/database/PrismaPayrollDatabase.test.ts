@@ -1,4 +1,3 @@
-import { execSync } from 'child_process';
 import { PrismaPayrollDatabase } from './PrismaPayrollDatabase';
 import { Employee } from '../Employee';
 import {
@@ -12,24 +11,10 @@ import { CommissionedClassification } from '../paymentClassification/commissione
 import { config } from '../../configs/test.config';
 import { PrismaClient } from '@prisma/client';
 
-async function resetDb() {
-  console.log('Applying migrations...');
-  execSync(
-    `DATABASE_URL="${config.databaseUrl}" npx prisma migrate reset --force --skip-generate`,
-    {
-      stdio: 'inherit',
-    },
-  );
-}
-
 const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
 
 describe('PayrollDatabase', () => {
   let db: PrismaPayrollDatabase;
-
-  beforeAll(async () => {
-    await resetDb();
-  });
 
   beforeEach(async () => {
     db = new PrismaPayrollDatabase(prisma);
