@@ -9,25 +9,30 @@ import {
 import { HourlyClassification } from '../paymentClassification/hourly/HourlyClassification';
 import { SalariedClassification } from '../paymentClassification/SalariedClassification';
 import { CommissionedClassification } from '../paymentClassification/commissioned/CommissionedClassification';
+import { config } from '../../configs/test.config';
+import { PrismaClient } from '@prisma/client';
 
-async function resetDbAndApplyMigrationsToDb() {
+async function resetDb() {
   console.log('Applying migrations...');
-  const databaseUrl = process.env.DATABASE_URL;
-  execSync(`DATABASE_URL="${databaseUrl}" npx prisma migrate reset --force --skip-generate`, {
-    stdio: 'inherit',
-  });
-  execSync(`DATABASE_URL="${databaseUrl}" npx prisma migrate deploy`, { stdio: 'inherit' });
+  execSync(
+    `DATABASE_URL="${config.databaseUrl}" npx prisma migrate reset --force --skip-generate`,
+    {
+      stdio: 'inherit',
+    },
+  );
 }
+
+const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
 
 describe('PayrollDatabase', () => {
   let db: PrismaPayrollDatabase;
 
   beforeAll(async () => {
-    await resetDbAndApplyMigrationsToDb();
+    await resetDb();
   });
 
   beforeEach(async () => {
-    db = new PrismaPayrollDatabase();
+    db = new PrismaPayrollDatabase(prisma);
     await db.clear();
   });
 

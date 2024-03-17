@@ -1,12 +1,13 @@
 import { Reader } from './Reader.ts';
 import { TransactionSource } from './TransactionSource.interface.ts';
+import { PayrollDatabase } from './database/index.ts';
 import { Transaction } from './transaction/Transaction.interface.ts';
 import * as Transactions from './transaction/index.ts';
 
 export class TextParserTransactionSource implements TransactionSource {
   private reader: Reader = new Reader();
 
-  constructor() {}
+  constructor(private db: PayrollDatabase) {}
 
   async getTransaction(): Promise<Transaction> {
     const line = await this.reader.readLine('Enter transaction: ');
@@ -111,11 +112,23 @@ export class TextParserTransactionSource implements TransactionSource {
     switch (type) {
       case 'H': {
         const hourlyRate = parseFloat(parts[5]);
-        return new Transactions.AddHourlyEmployeeTransaction(empId, name, address, hourlyRate);
+        return new Transactions.AddHourlyEmployeeTransaction(
+          this.db,
+          empId,
+          name,
+          address,
+          hourlyRate,
+        );
       }
       case 'S': {
         const monthlySalary = parseFloat(parts[5]);
-        return new Transactions.AddSalariedEmployeeTransaction(empId, name, address, monthlySalary);
+        return new Transactions.AddSalariedEmployeeTransaction(
+          this.db,
+          empId,
+          name,
+          address,
+          monthlySalary,
+        );
       }
       case 'C': {
         const monthlySalary = parseFloat(parts[5]);
@@ -124,6 +137,7 @@ export class TextParserTransactionSource implements TransactionSource {
         }
         const commissionRate = parseFloat(parts[6]);
         return new Transactions.AddCommissionedEmployeeTransaction(
+          this.db,
           empId,
           name,
           address,

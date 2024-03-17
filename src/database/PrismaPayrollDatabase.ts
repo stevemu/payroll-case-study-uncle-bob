@@ -4,8 +4,6 @@ import { HourlyClassification } from '../paymentClassification/hourly/HourlyClas
 import { SalariedClassification } from '../paymentClassification/SalariedClassification.ts';
 import { CommissionedClassification } from '../paymentClassification/commissioned/CommissionedClassification.ts';
 
-const prisma = new PrismaClient();
-
 const getClassificationString = (emp: Employee) => {
   if (emp.classification instanceof HourlyClassification) {
     return 'hourly';
@@ -21,8 +19,10 @@ export class PrismaPayrollDatabase {
   private employees: Map<number, Employee> = new Map();
   private unionMembers: Map<number, Employee> = new Map();
 
+  constructor(private prismaClient: PrismaClient) {}
+
   async addEmployee(empId: number, employee: Employee): Promise<void> {
-    await prisma.employee.create({
+    await this.prismaClient.employee.create({
       data: {
         empId,
         name: employee.name,
@@ -32,7 +32,7 @@ export class PrismaPayrollDatabase {
     });
 
     if (employee.classification instanceof HourlyClassification) {
-      await prisma.hourlyClassification.create({
+      await this.prismaClient.hourlyClassification.create({
         data: {
           empId,
           rate: employee.classification.hourlyRate,
@@ -41,7 +41,7 @@ export class PrismaPayrollDatabase {
     }
 
     if (employee.classification instanceof SalariedClassification) {
-      await prisma.salariedClassification.create({
+      await this.prismaClient.salariedClassification.create({
         data: {
           empId,
           salary: employee.classification.salary,
@@ -50,7 +50,7 @@ export class PrismaPayrollDatabase {
     }
 
     if (employee.classification instanceof CommissionedClassification) {
-      await prisma.commissionedClassification.create({
+      await this.prismaClient.commissionedClassification.create({
         data: {
           empId,
           salary: employee.classification.salary,
@@ -61,7 +61,7 @@ export class PrismaPayrollDatabase {
   }
 
   async getEmployee(empId: number): Promise<Employee | undefined> {
-    const employeRow = await prisma.employee.findUnique({
+    const employeRow = await this.prismaClient.employee.findUnique({
       where: {
         empId,
       },
@@ -72,7 +72,7 @@ export class PrismaPayrollDatabase {
     const employee = new Employee(employeRow.empId, employeRow.name, employeRow.address);
 
     if (employeRow.classification === 'hourly') {
-      const hourlyClassificationRow = await prisma.hourlyClassification.findUnique({
+      const hourlyClassificationRow = await this.prismaClient.hourlyClassification.findUnique({
         where: {
           empId,
         },
@@ -81,7 +81,7 @@ export class PrismaPayrollDatabase {
     }
 
     if (employeRow.classification === 'salaried') {
-      const salariedClassificationRow = await prisma.salariedClassification.findUnique({
+      const salariedClassificationRow = await this.prismaClient.salariedClassification.findUnique({
         where: {
           empId,
         },
@@ -90,11 +90,12 @@ export class PrismaPayrollDatabase {
     }
 
     if (employeRow.classification === 'commissioned') {
-      const commissionedClassificationRow = await prisma.commissionedClassification.findUnique({
-        where: {
-          empId,
-        },
-      });
+      const commissionedClassificationRow =
+        await this.prismaClient.commissionedClassification.findUnique({
+          where: {
+            empId,
+          },
+        });
       employee.classification = new CommissionedClassification(
         commissionedClassificationRow!.salary,
         commissionedClassificationRow!.commissionRate,
@@ -109,9 +110,9 @@ export class PrismaPayrollDatabase {
   }
 
   async clear() {
-    await prisma.employee.deleteMany();
-    await prisma.timeCard.deleteMany();
-    await prisma.hourlyClassification.deleteMany();
+    await this.prismaClient.employee.deleteMany();
+    await this.prismaClient.timeCard.deleteMany();
+    await this.prismaClient.hourlyClassification.deleteMany();
   }
 
   async getUnionMember(memberId: number): Promise<Employee | undefined> {

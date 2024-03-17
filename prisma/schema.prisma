@@ -7,6 +7,8 @@ generator client {
 
 datasource db {
   provider = "sqlite"
+
+  // not used. being overriden by "config" when initializing the prisma client
   url      = env("DATABASE_URL")
 }
 

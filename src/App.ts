@@ -1,6 +1,12 @@
+import { PrismaClient } from '@prisma/client';
 import { TextParserTransactionSource } from './TextParserTransactionSource.ts';
+import { PrismaPayrollDatabase } from './database/PrismaPayrollDatabase.ts';
+import { PayrollDatabase } from './database/index.ts';
+import { config } from '../configs/prod.config.ts';
 
-const transactionSource = new TextParserTransactionSource();
+const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
+const db: PayrollDatabase = new PrismaPayrollDatabase(prisma);
+const transactionSource = new TextParserTransactionSource(db);
 
 while (true) {
   const transaction = await transactionSource.getTransaction();
