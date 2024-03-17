@@ -27,6 +27,12 @@ model SalariedClassification {
   salary   Float
 }
 
+model CommissionedClassification {
+  empId    Int @unique
+  salary   Float
+  commissionRate Float
+}
+
 model TimeCard {
   empId     Int
   date      DateTime

@@ -1,3 +1,4 @@
+import { MapPayrollDatabase } from '../../database/MapPayrollDatabase.ts';
 import { gPayrollDatabase } from '../../database/index.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';
 import { CommissionedClassification } from '../../paymentClassification/commissioned/CommissionedClassification.ts';
@@ -6,8 +7,10 @@ import { AddCommissionedEmployeeTransaction } from './AddCommissionedEmployeeTra
 
 describe('AddCommissionedEmployee', () => {
   it('should add a commissioned employee', async () => {
+    const db = new MapPayrollDatabase();
+
     const empId = 1;
-    const t = new AddCommissionedEmployeeTransaction(empId, 'Bob', 'Home', 1000.0, 0.5);
+    const t = new AddCommissionedEmployeeTransaction(db, empId, 'Bob', 'Home', 1000.0, 0.5);
     await t.execute();
 
     const e = await gPayrollDatabase.getEmployee(empId)!;

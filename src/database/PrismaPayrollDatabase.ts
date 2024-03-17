@@ -2,14 +2,19 @@ import { PrismaClient } from '@prisma/client';
 import { Employee } from '../Employee.ts';
 import { HourlyClassification } from '../paymentClassification/hourly/HourlyClassification.ts';
 import { SalariedClassification } from '../paymentClassification/SalariedClassification.ts';
+import { CommissionedClassification } from '../paymentClassification/commissioned/CommissionedClassification.ts';
 
 const prisma = new PrismaClient();
 
 const getClassificationString = (emp: Employee) => {
   if (emp.classification instanceof HourlyClassification) {
     return 'hourly';
+  } else if (emp.classification instanceof SalariedClassification) {
+    return 'salaried';
+  } else if (emp.classification instanceof CommissionedClassification) {
+    return 'commissioned';
   }
-  return 'salaried';
+  throw new Error('Invalid classification');
 };
 
 export class PrismaPayrollDatabase {
@@ -43,6 +48,16 @@ export class PrismaPayrollDatabase {
         },
       });
     }
+
+    if (employee.classification instanceof CommissionedClassification) {
+      await prisma.commissionedClassification.create({
+        data: {
+          empId,
+          salary: employee.classification.salary,
+          commissionRate: employee.classification.commissionRate,
+        },
+      });
+    }
   }
 
   async getEmployee(empId: number): Promise<Employee | undefined> {
@@ -72,6 +87,18 @@ export class PrismaPayrollDatabase {
         },
       });
       employee.classification = new SalariedClassification(salariedClassificationRow!.salary);
+    }
+
+    if (employeRow.classification === 'commissioned') {
+      const commissionedClassificationRow = await prisma.commissionedClassification.findUnique({
+        where: {
+          empId,
+        },
+      });
+      employee.classification = new CommissionedClassification(
+        commissionedClassificationRow!.salary,
+        commissionedClassificationRow!.commissionRate,
+      );
     }
 
     return employee;
