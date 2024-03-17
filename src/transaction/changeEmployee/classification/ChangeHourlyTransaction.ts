@@ -1,5 +1,5 @@
 import { PayrollDatabase } from '../../../database/index.ts';
-import { Classification } from '../../../paymentClassification/Classification.abstract.ts';
+import { PaymentClassification } from '../../../paymentClassification/Classification.abstract.ts';
 import { HourlyClassification } from '../../../paymentClassification/hourly/HourlyClassification.ts';
 import { Schedule } from '../../../schedule/Schedule.interface.ts';
 import { WeeklySchedule } from '../../../schedule/WeeklySchedule.ts';
@@ -14,7 +14,7 @@ export class ChangeHourlyTransaction extends ChangeClassification {
     super(db, empId);
   }
 
-  get paymentClassification(): Classification {
+  get paymentClassification(): PaymentClassification {
     return new HourlyClassification(this.hourlyRate);
   }
   get paymentSchedule(): Schedule {

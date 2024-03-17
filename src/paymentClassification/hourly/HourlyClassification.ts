@@ -1,9 +1,9 @@
 import { PayCheck } from '../../PayCheck.ts';
 import { isBetween } from '../../utils/date.ts';
-import { Classification } from '../Classification.abstract.ts';
+import { PaymentClassification } from '../Classification.abstract.ts';
 import { TimeCard } from './TimeCard.ts';
 
-export class HourlyClassification extends Classification {
+export class HourlyClassification extends PaymentClassification {
   private timeCards: TimeCard[] = [];
 
   constructor(public hourlyRate: number) {

@@ -1,6 +1,6 @@
 import { PayrollDatabase } from '../../database/index.ts';
 import { Employee } from '../../Employee.ts';
-import { Classification } from '../../paymentClassification/Classification.abstract.ts';
+import { PaymentClassification } from '../../paymentClassification/Classification.abstract.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';
 import { Schedule } from '../../schedule/Schedule.interface.ts';
 import { Transaction } from '../Transaction.interface.ts';
@@ -15,7 +15,7 @@ export abstract class AddEmployeeTransaction extends Transaction {
     super();
   }
 
-  abstract getClassification(): Classification;
+  abstract getClassification(): PaymentClassification;
   abstract getSchedule(): Schedule;
 
   async execute(): Promise<void> {

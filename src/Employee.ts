@@ -1,6 +1,6 @@
 import { PayCheck } from './PayCheck.ts';
 import { Affiliation } from './affiliation/Affiliation.interface.ts';
-import { Classification } from './paymentClassification/Classification.abstract.ts';
+import { PaymentClassification } from './paymentClassification/Classification.abstract.ts';
 import { Method } from './method/Method.interface.ts';
 import { Schedule } from './schedule/Schedule.interface.ts';
 import { NoAffiliation } from './affiliation/noAffiliation/NoAffiliation.ts';
@@ -12,7 +12,7 @@ export class Employee {
     public address: string,
   ) {}
 
-  public classification!: Classification;
+  public classification!: PaymentClassification;
   public schedule!: Schedule;
   public method!: Method;
   public affiliation: Affiliation = new NoAffiliation();

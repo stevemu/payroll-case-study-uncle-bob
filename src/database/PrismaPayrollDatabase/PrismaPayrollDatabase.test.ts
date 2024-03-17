@@ -1,14 +1,14 @@
 import { PrismaPayrollDatabase } from './PrismaPayrollDatabase';
-import { Employee } from '../Employee';
+import { Employee } from '../../Employee';
 import {
   AddCommissionedEmployeeTransaction,
   AddHourlyEmployeeTransaction,
   AddSalariedEmployeeTransaction,
-} from '../transaction';
-import { HourlyClassification } from '../paymentClassification/hourly/HourlyClassification';
-import { SalariedClassification } from '../paymentClassification/SalariedClassification';
-import { CommissionedClassification } from '../paymentClassification/commissioned/CommissionedClassification';
-import { config } from '../../configs/test.config';
+} from '../../transaction';
+import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification';
+import { SalariedClassification } from '../../paymentClassification/SalariedClassification';
+import { CommissionedClassification } from '../../paymentClassification/commissioned/CommissionedClassification';
+import { config } from '../../../configs/test.config';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
@@ -73,5 +73,27 @@ describe('PayrollDatabase', () => {
     expect(e?.classification).toBeInstanceOf(CommissionedClassification);
     expect((e?.classification as CommissionedClassification).salary).toBe(salary);
     expect((e?.classification as CommissionedClassification).commissionRate).toBe(commissionRate);
+  });
+
+  test('delete employee', async () => {
+    const empId = 1;
+    const salary = 2000;
+    const commissionRate = 0.1;
+    const t = new AddCommissionedEmployeeTransaction(
+      db,
+      empId,
+      'Bob',
+      'Home',
+      salary,
+      commissionRate,
+    );
+    await t.execute();
+
+    let e = await db.getEmployee(empId);
+    expect(e).toBeInstanceOf(Employee);
+
+    await db.deleteEmployee(empId);
+    e = await db.getEmployee(empId);
+    expect(e).toBeUndefined();
   });
 });

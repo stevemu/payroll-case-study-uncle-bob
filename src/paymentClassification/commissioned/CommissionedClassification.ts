@@ -1,8 +1,8 @@
 import { PayCheck } from '../../PayCheck.ts';
-import { Classification } from '../Classification.abstract.ts';
+import { PaymentClassification } from '../Classification.abstract.ts';
 import { SalesReceipt } from './SalesReceipt.ts';
 
-export class CommissionedClassification extends Classification {
+export class CommissionedClassification extends PaymentClassification {
   private salesReceipts: SalesReceipt[] = [];
 
   constructor(

@@ -1,5 +1,5 @@
 import { PayCheck } from '../PayCheck.ts';
 
-export abstract class Classification {
+export abstract class PaymentClassification {
   abstract calculatePay(payCheck: PayCheck): number;
 }
