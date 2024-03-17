@@ -134,7 +134,7 @@ Example: Payday 2024-01-02
 
 - **migrate after updating schema**
   ```
-  npx prisma migrate dev --name name 
+  yarn migrate
   ```
 - **Merge migrations**
   - delete all migrations files
