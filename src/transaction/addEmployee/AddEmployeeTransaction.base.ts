@@ -1,4 +1,4 @@
-import { gPayrollDatabase } from '../../database/index.ts';
+import { PayrollDatabase } from '../../database/index.ts';
 import { Employee } from '../../Employee.ts';
 import { Classification } from '../../paymentClassification/Classification.abstract.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';
@@ -7,6 +7,7 @@ import { Transaction } from '../Transaction.interface.ts';
 
 export abstract class AddEmployeeTransaction extends Transaction {
   constructor(
+    protected db: PayrollDatabase,
     protected empId: number,
     protected name: string,
     protected address: string,
@@ -25,6 +26,6 @@ export abstract class AddEmployeeTransaction extends Transaction {
     e.classification = pc;
     e.schedule = ps;
     e.method = pm;
-    await gPayrollDatabase.addEmployee(this.empId, e);
+    await this.db.addEmployee(this.empId, e);
   }
 }

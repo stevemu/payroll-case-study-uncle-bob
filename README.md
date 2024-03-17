@@ -129,3 +129,10 @@ Example: ServiceCharge 1 300 2024-02-10
 Payday <date>
 Example: Payday 2024-01-02
 ```
+
+# Prisma commands
+
+- **migrate after updating schema**
+  ```
+  npx prisma migrate dev --name name 
+  ```

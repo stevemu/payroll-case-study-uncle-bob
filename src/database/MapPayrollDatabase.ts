@@ -1,6 +1,6 @@
 import { Employee } from '../Employee.js';
 
-export class TestPayrollDatabase {
+export class MapPayrollDatabase {
   private employees: Map<number, Employee> = new Map();
   private unionMembers: Map<number, Employee> = new Map();
 

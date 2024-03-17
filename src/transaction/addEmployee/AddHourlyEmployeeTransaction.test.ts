@@ -1,4 +1,4 @@
-import { gPayrollDatabase } from '../../database/index.ts';
+import { MapPayrollDatabase } from '../../database/MapPayrollDatabase.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';
 import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification.ts';
 import { WeeklySchedule } from '../../schedule/WeeklySchedule.ts';
@@ -6,11 +6,12 @@ import { AddHourlyEmployeeTransaction } from './AddHourlyEmployeeTransaction.ts'
 
 describe('AddHourlyEmployee', () => {
   it('should add an hourly employee', async () => {
+    const db = new MapPayrollDatabase();
     const empId = 1;
-    const t = new AddHourlyEmployeeTransaction(empId, 'Bob', 'Home', 1000.0);
+    const t = new AddHourlyEmployeeTransaction(db, empId, 'Bob', 'Home', 1000.0);
     await t.execute();
 
-    const e = (await gPayrollDatabase.getEmployee(empId))!;
+    const e = (await db.getEmployee(empId))!;
     expect(e.name).toBe('Bob');
 
     const pc = e.classification;

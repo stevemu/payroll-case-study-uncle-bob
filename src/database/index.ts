@@ -1,8 +1,8 @@
-import { TestPayrollDatabase } from './TestPayrollDatabase';
-import { PayrollDatabase } from './PayrollDatabase';
+import { MapPayrollDatabase } from './MapPayrollDatabase';
+import { PrismaPayrollDatabase } from './PrismaPayrollDatabase';
 import { Employee } from '../Employee';
 
-interface TPayrollDatabase {
+export interface PayrollDatabase {
   addEmployee(empId: number, employee: Employee): Promise<void>;
   getEmployee(empId: number): Promise<Employee | undefined>;
   deleteEmployee(empId: number): Promise<void>;
@@ -13,5 +13,5 @@ interface TPayrollDatabase {
   getAllEmployees(): Promise<Employee[]>;
 }
 
-export const gPayrollDatabase: TPayrollDatabase =
-  process.env.NODE_ENV === 'test' ? new TestPayrollDatabase() : new PayrollDatabase();
+export const gPayrollDatabase: PayrollDatabase =
+  process.env.NODE_ENV === 'test' ? new MapPayrollDatabase() : new PrismaPayrollDatabase();
