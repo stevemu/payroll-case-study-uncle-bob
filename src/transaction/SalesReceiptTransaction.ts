@@ -1,10 +1,11 @@
-import { gPayrollDatabase } from '../database/index.ts';
+import { PayrollDatabase } from '../database/index.ts';
 import { CommissionedClassification } from '../paymentClassification/commissioned/CommissionedClassification.ts';
 import { SalesReceipt } from '../paymentClassification/commissioned/SalesReceipt.ts';
 import { Transaction } from './Transaction.interface.ts';
 
 export class SalesReceiptTransaction extends Transaction {
   constructor(
+    private db: PayrollDatabase,
     private empId: number,
     private date: Date,
     private amount: number,
@@ -13,7 +14,7 @@ export class SalesReceiptTransaction extends Transaction {
   }
 
   async execute(): Promise<void> {
-    const e = await gPayrollDatabase.getEmployee(this.empId);
+    const e = await this.db.getEmployee(this.empId);
 
     if (!e) {
       throw new Error('No such employee');

@@ -16,8 +16,11 @@ const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl }
 describe('PayrollDatabase', () => {
   let db: PrismaPayrollDatabase;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     db = new PrismaPayrollDatabase(prisma);
+  });
+
+  beforeEach(async () => {
     await db.clear();
   });
 

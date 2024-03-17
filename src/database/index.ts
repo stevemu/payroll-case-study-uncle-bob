@@ -1,4 +1,3 @@
-import { MapPayrollDatabase } from './MapPayrollDatabase';
 import { Employee } from '../Employee';
 
 export interface PayrollDatabase {
@@ -13,4 +12,4 @@ export interface PayrollDatabase {
 }
 
 // to be removed. currently used by transaction tests
-export const gPayrollDatabase: PayrollDatabase = new MapPayrollDatabase();
+// export const gPayrollDatabase: PayrollDatabase = new MapPayrollDatabase();

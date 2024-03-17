@@ -41,37 +41,42 @@ export class TextParserTransactionSource implements TransactionSource {
     switch (type) {
       case 'Name':
         const name = parts[3];
-        return new Transactions.ChangeEmployeeNameTransaction(empId, name);
+        return new Transactions.ChangeEmployeeNameTransaction(this.db, empId, name);
       case 'Address':
         const address = parts[3];
-        return new Transactions.ChangeEmployeeAddressTransaction(empId, address);
+        return new Transactions.ChangeEmployeeAddressTransaction(this.db, empId, address);
       case 'Hourly':
         const hourlyRate = parseFloat(parts[3]);
-        return new Transactions.ChangeHourlyTransaction(empId, hourlyRate);
+        return new Transactions.ChangeHourlyTransaction(this.db, empId, hourlyRate);
       case 'Salaried': {
         const monthlySalary = parseFloat(parts[3]);
-        return new Transactions.ChangeSalariedTransaction(empId, monthlySalary);
+        return new Transactions.ChangeSalariedTransaction(this.db, empId, monthlySalary);
       }
       case 'Commissioned':
         const monthlySalary = parseFloat(parts[3]);
         const commissionRate = parseFloat(parts[4]);
-        return new Transactions.ChangeCommissionedTransaction(empId, monthlySalary, commissionRate);
+        return new Transactions.ChangeCommissionedTransaction(
+          this.db,
+          empId,
+          monthlySalary,
+          commissionRate,
+        );
       case 'Hold':
-        return new Transactions.ChangeHoldTransaction(empId);
+        return new Transactions.ChangeHoldTransaction(this.db, empId);
       case 'Direct':
         const bank = parts[3];
         const account = parts[4];
-        return new Transactions.ChangeDirectTransaction(empId, bank, account);
+        return new Transactions.ChangeDirectTransaction(this.db, empId, bank, account);
       case 'Mail': {
         const address = parts[3];
-        return new Transactions.ChangeMailTransaction(empId, address);
+        return new Transactions.ChangeMailTransaction(this.db, empId, address);
       }
       case 'Member':
         const memberId = parseInt(parts[3]);
         const dues = parseFloat(parts[4]);
-        return new Transactions.ChangeMemberTransaction(empId, memberId, dues);
+        return new Transactions.ChangeMemberTransaction(this.db, empId, memberId, dues);
       case 'NoMember':
-        return new Transactions.ChangeUnaffiliatedTransaction(empId);
+        return new Transactions.ChangeUnaffiliatedTransaction(this.db, empId);
       default:
         throw new Error('Invalid change employee type');
     }
@@ -79,28 +84,28 @@ export class TextParserTransactionSource implements TransactionSource {
 
   private createPaydayTransaction(parts: string[]): Transaction {
     const date = parseYyyymmdd(parts[1]);
-    return new Transactions.PayTransaction(date);
+    return new Transactions.PayTransaction(this.db, date);
   }
 
   private createServiceChargeTransaction(parts: string[]): Transaction {
     const empId = parseInt(parts[1]);
     const date = parseYyyymmdd(parts[2]);
     const amount = parseFloat(parts[3]);
-    return new Transactions.AddServiceChargeTransaction(empId, date, amount);
+    return new Transactions.AddServiceChargeTransaction(this.db, empId, date, amount);
   }
 
   private createSalesReceiptTransaction(parts: string[]): Transaction {
     const empId = parseInt(parts[1]);
     const date = parseYyyymmdd(parts[2]);
     const amount = parseFloat(parts[3]);
-    return new Transactions.SalesReceiptTransaction(empId, date, amount);
+    return new Transactions.SalesReceiptTransaction(this.db, empId, date, amount);
   }
 
   private createTimeCardTransaction(parts: string[]): Transaction {
     const empId = parseInt(parts[1]);
     const date = parseYyyymmdd(parts[2]);
     const hours = parseFloat(parts[3]);
-    return new Transactions.AddTimeCardTransaction(empId, date, hours);
+    return new Transactions.AddTimeCardTransaction(this.db, empId, date, hours);
   }
 
   private createAddEmployeeTransaction(parts: string[]): Transaction {
@@ -152,7 +157,7 @@ export class TextParserTransactionSource implements TransactionSource {
 
   private createDeleteEmployeeTransaction(parts: string[]): Transaction {
     const empId = parseInt(parts[1]);
-    return new Transactions.DeleteEmployeeTransaction(empId);
+    return new Transactions.DeleteEmployeeTransaction(this.db, empId);
   }
 }
 

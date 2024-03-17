@@ -1,19 +1,20 @@
-import { gPayrollDatabase } from '../../../database/index.ts';
+import { MapPayrollDatabase } from '../../../database/MapPayrollDatabase.ts';
 import { CommissionedClassification } from '../../../paymentClassification/commissioned/CommissionedClassification.ts';
 import { BiweeklySchedule } from '../../../schedule/BiweeklySchedule.ts';
 import { AddHourlyEmployeeTransaction } from '../../addEmployee/AddHourlyEmployeeTransaction.ts';
-import { ChangeCommissionedTransaction } from './ChangeComissionedTransaction.ts';
+import { ChangeCommissionedTransaction } from './ChangeCommissionedTransaction.ts';
 
 describe('ChangeCommissionedTransaction', () => {
   it('should change employee to commissioned', async () => {
+    const db = new MapPayrollDatabase();
     const empId = 1;
-    const addEmp = new AddHourlyEmployeeTransaction(empId, 'Bob', 'Home', 27.52);
+    const addEmp = new AddHourlyEmployeeTransaction(db, empId, 'Bob', 'Home', 27.52);
     await addEmp.execute();
 
-    const changeCommissioned = new ChangeCommissionedTransaction(empId, 1000, 0.5);
+    const changeCommissioned = new ChangeCommissionedTransaction(db, empId, 1000, 0.5);
     await changeCommissioned.execute();
 
-    const employee = await gPayrollDatabase.getEmployee(empId);
+    const employee = await db.getEmployee(empId);
     expect(employee!.classification).toBeInstanceOf(CommissionedClassification);
     expect((employee!.classification as CommissionedClassification).salary).toBe(1000);
     expect((employee!.classification as CommissionedClassification).commissionRate).toBe(0.5);

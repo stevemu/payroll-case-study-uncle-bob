@@ -1,5 +1,4 @@
 import { MapPayrollDatabase } from '../../database/MapPayrollDatabase.ts';
-import { gPayrollDatabase } from '../../database/index.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';
 import { CommissionedClassification } from '../../paymentClassification/commissioned/CommissionedClassification.ts';
 import { BiweeklySchedule } from '../../schedule/BiweeklySchedule.ts';
@@ -13,7 +12,7 @@ describe('AddCommissionedEmployee', () => {
     const t = new AddCommissionedEmployeeTransaction(db, empId, 'Bob', 'Home', 1000.0, 0.5);
     await t.execute();
 
-    const e = await gPayrollDatabase.getEmployee(empId)!;
+    const e = await db.getEmployee(empId)!;
     expect(e!.name).toBe('Bob');
 
     const pc = e!.classification;

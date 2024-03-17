@@ -1,12 +1,14 @@
-import { gPayrollDatabase } from '../../database/index.ts';
+import { MapPayrollDatabase } from '../../database/MapPayrollDatabase.ts';
 import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction.ts';
 import { ChangeEmployeeNameTransaction } from './ChangeEmployeeNameTransaction.ts';
 
 describe('ChangeEmployeeNameTransaction', () => {
   it('should change employee name', async () => {
+    const db = new MapPayrollDatabase();
     const employeeId = 1;
 
     const addEmployeeTransaction = new AddHourlyEmployeeTransaction(
+      db,
       employeeId,
       'Bill',
       'Home',
@@ -14,10 +16,10 @@ describe('ChangeEmployeeNameTransaction', () => {
     );
     await addEmployeeTransaction.execute();
 
-    const transaction = new ChangeEmployeeNameTransaction(employeeId, 'Bob');
+    const transaction = new ChangeEmployeeNameTransaction(db, employeeId, 'Bob');
     await transaction.execute();
 
-    const employee = await gPayrollDatabase.getEmployee(employeeId);
+    const employee = await db.getEmployee(employeeId);
     expect(employee!.name).toBe('Bob');
   });
 });

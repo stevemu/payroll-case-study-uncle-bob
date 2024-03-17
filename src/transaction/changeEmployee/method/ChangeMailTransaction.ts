@@ -1,12 +1,14 @@
+import { PayrollDatabase } from '../../../database/index.ts';
 import { MailMethod } from '../../../method/MailMethod.ts';
 import { ChangeMethodTransaction } from './ChangeMethodTransaction.abstract.ts';
 
 export class ChangeMailTransaction extends ChangeMethodTransaction {
   constructor(
+    db: PayrollDatabase,
     empId: number,
     private address: string,
   ) {
-    super(empId);
+    super(db, empId);
   }
 
   getMethod() {

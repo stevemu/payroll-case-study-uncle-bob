@@ -1,11 +1,12 @@
 import { Employee } from '../../../Employee.ts';
+import { PayrollDatabase } from '../../../database/index.ts';
 import { Classification } from '../../../paymentClassification/Classification.abstract.ts';
 import { Schedule } from '../../../schedule/Schedule.interface.ts';
 import { ChangeEmployeeTransaction } from '../ChangeEmployeeTransaction.abstract.ts';
 
 export abstract class ChangeClassification extends ChangeEmployeeTransaction {
-  constructor(empId: number) {
-    super(empId);
+  constructor(db: PayrollDatabase, empId: number) {
+    super(db, empId);
   }
 
   abstract get paymentClassification(): Classification;

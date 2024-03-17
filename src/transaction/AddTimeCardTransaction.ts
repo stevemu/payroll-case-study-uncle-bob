@@ -1,17 +1,18 @@
-import { gPayrollDatabase } from '../database/index.ts';
+import { PayrollDatabase } from '../database/index.ts';
 import { HourlyClassification } from '../paymentClassification/hourly/HourlyClassification.ts';
 import { TimeCard } from '../paymentClassification/hourly/TimeCard.ts';
 import { Transaction } from './Transaction.interface.ts';
 
 export class AddTimeCardTransaction implements Transaction {
   constructor(
+    private db: PayrollDatabase,
     private employeeId: number,
     private date: Date,
     private hours: number,
   ) {}
 
   async execute(): Promise<void> {
-    const employee = await gPayrollDatabase.getEmployee(this.employeeId);
+    const employee = await this.db.getEmployee(this.employeeId);
 
     if (!employee) {
       throw new Error('No such employee.');

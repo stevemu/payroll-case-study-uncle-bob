@@ -1,28 +1,29 @@
-import { gPayrollDatabase } from '../database/index.ts';
 import { UnionAffiliation } from '../affiliation/union/UnionAffiliation.ts';
 import { AddServiceChargeTransaction } from './AddServiceChargeTransaction.ts';
 import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction.ts';
+import { MapPayrollDatabase } from '../database/MapPayrollDatabase.ts';
 
 describe('AddServiceChargeTransaction', () => {
   it('should add service charge to the membership', async () => {
+    const db = new MapPayrollDatabase();
     const empId = 2;
-    const addHourlyEmployee = new AddHourlyEmployeeTransaction(empId, 'Bill', 'Home', 15.25);
+    const addHourlyEmployee = new AddHourlyEmployeeTransaction(db, empId, 'Bill', 'Home', 15.25);
     await addHourlyEmployee.execute();
 
-    const e = (await gPayrollDatabase.getEmployee(empId))!;
+    const e = (await db.getEmployee(empId))!;
 
     const memberId = 86;
     const af = new UnionAffiliation(memberId, 12.5);
     e.affiliation = af;
 
-    await gPayrollDatabase.addUnionMember(memberId, e);
+    await db.addUnionMember(memberId, e);
 
     const date = new Date(2021, 8, 10);
     const amount = 100;
-    const transaction = new AddServiceChargeTransaction(memberId, date, amount);
+    const transaction = new AddServiceChargeTransaction(db, memberId, date, amount);
     await transaction.execute();
 
-    const member = await gPayrollDatabase.getUnionMember(memberId);
+    const member = await db.getUnionMember(memberId);
     const ua = member!.affiliation as UnionAffiliation;
 
     expect(ua).toBeInstanceOf(UnionAffiliation);

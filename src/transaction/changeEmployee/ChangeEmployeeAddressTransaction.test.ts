@@ -1,12 +1,14 @@
-import { gPayrollDatabase } from '../../database/index.ts';
+import { MapPayrollDatabase } from '../../database/MapPayrollDatabase.ts';
 import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction.ts';
 import { ChangeEmployeeAddressTransaction } from './ChangeEmployeeAddressTransaction.ts';
 
 describe('ChangeEmployeeAddressTransaction', () => {
   it('should change employee address', async () => {
+    const db = new MapPayrollDatabase();
     const employeeId = 1;
 
     const addEmployeeTransaction = new AddHourlyEmployeeTransaction(
+      db,
       employeeId,
       'Bill',
       'Home',
@@ -14,10 +16,10 @@ describe('ChangeEmployeeAddressTransaction', () => {
     );
     await addEmployeeTransaction.execute();
 
-    const transaction = new ChangeEmployeeAddressTransaction(employeeId, 'Office');
+    const transaction = new ChangeEmployeeAddressTransaction(db, employeeId, 'Office');
     await transaction.execute();
 
-    const employee = await gPayrollDatabase.getEmployee(employeeId)!;
+    const employee = await db.getEmployee(employeeId)!;
     expect(employee!.address).toBe('Office');
   });
 });

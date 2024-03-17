@@ -117,6 +117,8 @@ export class PrismaPayrollDatabase {
     await this.prismaClient.employee.deleteMany();
     await this.prismaClient.timeCard.deleteMany();
     await this.prismaClient.hourlyClassification.deleteMany();
+    await this.prismaClient.commissionedClassification.deleteMany();
+    await this.prismaClient.salariedClassification.deleteMany();
   }
 
   async getUnionMember(memberId: number): Promise<Employee | undefined> {

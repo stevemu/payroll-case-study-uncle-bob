@@ -1,14 +1,16 @@
-import { gPayrollDatabase } from '../database/index.ts';
+import { MapPayrollDatabase } from '../database/MapPayrollDatabase.ts';
 import { HourlyClassification } from '../paymentClassification/hourly/HourlyClassification.ts';
 import { AddTimeCardTransaction } from './AddTimeCardTransaction.ts';
 import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction.ts';
 
 describe('AddTimeCardTransaction', () => {
   it('should add a time card to an employee', async () => {
+    const db = new MapPayrollDatabase();
     const hours = 8;
 
     const employeeId = 1;
     const addEmployeeTransaction = new AddHourlyEmployeeTransaction(
+      db,
       employeeId,
       'Bob',
       'Home',
@@ -17,10 +19,10 @@ describe('AddTimeCardTransaction', () => {
     await addEmployeeTransaction.execute();
 
     const date = new Date(2021, 6, 1);
-    const addTimeCardTransaction = new AddTimeCardTransaction(employeeId, date, hours);
+    const addTimeCardTransaction = new AddTimeCardTransaction(db, employeeId, date, hours);
     await addTimeCardTransaction.execute();
 
-    const employee = await gPayrollDatabase.getEmployee(employeeId);
+    const employee = await db.getEmployee(employeeId);
     const timeCard = (employee!.classification as HourlyClassification).getTimeCard(date);
     expect(timeCard).toBeDefined();
     expect(timeCard!.hours).toBe(hours);

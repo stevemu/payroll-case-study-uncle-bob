@@ -1,3 +1,4 @@
+import { PayrollDatabase } from '../../../database/index.ts';
 import { Classification } from '../../../paymentClassification/Classification.abstract.ts';
 import { HourlyClassification } from '../../../paymentClassification/hourly/HourlyClassification.ts';
 import { Schedule } from '../../../schedule/Schedule.interface.ts';
@@ -6,10 +7,11 @@ import { ChangeClassification } from './ChangeClassification.abstract.ts';
 
 export class ChangeHourlyTransaction extends ChangeClassification {
   constructor(
+    db: PayrollDatabase,
     empId: number,
     private hourlyRate: number,
   ) {
-    super(empId);
+    super(db, empId);
   }
 
   get paymentClassification(): Classification {

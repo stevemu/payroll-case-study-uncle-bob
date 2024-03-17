@@ -1,5 +1,4 @@
 import { AddSalariedEmployeeTransaction } from './AddSalariedEmployeeTransaction.ts';
-import { gPayrollDatabase } from '../../database/index.ts';
 import { SalariedClassification } from '../../paymentClassification/SalariedClassification.ts';
 import { MonthlySchedule } from '../../schedule/MonthlySchedule.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';
@@ -12,7 +11,7 @@ describe('AddSalariedEmployee', () => {
     const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', 1000.0);
     await t.execute();
 
-    const e = (await gPayrollDatabase.getEmployee(empId))!;
+    const e = (await db.getEmployee(empId))!;
     expect(e.name).toBe('Bob');
 
     const pc = e.classification;
