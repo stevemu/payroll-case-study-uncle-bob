@@ -15,7 +15,9 @@ export class HourlyClassification extends PaymentClassification {
   }
 
   getTimeCard(date: Date): TimeCard | undefined {
-    return this.timeCards.find((timeCard) => timeCard.date === date);
+    return this.timeCards.find((timeCard) => {
+      return timeCard.date.getTime() === date.getTime();
+    });
   }
 
   calculatePay(payCheck: PayCheck): number {
@@ -33,5 +35,9 @@ export class HourlyClassification extends PaymentClassification {
     const regularHours = timeCard.hours - overtimeHours;
 
     return regularHours * this.hourlyRate + overtimeHours * this.hourlyRate * 1.5;
+  }
+
+  getTimeCards() {
+    return this.timeCards;
   }
 }

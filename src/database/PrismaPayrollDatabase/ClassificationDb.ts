@@ -4,18 +4,44 @@ import { CommissionedClassification } from '../../paymentClassification/commissi
 import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification.ts';
 import { Employee } from '../../Employee.ts';
 import { PaymentClassification } from '../../paymentClassification/Classification.abstract.ts';
+import { TimeCard } from '../../paymentClassification/hourly/TimeCard.ts';
 
 export class ClassificationDb {
   constructor(private prismaClient: PrismaClient) {}
 
-  public async addClassification(empId: number, employee: Employee) {
+  public async saveClassification(empId: number, employee: Employee) {
     if (employee.classification instanceof HourlyClassification) {
-      await this.prismaClient.hourlyClassification.create({
-        data: {
+      await this.prismaClient.hourlyClassification.upsert({
+        where: {
+          empId,
+        },
+        update: {
+          rate: employee.classification.hourlyRate,
+        },
+        create: {
           empId,
           rate: employee.classification.hourlyRate,
         },
       });
+      const timeCards = employee.classification.getTimeCards();
+      for (const timeCard of timeCards) {
+        await this.prismaClient.timeCard.upsert({
+          where: {
+            empId_date: {
+              empId,
+              date: timeCard.date,
+            },
+          },
+          update: {
+            hours: timeCard.hours,
+          },
+          create: {
+            empId,
+            date: timeCard.date,
+            hours: timeCard.hours,
+          },
+        });
+      }
     }
 
     if (employee.classification instanceof SalariedClassification) {
@@ -38,17 +64,30 @@ export class ClassificationDb {
     }
   }
 
-  async getClassification(
-    empId: number,
-    classificationType: ClassificationType,
-  ): Promise<PaymentClassification> {
+  async getClassification(empId: number): Promise<PaymentClassification> {
+    const employeModel = await this.prismaClient.employee.findUnique({
+      where: {
+        empId,
+      },
+    });
+    const classificationType = employeModel!.classification as ClassificationType;
+
     if (classificationType === 'hourly') {
       const hourlyClassificationModel = await this.prismaClient.hourlyClassification.findUnique({
         where: {
           empId,
         },
       });
-      return new HourlyClassification(hourlyClassificationModel!.rate);
+      const hourlyClassification = new HourlyClassification(hourlyClassificationModel!.rate);
+      const timeCards = await this.prismaClient.timeCard.findMany({
+        where: {
+          empId,
+        },
+      });
+      for (const timeCard of timeCards) {
+        hourlyClassification.addTimeCard(new TimeCard(timeCard.date, timeCard.hours));
+      }
+      return hourlyClassification;
     }
 
     if (classificationType === 'salaried') {

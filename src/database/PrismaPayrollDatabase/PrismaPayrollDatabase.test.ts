@@ -4,6 +4,7 @@ import {
   AddCommissionedEmployeeTransaction,
   AddHourlyEmployeeTransaction,
   AddSalariedEmployeeTransaction,
+  AddTimeCardTransaction,
 } from '../../transaction';
 import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification';
 import { SalariedClassification } from '../../paymentClassification/SalariedClassification';
@@ -24,18 +25,23 @@ describe('PayrollDatabase', () => {
     await db.clear();
   });
 
-  test('add hourly employee', async () => {
+  test('hourly employee', async () => {
     const empId = 1;
     const hourlyRate = 20;
     const t = new AddHourlyEmployeeTransaction(db, empId, 'Bob', 'Home', hourlyRate);
     await t.execute();
 
+    const t2 = new AddTimeCardTransaction(db, empId, new Date(2021, 1, 1), 8);
+    await t2.execute();
+
     const e = await db.getEmployee(empId);
     expect(e).toBeInstanceOf(Employee);
     expect(e?.name).toBe('Bob');
     expect(e?.address).toBe('Home');
-    expect(e?.classification).toBeInstanceOf(HourlyClassification);
-    expect((e?.classification as HourlyClassification).hourlyRate).toBe(hourlyRate);
+    const c = e?.classification as HourlyClassification;
+    expect(c).toBeInstanceOf(HourlyClassification);
+    expect(c.hourlyRate).toBe(hourlyRate);
+    expect(c.getTimeCard(new Date(2021, 1, 1))!.hours).toBe(8);
   });
 
   test('add salary employee', async () => {

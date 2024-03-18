@@ -1,12 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 import { Employee } from '../../Employee.ts';
-import { ClassificationDb, ClassificationType, getClassificationType } from './ClassificationDb.ts';
+import { ClassificationDb, getClassificationType } from './ClassificationDb.ts';
+import { PayrollDatabase } from '../index.ts';
 
 /**
  * used by unit tests for PrismaPayrollDatabase and production code
  */
 
-export class PrismaPayrollDatabase {
+export class PrismaPayrollDatabase implements PayrollDatabase {
   private employees: Map<number, Employee> = new Map();
   private unionMembers: Map<number, Employee> = new Map();
   private classificationDb: ClassificationDb;
@@ -25,7 +26,22 @@ export class PrismaPayrollDatabase {
       },
     });
 
-    await this.classificationDb.addClassification(empId, employee);
+    await this.classificationDb.saveClassification(empId, employee);
+  }
+
+  async saveEmployee(employee: Employee): Promise<void> {
+    await this.prismaClient.employee.update({
+      where: {
+        empId: employee.empId,
+      },
+      data: {
+        name: employee.name,
+        address: employee.address,
+        classification: getClassificationType(employee),
+      },
+    });
+
+    await this.classificationDb.saveClassification(employee.empId, employee);
   }
 
   async getEmployee(empId: number): Promise<Employee | undefined> {
@@ -39,10 +55,7 @@ export class PrismaPayrollDatabase {
 
     const employee = new Employee(employeModel.empId, employeModel.name, employeModel.address);
 
-    employee.classification = await this.classificationDb.getClassification(
-      empId,
-      employeModel.classification as ClassificationType,
-    );
+    employee.classification = await this.classificationDb.getClassification(empId);
 
     return employee;
   }

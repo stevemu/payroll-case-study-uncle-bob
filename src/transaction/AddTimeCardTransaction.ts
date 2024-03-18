@@ -24,5 +24,6 @@ export class AddTimeCardTransaction implements Transaction {
 
     const pc = employee.classification;
     pc.addTimeCard(new TimeCard(this.date, this.hours));
+    await this.db.saveEmployee(employee);
   }
 }
