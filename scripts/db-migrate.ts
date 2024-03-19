@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
-import { config as testConfig } from './configs/test.config.ts';
-import { config as prodConfig } from './configs/prod.config.ts';
+import { config as testConfig } from '../configs/test.config.ts';
+import { config as prodConfig } from '../configs/prod.config.ts';
 
 /**
  * This script is used to migrate the database for production and test environments.

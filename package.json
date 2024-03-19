@@ -9,8 +9,8 @@
     "test": "jest",
     "app": "npx ts-node --esm ./src/App.ts",
     "checkall": "yarn lint && yarn ts && yarn test",
-    "migrate": "npx ts-node --esm ./db-migrate.ts",
-    "clearDb": "npx ts-node --esm ./db-clear.ts"
+    "migrate": "npx ts-node --esm ./scripts/db-migrate.ts",
+    "clearDb": "npx ts-node --esm ./scripts/db-clear.ts"
   },
   "keywords": [],
   "author": "",
