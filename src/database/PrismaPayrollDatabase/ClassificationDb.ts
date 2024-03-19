@@ -5,43 +5,14 @@ import { HourlyClassification } from '../../paymentClassification/hourly/HourlyC
 import { Employee } from '../../Employee.ts';
 import { PaymentClassification } from '../../paymentClassification/Classification.abstract.ts';
 import { TimeCard } from '../../paymentClassification/hourly/TimeCard.ts';
+import { SalesReceipt } from '../../paymentClassification/commissioned/SalesReceipt.ts';
 
 export class ClassificationDb {
   constructor(private prismaClient: PrismaClient) {}
 
   public async saveClassification(empId: number, employee: Employee) {
     if (employee.classification instanceof HourlyClassification) {
-      await this.prismaClient.hourlyClassification.upsert({
-        where: {
-          empId,
-        },
-        update: {
-          rate: employee.classification.hourlyRate,
-        },
-        create: {
-          empId,
-          rate: employee.classification.hourlyRate,
-        },
-      });
-      const timeCards = employee.classification.getTimeCards();
-      for (const timeCard of timeCards) {
-        await this.prismaClient.timeCard.upsert({
-          where: {
-            empId_date: {
-              empId,
-              date: timeCard.date,
-            },
-          },
-          update: {
-            hours: timeCard.hours,
-          },
-          create: {
-            empId,
-            date: timeCard.date,
-            hours: timeCard.hours,
-          },
-        });
-      }
+      await this.saveHourlyClassification(empId, employee);
     }
 
     if (employee.classification instanceof SalariedClassification) {
@@ -54,11 +25,68 @@ export class ClassificationDb {
     }
 
     if (employee.classification instanceof CommissionedClassification) {
-      await this.prismaClient.commissionedClassification.create({
+      await this.saveCommissionedClassification(empId, employee);
+    }
+  }
+
+  private async saveHourlyClassification(empId: number, employee: Employee) {
+    await this.prismaClient.hourlyClassification.upsert({
+      where: {
+        empId,
+      },
+      update: {
+        rate: (employee.classification as HourlyClassification).hourlyRate,
+      },
+      create: {
+        empId,
+        rate: (employee.classification as HourlyClassification).hourlyRate,
+      },
+    });
+    const timeCards = (employee.classification as HourlyClassification).getTimeCards();
+    for (const timeCard of timeCards) {
+      await this.prismaClient.timeCard.upsert({
+        where: {
+          empId_date: {
+            empId,
+            date: timeCard.date,
+          },
+        },
+        update: {
+          hours: timeCard.hours,
+        },
+        create: {
+          empId,
+          date: timeCard.date,
+          hours: timeCard.hours,
+        },
+      });
+    }
+  }
+
+  async saveCommissionedClassification(empId: number, employee: Employee) {
+    await this.prismaClient.commissionedClassification.upsert({
+      where: {
+        empId,
+      },
+      update: {
+        salary: (employee.classification as CommissionedClassification).salary,
+        commissionRate: (employee.classification as CommissionedClassification).commissionRate,
+      },
+      create: {
+        empId,
+        salary: (employee.classification as CommissionedClassification).salary,
+        commissionRate: (employee.classification as CommissionedClassification).commissionRate,
+      },
+    });
+    const salesReceipts = (
+      employee.classification as CommissionedClassification
+    ).getSalesReceipts();
+    for (const salesReceipt of salesReceipts) {
+      await this.prismaClient.salesReceipt.create({
         data: {
           empId,
-          salary: employee.classification.salary,
-          commissionRate: employee.classification.commissionRate,
+          date: salesReceipt.date,
+          amount: salesReceipt.amount,
         },
       });
     }
@@ -73,21 +101,7 @@ export class ClassificationDb {
     const classificationType = employeModel!.classification as ClassificationType;
 
     if (classificationType === 'hourly') {
-      const hourlyClassificationModel = await this.prismaClient.hourlyClassification.findUnique({
-        where: {
-          empId,
-        },
-      });
-      const hourlyClassification = new HourlyClassification(hourlyClassificationModel!.rate);
-      const timeCards = await this.prismaClient.timeCard.findMany({
-        where: {
-          empId,
-        },
-      });
-      for (const timeCard of timeCards) {
-        hourlyClassification.addTimeCard(new TimeCard(timeCard.date, timeCard.hours));
-      }
-      return hourlyClassification;
+      return await this.getHourlyClassification(empId);
     }
 
     if (classificationType === 'salaried') {
@@ -102,19 +116,53 @@ export class ClassificationDb {
     }
 
     if (classificationType === 'commissioned') {
-      const commissionedClassificationModel =
-        await this.prismaClient.commissionedClassification.findUnique({
-          where: {
-            empId,
-          },
-        });
-      return new CommissionedClassification(
-        commissionedClassificationModel!.salary,
-        commissionedClassificationModel!.commissionRate,
-      );
+      const cc = await this.getCommissionedClassification(empId);
+      return cc;
     }
 
     throw new Error('Invalid classification');
+  }
+
+  private async getHourlyClassification(empId: number) {
+    const hourlyClassificationModel = await this.prismaClient.hourlyClassification.findUnique({
+      where: {
+        empId,
+      },
+    });
+    const hourlyClassification = new HourlyClassification(hourlyClassificationModel!.rate);
+    const timeCards = await this.prismaClient.timeCard.findMany({
+      where: {
+        empId,
+      },
+    });
+    for (const timeCard of timeCards) {
+      hourlyClassification.addTimeCard(new TimeCard(timeCard.date, timeCard.hours));
+    }
+    return hourlyClassification;
+  }
+
+  private async getCommissionedClassification(empId: number) {
+    const commissionedClassificationModel =
+      await this.prismaClient.commissionedClassification.findUnique({
+        where: {
+          empId,
+        },
+      });
+    const cc = new CommissionedClassification(
+      commissionedClassificationModel!.salary,
+      commissionedClassificationModel!.commissionRate,
+    );
+
+    const salesReceipts = await this.prismaClient.salesReceipt.findMany({
+      where: {
+        empId,
+      },
+    });
+    for (const salesReceipt of salesReceipts) {
+      cc.addSalesReceipt(new SalesReceipt(salesReceipt.date, salesReceipt.amount));
+    }
+
+    return cc;
   }
 }
 

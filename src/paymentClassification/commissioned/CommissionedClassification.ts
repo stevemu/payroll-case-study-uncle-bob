@@ -41,6 +41,10 @@ export class CommissionedClassification extends PaymentClassification {
   }
 
   getSalesReceipt(date: Date): SalesReceipt | null {
-    return this.salesReceipts.find((sr) => sr.date === date) || null;
+    return this.salesReceipts.find((sr) => sr.date.getTime() === date.getTime()) || null;
+  }
+
+  getSalesReceipts(): SalesReceipt[] {
+    return this.salesReceipts;
   }
 }

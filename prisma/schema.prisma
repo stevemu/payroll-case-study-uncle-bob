@@ -39,3 +39,11 @@ model TimeCard {
 
   @@unique([empId, date])
 }
+
+model SalesReceipt {
+  empId     Int
+  date      DateTime
+  amount    Float
+
+  @@unique([empId, date])
+}

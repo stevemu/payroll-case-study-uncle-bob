@@ -74,6 +74,7 @@ export class PrismaPayrollDatabase implements PayrollDatabase {
     await this.prismaClient.hourlyClassification.deleteMany();
     await this.prismaClient.commissionedClassification.deleteMany();
     await this.prismaClient.salariedClassification.deleteMany();
+    await this.prismaClient.salesReceipt.deleteMany();
   }
 
   async getUnionMember(memberId: number): Promise<Employee | undefined> {

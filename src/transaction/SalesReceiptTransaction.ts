@@ -27,5 +27,7 @@ export class SalesReceiptTransaction extends Transaction {
 
     const cc = pc as CommissionedClassification;
     cc.addSalesReceipt(new SalesReceipt(this.date, this.amount));
+
+    await this.db.saveEmployee(e);
   }
 }

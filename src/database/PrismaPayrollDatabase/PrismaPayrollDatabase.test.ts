@@ -5,6 +5,7 @@ import {
   AddHourlyEmployeeTransaction,
   AddSalariedEmployeeTransaction,
   AddTimeCardTransaction,
+  SalesReceiptTransaction,
 } from '../../transaction';
 import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification';
 import { SalariedClassification } from '../../paymentClassification/SalariedClassification';
@@ -34,11 +35,11 @@ describe('PayrollDatabase', () => {
     const t2 = new AddTimeCardTransaction(db, empId, new Date(2021, 1, 1), 8);
     await t2.execute();
 
-    const e = await db.getEmployee(empId);
+    const e = (await db.getEmployee(empId))!;
     expect(e).toBeInstanceOf(Employee);
-    expect(e?.name).toBe('Bob');
-    expect(e?.address).toBe('Home');
-    const c = e?.classification as HourlyClassification;
+    expect(e.name).toBe('Bob');
+    expect(e.address).toBe('Home');
+    const c = e.classification as HourlyClassification;
     expect(c).toBeInstanceOf(HourlyClassification);
     expect(c.hourlyRate).toBe(hourlyRate);
     expect(c.getTimeCard(new Date(2021, 1, 1))!.hours).toBe(8);
@@ -72,13 +73,24 @@ describe('PayrollDatabase', () => {
     );
     await t.execute();
 
-    const e = await db.getEmployee(empId);
+    const addSalesReceiptTransaction = new SalesReceiptTransaction(
+      db,
+      empId,
+      new Date(2021, 1, 1),
+      100,
+    );
+    await addSalesReceiptTransaction.execute();
+
+    const e = (await db.getEmployee(empId))!;
     expect(e).toBeInstanceOf(Employee);
-    expect(e?.name).toBe('Bob');
-    expect(e?.address).toBe('Home');
-    expect(e?.classification).toBeInstanceOf(CommissionedClassification);
-    expect((e?.classification as CommissionedClassification).salary).toBe(salary);
-    expect((e?.classification as CommissionedClassification).commissionRate).toBe(commissionRate);
+    expect(e.name).toBe('Bob');
+    expect(e.address).toBe('Home');
+
+    const c = e.classification as CommissionedClassification;
+    expect(c).toBeInstanceOf(CommissionedClassification);
+    expect(c.salary).toBe(salary);
+    expect(c.commissionRate).toBe(commissionRate);
+    expect(c.getSalesReceipt(new Date(2021, 1, 1))!.amount).toBe(100);
   });
 
   test('delete employee', async () => {
