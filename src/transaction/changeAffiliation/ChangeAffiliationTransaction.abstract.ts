@@ -15,5 +15,6 @@ export abstract class ChangeAffiliationTransaction extends ChangeEmployeeTransac
   async change(employee: Employee): Promise<void> {
     await this.recordMembership(employee);
     employee.affiliation = this.getAffiliation();
+    await this.db.saveEmployee(employee);
   }
 }

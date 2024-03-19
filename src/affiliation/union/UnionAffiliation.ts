@@ -43,11 +43,15 @@ export class UnionAffiliation implements Affiliation {
     this.serviceCharges.push(serviceCharge);
   }
 
+  addServiceCharges(serviceCharges: ServiceCharge[]) {
+    this.serviceCharges.push(...serviceCharges);
+  }
+
   getServiceCharges(): ServiceCharge[] {
     return this.serviceCharges;
   }
 
   getServiceCharge(date: Date): ServiceCharge | undefined {
-    return this.serviceCharges.find((sc) => sc.date === date);
+    return this.serviceCharges.find((sc) => sc.date.getTime() === date.getTime());
   }
 }

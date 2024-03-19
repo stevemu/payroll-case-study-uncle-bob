@@ -16,6 +16,7 @@ export class AddServiceChargeTransaction implements Transaction {
     const af = member!.affiliation;
     if (af instanceof UnionAffiliation) {
       af.addServiceCharge(new ServiceCharge(this.date, this.amount));
+      await this.db.saveEmployee(member!);
     }
   }
 }

@@ -1,15 +1,20 @@
 import { Employee } from '../Employee.js';
+import { PayrollDatabase } from './index.js';
 
 /**
  * used by unit tests for transactions
  */
 
-export class MapPayrollDatabase {
+export class MapPayrollDatabase implements PayrollDatabase {
   private employees: Map<number, Employee> = new Map();
   private unionMembers: Map<number, Employee> = new Map();
 
   async addEmployee(empId: number, employee: Employee): Promise<void> {
     this.employees.set(empId, employee);
+  }
+
+  async saveEmployee(employee: Employee): Promise<void> {
+    this.employees.set(employee.empId, employee);
   }
 
   async getEmployee(empId: number): Promise<Employee | undefined> {

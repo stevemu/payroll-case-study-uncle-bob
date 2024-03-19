@@ -47,3 +47,17 @@ model SalesReceipt {
 
   @@unique([empId, date])
 }
+
+model UnionMembership {
+  memberId  Int
+  empId     Int
+  dues Float
+  @@unique([memberId])
+}
+
+model ServiceCharge {
+  memberId  Int
+  date      DateTime
+  amount    Float
+  @@unique([memberId, date])
+}

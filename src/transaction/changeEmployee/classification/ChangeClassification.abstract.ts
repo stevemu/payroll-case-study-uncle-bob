@@ -12,7 +12,7 @@ export abstract class ChangeClassification extends ChangeEmployeeTransaction {
   abstract get paymentClassification(): PaymentClassification;
   abstract get paymentSchedule(): Schedule;
 
-  change(employee: Employee) {
+  async change(employee: Employee) {
     employee.classification = this.paymentClassification;
     employee.schedule = this.paymentSchedule;
   }

@@ -4,7 +4,9 @@ import {
   AddCommissionedEmployeeTransaction,
   AddHourlyEmployeeTransaction,
   AddSalariedEmployeeTransaction,
+  AddServiceChargeTransaction,
   AddTimeCardTransaction,
+  ChangeMemberTransaction,
   SalesReceiptTransaction,
 } from '../../transaction';
 import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification';
@@ -12,6 +14,7 @@ import { SalariedClassification } from '../../paymentClassification/SalariedClas
 import { CommissionedClassification } from '../../paymentClassification/commissioned/CommissionedClassification';
 import { config } from '../../../configs/test.config';
 import { PrismaClient } from '@prisma/client';
+import { UnionAffiliation } from '../../affiliation/union/UnionAffiliation';
 
 const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
 
@@ -113,5 +116,33 @@ describe('PayrollDatabase', () => {
     await db.deleteEmployee(empId);
     e = await db.getEmployee(empId);
     expect(e).toBeUndefined();
+  });
+
+  test('union membership', async () => {
+    const empId = 1;
+    const memberId = 100;
+    const salary = 2000;
+
+    const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', salary);
+    await t.execute();
+
+    const memberTransaction = new ChangeMemberTransaction(db, empId, memberId, 20);
+    await memberTransaction.execute();
+
+    const e = (await db.getEmployee(empId))!;
+    const a = e.affiliation as UnionAffiliation;
+    expect(a).toBeInstanceOf(UnionAffiliation);
+    expect(a.memberId).toBe(memberId);
+    expect(a.dues).toBe(20);
+
+    const serviceChargeTransaction = new AddServiceChargeTransaction(
+      db,
+      memberId,
+      new Date(2021, 1, 1),
+      10,
+    );
+    await serviceChargeTransaction.execute();
+
+    expect(a.getServiceCharge(new Date(2021, 1, 1))!.amount).toBe(10);
   });
 });

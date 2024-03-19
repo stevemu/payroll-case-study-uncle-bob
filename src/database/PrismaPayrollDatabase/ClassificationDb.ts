@@ -16,10 +16,16 @@ export class ClassificationDb {
     }
 
     if (employee.classification instanceof SalariedClassification) {
-      await this.prismaClient.salariedClassification.create({
-        data: {
+      await this.prismaClient.salariedClassification.upsert({
+        where: {
           empId,
-          salary: employee.classification.salary,
+        },
+        update: {
+          salary: (employee.classification as SalariedClassification).salary,
+        },
+        create: {
+          empId,
+          salary: (employee.classification as SalariedClassification).salary,
         },
       });
     }
