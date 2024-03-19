@@ -11,8 +11,6 @@ import { ServiceCharge } from '../../affiliation/union/ServiceCharge.ts';
  */
 
 export class PrismaPayrollDatabase implements PayrollDatabase {
-  private employees: Map<number, Employee> = new Map();
-  private unionMembers: Map<number, Employee> = new Map();
   private classificationDb: ClassificationDb;
 
   constructor(private prismaClient: PrismaClient) {
@@ -50,7 +48,14 @@ export class PrismaPayrollDatabase implements PayrollDatabase {
   }
 
   async saveUnionMembership(employee: Employee) {
-    if (!(employee.affiliation instanceof UnionAffiliation)) return;
+    if (!(employee.affiliation instanceof UnionAffiliation)) {
+      await this.prismaClient.unionMembership.deleteMany({
+        where: {
+          empId: employee.empId,
+        },
+      });
+      return;
+    }
 
     await this.prismaClient.unionMembership.upsert({
       where: {
@@ -175,10 +180,19 @@ export class PrismaPayrollDatabase implements PayrollDatabase {
   }
 
   async deleteUnionMember(memberId: number) {
-    this.unionMembers.delete(memberId);
+    await this.prismaClient.unionMembership.delete({
+      where: {
+        memberId,
+      },
+    });
   }
 
   async getAllEmployees(): Promise<Employee[]> {
-    return Array.from(this.employees.values());
+    const employeeModels = (await this.prismaClient.employee.findMany()) || [];
+    const employees: Employee[] = [];
+    for (const employeeModel of employeeModels) {
+      employees.push((await this.getEmployee(employeeModel.empId))!);
+    }
+    return employees;
   }
 }

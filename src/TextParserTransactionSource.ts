@@ -73,7 +73,7 @@ export class TextParserTransactionSource implements TransactionSource {
       }
       case 'Member':
         const memberId = parseInt(parts[3]);
-        const dues = parseFloat(parts[4]);
+        const dues = parseFloat(parts[5]);
         return new Transactions.ChangeMemberTransaction(this.db, empId, memberId, dues);
       case 'NoMember':
         return new Transactions.ChangeUnaffiliatedTransaction(this.db, empId);

@@ -7,6 +7,7 @@ import {
   AddServiceChargeTransaction,
   AddTimeCardTransaction,
   ChangeMemberTransaction,
+  ChangeUnaffiliatedTransaction,
   SalesReceiptTransaction,
 } from '../../transaction';
 import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification';
@@ -15,6 +16,7 @@ import { CommissionedClassification } from '../../paymentClassification/commissi
 import { config } from '../../../configs/test.config';
 import { PrismaClient } from '@prisma/client';
 import { UnionAffiliation } from '../../affiliation/union/UnionAffiliation';
+import { NoAffiliation } from '../../affiliation/noAffiliation/NoAffiliation';
 
 const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
 
@@ -84,6 +86,14 @@ describe('PayrollDatabase', () => {
     );
     await addSalesReceiptTransaction.execute();
 
+    const addSalesReceiptTransaction2 = new SalesReceiptTransaction(
+      db,
+      empId,
+      new Date(2021, 1, 2),
+      200,
+    );
+    await addSalesReceiptTransaction2.execute();
+
     const e = (await db.getEmployee(empId))!;
     expect(e).toBeInstanceOf(Employee);
     expect(e.name).toBe('Bob');
@@ -94,6 +104,7 @@ describe('PayrollDatabase', () => {
     expect(c.salary).toBe(salary);
     expect(c.commissionRate).toBe(commissionRate);
     expect(c.getSalesReceipt(new Date(2021, 1, 1))!.amount).toBe(100);
+    expect(c.getSalesReceipt(new Date(2021, 1, 2))!.amount).toBe(200);
   });
 
   test('delete employee', async () => {
@@ -129,12 +140,6 @@ describe('PayrollDatabase', () => {
     const memberTransaction = new ChangeMemberTransaction(db, empId, memberId, 20);
     await memberTransaction.execute();
 
-    const e = (await db.getEmployee(empId))!;
-    const a = e.affiliation as UnionAffiliation;
-    expect(a).toBeInstanceOf(UnionAffiliation);
-    expect(a.memberId).toBe(memberId);
-    expect(a.dues).toBe(20);
-
     const serviceChargeTransaction = new AddServiceChargeTransaction(
       db,
       memberId,
@@ -143,6 +148,29 @@ describe('PayrollDatabase', () => {
     );
     await serviceChargeTransaction.execute();
 
+    const serviceChargeTransaction2 = new AddServiceChargeTransaction(
+      db,
+      memberId,
+      new Date(2021, 1, 2),
+      20,
+    );
+    await serviceChargeTransaction2.execute();
+
+    const e = (await db.getEmployee(empId))!;
+    const a = e.affiliation as UnionAffiliation;
+    expect(a).toBeInstanceOf(UnionAffiliation);
+    expect(a.memberId).toBe(memberId);
+    expect(a.dues).toBe(20);
+
     expect(a.getServiceCharge(new Date(2021, 1, 1))!.amount).toBe(10);
+    expect(a.getServiceCharge(new Date(2021, 1, 2))!.amount).toBe(20);
+
+    const noMemberTransaction = new ChangeUnaffiliatedTransaction(db, empId);
+    await noMemberTransaction.execute();
+
+    const e2 = (await db.getEmployee(empId))!;
+    expect(e2.affiliation).toBeInstanceOf(NoAffiliation);
   });
+
+  // TODO: test for payday
 });

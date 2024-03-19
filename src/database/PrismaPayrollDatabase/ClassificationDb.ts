@@ -88,8 +88,17 @@ export class ClassificationDb {
       employee.classification as CommissionedClassification
     ).getSalesReceipts();
     for (const salesReceipt of salesReceipts) {
-      await this.prismaClient.salesReceipt.create({
-        data: {
+      await this.prismaClient.salesReceipt.upsert({
+        where: {
+          empId_date: {
+            empId,
+            date: salesReceipt.date,
+          },
+        },
+        update: {
+          amount: salesReceipt.amount,
+        },
+        create: {
           empId,
           date: salesReceipt.date,
           amount: salesReceipt.amount,
