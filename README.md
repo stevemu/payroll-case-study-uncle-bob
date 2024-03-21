@@ -7,6 +7,7 @@ The payroll case study in Uncle Bob's Agile Software Development book implemente
 ### Prerequisites
 
 - Node.js installed on your machine
+- pnpm installed
 
 ### Installation
 
@@ -134,7 +135,7 @@ Example: Payday 2024-01-02
 
 - **migrate after updating schema**
   ```
-  yarn migrate
+  pnpm migrate
   ```
 - **Merge migrations**
   - delete all migrations files

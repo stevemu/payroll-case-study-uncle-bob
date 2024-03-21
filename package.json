@@ -8,7 +8,7 @@
     "ts": "tsc -b",
     "test": "jest",
     "app": "TZ=UTC npx ts-node --esm ./src/App.ts",
-    "checkall": "yarn lint && yarn ts && yarn test",
+    "checkall": "pnpm lint && pnpm ts && pnpm test",
     "migrate": "npx ts-node --esm ./scripts/db-migrate.ts",
     "clearDb": "npx ts-node --esm ./scripts/db-clear.ts"
   },
