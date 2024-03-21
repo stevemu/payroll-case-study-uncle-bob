@@ -10,6 +10,6 @@ export class WeeklySchedule implements Schedule {
   }
 
   getPayPeriodStartDate(payDate: Date): Date {
-    return new Date(payDate.getFullYear(), payDate.getMonth(), payDate.getDate() - 5);
+    return new Date(payDate.getFullYear(), payDate.getMonth(), payDate.getDate() - 6);
   }
 }

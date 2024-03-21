@@ -7,7 +7,7 @@
     "lint": "eslint --fix",
     "ts": "tsc -b",
     "test": "jest",
-    "app": "npx ts-node --esm ./src/App.ts",
+    "app": "TZ=UTC npx ts-node --esm ./src/App.ts",
     "checkall": "yarn lint && yarn ts && yarn test",
     "migrate": "npx ts-node --esm ./scripts/db-migrate.ts",
     "clearDb": "npx ts-node --esm ./scripts/db-clear.ts"

@@ -74,7 +74,7 @@ describe('PayTransaction', () => {
     const pt = new PayTransaction(db, payDate);
     await pt.execute();
 
-    validatePaycheck(pt, empId, new Date(2001, 10, 4), payDate, 0);
+    validatePaycheck(pt, empId, new Date(2001, 10, 3), payDate, 0);
   });
 
   test('pay single hourly employee one time card', async () => {
@@ -89,7 +89,7 @@ describe('PayTransaction', () => {
     const pt = new PayTransaction(db, payDate);
     await pt.execute();
 
-    validatePaycheck(pt, empId, new Date(2001, 10, 4), payDate, 30.5);
+    validatePaycheck(pt, empId, new Date(2001, 10, 3), payDate, 30.5);
   });
 
   test('pay single hourly employee on wrong date', async () => {
@@ -112,17 +112,18 @@ describe('PayTransaction', () => {
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(db, empId, 'Bill', 'Home', 15.25);
     await addHourlyEmployee.execute();
 
-    const payDate = new Date(2001, 10, 9); // Friday
+    const payDate = new Date(2024, 2, 22); // Friday
+
     const timeCardTransaction = new AddTimeCardTransaction(db, empId, payDate, 2.0);
     await timeCardTransaction.execute();
 
-    const timeCardTransaction2 = new AddTimeCardTransaction(db, empId, new Date(2001, 10, 8), 5.0);
+    const timeCardTransaction2 = new AddTimeCardTransaction(db, empId, new Date(2024, 2, 16), 5.0);
     await timeCardTransaction2.execute();
 
     const pt = new PayTransaction(db, payDate);
     await pt.execute();
 
-    validatePaycheck(pt, empId, new Date(2001, 10, 4), payDate, 7 * 15.25);
+    validatePaycheck(pt, empId, new Date(2024, 2, 16), payDate, 7 * 15.25);
   });
 
   test('pay single hourly employee with time cards spanning two pay periods', async () => {
@@ -140,7 +141,7 @@ describe('PayTransaction', () => {
     const pt = new PayTransaction(db, payDate);
     await pt.execute();
 
-    validatePaycheck(pt, empId, new Date(2001, 10, 4), payDate, 2 * 15.25);
+    validatePaycheck(pt, empId, new Date(2001, 10, 3), payDate, 2 * 15.25);
   });
 
   test('pay single hourly employee with service charge', async () => {
