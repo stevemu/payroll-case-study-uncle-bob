@@ -5,6 +5,10 @@ import { PayrollDatabase } from '../index.ts';
 import { UnionAffiliation } from '../../affiliation/union/UnionAffiliation.ts';
 import { NoAffiliation } from '../../affiliation/noAffiliation/NoAffiliation.ts';
 import { ServiceCharge } from '../../affiliation/union/ServiceCharge.ts';
+import { PaymentMethodDb } from './PaymentMethodDb.ts';
+import { BiweeklySchedule } from '../../schedule/BiweeklySchedule.ts';
+import { MonthlySchedule } from '../../schedule/MonthlySchedule.ts';
+import { WeeklySchedule } from '../../schedule/WeeklySchedule.ts';
 
 /**
  * used by unit tests for PrismaPayrollDatabase and production code
@@ -12,9 +16,11 @@ import { ServiceCharge } from '../../affiliation/union/ServiceCharge.ts';
 
 export class PrismaPayrollDatabase implements PayrollDatabase {
   private classificationDb: ClassificationDb;
+  private paymentMethodDb: PaymentMethodDb;
 
   constructor(private prismaClient: PrismaClient) {
     this.classificationDb = new ClassificationDb(prismaClient);
+    this.paymentMethodDb = new PaymentMethodDb(prismaClient);
   }
 
   async addEmployee(empId: number, employee: Employee): Promise<void> {
@@ -24,11 +30,13 @@ export class PrismaPayrollDatabase implements PayrollDatabase {
         name: employee.name,
         address: employee.address,
         classification: getClassificationType(employee),
+        paymentSchedule: getPaymentScheduleType(employee),
       },
     });
 
     await this.classificationDb.saveClassification(empId, employee);
     await this.saveUnionMembership(employee);
+    await this.paymentMethodDb.savePaymentMethod(employee);
   }
 
   async saveEmployee(employee: Employee): Promise<void> {
@@ -40,11 +48,13 @@ export class PrismaPayrollDatabase implements PayrollDatabase {
         name: employee.name,
         address: employee.address,
         classification: getClassificationType(employee),
+        paymentSchedule: getPaymentScheduleType(employee),
       },
     });
 
     await this.classificationDb.saveClassification(employee.empId, employee);
     await this.saveUnionMembership(employee);
+    await this.paymentMethodDb.savePaymentMethod(employee);
   }
 
   async saveUnionMembership(employee: Employee) {
@@ -114,7 +124,32 @@ export class PrismaPayrollDatabase implements PayrollDatabase {
 
     employee.affiliation = await this.getAffiliation(employee);
 
+    employee.method = await this.paymentMethodDb.getPaymentMethod(empId);
+
+    employee.schedule = await this.getSchedule(empId);
+
     return employee;
+  }
+
+  private async getSchedule(empId: number) {
+    const employeeModel = await this.prismaClient.employee.findUnique({
+      where: {
+        empId,
+      },
+    });
+
+    if (!employeeModel) throw new Error('Employee not found');
+
+    switch (employeeModel.paymentSchedule) {
+      case 'monthly':
+        return new MonthlySchedule();
+      case 'weekly':
+        return new WeeklySchedule();
+      case 'biweekly':
+        return new BiweeklySchedule();
+      default:
+        throw new Error('Invalid payment schedule');
+    }
   }
 
   private async getAffiliation(employee: Employee) {
@@ -196,3 +231,17 @@ export class PrismaPayrollDatabase implements PayrollDatabase {
     return employees;
   }
 }
+
+export type PaymentScheduleType = 'monthly' | 'weekly' | 'biweekly';
+
+const getPaymentScheduleType = (emp: Employee): PaymentScheduleType => {
+  if (emp.schedule instanceof MonthlySchedule) {
+    return 'monthly';
+  } else if (emp.schedule instanceof WeeklySchedule) {
+    return 'weekly';
+  } else if (emp.schedule instanceof BiweeklySchedule) {
+    return 'biweekly';
+  }
+
+  throw new Error('Invalid schedule');
+};

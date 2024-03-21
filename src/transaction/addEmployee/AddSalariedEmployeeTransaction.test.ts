@@ -23,7 +23,7 @@ describe('AddSalariedEmployee', () => {
     const ps = e.schedule;
     expect(ps instanceof MonthlySchedule).toBe(true);
 
-    const pm = e.method;
-    expect(pm instanceof HoldMethod).toBe(true);
+    const pm = e.method as HoldMethod;
+    expect(pm.address).toBe('Office');
   });
 });

@@ -14,6 +14,8 @@ model Employee {
   name     String
   address  String
   classification String
+  paymentMethod String @default("hold")
+  paymentSchedule String @default("weekly")
 }
 
 model HourlyClassification {
@@ -60,4 +62,26 @@ model ServiceCharge {
   date      DateTime
   amount    Float
   @@unique([memberId, date])
+}
+
+model HoldPaymentMethod {
+  empId     Int
+  address  String
+
+  @@unique([empId])
+}
+
+model MailPaymentMethod {
+  empId     Int
+  address   String
+
+  @@unique([empId])
+}
+
+model DirectPaymentMethod {
+  empId     Int
+  bank      String
+  account   String
+
+  @@unique([empId])
 }

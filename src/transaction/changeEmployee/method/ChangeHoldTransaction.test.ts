@@ -10,7 +10,7 @@ describe('ChangeHoldTransaction', () => {
     const addEmp = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', 1000);
     await addEmp.execute();
 
-    const changeHold = new ChangeHoldTransaction(db, empId);
+    const changeHold = new ChangeHoldTransaction(db, empId, 'Hold');
     await changeHold.execute();
 
     const employee = await db.getEmployee(empId);

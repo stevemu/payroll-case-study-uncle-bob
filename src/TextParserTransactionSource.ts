@@ -61,8 +61,10 @@ export class TextParserTransactionSource implements TransactionSource {
           monthlySalary,
           commissionRate,
         );
-      case 'Hold':
-        return new Transactions.ChangeHoldTransaction(this.db, empId);
+      case 'Hold': {
+        const address = parts[3];
+        return new Transactions.ChangeHoldTransaction(this.db, empId, address);
+      }
       case 'Direct':
         const bank = parts[3];
         const account = parts[4];

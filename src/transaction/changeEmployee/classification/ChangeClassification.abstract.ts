@@ -15,5 +15,6 @@ export abstract class ChangeClassification extends ChangeEmployeeTransaction {
   async change(employee: Employee) {
     employee.classification = this.paymentClassification;
     employee.schedule = this.paymentSchedule;
+    await this.db.saveEmployee(employee);
   }
 }

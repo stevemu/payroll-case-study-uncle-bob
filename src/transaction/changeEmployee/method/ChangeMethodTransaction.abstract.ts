@@ -9,7 +9,8 @@ export abstract class ChangeMethodTransaction extends ChangeEmployeeTransaction 
   }
   protected abstract getMethod(): Method;
 
-  protected change(e: Employee): void {
+  protected async change(e: Employee): Promise<void> {
     e.method = this.getMethod();
+    await this.db.saveEmployee(e);
   }
 }
