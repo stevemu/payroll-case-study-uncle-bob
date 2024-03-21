@@ -28,4 +28,8 @@ export class PayTransaction extends Transaction {
   getPayCheck(empId: number): PayCheck | null {
     return this.payCheck.get(empId) || null;
   }
+
+  getPayChecks(): PayCheck[] {
+    return Array.from(this.payCheck.values());
+  }
 }
