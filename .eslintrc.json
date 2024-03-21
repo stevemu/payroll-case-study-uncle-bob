@@ -5,7 +5,7 @@
     "sourceType": "module"
   },
   "root": true,
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "import"],
   "env": {
     "amd": true,
     "browser": true,
@@ -15,9 +15,11 @@
   },
   "extends": [
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
     "prettier"
   ],
   "rules": {
+    "import/no-cycle": [2, { "maxDepth": "∞" }],
     "prettier/prettier": [
       2,
       {

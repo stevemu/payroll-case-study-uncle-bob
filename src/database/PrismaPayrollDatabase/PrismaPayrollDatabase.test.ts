@@ -1,5 +1,5 @@
-import { PrismaPayrollDatabase } from './PrismaPayrollDatabase';
-import { Employee } from '../../Employee';
+import { PrismaPayrollDatabase } from './PrismaPayrollDatabase.ts';
+import { Employee } from '../../Employee.ts';
 import {
   AddCommissionedEmployeeTransaction,
   AddHourlyEmployeeTransaction,
@@ -15,20 +15,20 @@ import {
   ChangeSalariedTransaction,
   ChangeUnaffiliatedTransaction,
   SalesReceiptTransaction,
-} from '../../transaction';
-import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification';
-import { SalariedClassification } from '../../paymentClassification/SalariedClassification';
-import { CommissionedClassification } from '../../paymentClassification/commissioned/CommissionedClassification';
-import { config } from '../../../configs/test.config';
+} from '../../transaction/index.ts';
+import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification.ts';
+import { SalariedClassification } from '../../paymentClassification/SalariedClassification.ts';
+import { CommissionedClassification } from '../../paymentClassification/commissioned/CommissionedClassification.ts';
+import { config } from '../../../configs/test.config.ts';
 import { PrismaClient } from '@prisma/client';
-import { UnionAffiliation } from '../../affiliation/union/UnionAffiliation';
-import { NoAffiliation } from '../../affiliation/noAffiliation/NoAffiliation';
-import { HoldMethod } from '../../method/HoldMethod';
-import { MailMethod } from '../../method/MailMethod';
-import { DirectMethod } from '../../method/DirectMethod';
-import { MonthlySchedule } from '../../schedule/MonthlySchedule';
-import { WeeklySchedule } from '../../schedule/WeeklySchedule';
-import { BiweeklySchedule } from '../../schedule/BiweeklySchedule';
+import { UnionAffiliation } from '../../affiliation/union/UnionAffiliation.ts';
+import { NoAffiliation } from '../../affiliation/noAffiliation/NoAffiliation.ts';
+import { HoldMethod } from '../../method/HoldMethod.ts';
+import { MailMethod } from '../../method/MailMethod.ts';
+import { DirectMethod } from '../../method/DirectMethod.ts';
+import { MonthlySchedule } from '../../schedule/MonthlySchedule.ts';
+import { WeeklySchedule } from '../../schedule/WeeklySchedule.ts';
+import { BiweeklySchedule } from '../../schedule/BiweeklySchedule.ts';
 
 const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
 
