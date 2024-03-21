@@ -1,7 +1,7 @@
 import { Employee } from '../../Employee.ts';
 import { Affiliation } from '../../affiliation/Affiliation.interface.ts';
 import { UnionAffiliation } from '../../affiliation/union/UnionAffiliation.ts';
-import { PayrollDatabase } from '../../database/index.ts';
+import { PayrollDatabase } from '../../database/PayrollDatabase.interface.ts';
 import { ChangeAffiliationTransaction } from './ChangeAffiliationTransaction.abstract.ts';
 
 export class ChangeMemberTransaction extends ChangeAffiliationTransaction {

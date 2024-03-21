@@ -1,5 +1,5 @@
 import { Employee } from '../../../Employee.ts';
-import { PayrollDatabase } from '../../../database/index.ts';
+import { PayrollDatabase } from '../../../database/PayrollDatabase.interface.ts';
 import { Method } from '../../../method/Method.interface.ts';
 import { ChangeEmployeeTransaction } from '../ChangeEmployeeTransaction.abstract.ts';
 

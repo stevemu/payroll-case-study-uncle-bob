@@ -1,5 +1,5 @@
 import { Employee } from '../../Employee.ts';
-import { PayrollDatabase } from '../../database/index.ts';
+import { PayrollDatabase } from '../../database/PayrollDatabase.interface.ts';
 import { Transaction } from '../Transaction.interface.ts';
 
 export abstract class ChangeEmployeeTransaction extends Transaction {

@@ -1,6 +1,6 @@
 import { Reader } from './Reader.ts';
 import { TransactionSource } from './TransactionSource.interface.ts';
-import { PayrollDatabase } from './database/index.ts';
+import { PayrollDatabase } from './database/PayrollDatabase.interface.ts';
 import { Transaction } from './transaction/Transaction.interface.ts';
 import * as Transactions from './transaction/index.ts';
 

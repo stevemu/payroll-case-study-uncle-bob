@@ -11,6 +11,3 @@ export interface PayrollDatabase {
   deleteUnionMember(memberId: number): Promise<void>;
   getAllEmployees(): Promise<Employee[]>;
 }
-
-// to be removed. currently used by transaction tests
-// export const gPayrollDatabase: PayrollDatabase = new MapPayrollDatabase();

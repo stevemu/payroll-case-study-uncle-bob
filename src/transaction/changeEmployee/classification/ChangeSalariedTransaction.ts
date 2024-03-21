@@ -1,4 +1,4 @@
-import { PayrollDatabase } from '../../../database/index.ts';
+import { PayrollDatabase } from '../../../database/PayrollDatabase.interface.ts';
 import { PaymentClassification } from '../../../paymentClassification/Classification.abstract.ts';
 import { SalariedClassification } from '../../../paymentClassification/SalariedClassification.ts';
 import { MonthlySchedule } from '../../../schedule/MonthlySchedule.ts';
