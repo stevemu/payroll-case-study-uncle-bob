@@ -1,5 +1,5 @@
 import { MapPayrollDatabase } from '../../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { HourlyClassification } from '../hourly/HourlyClassification.ts';
+import { HourlyClassification } from '../classifications/hourly/HourlyClassification.ts';
 import { AddTimeCardTransaction } from './AddTimeCardTransaction.ts';
 import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction.ts';
 

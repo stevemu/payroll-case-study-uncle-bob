@@ -1,5 +1,5 @@
 import { PayrollDatabase } from '../../payrollDatabase/PayrollDatabase.interface.ts';
-import { MailMethod } from '../MailMethod.ts';
+import { MailMethod } from '../methods/MailMethod.ts';
 import { ChangeMethodTransaction } from './ChangeMethodTransaction.abstract.ts';
 
 export class ChangeMailTransaction extends ChangeMethodTransaction {

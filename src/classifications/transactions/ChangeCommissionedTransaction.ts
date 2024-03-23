@@ -1,6 +1,6 @@
 import { PayrollDatabase } from '../../payrollDatabase/PayrollDatabase.interface.ts';
 import { BiweeklySchedule } from '../../schedules/BiweeklySchedule.ts';
-import { CommissionedClassification } from '../commissioned/CommissionedClassification.ts';
+import { CommissionedClassification } from '../classifications/commissioned/CommissionedClassification.ts';
 import { ChangeClassification } from './ChangeClassification.abstract.ts';
 
 export class ChangeCommissionedTransaction extends ChangeClassification {

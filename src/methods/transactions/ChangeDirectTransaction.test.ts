@@ -1,5 +1,5 @@
 import { MapPayrollDatabase } from '../../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { DirectMethod } from '../DirectMethod.ts';
+import { DirectMethod } from '../methods/DirectMethod.ts';
 import { AddHourlyEmployeeTransaction } from '../../classifications/transactions/addEmployee/AddHourlyEmployeeTransaction.ts';
 import { ChangeDirectTransaction } from './ChangeDirectTransaction.ts';
 

@@ -1,7 +1,7 @@
 import { MapPayrollDatabase } from '../../../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { HoldMethod } from '../../../methods/HoldMethod.ts';
+import { HoldMethod } from '../../../methods/methods/HoldMethod.ts';
 import { WeeklySchedule } from '../../../schedules/WeeklySchedule.ts';
-import { HourlyClassification } from '../../hourly/HourlyClassification.ts';
+import { HourlyClassification } from '../../classifications/hourly/HourlyClassification.ts';
 import { AddHourlyEmployeeTransaction } from './AddHourlyEmployeeTransaction.ts';
 
 describe('AddHourlyEmployee', () => {

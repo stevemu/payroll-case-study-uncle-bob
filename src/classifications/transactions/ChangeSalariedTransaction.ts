@@ -1,6 +1,6 @@
 import { PayrollDatabase } from '../../payrollDatabase/PayrollDatabase.interface.ts';
 import { PaymentClassification } from '../../payrollDomain/Classification.abstract.ts';
-import { SalariedClassification } from '../SalariedClassification.ts';
+import { SalariedClassification } from '../classifications/SalariedClassification.ts';
 import { Schedule } from '../../payrollDomain/Schedule.interface.ts';
 import { ChangeClassification } from './ChangeClassification.abstract.ts';
 import { MonthlySchedule } from '../../schedules/MonthlySchedule.ts';

@@ -1,6 +1,6 @@
 import { PayrollDatabase } from '../../payrollDatabase/PayrollDatabase.interface.ts';
-import { CommissionedClassification } from '../commissioned/CommissionedClassification.ts';
-import { SalesReceipt } from '../commissioned/SalesReceipt.ts';
+import { CommissionedClassification } from '../classifications/commissioned/CommissionedClassification.ts';
+import { SalesReceipt } from '../classifications/commissioned/SalesReceipt.ts';
 import { Transaction } from '../../payrollDomain/Transaction.interface.ts';
 
 export class SalesReceiptTransaction extends Transaction {

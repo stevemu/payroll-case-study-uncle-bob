@@ -1,7 +1,7 @@
 import { MapPayrollDatabase } from '../../../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { HoldMethod } from '../../../methods/HoldMethod.ts';
+import { HoldMethod } from '../../../methods/methods/HoldMethod.ts';
 import { BiweeklySchedule } from '../../../schedules/BiweeklySchedule.ts';
-import { CommissionedClassification } from '../../commissioned/CommissionedClassification.ts';
+import { CommissionedClassification } from '../../classifications/commissioned/CommissionedClassification.ts';
 import { AddCommissionedEmployeeTransaction } from './AddCommissionedEmployeeTransaction.ts';
 
 describe('AddCommissionedEmployee', () => {

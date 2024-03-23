@@ -16,16 +16,16 @@ import {
   ChangeUnaffiliatedTransaction,
   SalesReceiptTransaction,
 } from '../../transaction/index.ts';
-import { HourlyClassification } from '../../classifications/hourly/HourlyClassification.ts';
-import { SalariedClassification } from '../../classifications/SalariedClassification.ts';
-import { CommissionedClassification } from '../../classifications/commissioned/CommissionedClassification.ts';
+import { HourlyClassification } from '../../classifications/classifications/hourly/HourlyClassification.ts';
+import { SalariedClassification } from '../../classifications/classifications/SalariedClassification.ts';
+import { CommissionedClassification } from '../../classifications/classifications/commissioned/CommissionedClassification.ts';
 import { config } from '../../../configs/test.config.ts';
 import { PrismaClient } from '@prisma/client';
 import { UnionAffiliation } from '../../affiliation/affiliations/union/UnionAffiliation.ts';
 import { NoAffiliation } from '../../affiliation/affiliations/noAffiliation/NoAffiliation.ts';
-import { HoldMethod } from '../../methods/HoldMethod.ts';
-import { MailMethod } from '../../methods/MailMethod.ts';
-import { DirectMethod } from '../../methods/DirectMethod.ts';
+import { HoldMethod } from '../../methods/methods/HoldMethod.ts';
+import { MailMethod } from '../../methods/methods/MailMethod.ts';
+import { DirectMethod } from '../../methods/methods/DirectMethod.ts';
 import { BiweeklySchedule } from '../../schedules/BiweeklySchedule.ts';
 import { MonthlySchedule } from '../../schedules/MonthlySchedule.ts';
 import { WeeklySchedule } from '../../schedules/WeeklySchedule.ts';

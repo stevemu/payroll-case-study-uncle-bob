@@ -1,6 +1,6 @@
 import { MapPayrollDatabase } from '../../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { MonthlySchedule } from '../../schedules/MonthlySchedule.ts';
-import { SalariedClassification } from '../SalariedClassification.ts';
+import { SalariedClassification } from '../classifications/SalariedClassification.ts';
 import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction.ts';
 import { ChangeSalariedTransaction } from './ChangeSalariedTransaction.ts';
 

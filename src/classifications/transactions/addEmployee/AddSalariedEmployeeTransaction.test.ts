@@ -1,6 +1,6 @@
 import { AddSalariedEmployeeTransaction } from './AddSalariedEmployeeTransaction.ts';
-import { SalariedClassification } from '../../SalariedClassification.ts';
-import { HoldMethod } from '../../../methods/HoldMethod.ts';
+import { SalariedClassification } from '../../classifications/SalariedClassification.ts';
+import { HoldMethod } from '../../../methods/methods/HoldMethod.ts';
 import { MapPayrollDatabase } from '../../../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { MonthlySchedule } from '../../../schedules/MonthlySchedule.ts';
 
