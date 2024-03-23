@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { Employee } from '../../payrollDomain/Employee.ts';
+import { Employee } from '../../payrollDomain/employee/Employee.ts';
 import { HoldMethod } from '../../methods/HoldMethod.ts';
 import { MailMethod } from '../../methods/MailMethod.ts';
 import { DirectMethod } from '../../methods/DirectMethod.ts';

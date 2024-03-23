@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { Employee } from '../../payrollDomain/Employee.ts';
+import { Employee } from '../../payrollDomain/employee/Employee.ts';
 import { ClassificationDb, getClassificationType } from './ClassificationDb.ts';
 import { PayrollDatabase } from '../../database/PayrollDatabase.interface.ts';
 import { UnionAffiliation } from '../../affiliation/affiliations/union/UnionAffiliation.ts';

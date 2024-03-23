@@ -1,6 +1,6 @@
-import { PayCheck } from '../PayCheck.ts';
-import { PayrollDatabase } from '../database/PayrollDatabase.interface.ts';
-import { Transaction } from '../payrollDomain/Transaction.interface.ts';
+import { PayCheck } from '../../../PayCheck.ts';
+import { PayrollDatabase } from '../../../database/PayrollDatabase.interface.ts';
+import { Transaction } from '../../Transaction.interface.ts';
 
 export class PayTransaction extends Transaction {
   private payCheck: Map<number, PayCheck> = new Map();

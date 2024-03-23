@@ -3,7 +3,7 @@ import { TextParserTransactionSource } from '../textParser/TextParserTransaction
 import { PrismaPayrollDatabase } from '../databaseImpl/PrismaPayrollDatabase/index.ts';
 import { PayrollDatabase } from '../database/PayrollDatabase.interface.ts';
 import { config } from '../../configs/prod.config.ts';
-import { PayTransaction } from '../transaction/PayTransaction.ts';
+import { PayTransaction } from '../payrollDomain/employee/transactions/PayTransaction.ts';
 
 const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
 const db: PayrollDatabase = new PrismaPayrollDatabase(prisma);

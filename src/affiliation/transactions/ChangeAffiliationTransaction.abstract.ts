@@ -1,7 +1,7 @@
-import { Employee } from '../../payrollDomain/Employee.ts';
+import { Employee } from '../../payrollDomain/employee/Employee.ts';
 import { Affiliation } from '../../payrollDomain/Affiliation.interface.ts';
 import { PayrollDatabase } from '../../database/PayrollDatabase.interface.ts';
-import { ChangeEmployeeTransaction } from '../../payrollDomain/ChangeEmployeeTransaction.abstract.ts';
+import { ChangeEmployeeTransaction } from '../../payrollDomain/employee/changeEmployee/ChangeEmployeeTransaction.abstract.ts';
 
 export abstract class ChangeAffiliationTransaction extends ChangeEmployeeTransaction {
   constructor(db: PayrollDatabase, empId: number) {
