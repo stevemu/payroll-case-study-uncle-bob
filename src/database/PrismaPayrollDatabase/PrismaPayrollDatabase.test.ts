@@ -1,5 +1,5 @@
 import { PrismaPayrollDatabase } from './PrismaPayrollDatabase.ts';
-import { Employee } from '../../Employee.ts';
+import { Employee } from '../Employee.ts';
 import {
   AddCommissionedEmployeeTransaction,
   AddHourlyEmployeeTransaction,

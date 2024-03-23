@@ -1,4 +1,4 @@
-import { Employee } from '../../Employee.ts';
+import { Employee } from '../../database/Employee.ts';
 import { Affiliation } from '../../affiliation/Affiliation.interface.ts';
 import { PayrollDatabase } from '../../database/PayrollDatabase.interface.ts';
 import { ChangeEmployeeTransaction } from '../changeEmployee/ChangeEmployeeTransaction.abstract.ts';

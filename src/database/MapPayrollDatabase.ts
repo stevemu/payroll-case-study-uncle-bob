@@ -1,4 +1,4 @@
-import { Employee } from '../Employee.ts';
+import { Employee } from './Employee.ts';
 import { PayrollDatabase } from './PayrollDatabase.interface.ts';
 
 /**

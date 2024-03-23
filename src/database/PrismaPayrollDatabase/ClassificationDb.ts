@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { SalariedClassification } from '../../paymentClassification/SalariedClassification.ts';
 import { CommissionedClassification } from '../../paymentClassification/commissioned/CommissionedClassification.ts';
 import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification.ts';
-import { Employee } from '../../Employee.ts';
+import { Employee } from '../Employee.ts';
 import { PaymentClassification } from '../../paymentClassification/Classification.abstract.ts';
 import { TimeCard } from '../../paymentClassification/hourly/TimeCard.ts';
 import { SalesReceipt } from '../../paymentClassification/commissioned/SalesReceipt.ts';

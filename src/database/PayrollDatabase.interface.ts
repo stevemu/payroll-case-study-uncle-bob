@@ -1,4 +1,4 @@
-import { Employee } from '../Employee.ts';
+import { Employee } from './Employee.ts';
 
 export interface PayrollDatabase {
   addEmployee(empId: number, employee: Employee): Promise<void>;
