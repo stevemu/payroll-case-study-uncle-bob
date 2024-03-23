@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { TextParserTransactionSource } from '../textParser/TextParserTransactionSource.ts';
-import { PrismaPayrollDatabase } from '../databaseImpl/PrismaPayrollDatabase/index.ts';
-import { PayrollDatabase } from '../database/PayrollDatabase.interface.ts';
+import { PrismaPayrollDatabase } from '../payrollDatabaseImpl/PrismaPayrollDatabase/index.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
 import { config } from '../../configs/prod.config.ts';
 import { PayTransaction } from '../payrollDomain/employee/transactions/PayTransaction.ts';
 

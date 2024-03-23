@@ -1,4 +1,4 @@
-import { PayCheck } from '../../PayCheck.ts';
+import { PayCheck } from '../../payrollDomain/PayCheck.ts';
 import { PaymentClassification } from '../../payrollDomain/Classification.abstract.ts';
 import { SalesReceipt } from './SalesReceipt.ts';
 

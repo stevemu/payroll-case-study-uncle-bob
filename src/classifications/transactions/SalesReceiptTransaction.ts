@@ -1,4 +1,4 @@
-import { PayrollDatabase } from '../../database/PayrollDatabase.interface.ts';
+import { PayrollDatabase } from '../../payrollDatabase/PayrollDatabase.interface.ts';
 import { CommissionedClassification } from '../commissioned/CommissionedClassification.ts';
 import { SalesReceipt } from '../commissioned/SalesReceipt.ts';
 import { Transaction } from '../../payrollDomain/Transaction.interface.ts';

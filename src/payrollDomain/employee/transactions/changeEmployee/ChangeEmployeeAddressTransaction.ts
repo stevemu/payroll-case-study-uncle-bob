@@ -1,6 +1,6 @@
 import { Employee } from '../../Employee.ts';
-import { PayrollDatabase } from '../../../../database/PayrollDatabase.interface.ts';
-import { ChangeEmployeeTransaction } from '../ChangeEmployeeTransaction.abstract.ts';
+import { PayrollDatabase } from '../../../../payrollDatabase/PayrollDatabase.interface.ts';
+import { ChangeEmployeeTransaction } from './ChangeEmployeeTransaction.abstract.ts';
 
 export class ChangeEmployeeAddressTransaction extends ChangeEmployeeTransaction {
   constructor(

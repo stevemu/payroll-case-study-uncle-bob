@@ -1,4 +1,4 @@
-import { MapPayrollDatabase } from '../../../databaseImpl/MapPayrollDatabase.ts';
+import { MapPayrollDatabase } from '../../../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { HoldMethod } from '../../../methods/HoldMethod.ts';
 import { WeeklySchedule } from '../../../schedules/WeeklySchedule.ts';
 import { HourlyClassification } from '../../hourly/HourlyClassification.ts';

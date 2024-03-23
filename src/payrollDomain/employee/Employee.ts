@@ -1,4 +1,4 @@
-import { PayCheck } from '../../PayCheck.ts';
+import { PayCheck } from '../PayCheck.ts';
 import { Affiliation } from '../Affiliation.interface.ts';
 import { PaymentClassification } from '../Classification.abstract.ts';
 import { Method } from '../Method.interface.ts';

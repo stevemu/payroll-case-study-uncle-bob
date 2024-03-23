@@ -1,4 +1,4 @@
-import { MapPayrollDatabase } from '../../../databaseImpl/MapPayrollDatabase.ts';
+import { MapPayrollDatabase } from '../../../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { AddServiceChargeTransaction } from '../../../affiliation/transactions/AddServiceChargeTransaction.ts';
 import { AddTimeCardTransaction } from '../../../classifications/transactions/AddTimeCardTransaction.ts';
 import { PayTransaction } from './PayTransaction.ts';

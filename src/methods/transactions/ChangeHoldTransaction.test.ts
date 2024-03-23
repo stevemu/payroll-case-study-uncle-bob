@@ -1,4 +1,4 @@
-import { MapPayrollDatabase } from '../../databaseImpl/MapPayrollDatabase.ts';
+import { MapPayrollDatabase } from '../../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { HoldMethod } from '../HoldMethod.ts';
 import { AddSalariedEmployeeTransaction } from '../../classifications/transactions/addEmployee/AddSalariedEmployeeTransaction.ts';
 import { ChangeHoldTransaction } from './ChangeHoldTransaction.ts';

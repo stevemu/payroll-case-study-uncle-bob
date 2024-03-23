@@ -1,4 +1,4 @@
-import { Reader } from '../Reader.ts';
+import { Reader } from '../utils/Reader.ts';
 import { AddServiceChargeTransaction } from '../affiliation/transactions/AddServiceChargeTransaction.ts';
 import { ChangeMemberTransaction } from '../affiliation/transactions/ChangeMemberTransaction.ts';
 import { ChangeUnaffiliatedTransaction } from '../affiliation/transactions/ChangeUnaffiliatedTransaction.ts';
@@ -11,13 +11,13 @@ import { SalesReceiptTransaction } from '../classifications/transactions/SalesRe
 import { AddCommissionedEmployeeTransaction } from '../classifications/transactions/addEmployee/AddCommissionedEmployeeTransaction.ts';
 import { AddHourlyEmployeeTransaction } from '../classifications/transactions/addEmployee/AddHourlyEmployeeTransaction.ts';
 import { AddSalariedEmployeeTransaction } from '../classifications/transactions/addEmployee/AddSalariedEmployeeTransaction.ts';
-import { PayrollDatabase } from '../database/PayrollDatabase.interface.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
 import { ChangeDirectTransaction } from '../methods/transactions/ChangeDirectTransaction.ts';
 import { ChangeHoldTransaction } from '../methods/transactions/ChangeHoldTransaction.ts';
 import { ChangeMailTransaction } from '../methods/transactions/ChangeMailTransaction.ts';
 import { Transaction } from '../payrollDomain/Transaction.interface.ts';
-import { ChangeEmployeeAddressTransaction } from '../payrollDomain/employee/changeEmployee/transactions/ChangeEmployeeAddressTransaction.ts';
-import { ChangeEmployeeNameTransaction } from '../payrollDomain/employee/changeEmployee/transactions/ChangeEmployeeNameTransaction.ts';
+import { ChangeEmployeeAddressTransaction } from '../payrollDomain/employee/transactions/changeEmployee/ChangeEmployeeAddressTransaction.ts';
+import { ChangeEmployeeNameTransaction } from '../payrollDomain/employee/transactions/changeEmployee/ChangeEmployeeNameTransaction.ts';
 import { DeleteEmployeeTransaction } from '../payrollDomain/employee/transactions/DeleteEmployeeTransaction.ts';
 import { PayTransaction } from '../payrollDomain/employee/transactions/PayTransaction.ts';
 

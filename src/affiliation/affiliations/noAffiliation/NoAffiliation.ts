@@ -1,4 +1,4 @@
-import { PayCheck } from '../../../PayCheck.ts';
+import { PayCheck } from '../../../payrollDomain/PayCheck.ts';
 import { Affiliation } from '../../../payrollDomain/Affiliation.interface.ts';
 
 export class NoAffiliation implements Affiliation {

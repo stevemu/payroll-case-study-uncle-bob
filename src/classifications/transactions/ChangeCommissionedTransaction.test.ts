@@ -1,4 +1,4 @@
-import { MapPayrollDatabase } from '../../databaseImpl/MapPayrollDatabase.ts';
+import { MapPayrollDatabase } from '../../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { BiweeklySchedule } from '../../schedules/BiweeklySchedule.ts';
 import { CommissionedClassification } from '../commissioned/CommissionedClassification.ts';
 import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction.ts';

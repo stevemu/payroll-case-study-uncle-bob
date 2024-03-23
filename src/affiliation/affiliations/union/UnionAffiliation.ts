@@ -1,4 +1,4 @@
-import { PayCheck } from '../../../PayCheck.ts';
+import { PayCheck } from '../../../payrollDomain/PayCheck.ts';
 import { isBetween } from '../../../utils/date.ts';
 import { Affiliation } from '../../../payrollDomain/Affiliation.interface.ts';
 import { ServiceCharge } from './ServiceCharge.ts';

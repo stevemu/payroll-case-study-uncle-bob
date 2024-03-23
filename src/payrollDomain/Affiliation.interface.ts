@@ -1,4 +1,4 @@
-import { PayCheck } from '../PayCheck.ts';
+import { PayCheck } from './PayCheck.ts';
 
 export interface Affiliation {
   calculateDeductions(payCheck: PayCheck): number;
