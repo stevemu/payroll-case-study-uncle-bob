@@ -1,4 +1,4 @@
-import { MapPayrollDatabase } from '../database/MapPayrollDatabase.ts';
+import { MapPayrollDatabase } from '../databaseImpl/MapPayrollDatabase.ts';
 import { AddServiceChargeTransaction } from './AddServiceChargeTransaction.ts';
 import { AddTimeCardTransaction } from './AddTimeCardTransaction.ts';
 import { PayTransaction } from './PayTransaction.ts';
@@ -6,7 +6,7 @@ import { SalesReceiptTransaction } from './SalesReceiptTransaction.ts';
 import { AddCommissionedEmployeeTransaction } from './addEmployee/AddCommissionedEmployeeTransaction.ts';
 import { AddHourlyEmployeeTransaction } from './addEmployee/AddHourlyEmployeeTransaction.ts';
 import { AddSalariedEmployeeTransaction } from './addEmployee/AddSalariedEmployeeTransaction.ts';
-import { ChangeMemberTransaction } from './changeAffiliation/ChangeMemberTransaction.ts';
+import { ChangeMemberTransaction } from '../affiliation/transactions/ChangeMemberTransaction.ts';
 
 describe('PayTransaction', () => {
   let db: MapPayrollDatabase;

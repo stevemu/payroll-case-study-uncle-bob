@@ -1,4 +1,4 @@
-import { MapPayrollDatabase } from '../database/MapPayrollDatabase.ts';
+import { MapPayrollDatabase } from '../databaseImpl/MapPayrollDatabase.ts';
 import { DeleteEmployeeTransaction } from './DeleteEmployeeTransaction.ts';
 import { AddSalariedEmployeeTransaction } from './addEmployee/AddSalariedEmployeeTransaction.ts';
 

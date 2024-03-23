@@ -1,4 +1,4 @@
-import { Method } from './Method.interface.ts';
+import { Method } from '../payrollDomain/Method.interface.ts';
 
 export class DirectMethod implements Method {
   constructor(

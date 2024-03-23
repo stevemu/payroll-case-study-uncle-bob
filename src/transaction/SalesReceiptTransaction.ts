@@ -1,7 +1,7 @@
 import { PayrollDatabase } from '../database/PayrollDatabase.interface.ts';
-import { CommissionedClassification } from '../paymentClassification/commissioned/CommissionedClassification.ts';
-import { SalesReceipt } from '../paymentClassification/commissioned/SalesReceipt.ts';
-import { Transaction } from './Transaction.interface.ts';
+import { CommissionedClassification } from '../payrollClassification/commissioned/CommissionedClassification.ts';
+import { SalesReceipt } from '../payrollClassification/commissioned/SalesReceipt.ts';
+import { Transaction } from '../payrollDomain/Transaction.interface.ts';
 
 export class SalesReceiptTransaction extends Transaction {
   constructor(

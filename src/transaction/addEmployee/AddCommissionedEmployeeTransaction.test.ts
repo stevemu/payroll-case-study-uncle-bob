@@ -1,6 +1,6 @@
-import { MapPayrollDatabase } from '../../database/MapPayrollDatabase.ts';
+import { MapPayrollDatabase } from '../../databaseImpl/MapPayrollDatabase.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';
-import { CommissionedClassification } from '../../paymentClassification/commissioned/CommissionedClassification.ts';
+import { CommissionedClassification } from '../../payrollClassification/commissioned/CommissionedClassification.ts';
 import { BiweeklySchedule } from '../../schedule/BiweeklySchedule.ts';
 import { AddCommissionedEmployeeTransaction } from './AddCommissionedEmployeeTransaction.ts';
 

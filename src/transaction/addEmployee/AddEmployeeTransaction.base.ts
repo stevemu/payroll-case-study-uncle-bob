@@ -1,9 +1,9 @@
 import { PayrollDatabase } from '../../database/PayrollDatabase.interface.ts';
-import { Employee } from '../../database/Employee.ts';
-import { PaymentClassification } from '../../paymentClassification/Classification.abstract.ts';
+import { Employee } from '../../payrollDomain/Employee.ts';
+import { PaymentClassification } from '../../payrollDomain/Classification.abstract.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';
-import { Schedule } from '../../schedule/Schedule.interface.ts';
-import { Transaction } from '../Transaction.interface.ts';
+import { Schedule } from '../../payrollDomain/Schedule.interface.ts';
+import { Transaction } from '../../payrollDomain/Transaction.interface.ts';
 
 export abstract class AddEmployeeTransaction extends Transaction {
   constructor(

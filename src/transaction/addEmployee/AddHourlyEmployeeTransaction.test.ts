@@ -1,6 +1,6 @@
-import { MapPayrollDatabase } from '../../database/MapPayrollDatabase.ts';
+import { MapPayrollDatabase } from '../../databaseImpl/MapPayrollDatabase.ts';
 import { HoldMethod } from '../../method/HoldMethod.ts';
-import { HourlyClassification } from '../../paymentClassification/hourly/HourlyClassification.ts';
+import { HourlyClassification } from '../../payrollClassification/hourly/HourlyClassification.ts';
 import { WeeklySchedule } from '../../schedule/WeeklySchedule.ts';
 import { AddHourlyEmployeeTransaction } from './AddHourlyEmployeeTransaction.ts';
 
