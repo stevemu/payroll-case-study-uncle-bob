@@ -1,21 +1,5 @@
 import { PrismaPayrollDatabase } from './PrismaPayrollDatabase.ts';
 import { Employee } from '../../payrollDomain/employee/Employee.ts';
-import {
-  AddCommissionedEmployeeTransaction,
-  AddHourlyEmployeeTransaction,
-  AddSalariedEmployeeTransaction,
-  AddServiceChargeTransaction,
-  AddTimeCardTransaction,
-  ChangeCommissionedTransaction,
-  ChangeDirectTransaction,
-  ChangeHoldTransaction,
-  ChangeHourlyTransaction,
-  ChangeMailTransaction,
-  ChangeMemberTransaction,
-  ChangeSalariedTransaction,
-  ChangeUnaffiliatedTransaction,
-  SalesReceiptTransaction,
-} from '../../transaction/index.ts';
 import { HourlyClassification } from '../../classifications/classifications/hourly/HourlyClassification.ts';
 import { SalariedClassification } from '../../classifications/classifications/SalariedClassification.ts';
 import { CommissionedClassification } from '../../classifications/classifications/commissioned/CommissionedClassification.ts';
@@ -29,6 +13,20 @@ import { DirectMethod } from '../../methods/methods/DirectMethod.ts';
 import { BiweeklySchedule } from '../../schedules/BiweeklySchedule.ts';
 import { MonthlySchedule } from '../../schedules/MonthlySchedule.ts';
 import { WeeklySchedule } from '../../schedules/WeeklySchedule.ts';
+import { AddServiceChargeTransaction } from '../../affiliation/transactions/AddServiceChargeTransaction.ts';
+import { ChangeMemberTransaction } from '../../affiliation/transactions/ChangeMemberTransaction.ts';
+import { ChangeUnaffiliatedTransaction } from '../../affiliation/transactions/ChangeUnaffiliatedTransaction.ts';
+import { AddTimeCardTransaction } from '../../classifications/transactions/AddTimeCardTransaction.ts';
+import { ChangeCommissionedTransaction } from '../../classifications/transactions/ChangeCommissionedTransaction.ts';
+import { ChangeHourlyTransaction } from '../../classifications/transactions/ChangeHourlyTransaction.ts';
+import { ChangeSalariedTransaction } from '../../classifications/transactions/ChangeSalariedTransaction.ts';
+import { SalesReceiptTransaction } from '../../classifications/transactions/SalesReceiptTransaction.ts';
+import { AddCommissionedEmployeeTransaction } from '../../classifications/transactions/addEmployee/AddCommissionedEmployeeTransaction.ts';
+import { AddHourlyEmployeeTransaction } from '../../classifications/transactions/addEmployee/AddHourlyEmployeeTransaction.ts';
+import { AddSalariedEmployeeTransaction } from '../../classifications/transactions/addEmployee/AddSalariedEmployeeTransaction.ts';
+import { ChangeDirectTransaction } from '../../methods/transactions/ChangeDirectTransaction.ts';
+import { ChangeHoldTransaction } from '../../methods/transactions/ChangeHoldTransaction.ts';
+import { ChangeMailTransaction } from '../../methods/transactions/ChangeMailTransaction.ts';
 
 const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
 
@@ -192,20 +190,21 @@ describe('PayrollDatabase', () => {
   test('payment method', async () => {
     const empId = 1;
     const salary = 2000;
-    const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', salary);
+
+    const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home1', salary);
     await t.execute();
 
-    const e = (await db.getEmployee(empId))!;
-    expect(e).toBeInstanceOf(Employee);
-    expect(e.method).toBeInstanceOf(HoldMethod);
-    expect((e.method as HoldMethod).address).toBe('Office');
+    const e = await db.getEmployee(empId);
+    expect(e!).toBeInstanceOf(Employee);
+    expect(e!.method).toBeInstanceOf(HoldMethod);
+    expect((e!.method as HoldMethod).address).toBe('Office');
 
     const changeMailTransaction = new ChangeMailTransaction(db, empId, 'Mail');
     await changeMailTransaction.execute();
 
-    const e2 = (await db.getEmployee(empId))!;
-    expect(e2.method).toBeInstanceOf(MailMethod);
-    expect((e2.method as MailMethod).address).toBe('Mail');
+    const e2 = await db.getEmployee(empId);
+    expect(e2!.method).toBeInstanceOf(MailMethod);
+    expect((e2!.method as MailMethod).address).toBe('Mail');
 
     const changeDirectTransaction = new ChangeDirectTransaction(db, empId, 'Bank', 'Account');
     await changeDirectTransaction.execute();

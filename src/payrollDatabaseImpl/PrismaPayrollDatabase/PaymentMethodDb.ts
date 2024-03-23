@@ -69,6 +69,7 @@ export class PaymentMethodDb {
         empId,
       },
     });
+
     const paymentMethodType = employeeModel!.paymentMethod;
     if (paymentMethodType === 'hold') {
       const holdMethodModel = await this.prismaClient.holdPaymentMethod.findUnique({

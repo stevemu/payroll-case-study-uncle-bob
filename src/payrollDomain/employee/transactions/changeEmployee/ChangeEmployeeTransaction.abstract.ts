@@ -15,8 +15,8 @@ export abstract class ChangeEmployeeTransaction extends Transaction {
   async execute(): Promise<void> {
     const employee = await this.db.getEmployee(this.empId);
     if (employee) {
-      await this.change(employee);
-      this.db.saveEmployee(employee);
+      this.change(employee);
+      await this.db.saveEmployee(employee);
     }
   }
 }

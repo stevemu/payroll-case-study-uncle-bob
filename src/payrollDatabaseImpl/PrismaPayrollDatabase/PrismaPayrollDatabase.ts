@@ -198,6 +198,10 @@ export class PrismaPayrollDatabase implements PayrollDatabase {
     await this.prismaClient.salariedClassification.deleteMany();
     await this.prismaClient.salesReceipt.deleteMany();
     await this.prismaClient.unionMembership.deleteMany();
+    await this.prismaClient.serviceCharge.deleteMany();
+    await this.prismaClient.holdPaymentMethod.deleteMany();
+    await this.prismaClient.mailPaymentMethod.deleteMany();
+    await this.prismaClient.directPaymentMethod.deleteMany();
   }
 
   async getUnionMember(memberId: number): Promise<Employee | undefined> {
