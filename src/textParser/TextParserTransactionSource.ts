@@ -2,7 +2,7 @@ import { Reader } from '../utils/Reader.ts';
 import { AddServiceChargeTransaction } from '../affiliation/transactions/AddServiceChargeTransaction.ts';
 import { ChangeMemberTransaction } from '../affiliation/transactions/ChangeMemberTransaction.ts';
 import { ChangeUnaffiliatedTransaction } from '../affiliation/transactions/ChangeUnaffiliatedTransaction.ts';
-import { TransactionSource } from '../app/TransactionSource.interface.ts';
+import { TransactionSource } from '../payrollApp/TransactionSource.interface.ts';
 import { AddTimeCardTransaction } from '../classifications/transactions/AddTimeCardTransaction.ts';
 import { ChangeCommissionedTransaction } from '../classifications/transactions/ChangeCommissionedTransaction.ts';
 import { ChangeHourlyTransaction } from '../classifications/transactions/ChangeHourlyTransaction.ts';
@@ -21,10 +21,12 @@ import { ChangeEmployeeNameTransaction } from '../payrollDomain/employee/transac
 import { DeleteEmployeeTransaction } from '../payrollDomain/employee/transactions/DeleteEmployeeTransaction.ts';
 import { PayTransaction } from '../payrollDomain/employee/transactions/PayTransaction.ts';
 
-export class TextParserTransactionSource implements TransactionSource {
+export class TextParserTransactionSource extends PayrollApplication implements TransactionSource {
   private reader: Reader = new Reader();
 
-  constructor(private db: PayrollDatabase) {}
+  constructor(private db: PayrollDatabase) {
+    super();
+  }
 
   async getTransaction(): Promise<Transaction> {
     const line = await this.reader.readLine('Enter transaction: ');
@@ -167,3 +169,14 @@ const parseYyyymmdd = (date: string): Date => {
   const parts = date.split('-');
   return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
 };
+
+import { PrismaClient } from '@prisma/client';
+import { PrismaPayrollDatabase } from '../payrollDatabaseImpl/PrismaPayrollDatabase/index.ts';
+import { config } from '../../configs/prod.config.ts';
+import { PayrollApplication } from '../payrollApp/PayrollApplication.abstract.ts';
+
+const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
+const db: PayrollDatabase = new PrismaPayrollDatabase(prisma);
+
+const source = new TextParserTransactionSource(db);
+source.run();
