@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { Employee } from '../../payrollDomain/Employee.ts';
-import { HoldMethod } from '../../method/HoldMethod.ts';
-import { MailMethod } from '../../method/MailMethod.ts';
-import { DirectMethod } from '../../method/DirectMethod.ts';
+import { HoldMethod } from '../../methods/HoldMethod.ts';
+import { MailMethod } from '../../methods/MailMethod.ts';
+import { DirectMethod } from '../../methods/DirectMethod.ts';
 
 export class PaymentMethodDb {
   constructor(private prismaClient: PrismaClient) {}

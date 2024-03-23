@@ -1,6 +1,6 @@
 import { UnionAffiliation } from '../affiliations/union/UnionAffiliation.ts';
 import { MapPayrollDatabase } from '../../databaseImpl/MapPayrollDatabase.ts';
-import { AddHourlyEmployeeTransaction } from '../../transaction/addEmployee/AddHourlyEmployeeTransaction.ts';
+import { AddHourlyEmployeeTransaction } from '../../classifications/transactions/addEmployee/AddHourlyEmployeeTransaction.ts';
 import { ChangeMemberTransaction } from './ChangeMemberTransaction.ts';
 
 describe('ChangeMemberTransaction', () => {

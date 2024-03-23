@@ -1,6 +1,6 @@
 import { MapPayrollDatabase } from '../../databaseImpl/MapPayrollDatabase.ts';
 import { HoldMethod } from '../HoldMethod.ts';
-import { AddSalariedEmployeeTransaction } from '../../transaction/addEmployee/AddSalariedEmployeeTransaction.ts';
+import { AddSalariedEmployeeTransaction } from '../../classifications/transactions/addEmployee/AddSalariedEmployeeTransaction.ts';
 import { ChangeHoldTransaction } from './ChangeHoldTransaction.ts';
 
 describe('ChangeHoldTransaction', () => {

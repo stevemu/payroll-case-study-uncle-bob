@@ -16,19 +16,19 @@ import {
   ChangeUnaffiliatedTransaction,
   SalesReceiptTransaction,
 } from '../../transaction/index.ts';
-import { HourlyClassification } from '../../payrollClassification/hourly/HourlyClassification.ts';
-import { SalariedClassification } from '../../payrollClassification/SalariedClassification.ts';
-import { CommissionedClassification } from '../../payrollClassification/commissioned/CommissionedClassification.ts';
+import { HourlyClassification } from '../../classifications/hourly/HourlyClassification.ts';
+import { SalariedClassification } from '../../classifications/SalariedClassification.ts';
+import { CommissionedClassification } from '../../classifications/commissioned/CommissionedClassification.ts';
 import { config } from '../../../configs/test.config.ts';
 import { PrismaClient } from '@prisma/client';
 import { UnionAffiliation } from '../../affiliation/affiliations/union/UnionAffiliation.ts';
 import { NoAffiliation } from '../../affiliation/affiliations/noAffiliation/NoAffiliation.ts';
-import { HoldMethod } from '../../method/HoldMethod.ts';
-import { MailMethod } from '../../method/MailMethod.ts';
-import { DirectMethod } from '../../method/DirectMethod.ts';
-import { MonthlySchedule } from '../../schedule/MonthlySchedule.ts';
-import { WeeklySchedule } from '../../schedule/WeeklySchedule.ts';
-import { BiweeklySchedule } from '../../schedule/BiweeklySchedule.ts';
+import { HoldMethod } from '../../methods/HoldMethod.ts';
+import { MailMethod } from '../../methods/MailMethod.ts';
+import { DirectMethod } from '../../methods/DirectMethod.ts';
+import { BiweeklySchedule } from '../../schedules/BiweeklySchedule.ts';
+import { MonthlySchedule } from '../../schedules/MonthlySchedule.ts';
+import { WeeklySchedule } from '../../schedules/WeeklySchedule.ts';
 
 const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
 

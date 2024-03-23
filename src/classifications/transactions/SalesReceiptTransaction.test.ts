@@ -1,5 +1,5 @@
-import { MapPayrollDatabase } from '../databaseImpl/MapPayrollDatabase.ts';
-import { CommissionedClassification } from '../payrollClassification/commissioned/CommissionedClassification.ts';
+import { MapPayrollDatabase } from '../../databaseImpl/MapPayrollDatabase.ts';
+import { CommissionedClassification } from '../commissioned/CommissionedClassification.ts';
 import { SalesReceiptTransaction } from './SalesReceiptTransaction.ts';
 import { AddCommissionedEmployeeTransaction } from './addEmployee/AddCommissionedEmployeeTransaction.ts';
 

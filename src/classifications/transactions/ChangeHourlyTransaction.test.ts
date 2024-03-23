@@ -1,7 +1,7 @@
 import { MapPayrollDatabase } from '../../databaseImpl/MapPayrollDatabase.ts';
+import { WeeklySchedule } from '../../schedules/WeeklySchedule.ts';
 import { HourlyClassification } from '../hourly/HourlyClassification.ts';
-import { WeeklySchedule } from '../../schedule/WeeklySchedule.ts';
-import { AddCommissionedEmployeeTransaction } from '../../transaction/addEmployee/AddCommissionedEmployeeTransaction.ts';
+import { AddCommissionedEmployeeTransaction } from './addEmployee/AddCommissionedEmployeeTransaction.ts';
 import { ChangeHourlyTransaction } from './ChangeHourlyTransaction.ts';
 
 describe('ChangeHourlyTransaction', () => {

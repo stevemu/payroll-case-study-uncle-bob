@@ -1,5 +1,5 @@
 import { MapPayrollDatabase } from '../../databaseImpl/MapPayrollDatabase.ts';
-import { AddHourlyEmployeeTransaction } from '../addEmployee/AddHourlyEmployeeTransaction.ts';
+import { AddHourlyEmployeeTransaction } from '../../classifications/transactions/addEmployee/AddHourlyEmployeeTransaction.ts';
 import { ChangeEmployeeAddressTransaction } from './ChangeEmployeeAddressTransaction.ts';
 
 describe('ChangeEmployeeAddressTransaction', () => {

@@ -6,9 +6,9 @@ import { UnionAffiliation } from '../../affiliation/affiliations/union/UnionAffi
 import { NoAffiliation } from '../../affiliation/affiliations/noAffiliation/NoAffiliation.ts';
 import { ServiceCharge } from '../../affiliation/affiliations/union/ServiceCharge.ts';
 import { PaymentMethodDb } from './PaymentMethodDb.ts';
-import { BiweeklySchedule } from '../../schedule/BiweeklySchedule.ts';
-import { MonthlySchedule } from '../../schedule/MonthlySchedule.ts';
-import { WeeklySchedule } from '../../schedule/WeeklySchedule.ts';
+import { BiweeklySchedule } from '../../schedules/BiweeklySchedule.ts';
+import { MonthlySchedule } from '../../schedules/MonthlySchedule.ts';
+import { WeeklySchedule } from '../../schedules/WeeklySchedule.ts';
 
 /**
  * used by unit tests for PrismaPayrollDatabase and production code

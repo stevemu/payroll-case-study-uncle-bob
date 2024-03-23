@@ -1,8 +1,8 @@
 import { AddSalariedEmployeeTransaction } from './AddSalariedEmployeeTransaction.ts';
-import { SalariedClassification } from '../../payrollClassification/SalariedClassification.ts';
-import { MonthlySchedule } from '../../schedule/MonthlySchedule.ts';
-import { HoldMethod } from '../../method/HoldMethod.ts';
-import { MapPayrollDatabase } from '../../databaseImpl/MapPayrollDatabase.ts';
+import { SalariedClassification } from '../../SalariedClassification.ts';
+import { HoldMethod } from '../../../methods/HoldMethod.ts';
+import { MapPayrollDatabase } from '../../../databaseImpl/MapPayrollDatabase.ts';
+import { MonthlySchedule } from '../../../schedules/MonthlySchedule.ts';
 
 describe('AddSalariedEmployee', () => {
   it('should add a salaried employee', async () => {
