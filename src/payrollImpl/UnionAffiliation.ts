@@ -1,6 +1,6 @@
-import { PayCheck } from '../../payrollDomain/PayCheck.ts';
-import { isBetween } from '../../utils/date.ts';
-import { Affiliation } from '../../payrollDomain/Affiliation.ts';
+import { PayCheck } from '../payrollDomain/PayCheck.ts';
+import { isBetween } from '../utils/date.ts';
+import { Affiliation } from '../payrollDomain/Affiliation.ts';
 import { ServiceCharge } from './ServiceCharge.ts';
 
 export class UnionAffiliation implements Affiliation {

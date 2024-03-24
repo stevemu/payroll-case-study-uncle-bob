@@ -1,8 +1,8 @@
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { HoldMethod } from '../methods/HoldMethod.ts';
-import { WeeklySchedule } from '../schedules/WeeklySchedule.ts';
-import { HourlyClassification } from '../classifications/HourlyClassification.ts';
-import { AddHourlyEmployeeTransaction } from '../generalTransactions/AddHourlyEmployeeTransaction.ts';
+import { HoldMethod } from '../payrollImpl/HoldMethod.ts';
+import { WeeklySchedule } from '../payrollImpl/WeeklySchedule.ts';
+import { HourlyClassification } from '../payrollImpl/HourlyClassification.ts';
+import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
 
 describe('AddHourlyEmployee', () => {
   it('should add an hourly employee', async () => {

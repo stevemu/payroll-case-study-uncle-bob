@@ -1,12 +1,12 @@
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { AddServiceChargeTransaction } from '../affiliationTransactions/AddServiceChargeTransaction.ts';
-import { AddTimeCardTransaction } from '../classificationTransactions/TimeCardTransaction.ts';
-import { PaydayTransaction } from '../generalTransactions/PaydayTransaction.ts';
-import { SalesReceiptTransaction } from '../classificationTransactions/SalesReceiptTransaction.ts';
-import { AddCommissionedEmployeeTransaction } from '../generalTransactions/AddCommissionedEmployeeTransaction.ts';
-import { AddHourlyEmployeeTransaction } from '../generalTransactions/AddHourlyEmployeeTransaction.ts';
-import { AddSalariedEmployeeTransaction } from '../generalTransactions/AddSalariedEmployeeTransaction.ts';
-import { ChangeMemberTransaction } from '../affiliationTransactions/ChangeMemberTransaction.ts';
+import { AddServiceChargeTransaction } from '../transactionImpl/AddServiceChargeTransaction.ts';
+import { AddTimeCardTransaction } from '../transactionImpl/TimeCardTransaction.ts';
+import { PaydayTransaction } from '../transactionImpl/PaydayTransaction.ts';
+import { SalesReceiptTransaction } from '../transactionImpl/SalesReceiptTransaction.ts';
+import { AddCommissionedEmployeeTransaction } from '../transactionImpl/AddCommissionedEmployeeTransaction.ts';
+import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
+import { AddSalariedEmployeeTransaction } from '../transactionImpl/AddSalariedEmployeeTransaction.ts';
+import { ChangeMemberTransaction } from '../transactionImpl/ChangeMemberTransaction.ts';
 
 describe('PayTransaction', () => {
   let db: MapPayrollDatabase;

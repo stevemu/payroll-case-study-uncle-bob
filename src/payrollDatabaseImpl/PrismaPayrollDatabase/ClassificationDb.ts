@@ -1,11 +1,11 @@
 import { PrismaClient } from '@prisma/client';
-import { SalariedClassification } from '../../classifications/SalariedClassification.ts';
-import { CommissionedClassification } from '../../classifications/CommissionedClassification.ts';
-import { HourlyClassification } from '../../classifications/HourlyClassification.ts';
+import { SalariedClassification } from '../../payrollImpl/SalariedClassification.ts';
+import { CommissionedClassification } from '../../payrollImpl/CommissionedClassification.ts';
+import { HourlyClassification } from '../../payrollImpl/HourlyClassification.ts';
 import { Employee } from '../../payrollDomain/Employee.ts';
 import { PaymentClassification } from '../../payrollDomain/Classification.ts';
-import { TimeCard } from '../../classifications/TimeCard.ts';
-import { SalesReceipt } from '../../classifications/SalesReceipt.ts';
+import { TimeCard } from '../../payrollImpl/TimeCard.ts';
+import { SalesReceipt } from '../../payrollImpl/SalesReceipt.ts';
 
 export class ClassificationDb {
   constructor(private prismaClient: PrismaClient) {}

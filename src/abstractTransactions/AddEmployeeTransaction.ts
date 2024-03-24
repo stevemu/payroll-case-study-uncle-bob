@@ -1,7 +1,7 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { Employee } from '../payrollDomain/Employee.ts';
 import { PaymentClassification } from '../payrollDomain/Classification.ts';
-import { HoldMethod } from '../methods/HoldMethod.ts';
+import { HoldMethod } from '../payrollImpl/HoldMethod.ts';
 import { PaymentSchedule } from '../payrollDomain/PaymentSchedule.ts';
 import { Transaction } from '../transactionApplication/Transaction.ts';
 

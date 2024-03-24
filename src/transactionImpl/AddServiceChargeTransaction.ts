@@ -1,5 +1,5 @@
-import { ServiceCharge } from '../affiliations/union/ServiceCharge.ts';
-import { UnionAffiliation } from '../affiliations/union/UnionAffiliation.ts';
+import { ServiceCharge } from '../payrollImpl/ServiceCharge.ts';
+import { UnionAffiliation } from '../payrollImpl/UnionAffiliation.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { Transaction } from '../transactionApplication/Transaction.ts';
 

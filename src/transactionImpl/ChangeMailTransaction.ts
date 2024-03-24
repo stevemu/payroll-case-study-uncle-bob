@@ -1,6 +1,6 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
-import { MailMethod } from '../methods/MailMethod.ts';
-import { ChangeMethodTransaction } from './ChangeMethodTransaction.ts';
+import { MailMethod } from '../payrollImpl/MailMethod.ts';
+import { ChangeMethodTransaction } from '../abstractTransactions/ChangeMethodTransaction.ts';
 
 export class ChangeMailTransaction extends ChangeMethodTransaction {
   constructor(

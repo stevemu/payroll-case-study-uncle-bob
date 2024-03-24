@@ -1,5 +1,5 @@
 import { Application } from '../application/Application.ts';
-import { PaydayTransaction } from '../generalTransactions/PaydayTransaction.ts';
+import { PaydayTransaction } from '../transactionImpl/PaydayTransaction.ts';
 import { TransactionSource } from './TransactionSource.ts';
 
 export class TransactionApplication extends Application {

@@ -1,6 +1,6 @@
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { DeleteEmployeeTransaction } from '../generalTransactions/DeleteEmployeeTransaction.ts';
-import { AddSalariedEmployeeTransaction } from '../generalTransactions/AddSalariedEmployeeTransaction.ts';
+import { DeleteEmployeeTransaction } from '../transactionImpl/DeleteEmployeeTransaction.ts';
+import { AddSalariedEmployeeTransaction } from '../transactionImpl/AddSalariedEmployeeTransaction.ts';
 
 describe('DeleteEmployeeTransaction', () => {
   it('should delete an employee', async () => {

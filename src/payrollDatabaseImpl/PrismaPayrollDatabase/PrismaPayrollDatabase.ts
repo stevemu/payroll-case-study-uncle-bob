@@ -1,13 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 import { Employee } from '../../payrollDomain/Employee.ts';
 import { ClassificationDb, getClassificationType } from './ClassificationDb.ts';
-import { UnionAffiliation } from '../../affiliations/union/UnionAffiliation.ts';
-import { NoAffiliation } from '../../affiliations/noAffiliation/NoAffiliation.ts';
-import { ServiceCharge } from '../../affiliations/union/ServiceCharge.ts';
+import { UnionAffiliation } from '../../payrollImpl/UnionAffiliation.ts';
+import { NoAffiliation } from '../../payrollImpl/NoAffiliation.ts';
+import { ServiceCharge } from '../../payrollImpl/ServiceCharge.ts';
 import { PaymentMethodDb } from './PaymentMethodDb.ts';
-import { BiweeklySchedule } from '../../schedules/BiweeklySchedule.ts';
-import { MonthlySchedule } from '../../schedules/MonthlySchedule.ts';
-import { WeeklySchedule } from '../../schedules/WeeklySchedule.ts';
+import { BiweeklySchedule } from '../../payrollImpl/BiweeklySchedule.ts';
+import { MonthlySchedule } from '../../payrollImpl/MonthlySchedule.ts';
+import { WeeklySchedule } from '../../payrollImpl/WeeklySchedule.ts';
 import { PayrollDatabase } from '../../payrollDatabase/PayrollDatabase.ts';
 
 /**

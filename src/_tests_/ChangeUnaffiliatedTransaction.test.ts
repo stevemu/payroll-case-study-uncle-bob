@@ -1,7 +1,7 @@
-import { NoAffiliation } from '../affiliations/noAffiliation/NoAffiliation.ts';
-import { AddHourlyEmployeeTransaction } from '../generalTransactions/AddHourlyEmployeeTransaction.ts';
-import { ChangeMemberTransaction } from '../affiliationTransactions/ChangeMemberTransaction.ts';
-import { ChangeUnaffiliatedTransaction } from '../affiliationTransactions/ChangeUnaffiliatedTransaction.ts';
+import { NoAffiliation } from '../payrollImpl/NoAffiliation.ts';
+import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
+import { ChangeMemberTransaction } from '../transactionImpl/ChangeMemberTransaction.ts';
+import { ChangeUnaffiliatedTransaction } from '../transactionImpl/ChangeUnaffiliatedTransaction.ts';
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
 
 describe('ChangeUnaffiliatedTransaction', () => {

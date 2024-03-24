@@ -1,7 +1,7 @@
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { HoldMethod } from '../methods/HoldMethod.ts';
-import { AddSalariedEmployeeTransaction } from '../generalTransactions/AddSalariedEmployeeTransaction.ts';
-import { ChangeHoldTransaction } from '../methodTransactions/ChangeHoldTransaction.ts';
+import { HoldMethod } from '../payrollImpl/HoldMethod.ts';
+import { AddSalariedEmployeeTransaction } from '../transactionImpl/AddSalariedEmployeeTransaction.ts';
+import { ChangeHoldTransaction } from '../transactionImpl/ChangeHoldTransaction.ts';
 
 describe('ChangeHoldTransaction', () => {
   it('should change employee to hold', async () => {
