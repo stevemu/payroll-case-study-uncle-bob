@@ -12,6 +12,6 @@ const db: PayrollDatabase = new PrismaPayrollDatabase(prisma);
 
 const payrollFactory = new PayrollFactoryImpl();
 const transactionFactory = new TransactionFactoryImpl(db, payrollFactory);
-const source = new TextParserTransactionSource(transactionFactory);
-const app = new TransactionApplication(source);
+const transactionSource = new TextParserTransactionSource(transactionFactory);
+const app = new TransactionApplication(transactionSource);
 app.run();
