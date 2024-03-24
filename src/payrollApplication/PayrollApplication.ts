@@ -1,4 +1,4 @@
-import { Application } from '../application/Application.abstract.ts';
+import { Application } from '../application/Application.ts';
 import { Transaction } from '../transactionApplication/Transaction.ts';
 import { PaydayTransaction } from '../generalTransactions/PaydayTransaction.ts';
 
