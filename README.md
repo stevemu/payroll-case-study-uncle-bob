@@ -31,8 +31,6 @@ Unlike the original case study in the book, this implementation introduces a mod
 
 2. **Set up local database:**
 
-   This project requires `ts-node` to execute TypeScript files directly.
-
    ```bash
    pnpm migrate
    ```
@@ -149,7 +147,7 @@ Payday <date>
 Example: Payday 2024-01-02
 ```
 
-# Prisma commands
+# Prisma Dev Commands
 
 - **migrate after updating schema**
   ```
@@ -159,7 +157,7 @@ Example: Payday 2024-01-02
   - delete all migrations files
   - `npx prisma migrate dev --name merged_migration`
 
-# other payroll references
+# Other Payroll case study implementations
 
 - https://github.com/grochon/payroll/tree/master
 - https://cleancodejava.com/uncle-bob-payroll-case-study-full-implementation/
