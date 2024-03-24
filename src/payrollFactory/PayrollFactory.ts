@@ -1,17 +1,17 @@
-import { BiweeklySchedule } from '../payrollImpl/BiweeklySchedule';
-import { CommissionedClassification } from '../payrollImpl/CommissionedClassification';
-import { DirectMethod } from '../payrollImpl/DirectMethod';
-import { HoldMethod } from '../payrollImpl/HoldMethod';
-import { HourlyClassification } from '../payrollImpl/HourlyClassification';
-import { MailMethod } from '../payrollImpl/MailMethod';
-import { MonthlySchedule } from '../payrollImpl/MonthlySchedule';
-import { NoAffiliation } from '../payrollImpl/NoAffiliation';
-import { SalariedClassification } from '../payrollImpl/SalariedClassification';
-import { SalesReceipt } from '../payrollImpl/SalesReceipt';
-import { ServiceCharge } from '../payrollImpl/ServiceCharge';
-import { TimeCard } from '../payrollImpl/TimeCard';
-import { UnionAffiliation } from '../payrollImpl/UnionAffiliation';
-import { WeeklySchedule } from '../payrollImpl/WeeklySchedule';
+import { BiweeklySchedule } from '../payrollImpl/BiweeklySchedule.ts';
+import { CommissionedClassification } from '../payrollImpl/CommissionedClassification.ts';
+import { DirectMethod } from '../payrollImpl/DirectMethod.ts';
+import { HoldMethod } from '../payrollImpl/HoldMethod.ts';
+import { HourlyClassification } from '../payrollImpl/HourlyClassification.ts';
+import { MailMethod } from '../payrollImpl/MailMethod.ts';
+import { MonthlySchedule } from '../payrollImpl/MonthlySchedule.ts';
+import { NoAffiliation } from '../payrollImpl/NoAffiliation.ts';
+import { SalariedClassification } from '../payrollImpl/SalariedClassification.ts';
+import { SalesReceipt } from '../payrollImpl/SalesReceipt.ts';
+import { ServiceCharge } from '../payrollImpl/ServiceCharge.ts';
+import { TimeCard } from '../payrollImpl/TimeCard.ts';
+import { UnionAffiliation } from '../payrollImpl/UnionAffiliation.ts';
+import { WeeklySchedule } from '../payrollImpl/WeeklySchedule.ts';
 
 export interface PayrollFactory {
   makeBiweeklySchedule(): BiweeklySchedule;
