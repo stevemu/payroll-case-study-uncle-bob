@@ -3,7 +3,7 @@ import { WeeklySchedule } from '../payrollImpl/WeeklySchedule.ts';
 import { HourlyClassification } from '../payrollImpl/HourlyClassification.ts';
 import { AddCommissionedEmployeeTransaction } from '../transactionImpl/AddCommissionedEmployeeTransaction.ts';
 import { ChangeHourlyTransaction } from '../transactionImpl/ChangeHourlyTransaction.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('ChangeHourlyTransaction', () => {
   it('should change employee to hourly', async () => {

@@ -2,7 +2,7 @@ import { UnionAffiliation } from '../payrollImpl/UnionAffiliation.ts';
 import { AddServiceChargeTransaction } from '../transactionImpl/AddServiceChargeTransaction.ts';
 import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('AddServiceChargeTransaction', () => {
   it('should add service charge to the membership', async () => {

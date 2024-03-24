@@ -2,7 +2,7 @@ import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts
 import { HourlyClassification } from '../payrollImpl/HourlyClassification.ts';
 import { AddTimeCardTransaction } from '../transactionImpl/TimeCardTransaction.ts';
 import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('AddTimeCardTransaction', () => {
   it('should add a time card to an employee', async () => {

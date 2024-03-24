@@ -27,7 +27,7 @@ import { AddSalariedEmployeeTransaction } from '../transactionImpl/AddSalariedEm
 import { ChangeDirectTransaction } from '../transactionImpl/ChangeDirectTransaction.ts';
 import { ChangeHoldTransaction } from '../transactionImpl/ChangeHoldTransaction.ts';
 import { ChangeMailTransaction } from '../transactionImpl/ChangeMailTransaction.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 import { PayrollFactory } from '../payrollFactory/PayrollFactory.ts';
 
 const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });

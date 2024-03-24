@@ -3,7 +3,7 @@ import { SalariedClassification } from '../payrollImpl/SalariedClassification.ts
 import { HoldMethod } from '../payrollImpl/HoldMethod.ts';
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { MonthlySchedule } from '../payrollImpl/MonthlySchedule.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('AddSalariedEmployee', () => {
   it('should add a salaried employee', async () => {

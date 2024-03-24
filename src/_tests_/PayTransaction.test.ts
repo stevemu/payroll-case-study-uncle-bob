@@ -7,7 +7,7 @@ import { AddCommissionedEmployeeTransaction } from '../transactionImpl/AddCommis
 import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
 import { AddSalariedEmployeeTransaction } from '../transactionImpl/AddSalariedEmployeeTransaction.ts';
 import { ChangeMemberTransaction } from '../transactionImpl/ChangeMemberTransaction.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('PayTransaction', () => {
   let db: MapPayrollDatabase;

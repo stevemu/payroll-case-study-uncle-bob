@@ -3,7 +3,7 @@ import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmploy
 import { ChangeMemberTransaction } from '../transactionImpl/ChangeMemberTransaction.ts';
 import { ChangeUnaffiliatedTransaction } from '../transactionImpl/ChangeUnaffiliatedTransaction.ts';
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('ChangeUnaffiliatedTransaction', () => {
   test('changeUnaffiliated', async () => {

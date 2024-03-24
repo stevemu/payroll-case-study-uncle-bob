@@ -2,7 +2,7 @@ import { UnionAffiliation } from '../payrollImpl/UnionAffiliation.ts';
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
 import { ChangeMemberTransaction } from '../transactionImpl/ChangeMemberTransaction.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('ChangeMemberTransaction', () => {
   test('changeMember', async () => {

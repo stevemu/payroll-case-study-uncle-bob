@@ -1,6 +1,6 @@
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { MailMethod } from '../payrollImpl/MailMethod.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
 import { ChangeMailTransaction } from '../transactionImpl/ChangeMailTransaction.ts';
 

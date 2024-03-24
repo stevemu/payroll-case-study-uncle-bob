@@ -2,7 +2,7 @@ import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts
 import { CommissionedClassification } from '../payrollImpl/CommissionedClassification.ts';
 import { SalesReceiptTransaction } from '../transactionImpl/SalesReceiptTransaction.ts';
 import { AddCommissionedEmployeeTransaction } from '../transactionImpl/AddCommissionedEmployeeTransaction.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('SalesReceiptTransaction', () => {
   it('should create a sales receipt', async () => {

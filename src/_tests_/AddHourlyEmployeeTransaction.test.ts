@@ -3,7 +3,7 @@ import { HoldMethod } from '../payrollImpl/HoldMethod.ts';
 import { WeeklySchedule } from '../payrollImpl/WeeklySchedule.ts';
 import { HourlyClassification } from '../payrollImpl/HourlyClassification.ts';
 import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('AddHourlyEmployee', () => {
   it('should add an hourly employee', async () => {
