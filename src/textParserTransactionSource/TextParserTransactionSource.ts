@@ -1,6 +1,6 @@
 import { Reader } from '../utils/Reader.ts';
 import { TransactionSource } from '../transactionApplication/TransactionSource.ts';
-import { Transaction } from '../transactionApplication/Transaction.ts';
+import { Transaction } from '../transaction/Transaction.ts';
 import { TransactionFactory } from '../transactionFactory/TransactionFactory.ts';
 
 export class TextParserTransactionSource implements TransactionSource {

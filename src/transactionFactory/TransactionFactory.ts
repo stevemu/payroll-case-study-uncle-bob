@@ -1,4 +1,4 @@
-import { Transaction } from '../transactionApplication/Transaction.ts';
+import { Transaction } from '../transaction/Transaction.ts';
 
 export interface TransactionFactory {
   makeAddCommissionedEmployeeTransaction(

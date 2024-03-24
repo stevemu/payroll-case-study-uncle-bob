@@ -1,7 +1,7 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { PayrollFactory } from '../payrollFactory/PayrollFactory.ts';
 import { CommissionedClassification } from '../payrollImpl/CommissionedClassification.ts';
-import { Transaction } from '../transactionApplication/Transaction.ts';
+import { Transaction } from '../transaction/Transaction.ts';
 
 export class SalesReceiptTransaction extends Transaction {
   constructor(
