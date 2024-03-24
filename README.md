@@ -1,6 +1,18 @@
-# Payroll
+# Payroll System Case Study
 
-The payroll case study in Uncle Bob's Agile Software Development book implemented with typescript
+Welcome to our TypeScript implementation of the payroll system, inspired by the case study presented in Uncle Bob's renowned book, *Agile Software Development*. This project aims to bring the concepts discussed in the book to life, demonstrating practical application of agile software development principles.
+
+## About the Project
+
+The payroll system is designed to manage employee payments, incorporating various payroll policies and schedules. It's an excellent example of applying object-oriented design and agile methodologies to solve real-world problems.
+
+Unlike the original case study in the book, this implementation introduces a modern twist: the use of Prisma with a SQLite database for local data storage. This addition showcases how the application can interact with databases, managing data persistence more efficiently and securely.
+
+## Features
+
+- **TypeScript Implementation**: Fully implemented in TypeScript, offering strong typing and modern syntax for improved code quality and maintainability.
+- **Database Integration**: Utilizes Prisma ORM to interact with a SQLite database, demonstrating how to integrate database operations seamlessly into application logic.
+- **Agile Principles in Action**: Follows agile software development practices, illustrating how to apply these principles in the context of a complex software project.
 
 ## Setup Instructions
 
