@@ -20,14 +20,11 @@ import { ChangeAddressTransaction } from '../generalTransactions/ChangeAddressTr
 import { ChangeNameTransaction } from '../generalTransactions/ChangeNameTransaction.ts';
 import { DeleteEmployeeTransaction } from '../generalTransactions/DeleteEmployeeTransaction.ts';
 import { PaydayTransaction } from '../generalTransactions/PaydayTransaction.ts';
-import { PayrollApplication } from '../payrollApplication/PayrollApplication.ts';
 
-export class TextParserTransactionSource extends PayrollApplication implements TransactionSource {
+export class TextParserTransactionSource implements TransactionSource {
   private reader: Reader = new Reader();
 
-  constructor(private db: PayrollDatabase) {
-    super();
-  }
+  constructor(private db: PayrollDatabase) {}
 
   async getTransaction(): Promise<Transaction> {
     const line = await this.reader.readLine('Enter transaction: ');

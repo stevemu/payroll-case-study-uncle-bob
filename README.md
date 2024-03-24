@@ -140,3 +140,7 @@ Example: Payday 2024-01-02
 - **Merge migrations**
   - delete all migrations files
   - `npx prisma migrate dev --name merged_migration`
+
+# other payroll references
+
+- https://github.com/grochon/payroll/tree/master

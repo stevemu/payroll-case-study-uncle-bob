@@ -1,19 +1,13 @@
-import { Application } from '../application/Application.ts';
-import { Transaction } from '../transactionApplication/Transaction.ts';
-import { PaydayTransaction } from '../generalTransactions/PaydayTransaction.ts';
+import { PrismaClient } from '@prisma/client';
+import { config } from '../../configs/prod.config.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../payrollDatabaseImpl/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { TransactionApplication } from '../transactionApplication/TransactionApplication.ts';
+import { TextParserTransactionSource } from '../textParserTransactionSource/TextParserTransactionSource.ts';
 
-export abstract class PayrollApplication extends Application {
-  protected abstract getTransaction(): Promise<Transaction>;
+const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
+const db: PayrollDatabase = new PrismaPayrollDatabase(prisma);
 
-  public async run(): Promise<void> {
-    let transaction: Transaction | null = null;
-    while ((transaction = await this.getTransaction())) {
-      await transaction.execute();
-
-      if (transaction instanceof PaydayTransaction) {
-        const payChecks = transaction.getPayChecks();
-        console.log(payChecks);
-      }
-    }
-  }
-}
+const source = new TextParserTransactionSource(db);
+const app = new TransactionApplication(source);
+app.run();

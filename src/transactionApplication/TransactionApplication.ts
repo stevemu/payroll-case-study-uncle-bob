@@ -1,11 +1,21 @@
-import { PrismaClient } from '@prisma/client';
-import { PrismaPayrollDatabase } from '../payrollDatabaseImpl/PrismaPayrollDatabase/index.ts';
-import { config } from '../../configs/prod.config.ts';
-import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
-import { TextParserTransactionSource } from '../textParserTransactionSource/TextParserTransactionSource.ts';
+import { Application } from '../application/Application.ts';
+import { PaydayTransaction } from '../generalTransactions/PaydayTransaction.ts';
+import { TransactionSource } from './TransactionSource.ts';
 
-const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
-const db: PayrollDatabase = new PrismaPayrollDatabase(prisma);
+export class TransactionApplication extends Application {
+  constructor(private source: TransactionSource) {
+    super();
+  }
 
-const source = new TextParserTransactionSource(db);
-source.run();
+  public async run(): Promise<void> {
+    while (true) {
+      const transaction = await this.source.getTransaction();
+      await transaction.execute();
+
+      if (transaction instanceof PaydayTransaction) {
+        const payChecks = transaction.getPayChecks();
+        console.log(payChecks);
+      }
+    }
+  }
+}
