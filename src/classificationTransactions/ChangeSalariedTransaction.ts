@@ -1,7 +1,7 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
-import { PaymentClassification } from '../payrollDomain/Classification.abstract.ts';
+import { PaymentClassification } from '../payrollDomain/Classification.ts';
 import { SalariedClassification } from '../classifications/SalariedClassification.ts';
-import { Schedule } from '../payrollDomain/Schedule.interface.ts';
+import { PaymentSchedule } from '../payrollDomain/PaymentSchedule.ts';
 import { ChangeClassificationTransaction } from './ChangeClassificationTransaction.ts';
 import { MonthlySchedule } from '../schedules/MonthlySchedule.ts';
 
@@ -17,7 +17,7 @@ export class ChangeSalariedTransaction extends ChangeClassificationTransaction {
   get paymentClassification(): PaymentClassification {
     return new SalariedClassification(this.salary);
   }
-  get paymentSchedule(): Schedule {
+  get paymentSchedule(): PaymentSchedule {
     return new MonthlySchedule();
   }
 }

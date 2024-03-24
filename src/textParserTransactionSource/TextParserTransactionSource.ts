@@ -20,7 +20,7 @@ import { ChangeAddressTransaction } from '../generalTransactions/ChangeAddressTr
 import { ChangeNameTransaction } from '../generalTransactions/ChangeNameTransaction.ts';
 import { DeleteEmployeeTransaction } from '../generalTransactions/DeleteEmployeeTransaction.ts';
 import { PaydayTransaction } from '../generalTransactions/PaydayTransaction.ts';
-import { PayrollApplication } from '../payrollApp/PayrollApplication.ts';
+import { PayrollApplication } from '../payrollApplication/PayrollApplication.ts';
 
 export class TextParserTransactionSource extends PayrollApplication implements TransactionSource {
   private reader: Reader = new Reader();

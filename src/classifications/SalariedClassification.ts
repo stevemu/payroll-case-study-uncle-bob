@@ -1,4 +1,4 @@
-import { PaymentClassification } from '../payrollDomain/Classification.abstract.ts';
+import { PaymentClassification } from '../payrollDomain/Classification.ts';
 
 export class SalariedClassification extends PaymentClassification {
   constructor(public salary: number) {

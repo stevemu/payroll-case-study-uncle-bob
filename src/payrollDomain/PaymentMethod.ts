@@ -1,5 +1,5 @@
 import { PayCheck } from './PayCheck.ts';
 
-export interface Method {
+export interface PaymentMethod {
   pay(payCheck: PayCheck): void;
 }

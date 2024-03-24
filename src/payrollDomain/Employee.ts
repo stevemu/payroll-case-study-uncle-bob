@@ -1,8 +1,8 @@
 import { PayCheck } from './PayCheck.ts';
-import { Affiliation } from './Affiliation.interface.ts';
-import { PaymentClassification } from './Classification.abstract.ts';
-import { Method } from './Method.interface.ts';
-import { Schedule } from './Schedule.interface.ts';
+import { Affiliation } from './Affiliation.ts';
+import { PaymentClassification } from './Classification.ts';
+import { PaymentMethod } from './PaymentMethod.ts';
+import { PaymentSchedule } from './PaymentSchedule.ts';
 import { NoAffiliation } from '../affiliations/noAffiliation/NoAffiliation.ts';
 
 export class Employee {
@@ -13,8 +13,8 @@ export class Employee {
   ) {}
 
   public classification!: PaymentClassification;
-  public schedule!: Schedule;
-  public method!: Method;
+  public schedule!: PaymentSchedule;
+  public method!: PaymentMethod;
   public affiliation: Affiliation = new NoAffiliation();
 
   isPayDate(payDate: Date): boolean {

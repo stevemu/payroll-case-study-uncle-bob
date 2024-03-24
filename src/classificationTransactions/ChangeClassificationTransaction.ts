@@ -1,7 +1,7 @@
 import { Employee } from '../payrollDomain/Employee.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
-import { PaymentClassification } from '../payrollDomain/Classification.abstract.ts';
-import { Schedule } from '../payrollDomain/Schedule.interface.ts';
+import { PaymentClassification } from '../payrollDomain/Classification.ts';
+import { PaymentSchedule } from '../payrollDomain/PaymentSchedule.ts';
 import { ChangeEmployeeTransaction } from '../generalTransactions/ChangeEmployeeTransaction.ts';
 
 export abstract class ChangeClassificationTransaction extends ChangeEmployeeTransaction {
@@ -10,7 +10,7 @@ export abstract class ChangeClassificationTransaction extends ChangeEmployeeTran
   }
 
   abstract get paymentClassification(): PaymentClassification;
-  abstract get paymentSchedule(): Schedule;
+  abstract get paymentSchedule(): PaymentSchedule;
 
   async change(employee: Employee) {
     employee.classification = this.paymentClassification;

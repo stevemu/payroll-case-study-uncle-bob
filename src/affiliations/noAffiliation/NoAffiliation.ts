@@ -1,5 +1,5 @@
 import { PayCheck } from '../../payrollDomain/PayCheck.ts';
-import { Affiliation } from '../../payrollDomain/Affiliation.interface.ts';
+import { Affiliation } from '../../payrollDomain/Affiliation.ts';
 
 export class NoAffiliation implements Affiliation {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

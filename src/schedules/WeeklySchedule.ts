@@ -1,6 +1,6 @@
-import { Schedule } from '../payrollDomain/Schedule.interface.ts';
+import { PaymentSchedule } from '../payrollDomain/PaymentSchedule.ts';
 
-export class WeeklySchedule implements Schedule {
+export class WeeklySchedule implements PaymentSchedule {
   isFriday(date: Date): boolean {
     return date.getDay() === 5;
   }

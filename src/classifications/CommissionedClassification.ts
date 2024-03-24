@@ -1,5 +1,5 @@
 import { PayCheck } from '../payrollDomain/PayCheck.ts';
-import { PaymentClassification } from '../payrollDomain/Classification.abstract.ts';
+import { PaymentClassification } from '../payrollDomain/Classification.ts';
 import { SalesReceipt } from './SalesReceipt.ts';
 
 export class CommissionedClassification extends PaymentClassification {

@@ -1,6 +1,6 @@
-import { Schedule } from '../payrollDomain/Schedule.interface.ts';
+import { PaymentSchedule } from '../payrollDomain/PaymentSchedule.ts';
 
-export class MonthlySchedule implements Schedule {
+export class MonthlySchedule implements PaymentSchedule {
   isLastDayOfMonth(date: Date): boolean {
     const month = date.getMonth();
     const year = date.getFullYear();

@@ -1,5 +1,5 @@
 import { Employee } from '../payrollDomain/Employee.ts';
-import { Affiliation } from '../payrollDomain/Affiliation.interface.ts';
+import { Affiliation } from '../payrollDomain/Affiliation.ts';
 import { UnionAffiliation } from '../affiliations/union/UnionAffiliation.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
 import { ChangeAffiliationTransaction } from './ChangeAffiliationTransaction.abstract.ts';

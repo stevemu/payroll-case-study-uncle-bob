@@ -3,7 +3,7 @@ import { SalariedClassification } from '../../classifications/SalariedClassifica
 import { CommissionedClassification } from '../../classifications/CommissionedClassification.ts';
 import { HourlyClassification } from '../../classifications/HourlyClassification.ts';
 import { Employee } from '../../payrollDomain/Employee.ts';
-import { PaymentClassification } from '../../payrollDomain/Classification.abstract.ts';
+import { PaymentClassification } from '../../payrollDomain/Classification.ts';
 import { TimeCard } from '../../classifications/TimeCard.ts';
 import { SalesReceipt } from '../../classifications/SalesReceipt.ts';
 

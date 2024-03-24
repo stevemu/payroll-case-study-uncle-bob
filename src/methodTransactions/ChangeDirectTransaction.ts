@@ -1,6 +1,6 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
 import { DirectMethod } from '../methods/DirectMethod.ts';
-import { Method } from '../payrollDomain/Method.interface.ts';
+import { PaymentMethod } from '../payrollDomain/PaymentMethod.ts';
 import { ChangeMethodTransaction } from './ChangeMethodTransaction.ts';
 
 export class ChangeDirectTransaction extends ChangeMethodTransaction {
@@ -13,7 +13,7 @@ export class ChangeDirectTransaction extends ChangeMethodTransaction {
     super(db, empId);
   }
 
-  getMethod(): Method {
+  getMethod(): PaymentMethod {
     return new DirectMethod(this.bank, this.account);
   }
 }
