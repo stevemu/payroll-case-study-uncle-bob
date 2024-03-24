@@ -1,7 +1,7 @@
 import { Transaction } from '../transactionApplication/Transaction';
 
 export interface TransactionFactory {
-  makeCommissionedEmployeeTransaction(
+  makeAddCommissionedEmployeeTransaction(
     empId: number,
     name: string,
     address: string,
@@ -14,7 +14,7 @@ export interface TransactionFactory {
     address: string,
     hourlyRate: number,
   ): Transaction;
-  makeSalariedEmployeeTransaction(
+  makeAddSalariedEmployeeTransaction(
     empId: number,
     name: string,
     address: string,
@@ -28,7 +28,7 @@ export interface TransactionFactory {
     commissionRate: number,
   ): Transaction;
   makeChangeDirectTransaction(empId: number, bank: string, account: string): Transaction;
-  makeChangeHoldTransaction(empId: number): Transaction;
+  makeChangeHoldTransaction(empId: number, address: string): Transaction;
   makeChangeHourlyTransaction(empId: number, hourlyRate: number): Transaction;
   makeChangeMailTransaction(empId: number, address: string): Transaction;
   makeChangeMemberTransaction(empId: number, memberId: number, dues: number): Transaction;
