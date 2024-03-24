@@ -160,4 +160,5 @@ Example: Payday 2024-01-02
 # Other Payroll case study implementations
 
 - https://github.com/grochon/payroll/tree/master
+  - I referenced code in this repo. Thank you!
 - https://cleancodejava.com/uncle-bob-payroll-case-study-full-implementation/
