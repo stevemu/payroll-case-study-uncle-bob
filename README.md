@@ -23,12 +23,18 @@ Unlike the original case study in the book, this implementation introduces a mod
 
 ### Installation
 
-1. **Install ts-node globally:**
+1. **Install packages:**
+
+   ```bash
+   pnpm install
+   ```
+
+2. **Set up local database:**
 
    This project requires `ts-node` to execute TypeScript files directly.
 
    ```bash
-   npm install -g ts-node
+   pnpm migrate
    ```
 
 ## Running the Application
@@ -36,7 +42,7 @@ Unlike the original case study in the book, this implementation introduces a mod
 To run the application, execute the following command in your terminal:
 
 ```bash
-ts-node --esm ./src/App.ts
+pnpm app
 ```
 
 ## Using the Application
