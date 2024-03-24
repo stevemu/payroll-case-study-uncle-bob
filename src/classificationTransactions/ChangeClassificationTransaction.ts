@@ -1,5 +1,5 @@
 import { Employee } from '../payrollDomain/Employee.ts';
-import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { PaymentClassification } from '../payrollDomain/Classification.ts';
 import { PaymentSchedule } from '../payrollDomain/PaymentSchedule.ts';
 import { ChangeEmployeeTransaction } from '../generalTransactions/ChangeEmployeeTransaction.ts';

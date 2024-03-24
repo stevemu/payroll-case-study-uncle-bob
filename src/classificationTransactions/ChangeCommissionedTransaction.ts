@@ -1,4 +1,4 @@
-import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { BiweeklySchedule } from '../schedules/BiweeklySchedule.ts';
 import { CommissionedClassification } from '../classifications/CommissionedClassification.ts';
 import { ChangeClassificationTransaction } from './ChangeClassificationTransaction.ts';

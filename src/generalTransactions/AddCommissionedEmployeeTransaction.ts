@@ -1,9 +1,9 @@
-import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
 import { PaymentClassification } from '../payrollDomain/Classification.ts';
 import { CommissionedClassification } from '../classifications/CommissionedClassification.ts';
 import { PaymentSchedule } from '../payrollDomain/PaymentSchedule.ts';
 import { AddEmployeeTransaction } from './AddEmployeeTransaction.ts';
 import { BiweeklySchedule } from '../schedules/BiweeklySchedule.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 
 export class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction {
   constructor(

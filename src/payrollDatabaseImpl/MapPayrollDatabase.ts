@@ -1,5 +1,5 @@
 import { Employee } from '../payrollDomain/Employee.ts';
-import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 
 /**
  * used by unit tests for transactions

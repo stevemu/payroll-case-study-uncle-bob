@@ -11,7 +11,7 @@ import { SalesReceiptTransaction } from '../classificationTransactions/SalesRece
 import { AddCommissionedEmployeeTransaction } from '../generalTransactions/AddCommissionedEmployeeTransaction.ts';
 import { AddHourlyEmployeeTransaction } from '../generalTransactions/AddHourlyEmployeeTransaction.ts';
 import { AddSalariedEmployeeTransaction } from '../generalTransactions/AddSalariedEmployeeTransaction.ts';
-import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { ChangeDirectTransaction } from '../methodTransactions/ChangeDirectTransaction.ts';
 import { ChangeHoldTransaction } from '../methodTransactions/ChangeHoldTransaction.ts';
 import { ChangeMailTransaction } from '../methodTransactions/ChangeMailTransaction.ts';

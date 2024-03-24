@@ -1,4 +1,4 @@
-import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { DirectMethod } from '../methods/DirectMethod.ts';
 import { PaymentMethod } from '../payrollDomain/PaymentMethod.ts';
 import { ChangeMethodTransaction } from './ChangeMethodTransaction.ts';

@@ -1,5 +1,5 @@
 import { PayCheck } from '../payrollDomain/PayCheck.ts';
-import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { Transaction } from '../transactionApplication/Transaction.ts';
 
 export class PaydayTransaction extends Transaction {
