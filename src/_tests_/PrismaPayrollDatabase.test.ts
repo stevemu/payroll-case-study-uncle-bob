@@ -27,11 +27,14 @@ import { AddSalariedEmployeeTransaction } from '../transactionImpl/AddSalariedEm
 import { ChangeDirectTransaction } from '../transactionImpl/ChangeDirectTransaction.ts';
 import { ChangeHoldTransaction } from '../transactionImpl/ChangeHoldTransaction.ts';
 import { ChangeMailTransaction } from '../transactionImpl/ChangeMailTransaction.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
+import { PayrollFactory } from '../payrollFactory/PayrollFactory.ts';
 
 const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
 
 describe('PayrollDatabase', () => {
   let db: PrismaPayrollDatabase;
+  const payrollFactory: PayrollFactory = new PayrollFactoryImpl();
 
   beforeAll(async () => {
     db = new PrismaPayrollDatabase(prisma);
@@ -44,13 +47,20 @@ describe('PayrollDatabase', () => {
   test('hourly employee', async () => {
     const empId = 1;
     const hourlyRate = 20;
-    const t = new AddHourlyEmployeeTransaction(db, empId, 'Bob', 'Home', hourlyRate);
+    const t = new AddHourlyEmployeeTransaction(
+      db,
+      payrollFactory,
+      empId,
+      'Bob',
+      'Home',
+      hourlyRate,
+    );
     await t.execute();
 
-    const t2 = new AddTimeCardTransaction(db, empId, new Date(2021, 1, 1), 8);
+    const t2 = new AddTimeCardTransaction(db, payrollFactory, empId, new Date(2021, 1, 1), 8);
     await t2.execute();
 
-    const t3 = new AddTimeCardTransaction(db, empId, new Date(2021, 1, 2), 8);
+    const t3 = new AddTimeCardTransaction(db, payrollFactory, empId, new Date(2021, 1, 2), 8);
     await t3.execute();
 
     const e = (await db.getEmployee(empId))!;
@@ -68,7 +78,7 @@ describe('PayrollDatabase', () => {
   test('add salary employee', async () => {
     const empId = 1;
     const salary = 2000;
-    const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', salary);
+    const t = new AddSalariedEmployeeTransaction(db, payrollFactory, empId, 'Bob', 'Home', salary);
     await t.execute();
 
     const e = await db.getEmployee(empId);
@@ -85,6 +95,7 @@ describe('PayrollDatabase', () => {
     const commissionRate = 0.1;
     const t = new AddCommissionedEmployeeTransaction(
       db,
+      payrollFactory,
       empId,
       'Bob',
       'Home',
@@ -95,6 +106,7 @@ describe('PayrollDatabase', () => {
 
     const addSalesReceiptTransaction = new SalesReceiptTransaction(
       db,
+      payrollFactory,
       empId,
       new Date(2021, 1, 1),
       100,
@@ -103,6 +115,7 @@ describe('PayrollDatabase', () => {
 
     const addSalesReceiptTransaction2 = new SalesReceiptTransaction(
       db,
+      payrollFactory,
       empId,
       new Date(2021, 1, 2),
       200,
@@ -128,6 +141,7 @@ describe('PayrollDatabase', () => {
     const commissionRate = 0.1;
     const t = new AddCommissionedEmployeeTransaction(
       db,
+      payrollFactory,
       empId,
       'Bob',
       'Home',
@@ -149,14 +163,15 @@ describe('PayrollDatabase', () => {
     const memberId = 100;
     const salary = 2000;
 
-    const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', salary);
+    const t = new AddSalariedEmployeeTransaction(db, payrollFactory, empId, 'Bob', 'Home', salary);
     await t.execute();
 
-    const memberTransaction = new ChangeMemberTransaction(db, empId, memberId, 20);
+    const memberTransaction = new ChangeMemberTransaction(db, payrollFactory, empId, memberId, 20);
     await memberTransaction.execute();
 
     const serviceChargeTransaction = new AddServiceChargeTransaction(
       db,
+      payrollFactory,
       memberId,
       new Date(2021, 1, 1),
       10,
@@ -165,6 +180,7 @@ describe('PayrollDatabase', () => {
 
     const serviceChargeTransaction2 = new AddServiceChargeTransaction(
       db,
+      payrollFactory,
       memberId,
       new Date(2021, 1, 2),
       20,
@@ -180,7 +196,7 @@ describe('PayrollDatabase', () => {
     expect(a.getServiceCharge(new Date(2021, 1, 1))!.amount).toBe(10);
     expect(a.getServiceCharge(new Date(2021, 1, 2))!.amount).toBe(20);
 
-    const noMemberTransaction = new ChangeUnaffiliatedTransaction(db, empId);
+    const noMemberTransaction = new ChangeUnaffiliatedTransaction(db, payrollFactory, empId);
     await noMemberTransaction.execute();
 
     const e2 = (await db.getEmployee(empId))!;
@@ -191,7 +207,7 @@ describe('PayrollDatabase', () => {
     const empId = 1;
     const salary = 2000;
 
-    const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home1', salary);
+    const t = new AddSalariedEmployeeTransaction(db, payrollFactory, empId, 'Bob', 'Home1', salary);
     await t.execute();
 
     const e = await db.getEmployee(empId);
@@ -199,21 +215,27 @@ describe('PayrollDatabase', () => {
     expect(e!.method).toBeInstanceOf(HoldMethod);
     expect((e!.method as HoldMethod).address).toBe('Office');
 
-    const changeMailTransaction = new ChangeMailTransaction(db, empId, 'Mail');
+    const changeMailTransaction = new ChangeMailTransaction(db, payrollFactory, empId, 'Mail');
     await changeMailTransaction.execute();
 
     const e2 = await db.getEmployee(empId);
     expect(e2!.method).toBeInstanceOf(MailMethod);
     expect((e2!.method as MailMethod).address).toBe('Mail');
 
-    const changeDirectTransaction = new ChangeDirectTransaction(db, empId, 'Bank', 'Account');
+    const changeDirectTransaction = new ChangeDirectTransaction(
+      db,
+      payrollFactory,
+      empId,
+      'Bank',
+      'Account',
+    );
     await changeDirectTransaction.execute();
 
     const e3 = (await db.getEmployee(empId))!;
     expect((e3.method as DirectMethod).bank).toBe('Bank');
     expect((e3.method as DirectMethod).account).toBe('Account');
 
-    const changeHoldTransaction = new ChangeHoldTransaction(db, empId, 'Office');
+    const changeHoldTransaction = new ChangeHoldTransaction(db, payrollFactory, empId, 'Office');
     await changeHoldTransaction.execute();
 
     const e4 = (await db.getEmployee(empId))!;
@@ -224,26 +246,32 @@ describe('PayrollDatabase', () => {
   test('payment schedule', async () => {
     const empId = 1;
 
-    const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', 2000);
+    const t = new AddSalariedEmployeeTransaction(db, payrollFactory, empId, 'Bob', 'Home', 2000);
     await t.execute();
 
     const e = (await db.getEmployee(empId))!;
     expect(e).toBeInstanceOf(Employee);
     expect(e.schedule).toBeInstanceOf(MonthlySchedule);
 
-    const changeHourlyTransaction = new ChangeHourlyTransaction(db, empId, 20);
+    const changeHourlyTransaction = new ChangeHourlyTransaction(db, payrollFactory, empId, 20);
     await changeHourlyTransaction.execute();
 
     const e2 = (await db.getEmployee(empId))!;
     expect(e2.schedule).toBeInstanceOf(WeeklySchedule);
 
-    const changeCommissionedTransaction = new ChangeCommissionedTransaction(db, empId, 2000, 0.1);
+    const changeCommissionedTransaction = new ChangeCommissionedTransaction(
+      db,
+      payrollFactory,
+      empId,
+      2000,
+      0.1,
+    );
     await changeCommissionedTransaction.execute();
 
     const e3 = (await db.getEmployee(empId))!;
     expect(e3.schedule).toBeInstanceOf(BiweeklySchedule);
 
-    const changeSalaryTransaction = new ChangeSalariedTransaction(db, empId, 2000);
+    const changeSalaryTransaction = new ChangeSalariedTransaction(db, payrollFactory, empId, 2000);
     await changeSalaryTransaction.execute();
 
     const e4 = (await db.getEmployee(empId))!;

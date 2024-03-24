@@ -2,12 +2,15 @@ import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts
 import { CommissionedClassification } from '../payrollImpl/CommissionedClassification.ts';
 import { SalesReceiptTransaction } from '../transactionImpl/SalesReceiptTransaction.ts';
 import { AddCommissionedEmployeeTransaction } from '../transactionImpl/AddCommissionedEmployeeTransaction.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
 
 describe('SalesReceiptTransaction', () => {
   it('should create a sales receipt', async () => {
+    const payrollFactory = new PayrollFactoryImpl();
     const db = new MapPayrollDatabase();
     const addEmployeeTransaction = new AddCommissionedEmployeeTransaction(
       db,
+      payrollFactory,
       1,
       'Bob',
       'Home',
@@ -17,7 +20,7 @@ describe('SalesReceiptTransaction', () => {
     await addEmployeeTransaction.execute();
 
     const date = new Date(2022, 0, 1);
-    const transaction = new SalesReceiptTransaction(db, 1, date, 100);
+    const transaction = new SalesReceiptTransaction(db, payrollFactory, 1, date, 100);
     await transaction.execute();
 
     const employee = await db.getEmployee(1)!;

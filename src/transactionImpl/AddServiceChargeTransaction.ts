@@ -1,11 +1,12 @@
-import { ServiceCharge } from '../payrollImpl/ServiceCharge.ts';
 import { UnionAffiliation } from '../payrollImpl/UnionAffiliation.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { Transaction } from '../transactionApplication/Transaction.ts';
+import { PayrollFactory } from '../payrollFactory/PayrollFactory.ts';
 
 export class AddServiceChargeTransaction implements Transaction {
   constructor(
     private db: PayrollDatabase,
+    private payrollFactory: PayrollFactory,
     private memberId: number,
     private date: Date,
     private amount: number,
@@ -15,7 +16,7 @@ export class AddServiceChargeTransaction implements Transaction {
     const member = await this.db.getUnionMember(this.memberId)!;
     const af = member!.affiliation;
     if (af instanceof UnionAffiliation) {
-      af.addServiceCharge(new ServiceCharge(this.date, this.amount));
+      af.addServiceCharge(this.payrollFactory.makeServiceCharge(this.date, this.amount));
       await this.db.saveEmployee(member!);
     }
   }

@@ -2,12 +2,21 @@ import { UnionAffiliation } from '../payrollImpl/UnionAffiliation.ts';
 import { AddServiceChargeTransaction } from '../transactionImpl/AddServiceChargeTransaction.ts';
 import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
 
 describe('AddServiceChargeTransaction', () => {
   it('should add service charge to the membership', async () => {
+    const payrollFactory = new PayrollFactoryImpl();
     const db = new MapPayrollDatabase();
     const empId = 2;
-    const addHourlyEmployee = new AddHourlyEmployeeTransaction(db, empId, 'Bill', 'Home', 15.25);
+    const addHourlyEmployee = new AddHourlyEmployeeTransaction(
+      db,
+      payrollFactory,
+      empId,
+      'Bill',
+      'Home',
+      15.25,
+    );
     await addHourlyEmployee.execute();
 
     const e = (await db.getEmployee(empId))!;
@@ -20,7 +29,7 @@ describe('AddServiceChargeTransaction', () => {
 
     const date = new Date(2021, 8, 10);
     const amount = 100;
-    const transaction = new AddServiceChargeTransaction(db, memberId, date, amount);
+    const transaction = new AddServiceChargeTransaction(db, payrollFactory, memberId, date, amount);
     await transaction.execute();
 
     const member = await db.getUnionMember(memberId);

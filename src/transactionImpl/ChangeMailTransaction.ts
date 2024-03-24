@@ -1,10 +1,11 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
-import { MailMethod } from '../payrollImpl/MailMethod.ts';
 import { ChangeMethodTransaction } from '../abstractTransactions/ChangeMethodTransaction.ts';
+import { PayrollFactory } from '../payrollFactory/PayrollFactory.ts';
 
 export class ChangeMailTransaction extends ChangeMethodTransaction {
   constructor(
     db: PayrollDatabase,
+    private payrollFactory: PayrollFactory,
     empId: number,
     private address: string,
   ) {
@@ -12,6 +13,6 @@ export class ChangeMailTransaction extends ChangeMethodTransaction {
   }
 
   getMethod() {
-    return new MailMethod(this.address);
+    return this.payrollFactory.makeMailMethod(this.address);
   }
 }

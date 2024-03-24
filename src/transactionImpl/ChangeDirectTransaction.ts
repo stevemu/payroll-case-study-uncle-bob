@@ -1,11 +1,12 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
-import { DirectMethod } from '../payrollImpl/DirectMethod.ts';
 import { PaymentMethod } from '../payrollDomain/PaymentMethod.ts';
 import { ChangeMethodTransaction } from '../abstractTransactions/ChangeMethodTransaction.ts';
+import { PayrollFactory } from '../payrollFactory/PayrollFactory.ts';
 
 export class ChangeDirectTransaction extends ChangeMethodTransaction {
   constructor(
     db: PayrollDatabase,
+    private payrollFactory: PayrollFactory,
     empId: number,
     private bank: string,
     private account: string,
@@ -14,6 +15,6 @@ export class ChangeDirectTransaction extends ChangeMethodTransaction {
   }
 
   getMethod(): PaymentMethod {
-    return new DirectMethod(this.bank, this.account);
+    return this.payrollFactory.makeDirectMethod(this.bank, this.account);
   }
 }

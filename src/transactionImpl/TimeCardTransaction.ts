@@ -1,11 +1,12 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
+import { PayrollFactory } from '../payrollFactory/PayrollFactory.ts';
 import { HourlyClassification } from '../payrollImpl/HourlyClassification.ts';
-import { TimeCard } from '../payrollImpl/TimeCard.ts';
 import { Transaction } from '../transactionApplication/Transaction.ts';
 
 export class AddTimeCardTransaction implements Transaction {
   constructor(
     private db: PayrollDatabase,
+    private payrollFactory: PayrollFactory,
     private employeeId: number,
     private date: Date,
     private hours: number,
@@ -23,7 +24,7 @@ export class AddTimeCardTransaction implements Transaction {
     }
 
     const pc = employee.classification;
-    pc.addTimeCard(new TimeCard(this.date, this.hours));
+    pc.addTimeCard(this.payrollFactory.makeTimeCard(this.date, this.hours));
     await this.db.saveEmployee(employee);
   }
 }

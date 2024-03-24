@@ -1,12 +1,15 @@
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { DeleteEmployeeTransaction } from '../transactionImpl/DeleteEmployeeTransaction.ts';
 import { AddSalariedEmployeeTransaction } from '../transactionImpl/AddSalariedEmployeeTransaction.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
 
 describe('DeleteEmployeeTransaction', () => {
   it('should delete an employee', async () => {
     const db = new MapPayrollDatabase();
+    const payrollFactory = new PayrollFactoryImpl();
+
     const empId = 1;
-    const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', 1000.0);
+    const t = new AddSalariedEmployeeTransaction(db, payrollFactory, empId, 'Bob', 'Home', 1000.0);
     await t.execute();
 
     const e = await db.getEmployee(empId);

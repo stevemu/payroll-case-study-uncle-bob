@@ -1,14 +1,17 @@
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
 import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
 import { ChangeAddressTransaction } from '../transactionImpl/ChangeAddressTransaction.ts';
 
 describe('ChangeEmployeeAddressTransaction', () => {
   it('should change employee address', async () => {
+    const payrollFactory = new PayrollFactoryImpl();
     const db = new MapPayrollDatabase();
     const employeeId = 1;
 
     const addEmployeeTransaction = new AddHourlyEmployeeTransaction(
       db,
+      payrollFactory,
       employeeId,
       'Bill',
       'Home',

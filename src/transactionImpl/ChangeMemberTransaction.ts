@@ -1,12 +1,13 @@
 import { Employee } from '../payrollDomain/Employee.ts';
 import { Affiliation } from '../payrollDomain/Affiliation.ts';
-import { UnionAffiliation } from '../payrollImpl/UnionAffiliation.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { ChangeAffiliationTransaction } from '../abstractTransactions/ChangeAffiliationTransaction.ts';
+import { PayrollFactory } from '../payrollFactory/PayrollFactory.ts';
 
 export class ChangeMemberTransaction extends ChangeAffiliationTransaction {
   constructor(
     db: PayrollDatabase,
+    private payrollFactory: PayrollFactory,
     empId: number,
     private memberId: number,
     private dues: number,
@@ -19,6 +20,6 @@ export class ChangeMemberTransaction extends ChangeAffiliationTransaction {
   }
 
   getAffiliation(): Affiliation {
-    return new UnionAffiliation(this.memberId, this.dues);
+    return this.payrollFactory.makeUnionAffiliation(this.memberId, this.dues);
   }
 }

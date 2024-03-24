@@ -1,11 +1,12 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
+import { PayrollFactory } from '../payrollFactory/PayrollFactory.ts';
 import { CommissionedClassification } from '../payrollImpl/CommissionedClassification.ts';
-import { SalesReceipt } from '../payrollImpl/SalesReceipt.ts';
 import { Transaction } from '../transactionApplication/Transaction.ts';
 
 export class SalesReceiptTransaction extends Transaction {
   constructor(
     private db: PayrollDatabase,
+    private payrollFactory: PayrollFactory,
     private empId: number,
     private date: Date,
     private amount: number,
@@ -26,7 +27,7 @@ export class SalesReceiptTransaction extends Transaction {
     }
 
     const cc = pc as CommissionedClassification;
-    cc.addSalesReceipt(new SalesReceipt(this.date, this.amount));
+    cc.addSalesReceipt(this.payrollFactory.makeSalesReceipt(this.date, this.amount));
 
     await this.db.saveEmployee(e);
   }

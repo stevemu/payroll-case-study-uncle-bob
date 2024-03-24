@@ -1,12 +1,16 @@
 import { Employee } from '../payrollDomain/Employee.ts';
 import { Affiliation } from '../payrollDomain/Affiliation.ts';
-import { NoAffiliation } from '../payrollImpl/NoAffiliation.ts';
 import { UnionAffiliation } from '../payrollImpl/UnionAffiliation.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { ChangeAffiliationTransaction } from '../abstractTransactions/ChangeAffiliationTransaction.ts';
+import { PayrollFactory } from '../payrollFactory/PayrollFactory.ts';
 
 export class ChangeUnaffiliatedTransaction extends ChangeAffiliationTransaction {
-  constructor(db: PayrollDatabase, empId: number) {
+  constructor(
+    db: PayrollDatabase,
+    private payrollFactory: PayrollFactory,
+    empId: number,
+  ) {
     super(db, empId);
   }
 
@@ -17,6 +21,6 @@ export class ChangeUnaffiliatedTransaction extends ChangeAffiliationTransaction 
   }
 
   getAffiliation(): Affiliation {
-    return new NoAffiliation();
+    return this.payrollFactory.makeNoAffiliation();
   }
 }

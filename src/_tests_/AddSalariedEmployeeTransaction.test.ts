@@ -3,12 +3,14 @@ import { SalariedClassification } from '../payrollImpl/SalariedClassification.ts
 import { HoldMethod } from '../payrollImpl/HoldMethod.ts';
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { MonthlySchedule } from '../payrollImpl/MonthlySchedule.ts';
+import { PayrollFactoryImpl } from '../payrollImpl/PayrollFactoryImpl.ts';
 
 describe('AddSalariedEmployee', () => {
   it('should add a salaried employee', async () => {
+    const payrollFactory = new PayrollFactoryImpl();
     const db = new MapPayrollDatabase();
     const empId = 1;
-    const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', 1000.0);
+    const t = new AddSalariedEmployeeTransaction(db, payrollFactory, empId, 'Bob', 'Home', 1000.0);
     await t.execute();
 
     const e = (await db.getEmployee(empId))!;
