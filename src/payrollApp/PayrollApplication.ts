@@ -1,6 +1,6 @@
 import { Application } from '../application/Application.abstract.ts';
-import { Transaction } from '../payrollDomain/Transaction.interface.ts';
-import { PayTransaction } from '../generalTransactions/PayTransaction.ts';
+import { Transaction } from '../transactionApplication/Transaction.ts';
+import { PaydayTransaction } from '../generalTransactions/PaydayTransaction.ts';
 
 export abstract class PayrollApplication extends Application {
   protected abstract getTransaction(): Promise<Transaction>;
@@ -10,7 +10,7 @@ export abstract class PayrollApplication extends Application {
     while ((transaction = await this.getTransaction())) {
       await transaction.execute();
 
-      if (transaction instanceof PayTransaction) {
+      if (transaction instanceof PaydayTransaction) {
         const payChecks = transaction.getPayChecks();
         console.log(payChecks);
       }

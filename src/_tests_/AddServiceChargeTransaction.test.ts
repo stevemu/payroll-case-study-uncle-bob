@@ -1,4 +1,4 @@
-import { UnionAffiliation } from '../affiliation/union/UnionAffiliation.ts';
+import { UnionAffiliation } from '../affiliations/union/UnionAffiliation.ts';
 import { AddServiceChargeTransaction } from '../affiliationTransactions/AddServiceChargeTransaction.ts';
 import { AddHourlyEmployeeTransaction } from '../generalTransactions/AddHourlyEmployeeTransaction.ts';
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';

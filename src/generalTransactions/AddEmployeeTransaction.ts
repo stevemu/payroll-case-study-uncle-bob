@@ -3,7 +3,7 @@ import { Employee } from '../payrollDomain/Employee.ts';
 import { PaymentClassification } from '../payrollDomain/Classification.abstract.ts';
 import { HoldMethod } from '../methods/HoldMethod.ts';
 import { Schedule } from '../payrollDomain/Schedule.interface.ts';
-import { Transaction } from '../payrollDomain/Transaction.interface.ts';
+import { Transaction } from '../transactionApplication/Transaction.ts';
 
 export abstract class AddEmployeeTransaction extends Transaction {
   constructor(

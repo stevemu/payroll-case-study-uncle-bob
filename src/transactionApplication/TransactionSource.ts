@@ -1,4 +1,4 @@
-import { Transaction } from '../payrollDomain/Transaction.interface.ts';
+import { Transaction } from './Transaction.ts';
 
 export interface TransactionSource {
   getTransaction(): Promise<Transaction>;

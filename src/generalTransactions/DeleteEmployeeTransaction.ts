@@ -1,5 +1,5 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
-import { Transaction } from '../payrollDomain/Transaction.interface.ts';
+import { Transaction } from '../transactionApplication/Transaction.ts';
 
 export class DeleteEmployeeTransaction implements Transaction {
   constructor(

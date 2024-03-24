@@ -2,9 +2,9 @@ import { Employee } from '../payrollDomain/Employee.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
 import { PaymentClassification } from '../payrollDomain/Classification.abstract.ts';
 import { Schedule } from '../payrollDomain/Schedule.interface.ts';
-import { ChangeEmployeeTransaction } from '../generalTransactions/ChangeEmployeeTransaction.abstract.ts';
+import { ChangeEmployeeTransaction } from '../generalTransactions/ChangeEmployeeTransaction.ts';
 
-export abstract class ChangeClassification extends ChangeEmployeeTransaction {
+export abstract class ChangeClassificationTransaction extends ChangeEmployeeTransaction {
   constructor(db: PayrollDatabase, empId: number) {
     super(db, empId);
   }

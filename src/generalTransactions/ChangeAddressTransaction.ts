@@ -1,17 +1,17 @@
 import { Employee } from '../payrollDomain/Employee.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
-import { ChangeEmployeeTransaction } from './ChangeEmployeeTransaction.abstract.ts';
+import { ChangeEmployeeTransaction } from './ChangeEmployeeTransaction.ts';
 
-export class ChangeEmployeeNameTransaction extends ChangeEmployeeTransaction {
+export class ChangeAddressTransaction extends ChangeEmployeeTransaction {
   constructor(
     db: PayrollDatabase,
     empId: number,
-    private newName: string,
+    private newAddress: string,
   ) {
     super(db, empId);
   }
 
   protected change(employee: Employee): void {
-    employee.name = this.newName;
+    employee.address = this.newAddress;
   }
 }

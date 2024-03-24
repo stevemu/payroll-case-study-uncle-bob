@@ -1,6 +1,6 @@
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { AddHourlyEmployeeTransaction } from '../generalTransactions/AddHourlyEmployeeTransaction.ts';
-import { ChangeEmployeeNameTransaction } from '../generalTransactions/ChangeEmployeeNameTransaction.ts';
+import { ChangeNameTransaction } from '../generalTransactions/ChangeNameTransaction.ts';
 
 describe('ChangeEmployeeNameTransaction', () => {
   it('should change employee name', async () => {
@@ -16,7 +16,7 @@ describe('ChangeEmployeeNameTransaction', () => {
     );
     await addEmployeeTransaction.execute();
 
-    const transaction = new ChangeEmployeeNameTransaction(db, employeeId, 'Bob');
+    const transaction = new ChangeNameTransaction(db, employeeId, 'Bob');
     await transaction.execute();
 
     const employee = await db.getEmployee(employeeId);

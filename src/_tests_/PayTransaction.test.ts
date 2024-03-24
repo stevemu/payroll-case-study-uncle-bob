@@ -1,7 +1,7 @@
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
 import { AddServiceChargeTransaction } from '../affiliationTransactions/AddServiceChargeTransaction.ts';
-import { AddTimeCardTransaction } from '../classificationTransactions/AddTimeCardTransaction.ts';
-import { PayTransaction } from '../generalTransactions/PayTransaction.ts';
+import { AddTimeCardTransaction } from '../classificationTransactions/TimeCardTransaction.ts';
+import { PaydayTransaction } from '../generalTransactions/PaydayTransaction.ts';
 import { SalesReceiptTransaction } from '../classificationTransactions/SalesReceiptTransaction.ts';
 import { AddCommissionedEmployeeTransaction } from '../generalTransactions/AddCommissionedEmployeeTransaction.ts';
 import { AddHourlyEmployeeTransaction } from '../generalTransactions/AddHourlyEmployeeTransaction.ts';
@@ -21,7 +21,7 @@ describe('PayTransaction', () => {
     await addSalariedEmployee.execute();
 
     const payDate = new Date(2001, 10, 30); // last day of month
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 1000);
@@ -36,7 +36,7 @@ describe('PayTransaction', () => {
     await changeMemberTransaction.execute();
 
     const payDate = new Date(2001, 10, 30); // last day of month
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     const e = await db.getEmployee(empId);
@@ -55,7 +55,7 @@ describe('PayTransaction', () => {
     const addSalariedEmployee = new AddSalariedEmployeeTransaction(db, empId, 'Bill', 'Home', 1000);
     await addSalariedEmployee.execute();
 
-    const payTransaction = new PayTransaction(db, payDate);
+    const payTransaction = new PaydayTransaction(db, payDate);
     await payTransaction.execute();
 
     const e = await db.getEmployee(empId);
@@ -71,7 +71,7 @@ describe('PayTransaction', () => {
     await addHourlyEmployee.execute();
 
     const payDate = new Date(2001, 10, 9); // Friday
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     validatePaycheck(pt, empId, new Date(2001, 10, 3), payDate, 0);
@@ -86,7 +86,7 @@ describe('PayTransaction', () => {
     const timeCardTransaction = new AddTimeCardTransaction(db, empId, payDate, 2.0);
     await timeCardTransaction.execute();
 
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     validatePaycheck(pt, empId, new Date(2001, 10, 3), payDate, 30.5);
@@ -101,7 +101,7 @@ describe('PayTransaction', () => {
     const timeCardTransaction = new AddTimeCardTransaction(db, empId, payDate, 9.0);
     await timeCardTransaction.execute();
 
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     expect(pt.getPayCheck(empId)).toBeNull();
@@ -120,7 +120,7 @@ describe('PayTransaction', () => {
     const timeCardTransaction2 = new AddTimeCardTransaction(db, empId, new Date(2024, 2, 16), 5.0);
     await timeCardTransaction2.execute();
 
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     validatePaycheck(pt, empId, new Date(2024, 2, 16), payDate, 7 * 15.25);
@@ -138,7 +138,7 @@ describe('PayTransaction', () => {
     const timeCardTransaction2 = new AddTimeCardTransaction(db, empId, new Date(2001, 10, 2), 5.0);
     await timeCardTransaction2.execute();
 
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     validatePaycheck(pt, empId, new Date(2001, 10, 3), payDate, 2 * 15.25);
@@ -159,7 +159,7 @@ describe('PayTransaction', () => {
     const addServiceChargeTransaction = new AddServiceChargeTransaction(db, 7734, payDate, 19.42);
     await addServiceChargeTransaction.execute();
 
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     const paycheck = pt.getPayCheck(empId);
@@ -183,7 +183,7 @@ describe('PayTransaction', () => {
     await addCommissionedEmployee.execute();
 
     const payDate = new Date(2001, 10, 15); // second Friday
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 500);
@@ -202,7 +202,7 @@ describe('PayTransaction', () => {
     await addCommissionedEmployee.execute();
 
     const payDate = new Date(2001, 10, 30); // second Friday
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     validatePaycheck(pt, empId, new Date(2001, 10, 16), payDate, 500);
@@ -224,7 +224,7 @@ describe('PayTransaction', () => {
     const salesReceiptTransaction = new SalesReceiptTransaction(db, empId, payDate, 100);
     await salesReceiptTransaction.execute();
 
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 500 + 100 * 0.1);
@@ -260,7 +260,7 @@ describe('PayTransaction', () => {
     );
     salesReceiptTransaction2.execute();
 
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 500 + 100 * 0.1);
@@ -291,7 +291,7 @@ describe('PayTransaction', () => {
     );
     await salesReceiptTransaction2.execute();
 
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     validatePaycheck(pt, empId, new Date(2001, 10, 1), payDate, 500 + 300 * 0.1);
@@ -310,7 +310,7 @@ describe('PayTransaction', () => {
     await addCommissionedEmployee.execute();
 
     const payDate = new Date(2001, 10, 8);
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     expect(pt.getPayCheck(empId)).toBeNull();
@@ -350,7 +350,7 @@ describe('PayTransaction', () => {
     );
     await addServiceChargeTransactionLate.execute();
 
-    const pt = new PayTransaction(db, payDate);
+    const pt = new PaydayTransaction(db, payDate);
     await pt.execute();
 
     const paycheck = pt.getPayCheck(empId);
@@ -363,7 +363,7 @@ describe('PayTransaction', () => {
 });
 
 function validatePaycheck(
-  pt: PayTransaction,
+  pt: PaydayTransaction,
   empId: number,
   payPeriodStartDate: Date,
   payDate: Date,

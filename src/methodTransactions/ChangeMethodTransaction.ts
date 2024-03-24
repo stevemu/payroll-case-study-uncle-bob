@@ -1,7 +1,7 @@
 import { Employee } from '../payrollDomain/Employee.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
 import { Method } from '../payrollDomain/Method.interface.ts';
-import { ChangeEmployeeTransaction } from '../generalTransactions/ChangeEmployeeTransaction.abstract.ts';
+import { ChangeEmployeeTransaction } from '../generalTransactions/ChangeEmployeeTransaction.ts';
 
 export abstract class ChangeMethodTransaction extends ChangeEmployeeTransaction {
   constructor(db: PayrollDatabase, empId: number) {

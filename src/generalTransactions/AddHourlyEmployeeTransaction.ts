@@ -1,7 +1,7 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
 import { WeeklySchedule } from '../schedules/WeeklySchedule.ts';
-import { HourlyClassification } from '../classifications/hourly/HourlyClassification.ts';
-import { AddEmployeeTransaction } from './AddEmployeeTransaction.base.ts';
+import { HourlyClassification } from '../classifications/HourlyClassification.ts';
+import { AddEmployeeTransaction } from './AddEmployeeTransaction.ts';
 
 export class AddHourlyEmployeeTransaction extends AddEmployeeTransaction {
   constructor(

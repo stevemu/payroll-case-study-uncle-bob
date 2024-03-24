@@ -2,8 +2,8 @@ import { Reader } from '../utils/Reader.ts';
 import { AddServiceChargeTransaction } from '../affiliationTransactions/AddServiceChargeTransaction.ts';
 import { ChangeMemberTransaction } from '../affiliationTransactions/ChangeMemberTransaction.ts';
 import { ChangeUnaffiliatedTransaction } from '../affiliationTransactions/ChangeUnaffiliatedTransaction.ts';
-import { TransactionSource } from '../payrollApp/TransactionSource.interface.ts';
-import { AddTimeCardTransaction } from '../classificationTransactions/AddTimeCardTransaction.ts';
+import { TransactionSource } from '../transactionApplication/TransactionSource.ts';
+import { AddTimeCardTransaction } from '../classificationTransactions/TimeCardTransaction.ts';
 import { ChangeCommissionedTransaction } from '../classificationTransactions/ChangeCommissionedTransaction.ts';
 import { ChangeHourlyTransaction } from '../classificationTransactions/ChangeHourlyTransaction.ts';
 import { ChangeSalariedTransaction } from '../classificationTransactions/ChangeSalariedTransaction.ts';
@@ -15,12 +15,12 @@ import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts
 import { ChangeDirectTransaction } from '../methodTransactions/ChangeDirectTransaction.ts';
 import { ChangeHoldTransaction } from '../methodTransactions/ChangeHoldTransaction.ts';
 import { ChangeMailTransaction } from '../methodTransactions/ChangeMailTransaction.ts';
-import { Transaction } from '../payrollDomain/Transaction.interface.ts';
-import { ChangeEmployeeAddressTransaction } from '../generalTransactions/ChangeEmployeeAddressTransaction.ts';
-import { ChangeEmployeeNameTransaction } from '../generalTransactions/ChangeEmployeeNameTransaction.ts';
+import { Transaction } from '../transactionApplication/Transaction.ts';
+import { ChangeAddressTransaction } from '../generalTransactions/ChangeAddressTransaction.ts';
+import { ChangeNameTransaction } from '../generalTransactions/ChangeNameTransaction.ts';
 import { DeleteEmployeeTransaction } from '../generalTransactions/DeleteEmployeeTransaction.ts';
-import { PayTransaction } from '../generalTransactions/PayTransaction.ts';
-import { PayrollApplication } from '../payrollApp/PayrollApplication.abstract.ts';
+import { PaydayTransaction } from '../generalTransactions/PaydayTransaction.ts';
+import { PayrollApplication } from '../payrollApp/PayrollApplication.ts';
 
 export class TextParserTransactionSource extends PayrollApplication implements TransactionSource {
   private reader: Reader = new Reader();
@@ -61,10 +61,10 @@ export class TextParserTransactionSource extends PayrollApplication implements T
     switch (type) {
       case 'Name':
         const name = parts[3];
-        return new ChangeEmployeeNameTransaction(this.db, empId, name);
+        return new ChangeNameTransaction(this.db, empId, name);
       case 'Address':
         const address = parts[3];
-        return new ChangeEmployeeAddressTransaction(this.db, empId, address);
+        return new ChangeAddressTransaction(this.db, empId, address);
       case 'Hourly':
         const hourlyRate = parseFloat(parts[3]);
         return new ChangeHourlyTransaction(this.db, empId, hourlyRate);
@@ -101,7 +101,7 @@ export class TextParserTransactionSource extends PayrollApplication implements T
 
   private createPaydayTransaction(parts: string[]): Transaction {
     const date = parseYyyymmdd(parts[1]);
-    return new PayTransaction(this.db, date);
+    return new PaydayTransaction(this.db, date);
   }
 
   private createServiceChargeTransaction(parts: string[]): Transaction {

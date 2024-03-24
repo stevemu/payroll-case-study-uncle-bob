@@ -1,6 +1,6 @@
 import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { HourlyClassification } from '../classifications/hourly/HourlyClassification.ts';
-import { AddTimeCardTransaction } from '../classificationTransactions/AddTimeCardTransaction.ts';
+import { HourlyClassification } from '../classifications/HourlyClassification.ts';
+import { AddTimeCardTransaction } from '../classificationTransactions/TimeCardTransaction.ts';
 import { AddHourlyEmployeeTransaction } from '../generalTransactions/AddHourlyEmployeeTransaction.ts';
 
 describe('AddTimeCardTransaction', () => {

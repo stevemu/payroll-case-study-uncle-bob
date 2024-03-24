@@ -1,6 +1,6 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.interface.ts';
 import { HoldMethod } from '../methods/HoldMethod.ts';
-import { ChangeMethodTransaction } from './ChangeMethodTransaction.abstract.ts';
+import { ChangeMethodTransaction } from './ChangeMethodTransaction.ts';
 
 export class ChangeHoldTransaction extends ChangeMethodTransaction {
   constructor(

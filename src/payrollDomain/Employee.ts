@@ -3,7 +3,7 @@ import { Affiliation } from './Affiliation.interface.ts';
 import { PaymentClassification } from './Classification.abstract.ts';
 import { Method } from './Method.interface.ts';
 import { Schedule } from './Schedule.interface.ts';
-import { NoAffiliation } from '../affiliation/noAffiliation/NoAffiliation.ts';
+import { NoAffiliation } from '../affiliations/noAffiliation/NoAffiliation.ts';
 
 export class Employee {
   constructor(
