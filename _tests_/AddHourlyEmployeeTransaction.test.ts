@@ -1,9 +1,9 @@
-import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { HoldMethod } from '../payrollImpl/HoldMethod.ts';
-import { WeeklySchedule } from '../payrollImpl/WeeklySchedule.ts';
-import { HourlyClassification } from '../payrollImpl/HourlyClassification.ts';
-import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
+import { MapPayrollDatabase } from '../src/payrollDatabaseImpl/MapPayrollDatabase.ts';
+import { HoldMethod } from '../src/payrollImpl/HoldMethod.ts';
+import { WeeklySchedule } from '../src/payrollImpl/WeeklySchedule.ts';
+import { HourlyClassification } from '../src/payrollImpl/HourlyClassification.ts';
+import { AddHourlyEmployeeTransaction } from '../src/transactionImpl/AddHourlyEmployeeTransaction.ts';
+import { PayrollFactoryImpl } from '../src/payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('AddHourlyEmployee', () => {
   it('should add an hourly employee', async () => {

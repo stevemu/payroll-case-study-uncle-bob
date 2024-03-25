@@ -1,8 +1,8 @@
-import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { MailMethod } from '../payrollImpl/MailMethod.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
-import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
-import { ChangeMailTransaction } from '../transactionImpl/ChangeMailTransaction.ts';
+import { MapPayrollDatabase } from '../src/payrollDatabaseImpl/MapPayrollDatabase.ts';
+import { MailMethod } from '../src/payrollImpl/MailMethod.ts';
+import { PayrollFactoryImpl } from '../src/payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
+import { AddHourlyEmployeeTransaction } from '../src/transactionImpl/AddHourlyEmployeeTransaction.ts';
+import { ChangeMailTransaction } from '../src/transactionImpl/ChangeMailTransaction.ts';
 
 describe('ChangeMailTransaction', () => {
   it('should change to mail method', async () => {

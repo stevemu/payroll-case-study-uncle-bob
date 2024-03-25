@@ -1,9 +1,9 @@
-import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { WeeklySchedule } from '../payrollImpl/WeeklySchedule.ts';
-import { HourlyClassification } from '../payrollImpl/HourlyClassification.ts';
-import { AddCommissionedEmployeeTransaction } from '../transactionImpl/AddCommissionedEmployeeTransaction.ts';
-import { ChangeHourlyTransaction } from '../transactionImpl/ChangeHourlyTransaction.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
+import { MapPayrollDatabase } from '../src/payrollDatabaseImpl/MapPayrollDatabase.ts';
+import { WeeklySchedule } from '../src/payrollImpl/WeeklySchedule.ts';
+import { HourlyClassification } from '../src/payrollImpl/HourlyClassification.ts';
+import { AddCommissionedEmployeeTransaction } from '../src/transactionImpl/AddCommissionedEmployeeTransaction.ts';
+import { ChangeHourlyTransaction } from '../src/transactionImpl/ChangeHourlyTransaction.ts';
+import { PayrollFactoryImpl } from '../src/payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('ChangeHourlyTransaction', () => {
   it('should change employee to hourly', async () => {

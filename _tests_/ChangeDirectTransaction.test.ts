@@ -1,8 +1,8 @@
-import { MapPayrollDatabase } from '../payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { DirectMethod } from '../payrollImpl/DirectMethod.ts';
-import { PayrollFactoryImpl } from '../payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
-import { AddHourlyEmployeeTransaction } from '../transactionImpl/AddHourlyEmployeeTransaction.ts';
-import { ChangeDirectTransaction } from '../transactionImpl/ChangeDirectTransaction.ts';
+import { MapPayrollDatabase } from '../src/payrollDatabaseImpl/MapPayrollDatabase.ts';
+import { DirectMethod } from '../src/payrollImpl/DirectMethod.ts';
+import { PayrollFactoryImpl } from '../src/payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
+import { AddHourlyEmployeeTransaction } from '../src/transactionImpl/AddHourlyEmployeeTransaction.ts';
+import { ChangeDirectTransaction } from '../src/transactionImpl/ChangeDirectTransaction.ts';
 
 describe('ChangeDirectTransaction', () => {
   it('should change employee to direct', async () => {
