@@ -1,6 +1,7 @@
 import nodeReadline from 'readline';
+import { Reader } from './Reader';
 
-export class Reader {
+export class ConsoleReader implements Reader {
   private rl: nodeReadline.ReadLine;
 
   constructor() {

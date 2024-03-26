@@ -1,4 +1,3 @@
-import { Reader } from '../utils/Reader.ts';
 import { TransactionSource } from './TransactionSource.ts';
 import { Transaction } from '../transactions/Transaction.ts';
 import { AddCommissionedEmployeeTransaction } from '../transactions/AddCommissionedEmployeeTransaction.ts';
@@ -20,11 +19,13 @@ import { PaydayTransaction } from '../transactions/PaydayTransaction.ts';
 import { SalesReceiptTransaction } from '../transactions/SalesReceiptTransaction.ts';
 import { AddTimeCardTransaction } from '../transactions/TimeCardTransaction.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
+import { Reader } from '../reader/Reader.ts';
 
 export class TextParserTransactionSource implements TransactionSource {
-  private reader: Reader = new Reader();
-
-  constructor(private db: PayrollDatabase) {}
+  constructor(
+    private db: PayrollDatabase,
+    private reader: Reader,
+  ) {}
 
   async getTransaction(): Promise<Transaction> {
     const line = await this.reader.readLine('Enter transaction: ');
