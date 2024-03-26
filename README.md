@@ -8,6 +8,8 @@ The payroll system is designed to manage employee payments, incorporating variou
 
 Unlike the original case study in the book, this implementation introduces a modern twist: the use of Prisma with a SQLite database for local data storage. This addition showcases how the application can interact with databases, managing data persistence more efficiently and securely.
 
+This project has Clean Architecture (https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) applied, which is I believe is more mature principles (written in 2012) than what is in the book (published in 2002), so you will find the structure of the app does not follow the book exactly.
+
 ## Features
 
 - **TypeScript Implementation**: Fully implemented in TypeScript, offering strong typing and modern syntax for improved code quality and maintainability.
