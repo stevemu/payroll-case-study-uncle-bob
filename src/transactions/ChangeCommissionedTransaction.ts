@@ -1,11 +1,11 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { ChangeClassificationTransaction } from './abstractTransactions/ChangeClassificationTransaction.ts';
-import { PayrollFactory } from '../domain/impl/factoryImpl/PayrollFactory.ts';
+import { CommissionedClassification } from '../domain/impl/CommissionedClassification.ts';
+import { BiweeklySchedule } from '../domain/impl/BiweeklySchedule.ts';
 
 export class ChangeCommissionedTransaction extends ChangeClassificationTransaction {
   constructor(
     db: PayrollDatabase,
-    private payrollFactory: PayrollFactory,
     empId: number,
     private salary: number,
     private commissionRate: number,
@@ -13,10 +13,10 @@ export class ChangeCommissionedTransaction extends ChangeClassificationTransacti
     super(db, empId);
   }
   get paymentClassification() {
-    return this.payrollFactory.makeCommissionedClassification(this.salary, this.commissionRate);
+    return new CommissionedClassification(this.salary, this.commissionRate);
   }
 
   get paymentSchedule() {
-    return this.payrollFactory.makeBiweeklySchedule();
+    return new BiweeklySchedule();
   }
 }

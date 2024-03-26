@@ -2,12 +2,12 @@ import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { PaymentClassification } from '../domain/Classification.ts';
 import { PaymentSchedule } from '../domain/PaymentSchedule.ts';
 import { ChangeClassificationTransaction } from './abstractTransactions/ChangeClassificationTransaction.ts';
-import { PayrollFactory } from '../domain/impl/factoryImpl/PayrollFactory.ts';
+import { HourlyClassification } from '../domain/impl/HourlyClassification.ts';
+import { WeeklySchedule } from '../domain/impl/WeeklySchedule.ts';
 
 export class ChangeHourlyTransaction extends ChangeClassificationTransaction {
   constructor(
     db: PayrollDatabase,
-    private payrollFactory: PayrollFactory,
     empId: number,
     private hourlyRate: number,
   ) {
@@ -15,10 +15,10 @@ export class ChangeHourlyTransaction extends ChangeClassificationTransaction {
   }
 
   get paymentClassification(): PaymentClassification {
-    return this.payrollFactory.makeHourlyClassification(this.hourlyRate);
+    return new HourlyClassification(this.hourlyRate);
   }
 
   get paymentSchedule(): PaymentSchedule {
-    return this.payrollFactory.makeWeeklySchedule();
+    return new WeeklySchedule();
   }
 }

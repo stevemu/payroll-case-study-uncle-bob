@@ -1,11 +1,10 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { ChangeMethodTransaction } from './abstractTransactions/ChangeMethodTransaction.ts';
-import { PayrollFactory } from '../domain/impl/factoryImpl/PayrollFactory.ts';
+import { HoldMethod } from '../domain/impl/HoldMethod.ts';
 
 export class ChangeHoldTransaction extends ChangeMethodTransaction {
   constructor(
     db: PayrollDatabase,
-    private payrollFactory: PayrollFactory,
     empId: number,
     private address: string,
   ) {
@@ -13,6 +12,6 @@ export class ChangeHoldTransaction extends ChangeMethodTransaction {
   }
 
   getMethod() {
-    return this.payrollFactory.makeHoldMethod(this.address);
+    return new HoldMethod(this.address);
   }
 }

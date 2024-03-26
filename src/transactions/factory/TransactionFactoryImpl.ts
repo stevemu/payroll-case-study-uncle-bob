@@ -1,5 +1,4 @@
 import { PayrollDatabase } from '../../payrollDatabase/PayrollDatabase.ts';
-import { PayrollFactory } from '../../domain/impl/factoryImpl/PayrollFactory.ts';
 import { TransactionFactory } from './TransactionFactory.ts';
 import { AddCommissionedEmployeeTransaction } from '../AddCommissionedEmployeeTransaction.ts';
 import { AddHourlyEmployeeTransaction } from '../AddHourlyEmployeeTransaction.ts';
@@ -21,10 +20,7 @@ import { SalesReceiptTransaction } from '../SalesReceiptTransaction.ts';
 import { AddTimeCardTransaction } from '../TimeCardTransaction.ts';
 
 export class TransactionFactoryImpl implements TransactionFactory {
-  constructor(
-    private db: PayrollDatabase,
-    private payrollFactory: PayrollFactory,
-  ) {}
+  constructor(private db: PayrollDatabase) {}
 
   makeAddCommissionedEmployeeTransaction(
     empId: number,
@@ -35,7 +31,6 @@ export class TransactionFactoryImpl implements TransactionFactory {
   ) {
     return new AddCommissionedEmployeeTransaction(
       this.db,
-      this.payrollFactory,
       empId,
       name,
       address,
@@ -50,29 +45,15 @@ export class TransactionFactoryImpl implements TransactionFactory {
     address: string,
     hourlyRate: number,
   ) {
-    return new AddHourlyEmployeeTransaction(
-      this.db,
-      this.payrollFactory,
-      empId,
-      name,
-      address,
-      hourlyRate,
-    );
+    return new AddHourlyEmployeeTransaction(this.db, empId, name, address, hourlyRate);
   }
 
   makeAddSalariedEmployeeTransaction(empId: number, name: string, address: string, salary: number) {
-    return new AddSalariedEmployeeTransaction(
-      this.db,
-      this.payrollFactory,
-      empId,
-      name,
-      address,
-      salary,
-    );
+    return new AddSalariedEmployeeTransaction(this.db, empId, name, address, salary);
   }
 
   makeServiceChargeTransaction(memberId: number, date: Date, amount: number) {
-    return new AddServiceChargeTransaction(this.db, this.payrollFactory, memberId, date, amount);
+    return new AddServiceChargeTransaction(this.db, memberId, date, amount);
   }
 
   makeChangeAddressTransaction(empId: number, newAddress: string) {
@@ -80,33 +61,27 @@ export class TransactionFactoryImpl implements TransactionFactory {
   }
 
   makeChangeCommissionedTransaction(empId: number, salary: number, commissionRate: number) {
-    return new ChangeCommissionedTransaction(
-      this.db,
-      this.payrollFactory,
-      empId,
-      salary,
-      commissionRate,
-    );
+    return new ChangeCommissionedTransaction(this.db, empId, salary, commissionRate);
   }
 
   makeChangeDirectTransaction(empId: number, bank: string, account: string) {
-    return new ChangeDirectTransaction(this.db, this.payrollFactory, empId, bank, account);
+    return new ChangeDirectTransaction(this.db, empId, bank, account);
   }
 
   makeChangeHoldTransaction(empId: number, address: string) {
-    return new ChangeHoldTransaction(this.db, this.payrollFactory, empId, address);
+    return new ChangeHoldTransaction(this.db, empId, address);
   }
 
   makeChangeHourlyTransaction(empId: number, hourlyRate: number) {
-    return new ChangeHourlyTransaction(this.db, this.payrollFactory, empId, hourlyRate);
+    return new ChangeHourlyTransaction(this.db, empId, hourlyRate);
   }
 
   makeChangeMailTransaction(empId: number, address: string) {
-    return new ChangeMailTransaction(this.db, this.payrollFactory, empId, address);
+    return new ChangeMailTransaction(this.db, empId, address);
   }
 
   makeChangeMemberTransaction(empId: number, memberId: number, dues: number) {
-    return new ChangeMemberTransaction(this.db, this.payrollFactory, empId, memberId, dues);
+    return new ChangeMemberTransaction(this.db, empId, memberId, dues);
   }
 
   makeChangeNameTransaction(empId: number, newName: string) {
@@ -114,11 +89,11 @@ export class TransactionFactoryImpl implements TransactionFactory {
   }
 
   makeChangeSalariedTransaction(empId: number, salary: number) {
-    return new ChangeSalariedTransaction(this.db, this.payrollFactory, empId, salary);
+    return new ChangeSalariedTransaction(this.db, empId, salary);
   }
 
   makeChangeUnaffiliatedTransaction(empId: number) {
-    return new ChangeUnaffiliatedTransaction(this.db, this.payrollFactory, empId);
+    return new ChangeUnaffiliatedTransaction(this.db, empId);
   }
 
   makeDeleteEmployeeTransaction(empId: number) {
@@ -130,10 +105,10 @@ export class TransactionFactoryImpl implements TransactionFactory {
   }
 
   makeSalesReceiptTransaction(empId: number, date: Date, amount: number) {
-    return new SalesReceiptTransaction(this.db, this.payrollFactory, empId, date, amount);
+    return new SalesReceiptTransaction(this.db, empId, date, amount);
   }
 
   makeTimeCardTransaction(empId: number, date: Date, hours: number) {
-    return new AddTimeCardTransaction(this.db, this.payrollFactory, empId, date, hours);
+    return new AddTimeCardTransaction(this.db, empId, date, hours);
   }
 }
