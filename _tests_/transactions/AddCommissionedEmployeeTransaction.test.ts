@@ -1,12 +1,22 @@
-import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
 import { HoldMethod } from '../../src/domain/HoldMethod.ts';
 import { BiweeklySchedule } from '../../src/domain/BiweeklySchedule.ts';
 import { CommissionedClassification } from '../../src/domain/CommissionedClassification.ts';
 import { AddCommissionedEmployeeTransaction } from '../../src/transactions/AddCommissionedEmployeeTransaction.ts';
+import { PrismaClient } from '@prisma/client';
+import { config } from '../../configs/test.config.ts';
+import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+
+const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
 
 describe('AddCommissionedEmployee', () => {
+  const db = new PrismaPayrollDatabase(prisma);
+
+  beforeEach(async () => {
+    await db.clear();
+  });
+
   it('should add a commissioned employee', async () => {
-    const db = new MapPayrollDatabase();
+    const db = new PrismaPayrollDatabase(prisma);
 
     const empId = 1;
     const t = new AddCommissionedEmployeeTransaction(db, empId, 'Bob', 'Home', 1000.0, 0.5);

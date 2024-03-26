@@ -256,13 +256,7 @@ describe('PayrollDatabase', () => {
     const e2 = (await db.getEmployee(empId))!;
     expect(e2.schedule).toBeInstanceOf(WeeklySchedule);
 
-    const changeCommissionedTransaction = new ChangeCommissionedTransaction(
-      db,
-
-      empId,
-      2000,
-      0.1,
-    );
+    const changeCommissionedTransaction = new ChangeCommissionedTransaction(db, empId, 2000, 0.1);
     await changeCommissionedTransaction.execute();
 
     const e3 = (await db.getEmployee(empId))!;
