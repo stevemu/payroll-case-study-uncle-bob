@@ -42,7 +42,7 @@ This project has Clean Architecture (https://blog.cleancoder.com/uncle-bob/2012/
 To run the application, execute the following command in your terminal:
 
 ```bash
-pnpm app
+pnpm main
 ```
 
 ## Using the Application
