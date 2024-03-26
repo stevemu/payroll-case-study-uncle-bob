@@ -1,8 +1,6 @@
 {
   "name": "payroll-case-study",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "lint": "eslint . --ext .ts",
     "ts": "tsc -b",
@@ -13,8 +11,7 @@
     "clearDb": "npx ts-node --esm ./scripts/db-clear.ts",
     "generate-dep-graph": "npx depcruise src --include-only ^src --collapse 2 -T dot | dot -T svg > collapsed.svg"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Steve Mu",
   "type": "module",
   "license": "ISC",
   "devDependencies": {
