@@ -7,7 +7,5 @@ export interface PayrollDatabase {
   deleteEmployee(empId: number): Promise<void>;
   clear(): Promise<void>;
   getUnionMember(memberId: number): Promise<Employee | undefined>;
-  addUnionMember(memberId: number, employee: Employee): Promise<void>;
-  deleteUnionMember(memberId: number): Promise<void>;
   getAllEmployees(): Promise<Employee[]>;
 }

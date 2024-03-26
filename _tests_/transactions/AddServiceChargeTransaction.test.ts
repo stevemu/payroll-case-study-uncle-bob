@@ -1,8 +1,11 @@
 import { UnionAffiliation } from '../../src/domain/UnionAffiliation.ts';
 import { AddServiceChargeTransaction } from '../../src/transactions/AddServiceChargeTransaction.ts';
-import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';
+import { NoAffiliation } from '../../src/domain/NoAffiliation.ts';
+import { AddSalariedEmployeeTransaction } from '../../src/transactions/AddSalariedEmployeeTransaction.ts';
+import { ChangeMemberTransaction } from '../../src/transactions/ChangeMemberTransaction.ts';
+import { ChangeUnaffiliatedTransaction } from '../../src/transactions/ChangeUnaffiliatedTransaction.ts';
 
 describe('AddServiceChargeTransaction', () => {
   const db = new PrismaPayrollDatabase(testPrismaClient);
@@ -12,35 +15,45 @@ describe('AddServiceChargeTransaction', () => {
   });
 
   it('should add service charge to the membership', async () => {
-    const empId = 2;
-    const addHourlyEmployee = new AddHourlyEmployeeTransaction(
-      db,
+    const empId = 1;
+    const memberId = 100;
+    const salary = 2000;
 
-      empId,
-      'Bill',
-      'Home',
-      15.25,
+    const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', salary);
+    await t.execute();
+
+    const memberTransaction = new ChangeMemberTransaction(db, empId, memberId, 20);
+    await memberTransaction.execute();
+
+    const serviceChargeTransaction = new AddServiceChargeTransaction(
+      db,
+      memberId,
+      new Date(2021, 1, 1),
+      10,
     );
-    await addHourlyEmployee.execute();
+    await serviceChargeTransaction.execute();
+
+    const serviceChargeTransaction2 = new AddServiceChargeTransaction(
+      db,
+      memberId,
+      new Date(2021, 1, 2),
+      20,
+    );
+    await serviceChargeTransaction2.execute();
 
     const e = (await db.getEmployee(empId))!;
+    const a = e.affiliation as UnionAffiliation;
+    expect(a).toBeInstanceOf(UnionAffiliation);
+    expect(a.memberId).toBe(memberId);
+    expect(a.dues).toBe(20);
 
-    const memberId = 86;
-    const af = new UnionAffiliation(memberId, 12.5);
-    e.affiliation = af;
+    expect(a.getServiceCharge(new Date(2021, 1, 1))!.amount).toBe(10);
+    expect(a.getServiceCharge(new Date(2021, 1, 2))!.amount).toBe(20);
 
-    await db.addUnionMember(memberId, e);
+    const noMemberTransaction = new ChangeUnaffiliatedTransaction(db, empId);
+    await noMemberTransaction.execute();
 
-    const date = new Date(2021, 8, 10);
-    const amount = 100;
-    const transaction = new AddServiceChargeTransaction(db, memberId, date, amount);
-    await transaction.execute();
-
-    const member = await db.getUnionMember(memberId);
-    const ua = member!.affiliation as UnionAffiliation;
-
-    expect(ua).toBeInstanceOf(UnionAffiliation);
-    expect(ua.getServiceCharge(date)!.amount).toBe(amount);
-    expect(ua.getServiceCharge(date)!.date).toEqual(date);
+    const e2 = (await db.getEmployee(empId))!;
+    expect(e2.affiliation).toBeInstanceOf(NoAffiliation);
   });
 });

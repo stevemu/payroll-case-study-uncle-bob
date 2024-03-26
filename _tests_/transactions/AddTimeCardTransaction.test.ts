@@ -3,6 +3,7 @@ import { AddTimeCardTransaction } from '../../src/transactions/TimeCardTransacti
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';
+import { Employee } from '../../src/domain/Employee.ts';
 
 describe('AddTimeCardTransaction', () => {
   const db = new PrismaPayrollDatabase(testPrismaClient);
@@ -12,32 +13,26 @@ describe('AddTimeCardTransaction', () => {
   });
 
   it('should add a time card to an employee', async () => {
-    const hours = 8;
+    const empId = 1;
+    const hourlyRate = 20;
+    const t = new AddHourlyEmployeeTransaction(db, empId, 'Bob', 'Home', hourlyRate);
+    await t.execute();
 
-    const employeeId = 1;
-    const addEmployeeTransaction = new AddHourlyEmployeeTransaction(
-      db,
+    const t2 = new AddTimeCardTransaction(db, empId, new Date(2021, 1, 1), 8);
+    await t2.execute();
 
-      employeeId,
-      'Bob',
-      'Home',
-      15.25,
-    );
-    await addEmployeeTransaction.execute();
+    const t3 = new AddTimeCardTransaction(db, empId, new Date(2021, 1, 2), 8);
+    await t3.execute();
 
-    const date = new Date(2021, 6, 1);
-    const addTimeCardTransaction = new AddTimeCardTransaction(
-      db,
+    const e = (await db.getEmployee(empId))!;
+    expect(e).toBeInstanceOf(Employee);
+    expect(e.name).toBe('Bob');
+    expect(e.address).toBe('Home');
 
-      employeeId,
-      date,
-      hours,
-    );
-    await addTimeCardTransaction.execute();
-
-    const employee = await db.getEmployee(employeeId);
-    const timeCard = (employee!.classification as HourlyClassification).getTimeCard(date);
-    expect(timeCard).toBeDefined();
-    expect(timeCard!.hours).toBe(hours);
+    const c = e.classification as HourlyClassification;
+    expect(c).toBeInstanceOf(HourlyClassification);
+    expect(c.hourlyRate).toBe(hourlyRate);
+    expect(c.getTimeCard(new Date(2021, 1, 1))!.hours).toBe(8);
+    expect(c.getTimeCard(new Date(2021, 1, 2))!.hours).toBe(8);
   });
 });

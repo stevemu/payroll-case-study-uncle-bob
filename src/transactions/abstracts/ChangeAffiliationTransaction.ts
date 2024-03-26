@@ -8,13 +8,9 @@ export abstract class ChangeAffiliationTransaction extends ChangeEmployeeTransac
     super(db, empId);
   }
 
-  abstract recordMembership(employee: Employee): Promise<void>;
-
   abstract getAffiliation(): Affiliation;
 
   async change(employee: Employee): Promise<void> {
-    await this.recordMembership(employee);
     employee.affiliation = this.getAffiliation();
-    await this.db.saveEmployee(employee);
   }
 }

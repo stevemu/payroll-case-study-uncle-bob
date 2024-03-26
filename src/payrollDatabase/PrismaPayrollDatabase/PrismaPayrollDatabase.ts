@@ -210,18 +210,6 @@ export class PrismaPayrollDatabase implements PayrollDatabase {
     return await this.getEmployee(unionMembershipModel.empId);
   }
 
-  async addUnionMember(memberId: number, employee: Employee) {
-    await this.saveUnionMembership(employee);
-  }
-
-  async deleteUnionMember(memberId: number) {
-    await this.prismaClient.unionMembership.delete({
-      where: {
-        memberId,
-      },
-    });
-  }
-
   async getAllEmployees(): Promise<Employee[]> {
     const employeeModels = (await this.prismaClient.employee.findMany()) || [];
     const employees: Employee[] = [];
