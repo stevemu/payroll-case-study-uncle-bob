@@ -1,5 +1,5 @@
 import { PrismaPayrollDatabase } from '../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
-import { Employee } from '../src/domain/abstracts/Employee.ts';
+import { Employee } from '../src/domain/Employee.ts';
 import { HourlyClassification } from '../src/domain/HourlyClassification.ts';
 import { SalariedClassification } from '../src/domain/SalariedClassification.ts';
 import { CommissionedClassification } from '../src/domain/CommissionedClassification.ts';

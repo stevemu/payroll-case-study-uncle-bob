@@ -1,4 +1,4 @@
-import { Employee } from '../../domain/abstracts/Employee.ts';
+import { Employee } from '../../domain/Employee.ts';
 import { PayrollDatabase } from '../../payrollDatabase/PayrollDatabase.ts';
 import { PaymentMethod } from '../../domain/abstracts/PaymentMethod.ts';
 import { ChangeEmployeeTransaction } from './ChangeEmployeeTransaction.ts';
