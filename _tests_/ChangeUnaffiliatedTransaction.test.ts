@@ -3,18 +3,17 @@ import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmplo
 import { ChangeMemberTransaction } from '../src/transactions/ChangeMemberTransaction.ts';
 import { ChangeUnaffiliatedTransaction } from '../src/transactions/ChangeUnaffiliatedTransaction.ts';
 import { MapPayrollDatabase } from '../src/payrollDatabase/MapPayrollDatabase.ts';
-import { PayrollFactoryImpl } from '../src/domain/impl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('ChangeUnaffiliatedTransaction', () => {
   test('changeUnaffiliated', async () => {
     const db = new MapPayrollDatabase();
-    const payrollFactory = new PayrollFactoryImpl();
+
     const empId = 2;
     const memberId = 7734;
 
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -24,7 +23,7 @@ describe('ChangeUnaffiliatedTransaction', () => {
 
     const changeMemberTransaction = new ChangeMemberTransaction(
       db,
-      payrollFactory,
+
       empId,
       memberId,
       99.42,
@@ -33,7 +32,7 @@ describe('ChangeUnaffiliatedTransaction', () => {
 
     const changeUnaffiliatedTransaction = new ChangeUnaffiliatedTransaction(
       db,
-      payrollFactory,
+
       empId,
     );
     await changeUnaffiliatedTransaction.execute();

@@ -1,17 +1,16 @@
 import { MapPayrollDatabase } from '../src/payrollDatabase/MapPayrollDatabase.ts';
 import { HoldMethod } from '../src/domain/impl/HoldMethod.ts';
-import { PayrollFactoryImpl } from '../src/domain/impl/factoryImpl/PayrollFactoryImpl.ts';
+
 import { AddSalariedEmployeeTransaction } from '../src/transactions/AddSalariedEmployeeTransaction.ts';
 import { ChangeHoldTransaction } from '../src/transactions/ChangeHoldTransaction.ts';
 
 describe('ChangeHoldTransaction', () => {
   it('should change employee to hold', async () => {
-    const payrollFactory = new PayrollFactoryImpl();
     const db = new MapPayrollDatabase();
     const empId = 1;
     const addEmp = new AddSalariedEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bob',
       'Home',
@@ -19,7 +18,7 @@ describe('ChangeHoldTransaction', () => {
     );
     await addEmp.execute();
 
-    const changeHold = new ChangeHoldTransaction(db, payrollFactory, empId, 'Hold');
+    const changeHold = new ChangeHoldTransaction(db, empId, 'Hold');
     await changeHold.execute();
 
     const employee = await db.getEmployee(empId);

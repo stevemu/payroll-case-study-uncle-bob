@@ -1,6 +1,6 @@
 import { MapPayrollDatabase } from '../src/payrollDatabase/MapPayrollDatabase.ts';
 import { MonthlySchedule } from '../src/domain/impl/MonthlySchedule.ts';
-import { PayrollFactoryImpl } from '../src/domain/impl/factoryImpl/PayrollFactoryImpl.ts';
+
 import { SalariedClassification } from '../src/domain/impl/SalariedClassification.ts';
 import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeSalariedTransaction } from '../src/transactions/ChangeSalariedTransaction.ts';
@@ -8,11 +8,11 @@ import { ChangeSalariedTransaction } from '../src/transactions/ChangeSalariedTra
 describe('ChangeSalariedTransaction', () => {
   it('should change employee to salaried', async () => {
     const db = new MapPayrollDatabase();
-    const payrollFactory = new PayrollFactoryImpl();
+
     const empId = 1;
     const addEmp = new AddHourlyEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bob',
       'Home',
@@ -20,7 +20,7 @@ describe('ChangeSalariedTransaction', () => {
     );
     await addEmp.execute();
 
-    const changeSalaried = new ChangeSalariedTransaction(db, payrollFactory, empId, 1000);
+    const changeSalaried = new ChangeSalariedTransaction(db, empId, 1000);
     await changeSalaried.execute();
 
     const employee = await db.getEmployee(empId);

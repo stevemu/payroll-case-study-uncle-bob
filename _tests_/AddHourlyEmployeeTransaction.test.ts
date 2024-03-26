@@ -3,14 +3,12 @@ import { HoldMethod } from '../src/domain/impl/HoldMethod.ts';
 import { WeeklySchedule } from '../src/domain/impl/WeeklySchedule.ts';
 import { HourlyClassification } from '../src/domain/impl/HourlyClassification.ts';
 import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmployeeTransaction.ts';
-import { PayrollFactoryImpl } from '../src/domain/impl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('AddHourlyEmployee', () => {
   it('should add an hourly employee', async () => {
-    const payrollFactory = new PayrollFactoryImpl();
     const db = new MapPayrollDatabase();
     const empId = 1;
-    const t = new AddHourlyEmployeeTransaction(db, payrollFactory, empId, 'Bob', 'Home', 1000.0);
+    const t = new AddHourlyEmployeeTransaction(db, empId, 'Bob', 'Home', 1000.0);
     await t.execute();
 
     const e = (await db.getEmployee(empId))!;

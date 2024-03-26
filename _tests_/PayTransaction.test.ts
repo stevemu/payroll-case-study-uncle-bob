@@ -7,11 +7,9 @@ import { AddCommissionedEmployeeTransaction } from '../src/transactions/AddCommi
 import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { AddSalariedEmployeeTransaction } from '../src/transactions/AddSalariedEmployeeTransaction.ts';
 import { ChangeMemberTransaction } from '../src/transactions/ChangeMemberTransaction.ts';
-import { PayrollFactoryImpl } from '../src/domain/impl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('PayTransaction', () => {
   let db: MapPayrollDatabase;
-  const payrollFactory = new PayrollFactoryImpl();
 
   beforeEach(() => {
     db = new MapPayrollDatabase();
@@ -21,7 +19,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addSalariedEmployee = new AddSalariedEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -40,7 +38,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addSalariedEmployee = new AddSalariedEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -50,7 +48,7 @@ describe('PayTransaction', () => {
 
     const changeMemberTransaction = new ChangeMemberTransaction(
       db,
-      payrollFactory,
+
       empId,
       7734,
       9.42,
@@ -76,7 +74,7 @@ describe('PayTransaction', () => {
     const payDate = new Date(2001, 10, 29); // not last day of month
     const addSalariedEmployee = new AddSalariedEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -98,7 +96,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -117,7 +115,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -126,7 +124,7 @@ describe('PayTransaction', () => {
     await addHourlyEmployee.execute();
 
     const payDate = new Date(2001, 10, 9); // Friday
-    const timeCardTransaction = new AddTimeCardTransaction(db, payrollFactory, empId, payDate, 2.0);
+    const timeCardTransaction = new AddTimeCardTransaction(db, empId, payDate, 2.0);
     await timeCardTransaction.execute();
 
     const pt = new PaydayTransaction(db, payDate);
@@ -139,7 +137,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -148,7 +146,7 @@ describe('PayTransaction', () => {
     await addHourlyEmployee.execute();
 
     const payDate = new Date(2001, 10, 8); // Thursday
-    const timeCardTransaction = new AddTimeCardTransaction(db, payrollFactory, empId, payDate, 9.0);
+    const timeCardTransaction = new AddTimeCardTransaction(db, empId, payDate, 9.0);
     await timeCardTransaction.execute();
 
     const pt = new PaydayTransaction(db, payDate);
@@ -161,7 +159,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -171,12 +169,12 @@ describe('PayTransaction', () => {
 
     const payDate = new Date(2024, 2, 22); // Friday
 
-    const timeCardTransaction = new AddTimeCardTransaction(db, payrollFactory, empId, payDate, 2.0);
+    const timeCardTransaction = new AddTimeCardTransaction(db, empId, payDate, 2.0);
     await timeCardTransaction.execute();
 
     const timeCardTransaction2 = new AddTimeCardTransaction(
       db,
-      payrollFactory,
+
       empId,
       new Date(2024, 2, 16),
       5.0,
@@ -193,7 +191,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -202,12 +200,12 @@ describe('PayTransaction', () => {
     await addHourlyEmployee.execute();
 
     const payDate = new Date(2001, 10, 9); // Friday
-    const timeCardTransaction = new AddTimeCardTransaction(db, payrollFactory, empId, payDate, 2.0);
+    const timeCardTransaction = new AddTimeCardTransaction(db, empId, payDate, 2.0);
     await timeCardTransaction.execute();
 
     const timeCardTransaction2 = new AddTimeCardTransaction(
       db,
-      payrollFactory,
+
       empId,
       new Date(2001, 10, 2),
       5.0,
@@ -224,7 +222,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -233,12 +231,12 @@ describe('PayTransaction', () => {
     await addHourlyEmployee.execute();
 
     const payDate = new Date(2001, 10, 9); // Friday
-    const timeCardTransaction = new AddTimeCardTransaction(db, payrollFactory, empId, payDate, 2.0);
+    const timeCardTransaction = new AddTimeCardTransaction(db, empId, payDate, 2.0);
     await timeCardTransaction.execute();
 
     const changeMemberTransaction = new ChangeMemberTransaction(
       db,
-      payrollFactory,
+
       empId,
       7734,
       9.42,
@@ -247,7 +245,7 @@ describe('PayTransaction', () => {
 
     const addServiceChargeTransaction = new AddServiceChargeTransaction(
       db,
-      payrollFactory,
+
       7734,
       payDate,
       19.42,
@@ -269,7 +267,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addCommissionedEmployee = new AddCommissionedEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -289,7 +287,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addCommissionedEmployee = new AddCommissionedEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -309,7 +307,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addCommissionedEmployee = new AddCommissionedEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -321,7 +319,7 @@ describe('PayTransaction', () => {
     const payDate = new Date(2001, 10, 15); // second Friday
     const salesReceiptTransaction = new SalesReceiptTransaction(
       db,
-      payrollFactory,
+
       empId,
       payDate,
       100,
@@ -338,7 +336,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addCommissionedEmployee = new AddCommissionedEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -351,7 +349,7 @@ describe('PayTransaction', () => {
 
     const salesReceiptTransaction = new SalesReceiptTransaction(
       db,
-      payrollFactory,
+
       empId,
       new Date(2001, 10, 15),
       100,
@@ -360,7 +358,7 @@ describe('PayTransaction', () => {
 
     const salesReceiptTransaction2 = new SalesReceiptTransaction(
       db,
-      payrollFactory,
+
       empId,
       new Date(2001, 9, 30),
       100,
@@ -377,7 +375,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addCommissionedEmployee = new AddCommissionedEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -390,7 +388,7 @@ describe('PayTransaction', () => {
 
     const salesReceiptTransaction = new SalesReceiptTransaction(
       db,
-      payrollFactory,
+
       empId,
       payDate,
       100,
@@ -399,7 +397,7 @@ describe('PayTransaction', () => {
 
     const salesReceiptTransaction2 = new SalesReceiptTransaction(
       db,
-      payrollFactory,
+
       empId,
       new Date(2001, 10, 2),
       200,
@@ -416,7 +414,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addCommissionedEmployee = new AddCommissionedEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -436,7 +434,7 @@ describe('PayTransaction', () => {
     const empId = 2;
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(
       db,
-      payrollFactory,
+
       empId,
       'Bill',
       'Home',
@@ -448,12 +446,12 @@ describe('PayTransaction', () => {
     const earlyDate = new Date(2001, 10, 2);
     const lateDate = new Date(2001, 10, 16);
 
-    const timeCardTransaction = new AddTimeCardTransaction(db, payrollFactory, empId, payDate, 2.0);
+    const timeCardTransaction = new AddTimeCardTransaction(db, empId, payDate, 2.0);
     await timeCardTransaction.execute();
 
     const changeMemberTransaction = new ChangeMemberTransaction(
       db,
-      payrollFactory,
+
       empId,
       7734,
       9.42,
@@ -462,7 +460,7 @@ describe('PayTransaction', () => {
 
     const addServiceChargeTransaction = new AddServiceChargeTransaction(
       db,
-      payrollFactory,
+
       7734,
       payDate,
       19.42,
@@ -471,7 +469,7 @@ describe('PayTransaction', () => {
 
     const addServiceChargeTransactionEarly = new AddServiceChargeTransaction(
       db,
-      payrollFactory,
+
       7734,
       earlyDate,
       19.42,
@@ -480,7 +478,7 @@ describe('PayTransaction', () => {
 
     const addServiceChargeTransactionLate = new AddServiceChargeTransaction(
       db,
-      payrollFactory,
+
       7734,
       lateDate,
       19.42,
