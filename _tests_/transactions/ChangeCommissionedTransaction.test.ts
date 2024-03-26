@@ -1,22 +1,21 @@
-import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
 import { BiweeklySchedule } from '../../src/domain/BiweeklySchedule.ts';
 import { CommissionedClassification } from '../../src/domain/CommissionedClassification.ts';
 
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeCommissionedTransaction } from '../../src/transactions/ChangeCommissionedTransaction.ts';
+import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('ChangeCommissionedTransaction', () => {
-  it('should change employee to commissioned', async () => {
-    const db = new MapPayrollDatabase();
-    const empId = 1;
-    const addEmp = new AddHourlyEmployeeTransaction(
-      db,
+  const db = new PrismaPayrollDatabase(testPrismaClient);
 
-      empId,
-      'Bob',
-      'Home',
-      27.52,
-    );
+  beforeEach(async () => {
+    await db.clear();
+  });
+
+  it('should change employee to commissioned', async () => {
+    const empId = 1;
+    const addEmp = new AddHourlyEmployeeTransaction(db, empId, 'Bob', 'Home', 27.52);
     await addEmp.execute();
 
     const changeCommissioned = new ChangeCommissionedTransaction(

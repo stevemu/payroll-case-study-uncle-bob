@@ -1,12 +1,18 @@
-import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
 import { HoldMethod } from '../../src/domain/HoldMethod.ts';
 import { WeeklySchedule } from '../../src/domain/WeeklySchedule.ts';
 import { HourlyClassification } from '../../src/domain/HourlyClassification.ts';
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
+import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('AddHourlyEmployee', () => {
+  const db = new PrismaPayrollDatabase(testPrismaClient);
+
+  beforeEach(async () => {
+    await db.clear();
+  });
+
   it('should add an hourly employee', async () => {
-    const db = new MapPayrollDatabase();
     const empId = 1;
     const t = new AddHourlyEmployeeTransaction(db, empId, 'Bob', 'Home', 1000.0);
     await t.execute();

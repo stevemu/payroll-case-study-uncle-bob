@@ -2,12 +2,17 @@ import { NoAffiliation } from '../../src/domain/NoAffiliation.ts';
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeMemberTransaction } from '../../src/transactions/ChangeMemberTransaction.ts';
 import { ChangeUnaffiliatedTransaction } from '../../src/transactions/ChangeUnaffiliatedTransaction.ts';
-import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('ChangeUnaffiliatedTransaction', () => {
-  test('changeUnaffiliated', async () => {
-    const db = new MapPayrollDatabase();
+  const db = new PrismaPayrollDatabase(testPrismaClient);
 
+  beforeEach(async () => {
+    await db.clear();
+  });
+
+  test('changeUnaffiliated', async () => {
     const empId = 2;
     const memberId = 7734;
 

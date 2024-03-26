@@ -1,11 +1,17 @@
-import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
 import { CommissionedClassification } from '../../src/domain/CommissionedClassification.ts';
 import { SalesReceiptTransaction } from '../../src/transactions/SalesReceiptTransaction.ts';
 import { AddCommissionedEmployeeTransaction } from '../../src/transactions/AddCommissionedEmployeeTransaction.ts';
+import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('SalesReceiptTransaction', () => {
+  const db = new PrismaPayrollDatabase(testPrismaClient);
+
+  beforeEach(async () => {
+    await db.clear();
+  });
+
   it('should create a sales receipt', async () => {
-    const db = new MapPayrollDatabase();
     const addEmployeeTransaction = new AddCommissionedEmployeeTransaction(
       db,
 

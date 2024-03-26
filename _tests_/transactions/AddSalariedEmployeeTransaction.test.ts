@@ -1,12 +1,18 @@
 import { AddSalariedEmployeeTransaction } from '../../src/transactions/AddSalariedEmployeeTransaction.ts';
 import { SalariedClassification } from '../../src/domain/SalariedClassification.ts';
 import { HoldMethod } from '../../src/domain/HoldMethod.ts';
-import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
 import { MonthlySchedule } from '../../src/domain/MonthlySchedule.ts';
+import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('AddSalariedEmployee', () => {
+  const db = new PrismaPayrollDatabase(testPrismaClient);
+
+  beforeEach(async () => {
+    await db.clear();
+  });
+
   it('should add a salaried employee', async () => {
-    const db = new MapPayrollDatabase();
     const empId = 1;
     const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', 1000.0);
     await t.execute();

@@ -3,8 +3,6 @@ import { Employee } from '../src/domain/Employee.ts';
 import { HourlyClassification } from '../src/domain/HourlyClassification.ts';
 import { SalariedClassification } from '../src/domain/SalariedClassification.ts';
 import { CommissionedClassification } from '../src/domain/CommissionedClassification.ts';
-import { config } from '../configs/test.config.ts';
-import { PrismaClient } from '@prisma/client';
 import { UnionAffiliation } from '../src/domain/UnionAffiliation.ts';
 import { NoAffiliation } from '../src/domain/NoAffiliation.ts';
 import { HoldMethod } from '../src/domain/HoldMethod.ts';
@@ -27,15 +25,10 @@ import { AddSalariedEmployeeTransaction } from '../src/transactions/AddSalariedE
 import { ChangeDirectTransaction } from '../src/transactions/ChangeDirectTransaction.ts';
 import { ChangeHoldTransaction } from '../src/transactions/ChangeHoldTransaction.ts';
 import { ChangeMailTransaction } from '../src/transactions/ChangeMailTransaction.ts';
-
-const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
+import { testPrismaClient } from './_utils/prismaUtil.ts';
 
 describe('PayrollDatabase', () => {
-  let db: PrismaPayrollDatabase;
-
-  beforeAll(async () => {
-    db = new PrismaPayrollDatabase(prisma);
-  });
+  const db = new PrismaPayrollDatabase(testPrismaClient);
 
   beforeEach(async () => {
     await db.clear();
@@ -44,14 +37,7 @@ describe('PayrollDatabase', () => {
   test('hourly employee', async () => {
     const empId = 1;
     const hourlyRate = 20;
-    const t = new AddHourlyEmployeeTransaction(
-      db,
-
-      empId,
-      'Bob',
-      'Home',
-      hourlyRate,
-    );
+    const t = new AddHourlyEmployeeTransaction(db, empId, 'Bob', 'Home', hourlyRate);
     await t.execute();
 
     const t2 = new AddTimeCardTransaction(db, empId, new Date(2021, 1, 1), 8);
@@ -92,7 +78,6 @@ describe('PayrollDatabase', () => {
     const commissionRate = 0.1;
     const t = new AddCommissionedEmployeeTransaction(
       db,
-
       empId,
       'Bob',
       'Home',
@@ -103,7 +88,6 @@ describe('PayrollDatabase', () => {
 
     const addSalesReceiptTransaction = new SalesReceiptTransaction(
       db,
-
       empId,
       new Date(2021, 1, 1),
       100,
@@ -112,7 +96,6 @@ describe('PayrollDatabase', () => {
 
     const addSalesReceiptTransaction2 = new SalesReceiptTransaction(
       db,
-
       empId,
       new Date(2021, 1, 2),
       200,
@@ -138,7 +121,6 @@ describe('PayrollDatabase', () => {
     const commissionRate = 0.1;
     const t = new AddCommissionedEmployeeTransaction(
       db,
-
       empId,
       'Bob',
       'Home',
@@ -168,7 +150,6 @@ describe('PayrollDatabase', () => {
 
     const serviceChargeTransaction = new AddServiceChargeTransaction(
       db,
-
       memberId,
       new Date(2021, 1, 1),
       10,
@@ -177,7 +158,6 @@ describe('PayrollDatabase', () => {
 
     const serviceChargeTransaction2 = new AddServiceChargeTransaction(
       db,
-
       memberId,
       new Date(2021, 1, 2),
       20,
@@ -219,13 +199,7 @@ describe('PayrollDatabase', () => {
     expect(e2!.method).toBeInstanceOf(MailMethod);
     expect((e2!.method as MailMethod).address).toBe('Mail');
 
-    const changeDirectTransaction = new ChangeDirectTransaction(
-      db,
-
-      empId,
-      'Bank',
-      'Account',
-    );
+    const changeDirectTransaction = new ChangeDirectTransaction(db, empId, 'Bank', 'Account');
     await changeDirectTransaction.execute();
 
     const e3 = (await db.getEmployee(empId))!;

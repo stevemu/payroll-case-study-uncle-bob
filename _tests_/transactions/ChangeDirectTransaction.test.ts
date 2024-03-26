@@ -1,12 +1,17 @@
-import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
 import { DirectMethod } from '../../src/domain/DirectMethod.ts';
-
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeDirectTransaction } from '../../src/transactions/ChangeDirectTransaction.ts';
+import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('ChangeDirectTransaction', () => {
+  const db = new PrismaPayrollDatabase(testPrismaClient);
+
+  beforeEach(async () => {
+    await db.clear();
+  });
+
   it('should change employee to direct', async () => {
-    const db = new MapPayrollDatabase();
     const empId = 1;
     const addEmp = new AddHourlyEmployeeTransaction(
       db,

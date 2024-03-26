@@ -1,21 +1,19 @@
-import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
 import { MailMethod } from '../../src/domain/MailMethod.ts';
-
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeMailTransaction } from '../../src/transactions/ChangeMailTransaction.ts';
+import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('ChangeMailTransaction', () => {
-  it('should change to mail method', async () => {
-    const db = new MapPayrollDatabase();
-    const empId = 1;
-    const addEmp = new AddHourlyEmployeeTransaction(
-      db,
+  const db = new PrismaPayrollDatabase(testPrismaClient);
 
-      empId,
-      'Bob',
-      'Home',
-      27.52,
-    );
+  beforeEach(async () => {
+    await db.clear();
+  });
+
+  it('should change to mail method', async () => {
+    const empId = 1;
+    const addEmp = new AddHourlyEmployeeTransaction(db, empId, 'Bob', 'Home', 27.52);
     await addEmp.execute();
 
     const changeMail = new ChangeMailTransaction(db, empId, 'Mail');

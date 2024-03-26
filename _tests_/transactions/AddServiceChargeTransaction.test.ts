@@ -1,11 +1,17 @@
 import { UnionAffiliation } from '../../src/domain/UnionAffiliation.ts';
 import { AddServiceChargeTransaction } from '../../src/transactions/AddServiceChargeTransaction.ts';
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
-import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('AddServiceChargeTransaction', () => {
+  const db = new PrismaPayrollDatabase(testPrismaClient);
+
+  beforeEach(async () => {
+    await db.clear();
+  });
+
   it('should add service charge to the membership', async () => {
-    const db = new MapPayrollDatabase();
     const empId = 2;
     const addHourlyEmployee = new AddHourlyEmployeeTransaction(
       db,
@@ -35,6 +41,6 @@ describe('AddServiceChargeTransaction', () => {
 
     expect(ua).toBeInstanceOf(UnionAffiliation);
     expect(ua.getServiceCharge(date)!.amount).toBe(amount);
-    expect(ua.getServiceCharge(date)!.date).toBe(date);
+    expect(ua.getServiceCharge(date)!.date).toEqual(date);
   });
 });

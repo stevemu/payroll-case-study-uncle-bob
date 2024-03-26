@@ -1,11 +1,16 @@
-import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
 import { DeleteEmployeeTransaction } from '../../src/transactions/DeleteEmployeeTransaction.ts';
 import { AddSalariedEmployeeTransaction } from '../../src/transactions/AddSalariedEmployeeTransaction.ts';
+import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('DeleteEmployeeTransaction', () => {
-  it('should delete an employee', async () => {
-    const db = new MapPayrollDatabase();
+  const db = new PrismaPayrollDatabase(testPrismaClient);
 
+  beforeEach(async () => {
+    await db.clear();
+  });
+
+  it('should delete an employee', async () => {
     const empId = 1;
     const t = new AddSalariedEmployeeTransaction(db, empId, 'Bob', 'Home', 1000.0);
     await t.execute();

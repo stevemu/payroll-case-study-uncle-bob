@@ -1,11 +1,16 @@
-import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
-
+import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeAddressTransaction } from '../../src/transactions/ChangeAddressTransaction.ts';
+import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('ChangeEmployeeAddressTransaction', () => {
+  const db = new PrismaPayrollDatabase(testPrismaClient);
+
+  beforeEach(async () => {
+    await db.clear();
+  });
+
   it('should change employee address', async () => {
-    const db = new MapPayrollDatabase();
     const employeeId = 1;
 
     const addEmployeeTransaction = new AddHourlyEmployeeTransaction(

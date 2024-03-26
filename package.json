@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "ts": "tsc -b",
-    "test": "jest",
+    "test": "jest --runInBand",
     "app": "TZ=UTC npx ts-node --esm ./src/main/main.ts",
     "checkall": "pnpm lint && pnpm ts && pnpm test",
     "migrate": "npx ts-node --esm ./scripts/db-migrate.ts",

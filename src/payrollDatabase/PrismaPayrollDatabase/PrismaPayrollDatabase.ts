@@ -10,10 +10,6 @@ import { MonthlySchedule } from '../../domain/MonthlySchedule.ts';
 import { WeeklySchedule } from '../../domain/WeeklySchedule.ts';
 import { PayrollDatabase } from '../PayrollDatabase.ts';
 
-/**
- * used by unit tests for PrismaPayrollDatabase and production code
- */
-
 export class PrismaPayrollDatabase implements PayrollDatabase {
   private classificationDb: ClassificationDb;
   private paymentMethodDb: PaymentMethodDb;
