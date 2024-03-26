@@ -1,8 +1,8 @@
-import { UnionAffiliation } from '../src/payrollImpl/UnionAffiliation.ts';
-import { AddServiceChargeTransaction } from '../src/transactionImpl/AddServiceChargeTransaction.ts';
-import { AddHourlyEmployeeTransaction } from '../src/transactionImpl/AddHourlyEmployeeTransaction.ts';
-import { MapPayrollDatabase } from '../src/payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { PayrollFactoryImpl } from '../src/payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
+import { UnionAffiliation } from '../src/domain/impl/UnionAffiliation.ts';
+import { AddServiceChargeTransaction } from '../src/transactions/AddServiceChargeTransaction.ts';
+import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmployeeTransaction.ts';
+import { MapPayrollDatabase } from '../src/payrollDatabase/MapPayrollDatabase.ts';
+import { PayrollFactoryImpl } from '../src/domain/impl/factoryImpl/PayrollFactoryImpl.ts';
 
 describe('AddServiceChargeTransaction', () => {
   it('should add service charge to the membership', async () => {

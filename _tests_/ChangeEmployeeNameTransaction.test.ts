@@ -1,7 +1,7 @@
-import { MapPayrollDatabase } from '../src/payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { PayrollFactoryImpl } from '../src/payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
-import { AddHourlyEmployeeTransaction } from '../src/transactionImpl/AddHourlyEmployeeTransaction.ts';
-import { ChangeNameTransaction } from '../src/transactionImpl/ChangeNameTransaction.ts';
+import { MapPayrollDatabase } from '../src/payrollDatabase/MapPayrollDatabase.ts';
+import { PayrollFactoryImpl } from '../src/domain/impl/factoryImpl/PayrollFactoryImpl.ts';
+import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmployeeTransaction.ts';
+import { ChangeNameTransaction } from '../src/transactions/ChangeNameTransaction.ts';
 
 describe('ChangeEmployeeNameTransaction', () => {
   it('should change employee name', async () => {

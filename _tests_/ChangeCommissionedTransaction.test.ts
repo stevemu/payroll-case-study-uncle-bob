@@ -1,9 +1,9 @@
-import { MapPayrollDatabase } from '../src/payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { BiweeklySchedule } from '../src/payrollImpl/BiweeklySchedule.ts';
-import { CommissionedClassification } from '../src/payrollImpl/CommissionedClassification.ts';
-import { PayrollFactoryImpl } from '../src/payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
-import { AddHourlyEmployeeTransaction } from '../src/transactionImpl/AddHourlyEmployeeTransaction.ts';
-import { ChangeCommissionedTransaction } from '../src/transactionImpl/ChangeCommissionedTransaction.ts';
+import { MapPayrollDatabase } from '../src/payrollDatabase/MapPayrollDatabase.ts';
+import { BiweeklySchedule } from '../src/domain/impl/BiweeklySchedule.ts';
+import { CommissionedClassification } from '../src/domain/impl/CommissionedClassification.ts';
+import { PayrollFactoryImpl } from '../src/domain/impl/factoryImpl/PayrollFactoryImpl.ts';
+import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmployeeTransaction.ts';
+import { ChangeCommissionedTransaction } from '../src/transactions/ChangeCommissionedTransaction.ts';
 
 describe('ChangeCommissionedTransaction', () => {
   it('should change employee to commissioned', async () => {

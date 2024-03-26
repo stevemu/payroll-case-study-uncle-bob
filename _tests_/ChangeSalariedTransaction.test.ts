@@ -1,9 +1,9 @@
-import { MapPayrollDatabase } from '../src/payrollDatabaseImpl/MapPayrollDatabase.ts';
-import { MonthlySchedule } from '../src/payrollImpl/MonthlySchedule.ts';
-import { PayrollFactoryImpl } from '../src/payrollImpl/factoryImpl/PayrollFactoryImpl.ts';
-import { SalariedClassification } from '../src/payrollImpl/SalariedClassification.ts';
-import { AddHourlyEmployeeTransaction } from '../src/transactionImpl/AddHourlyEmployeeTransaction.ts';
-import { ChangeSalariedTransaction } from '../src/transactionImpl/ChangeSalariedTransaction.ts';
+import { MapPayrollDatabase } from '../src/payrollDatabase/MapPayrollDatabase.ts';
+import { MonthlySchedule } from '../src/domain/impl/MonthlySchedule.ts';
+import { PayrollFactoryImpl } from '../src/domain/impl/factoryImpl/PayrollFactoryImpl.ts';
+import { SalariedClassification } from '../src/domain/impl/SalariedClassification.ts';
+import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmployeeTransaction.ts';
+import { ChangeSalariedTransaction } from '../src/transactions/ChangeSalariedTransaction.ts';
 
 describe('ChangeSalariedTransaction', () => {
   it('should change employee to salaried', async () => {

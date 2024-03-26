@@ -1,6 +1,6 @@
-import { Application } from '../application/Application.ts';
-import { PaydayTransaction } from '../transactionImpl/PaydayTransaction.ts';
-import { TransactionSource } from './TransactionSource.ts';
+import { Application } from './Application.ts';
+import { PaydayTransaction } from '../transactions/PaydayTransaction.ts';
+import { TransactionSource } from '../transactionSource/TransactionSource.ts';
 
 export class TransactionApplication extends Application {
   constructor(private source: TransactionSource) {
