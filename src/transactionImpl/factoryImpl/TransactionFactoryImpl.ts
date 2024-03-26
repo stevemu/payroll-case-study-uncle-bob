@@ -20,7 +20,7 @@ import { PaydayTransaction } from '../PaydayTransaction.ts';
 import { SalesReceiptTransaction } from '../SalesReceiptTransaction.ts';
 import { AddTimeCardTransaction } from '../TimeCardTransaction.ts';
 
-export class TransactionFactoryImpl implements TransactionFactory{
+export class TransactionFactoryImpl implements TransactionFactory {
   constructor(
     private db: PayrollDatabase,
     private payrollFactory: PayrollFactory,
