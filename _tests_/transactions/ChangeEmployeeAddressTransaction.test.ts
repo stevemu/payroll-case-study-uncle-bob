@@ -1,7 +1,7 @@
-import { MapPayrollDatabase } from '../src/payrollDatabase/MapPayrollDatabase.ts';
+import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
 
-import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmployeeTransaction.ts';
-import { ChangeAddressTransaction } from '../src/transactions/ChangeAddressTransaction.ts';
+import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
+import { ChangeAddressTransaction } from '../../src/transactions/ChangeAddressTransaction.ts';
 
 describe('ChangeEmployeeAddressTransaction', () => {
   it('should change employee address', async () => {

@@ -1,8 +1,8 @@
-import { NoAffiliation } from '../src/domain/impl/NoAffiliation.ts';
-import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmployeeTransaction.ts';
-import { ChangeMemberTransaction } from '../src/transactions/ChangeMemberTransaction.ts';
-import { ChangeUnaffiliatedTransaction } from '../src/transactions/ChangeUnaffiliatedTransaction.ts';
-import { MapPayrollDatabase } from '../src/payrollDatabase/MapPayrollDatabase.ts';
+import { NoAffiliation } from '../../src/domain/impl/NoAffiliation.ts';
+import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
+import { ChangeMemberTransaction } from '../../src/transactions/ChangeMemberTransaction.ts';
+import { ChangeUnaffiliatedTransaction } from '../../src/transactions/ChangeUnaffiliatedTransaction.ts';
+import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
 
 describe('ChangeUnaffiliatedTransaction', () => {
   test('changeUnaffiliated', async () => {

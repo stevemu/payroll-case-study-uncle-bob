@@ -1,8 +1,8 @@
-import { MapPayrollDatabase } from '../src/payrollDatabase/MapPayrollDatabase.ts';
-import { DirectMethod } from '../src/domain/impl/DirectMethod.ts';
+import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
+import { DirectMethod } from '../../src/domain/impl/DirectMethod.ts';
 
-import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmployeeTransaction.ts';
-import { ChangeDirectTransaction } from '../src/transactions/ChangeDirectTransaction.ts';
+import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
+import { ChangeDirectTransaction } from '../../src/transactions/ChangeDirectTransaction.ts';
 
 describe('ChangeDirectTransaction', () => {
   it('should change employee to direct', async () => {

@@ -1,8 +1,8 @@
-import { MapPayrollDatabase } from '../src/payrollDatabase/MapPayrollDatabase.ts';
-import { HoldMethod } from '../src/domain/impl/HoldMethod.ts';
-import { BiweeklySchedule } from '../src/domain/impl/BiweeklySchedule.ts';
-import { CommissionedClassification } from '../src/domain/impl/CommissionedClassification.ts';
-import { AddCommissionedEmployeeTransaction } from '../src/transactions/AddCommissionedEmployeeTransaction.ts';
+import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
+import { HoldMethod } from '../../src/domain/impl/HoldMethod.ts';
+import { BiweeklySchedule } from '../../src/domain/impl/BiweeklySchedule.ts';
+import { CommissionedClassification } from '../../src/domain/impl/CommissionedClassification.ts';
+import { AddCommissionedEmployeeTransaction } from '../../src/transactions/AddCommissionedEmployeeTransaction.ts';
 
 describe('AddCommissionedEmployee', () => {
   it('should add a commissioned employee', async () => {
