@@ -4,12 +4,10 @@ import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { PrismaPayrollDatabase } from '../payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { TransactionApplication } from '../transactionApplication/TransactionApplication.ts';
 import { TextParserTransactionSource } from '../textParserTransactionSource/TextParserTransactionSource.ts';
-import { TransactionFactoryImpl } from '../transactions/factory/TransactionFactoryImpl.ts';
 
 const prisma = new PrismaClient({ datasources: { db: { url: config.databaseUrl } } });
 const db: PayrollDatabase = new PrismaPayrollDatabase(prisma);
 
-const transactionFactory = new TransactionFactoryImpl(db);
-const transactionSource = new TextParserTransactionSource(transactionFactory);
+const transactionSource = new TextParserTransactionSource(db);
 const app = new TransactionApplication(transactionSource);
 app.run();

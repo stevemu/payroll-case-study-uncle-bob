@@ -1,12 +1,30 @@
 import { Reader } from '../utils/Reader.ts';
 import { TransactionSource } from './TransactionSource.ts';
 import { Transaction } from '../transactions/Transaction.ts';
-import { TransactionFactory } from '../transactions/factory/TransactionFactory.ts';
+import { AddCommissionedEmployeeTransaction } from '../transactions/AddCommissionedEmployeeTransaction.ts';
+import { AddHourlyEmployeeTransaction } from '../transactions/AddHourlyEmployeeTransaction.ts';
+import { AddSalariedEmployeeTransaction } from '../transactions/AddSalariedEmployeeTransaction.ts';
+import { AddServiceChargeTransaction } from '../transactions/AddServiceChargeTransaction.ts';
+import { ChangeAddressTransaction } from '../transactions/ChangeAddressTransaction.ts';
+import { ChangeCommissionedTransaction } from '../transactions/ChangeCommissionedTransaction.ts';
+import { ChangeDirectTransaction } from '../transactions/ChangeDirectTransaction.ts';
+import { ChangeHoldTransaction } from '../transactions/ChangeHoldTransaction.ts';
+import { ChangeHourlyTransaction } from '../transactions/ChangeHourlyTransaction.ts';
+import { ChangeMailTransaction } from '../transactions/ChangeMailTransaction.ts';
+import { ChangeMemberTransaction } from '../transactions/ChangeMemberTransaction.ts';
+import { ChangeNameTransaction } from '../transactions/ChangeNameTransaction.ts';
+import { ChangeSalariedTransaction } from '../transactions/ChangeSalariedTransaction.ts';
+import { ChangeUnaffiliatedTransaction } from '../transactions/ChangeUnaffiliatedTransaction.ts';
+import { DeleteEmployeeTransaction } from '../transactions/DeleteEmployeeTransaction.ts';
+import { PaydayTransaction } from '../transactions/PaydayTransaction.ts';
+import { SalesReceiptTransaction } from '../transactions/SalesReceiptTransaction.ts';
+import { AddTimeCardTransaction } from '../transactions/TimeCardTransaction.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 
 export class TextParserTransactionSource implements TransactionSource {
   private reader: Reader = new Reader();
 
-  constructor(private transactionFactory: TransactionFactory) {}
+  constructor(private db: PayrollDatabase) {}
 
   async getTransaction(): Promise<Transaction> {
     const line = await this.reader.readLine('Enter transaction: ');
@@ -40,43 +58,39 @@ export class TextParserTransactionSource implements TransactionSource {
     switch (type) {
       case 'Name':
         const name = parts[3];
-        return this.transactionFactory.makeChangeNameTransaction(empId, name);
+        return new ChangeNameTransaction(this.db, empId, name);
       case 'Address':
         const address = parts[3];
-        return this.transactionFactory.makeChangeAddressTransaction(empId, address);
+        return new ChangeAddressTransaction(this.db, empId, address);
       case 'Hourly':
         const hourlyRate = parseFloat(parts[3]);
-        return this.transactionFactory.makeChangeHourlyTransaction(empId, hourlyRate);
+        return new ChangeHourlyTransaction(this.db, empId, hourlyRate);
       case 'Salaried': {
         const monthlySalary = parseFloat(parts[3]);
-        return this.transactionFactory.makeChangeSalariedTransaction(empId, monthlySalary);
+        return new ChangeSalariedTransaction(this.db, empId, monthlySalary);
       }
       case 'Commissioned':
         const monthlySalary = parseFloat(parts[3]);
         const commissionRate = parseFloat(parts[4]);
-        return this.transactionFactory.makeChangeCommissionedTransaction(
-          empId,
-          monthlySalary,
-          commissionRate,
-        );
+        return new ChangeCommissionedTransaction(this.db, empId, monthlySalary, commissionRate);
       case 'Hold': {
         const address = parts[3];
-        return this.transactionFactory.makeChangeHoldTransaction(empId, address);
+        return new ChangeHoldTransaction(this.db, empId, address);
       }
       case 'Direct':
         const bank = parts[3];
         const account = parts[4];
-        return this.transactionFactory.makeChangeDirectTransaction(empId, bank, account);
+        return new ChangeDirectTransaction(this.db, empId, bank, account);
       case 'Mail': {
         const address = parts[3];
-        return this.transactionFactory.makeChangeMailTransaction(empId, address);
+        return new ChangeMailTransaction(this.db, empId, address);
       }
       case 'Member':
         const memberId = parseInt(parts[3]);
         const dues = parseFloat(parts[5]);
-        return this.transactionFactory.makeChangeMemberTransaction(empId, memberId, dues);
+        return new ChangeMemberTransaction(this.db, empId, memberId, dues);
       case 'NoMember':
-        return this.transactionFactory.makeChangeUnaffiliatedTransaction(empId);
+        return new ChangeUnaffiliatedTransaction(this.db, empId);
       default:
         throw new Error('Invalid change employee type');
     }
@@ -84,28 +98,28 @@ export class TextParserTransactionSource implements TransactionSource {
 
   private createPaydayTransaction(parts: string[]): Transaction {
     const date = parseYyyymmdd(parts[1]);
-    return this.transactionFactory.makePaydayTransaction(date);
+    return new PaydayTransaction(this.db, date);
   }
 
   private createServiceChargeTransaction(parts: string[]): Transaction {
     const empId = parseInt(parts[1]);
     const date = parseYyyymmdd(parts[2]);
     const amount = parseFloat(parts[3]);
-    return this.transactionFactory.makeServiceChargeTransaction(empId, date, amount);
+    return new AddServiceChargeTransaction(this.db, empId, date, amount);
   }
 
   private createSalesReceiptTransaction(parts: string[]): Transaction {
     const empId = parseInt(parts[1]);
     const date = parseYyyymmdd(parts[2]);
     const amount = parseFloat(parts[3]);
-    return this.transactionFactory.makeSalesReceiptTransaction(empId, date, amount);
+    return new SalesReceiptTransaction(this.db, empId, date, amount);
   }
 
   private createTimeCardTransaction(parts: string[]): Transaction {
     const empId = parseInt(parts[1]);
     const date = parseYyyymmdd(parts[2]);
     const hours = parseFloat(parts[3]);
-    return this.transactionFactory.makeTimeCardTransaction(empId, date, hours);
+    return new AddTimeCardTransaction(this.db, empId, date, hours);
   }
 
   private createAddEmployeeTransaction(parts: string[]): Transaction {
@@ -117,21 +131,11 @@ export class TextParserTransactionSource implements TransactionSource {
     switch (type) {
       case 'H': {
         const hourlyRate = parseFloat(parts[5]);
-        return this.transactionFactory.makeAddHourlyEmployeeTransaction(
-          empId,
-          name,
-          address,
-          hourlyRate,
-        );
+        return new AddHourlyEmployeeTransaction(this.db, empId, name, address, hourlyRate);
       }
       case 'S': {
         const monthlySalary = parseFloat(parts[5]);
-        return this.transactionFactory.makeAddSalariedEmployeeTransaction(
-          empId,
-          name,
-          address,
-          monthlySalary,
-        );
+        return new AddSalariedEmployeeTransaction(this.db, empId, name, address, monthlySalary);
       }
       case 'C': {
         const monthlySalary = parseFloat(parts[5]);
@@ -139,7 +143,8 @@ export class TextParserTransactionSource implements TransactionSource {
           throw new Error('Commission rate must be provided for commissioned employee');
         }
         const commissionRate = parseFloat(parts[6]);
-        return this.transactionFactory.makeAddCommissionedEmployeeTransaction(
+        return new AddCommissionedEmployeeTransaction(
+          this.db,
           empId,
           name,
           address,
@@ -154,7 +159,7 @@ export class TextParserTransactionSource implements TransactionSource {
 
   private createDeleteEmployeeTransaction(parts: string[]): Transaction {
     const empId = parseInt(parts[1]);
-    return this.transactionFactory.makeDeleteEmployeeTransaction(empId);
+    return new DeleteEmployeeTransaction(this.db, empId);
   }
 }
 
