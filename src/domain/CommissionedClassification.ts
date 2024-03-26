@@ -1,5 +1,5 @@
-import { PayCheck } from '../PayCheck.ts';
-import { PaymentClassification } from '../Classification.ts';
+import { PayCheck } from './abstracts/PayCheck.ts';
+import { PaymentClassification } from './abstracts/Classification.ts';
 import { SalesReceipt } from './SalesReceipt.ts';
 
 export class CommissionedClassification extends PaymentClassification {

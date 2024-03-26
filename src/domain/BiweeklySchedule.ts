@@ -1,4 +1,4 @@
-import { PaymentSchedule } from '../PaymentSchedule.ts';
+import { PaymentSchedule } from './abstracts/PaymentSchedule.ts';
 
 export class BiweeklySchedule implements PaymentSchedule {
   isFifteenthOrLastDayOfMonth(date: Date): boolean {

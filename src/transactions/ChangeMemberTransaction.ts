@@ -1,8 +1,8 @@
-import { Employee } from '../domain/Employee.ts';
-import { Affiliation } from '../domain/Affiliation.ts';
+import { Employee } from '../domain/abstracts/Employee.ts';
+import { Affiliation } from '../domain/abstracts/Affiliation.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
-import { ChangeAffiliationTransaction } from './abstractTransactions/ChangeAffiliationTransaction.ts';
-import { UnionAffiliation } from '../domain/impl/UnionAffiliation.ts';
+import { ChangeAffiliationTransaction } from './abstracts/ChangeAffiliationTransaction.ts';
+import { UnionAffiliation } from '../domain/UnionAffiliation.ts';
 
 export class ChangeMemberTransaction extends ChangeAffiliationTransaction {
   constructor(

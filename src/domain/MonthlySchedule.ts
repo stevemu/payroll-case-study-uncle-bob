@@ -1,4 +1,4 @@
-import { PaymentSchedule } from '../PaymentSchedule.ts';
+import { PaymentSchedule } from './abstracts/PaymentSchedule.ts';
 
 export class MonthlySchedule implements PaymentSchedule {
   isLastDayOfMonth(date: Date): boolean {

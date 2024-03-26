@@ -1,7 +1,7 @@
-import { Employee } from '../../domain/Employee.ts';
+import { Employee } from '../../domain/abstracts/Employee.ts';
 import { PayrollDatabase } from '../../payrollDatabase/PayrollDatabase.ts';
-import { PaymentClassification } from '../../domain/Classification.ts';
-import { PaymentSchedule } from '../../domain/PaymentSchedule.ts';
+import { PaymentClassification } from '../../domain/abstracts/Classification.ts';
+import { PaymentSchedule } from '../../domain/abstracts/PaymentSchedule.ts';
 import { ChangeEmployeeTransaction } from './ChangeEmployeeTransaction.ts';
 
 export abstract class ChangeClassificationTransaction extends ChangeEmployeeTransaction {

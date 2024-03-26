@@ -1,9 +1,9 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
-import { PaymentClassification } from '../domain/Classification.ts';
-import { PaymentSchedule } from '../domain/PaymentSchedule.ts';
-import { ChangeClassificationTransaction } from './abstractTransactions/ChangeClassificationTransaction.ts';
-import { HourlyClassification } from '../domain/impl/HourlyClassification.ts';
-import { WeeklySchedule } from '../domain/impl/WeeklySchedule.ts';
+import { PaymentClassification } from '../domain/abstracts/Classification.ts';
+import { PaymentSchedule } from '../domain/abstracts/PaymentSchedule.ts';
+import { ChangeClassificationTransaction } from './abstracts/ChangeClassificationTransaction.ts';
+import { HourlyClassification } from '../domain/HourlyClassification.ts';
+import { WeeklySchedule } from '../domain/WeeklySchedule.ts';
 
 export class ChangeHourlyTransaction extends ChangeClassificationTransaction {
   constructor(

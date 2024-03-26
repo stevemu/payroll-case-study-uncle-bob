@@ -1,4 +1,4 @@
-import { PayCheck } from '../domain/PayCheck.ts';
+import { PayCheck } from '../domain/abstracts/PayCheck.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 import { Transaction } from './Transaction.ts';
 

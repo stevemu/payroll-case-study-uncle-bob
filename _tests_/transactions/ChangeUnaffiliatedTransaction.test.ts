@@ -1,4 +1,4 @@
-import { NoAffiliation } from '../../src/domain/impl/NoAffiliation.ts';
+import { NoAffiliation } from '../../src/domain/NoAffiliation.ts';
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeMemberTransaction } from '../../src/transactions/ChangeMemberTransaction.ts';
 import { ChangeUnaffiliatedTransaction } from '../../src/transactions/ChangeUnaffiliatedTransaction.ts';

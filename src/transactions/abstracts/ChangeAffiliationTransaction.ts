@@ -1,5 +1,5 @@
-import { Employee } from '../../domain/Employee.ts';
-import { Affiliation } from '../../domain/Affiliation.ts';
+import { Employee } from '../../domain/abstracts/Employee.ts';
+import { Affiliation } from '../../domain/abstracts/Affiliation.ts';
 import { PayrollDatabase } from '../../payrollDatabase/PayrollDatabase.ts';
 import { ChangeEmployeeTransaction } from './ChangeEmployeeTransaction.ts';
 

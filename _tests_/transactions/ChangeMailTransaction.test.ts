@@ -1,5 +1,5 @@
 import { MapPayrollDatabase } from '../../src/payrollDatabase/MapPayrollDatabase.ts';
-import { MailMethod } from '../../src/domain/impl/MailMethod.ts';
+import { MailMethod } from '../../src/domain/MailMethod.ts';
 
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeMailTransaction } from '../../src/transactions/ChangeMailTransaction.ts';

@@ -1,7 +1,7 @@
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
-import { PaymentMethod } from '../domain/PaymentMethod.ts';
-import { ChangeMethodTransaction } from './abstractTransactions/ChangeMethodTransaction.ts';
-import { DirectMethod } from '../domain/impl/DirectMethod.ts';
+import { PaymentMethod } from '../domain/abstracts/PaymentMethod.ts';
+import { ChangeMethodTransaction } from './abstracts/ChangeMethodTransaction.ts';
+import { DirectMethod } from '../domain/DirectMethod.ts';
 
 export class ChangeDirectTransaction extends ChangeMethodTransaction {
   constructor(

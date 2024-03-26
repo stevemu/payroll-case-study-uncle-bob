@@ -1,9 +1,9 @@
-import { Employee } from '../domain/Employee.ts';
-import { Affiliation } from '../domain/Affiliation.ts';
-import { UnionAffiliation } from '../domain/impl/UnionAffiliation.ts';
+import { Employee } from '../domain/abstracts/Employee.ts';
+import { Affiliation } from '../domain/abstracts/Affiliation.ts';
+import { UnionAffiliation } from '../domain/UnionAffiliation.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
-import { ChangeAffiliationTransaction } from './abstractTransactions/ChangeAffiliationTransaction.ts';
-import { NoAffiliation } from '../domain/impl/NoAffiliation.ts';
+import { ChangeAffiliationTransaction } from './abstracts/ChangeAffiliationTransaction.ts';
+import { NoAffiliation } from '../domain/NoAffiliation.ts';
 
 export class ChangeUnaffiliatedTransaction extends ChangeAffiliationTransaction {
   constructor(db: PayrollDatabase, empId: number) {

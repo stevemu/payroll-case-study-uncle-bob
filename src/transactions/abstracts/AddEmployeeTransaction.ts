@@ -1,8 +1,8 @@
 import { PayrollDatabase } from '../../payrollDatabase/PayrollDatabase.ts';
-import { Employee } from '../../domain/Employee.ts';
-import { PaymentClassification } from '../../domain/Classification.ts';
-import { HoldMethod } from '../../domain/impl/HoldMethod.ts';
-import { PaymentSchedule } from '../../domain/PaymentSchedule.ts';
+import { Employee } from '../../domain/abstracts/Employee.ts';
+import { PaymentClassification } from '../../domain/abstracts/Classification.ts';
+import { HoldMethod } from '../../domain/HoldMethod.ts';
+import { PaymentSchedule } from '../../domain/abstracts/PaymentSchedule.ts';
 import { Transaction } from '../Transaction.ts';
 
 export abstract class AddEmployeeTransaction extends Transaction {

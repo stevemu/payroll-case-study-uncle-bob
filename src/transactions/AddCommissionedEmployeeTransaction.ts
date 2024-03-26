@@ -1,9 +1,9 @@
-import { PaymentClassification } from '../domain/Classification.ts';
-import { PaymentSchedule } from '../domain/PaymentSchedule.ts';
-import { AddEmployeeTransaction } from './abstractTransactions/AddEmployeeTransaction.ts';
+import { PaymentClassification } from '../domain/abstracts/Classification.ts';
+import { PaymentSchedule } from '../domain/abstracts/PaymentSchedule.ts';
+import { AddEmployeeTransaction } from './abstracts/AddEmployeeTransaction.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
-import { CommissionedClassification } from '../domain/impl/CommissionedClassification.ts';
-import { BiweeklySchedule } from '../domain/impl/BiweeklySchedule.ts';
+import { CommissionedClassification } from '../domain/CommissionedClassification.ts';
+import { BiweeklySchedule } from '../domain/BiweeklySchedule.ts';
 
 export class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction {
   constructor(

@@ -1,4 +1,4 @@
-import { PaymentSchedule } from '../PaymentSchedule.ts';
+import { PaymentSchedule } from './abstracts/PaymentSchedule.ts';
 
 export class WeeklySchedule implements PaymentSchedule {
   isFriday(date: Date): boolean {

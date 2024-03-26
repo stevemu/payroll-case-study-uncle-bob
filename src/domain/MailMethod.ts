@@ -1,4 +1,4 @@
-import { PaymentMethod } from '../PaymentMethod.ts';
+import { PaymentMethod } from './abstracts/PaymentMethod.ts';
 
 export class MailMethod implements PaymentMethod {
   constructor(public address: string) {}
