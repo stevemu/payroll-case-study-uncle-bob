@@ -3,7 +3,7 @@ import { CommissionedClassification } from '../../src/domain/CommissionedClassif
 
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeCommissionedTransaction } from '../../src/transactions/ChangeCommissionedTransaction.ts';
-import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('ChangeCommissionedTransaction', () => {

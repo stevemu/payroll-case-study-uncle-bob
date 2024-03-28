@@ -3,7 +3,7 @@ import { MonthlySchedule } from '../../src/domain/MonthlySchedule.ts';
 import { SalariedClassification } from '../../src/domain/SalariedClassification.ts';
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeSalariedTransaction } from '../../src/transactions/ChangeSalariedTransaction.ts';
-import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('ChangeSalariedTransaction', () => {

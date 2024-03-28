@@ -2,7 +2,7 @@ import { AddSalariedEmployeeTransaction } from '../../src/transactions/AddSalari
 import { SalariedClassification } from '../../src/domain/SalariedClassification.ts';
 import { HoldMethod } from '../../src/domain/HoldMethod.ts';
 import { MonthlySchedule } from '../../src/domain/MonthlySchedule.ts';
-import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('AddSalariedEmployee', () => {

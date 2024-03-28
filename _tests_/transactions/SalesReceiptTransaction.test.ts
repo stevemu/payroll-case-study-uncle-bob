@@ -1,7 +1,7 @@
 import { CommissionedClassification } from '../../src/domain/CommissionedClassification.ts';
 import { SalesReceiptTransaction } from '../../src/transactions/SalesReceiptTransaction.ts';
 import { AddCommissionedEmployeeTransaction } from '../../src/transactions/AddCommissionedEmployeeTransaction.ts';
-import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';
 import { Employee } from '../../src/domain/Employee.ts';
 

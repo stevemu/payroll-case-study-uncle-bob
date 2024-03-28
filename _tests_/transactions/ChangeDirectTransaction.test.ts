@@ -1,7 +1,7 @@
 import { DirectMethod } from '../../src/domain/DirectMethod.ts';
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeDirectTransaction } from '../../src/transactions/ChangeDirectTransaction.ts';
-import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('ChangeDirectTransaction', () => {

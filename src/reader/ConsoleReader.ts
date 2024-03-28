@@ -1,5 +1,5 @@
 import nodeReadline from 'readline';
-import { Reader } from './Reader';
+import { Reader } from '../textParserTransactionSource/Reader';
 
 export class ConsoleReader implements Reader {
   private rl: nodeReadline.ReadLine;

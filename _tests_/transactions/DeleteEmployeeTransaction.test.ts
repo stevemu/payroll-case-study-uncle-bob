@@ -1,6 +1,6 @@
 import { DeleteEmployeeTransaction } from '../../src/transactions/DeleteEmployeeTransaction.ts';
 import { AddSalariedEmployeeTransaction } from '../../src/transactions/AddSalariedEmployeeTransaction.ts';
-import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('DeleteEmployeeTransaction', () => {

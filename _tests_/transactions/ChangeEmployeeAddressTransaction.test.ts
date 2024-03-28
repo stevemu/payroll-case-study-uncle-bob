@@ -1,4 +1,4 @@
-import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { AddHourlyEmployeeTransaction } from '../../src/transactions/AddHourlyEmployeeTransaction.ts';
 import { ChangeAddressTransaction } from '../../src/transactions/ChangeAddressTransaction.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';

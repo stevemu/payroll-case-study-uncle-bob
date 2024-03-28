@@ -1,4 +1,4 @@
-import { TransactionSource } from './TransactionSource.ts';
+import { TransactionSource } from '../transactionApplication/TransactionSource.ts';
 import { Transaction } from '../transactions/Transaction.ts';
 import { AddCommissionedEmployeeTransaction } from '../transactions/AddCommissionedEmployeeTransaction.ts';
 import { AddHourlyEmployeeTransaction } from '../transactions/AddHourlyEmployeeTransaction.ts';
@@ -19,7 +19,7 @@ import { PaydayTransaction } from '../transactions/PaydayTransaction.ts';
 import { SalesReceiptTransaction } from '../transactions/SalesReceiptTransaction.ts';
 import { AddTimeCardTransaction } from '../transactions/TimeCardTransaction.ts';
 import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
-import { Reader } from '../reader/Reader.ts';
+import { Reader } from './Reader.ts';
 
 export class TextParserTransactionSource implements TransactionSource {
   constructor(

@@ -2,7 +2,7 @@ import { HoldMethod } from '../../src/domain/HoldMethod.ts';
 import { BiweeklySchedule } from '../../src/domain/BiweeklySchedule.ts';
 import { CommissionedClassification } from '../../src/domain/CommissionedClassification.ts';
 import { AddCommissionedEmployeeTransaction } from '../../src/transactions/AddCommissionedEmployeeTransaction.ts';
-import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('AddCommissionedEmployee', () => {

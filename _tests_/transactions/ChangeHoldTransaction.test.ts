@@ -1,7 +1,7 @@
 import { HoldMethod } from '../../src/domain/HoldMethod.ts';
 import { AddSalariedEmployeeTransaction } from '../../src/transactions/AddSalariedEmployeeTransaction.ts';
 import { ChangeHoldTransaction } from '../../src/transactions/ChangeHoldTransaction.ts';
-import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';
 
 describe('ChangeHoldTransaction', () => {

@@ -1,4 +1,4 @@
-import { Logger } from './Logger';
+import { Logger } from '../transactionApplication/Logger';
 
 export class ConsoleLogger implements Logger {
   info(message: string): void {

@@ -1,14 +1,14 @@
 import { PrismaClient } from '@prisma/client';
-import { Employee } from '../../domain/Employee.ts';
+import { Employee } from '../domain/Employee.ts';
 import { ClassificationDb, getClassificationType } from './ClassificationDb.ts';
-import { UnionAffiliation } from '../../domain/UnionAffiliation.ts';
-import { NoAffiliation } from '../../domain/NoAffiliation.ts';
-import { ServiceCharge } from '../../domain/ServiceCharge.ts';
+import { UnionAffiliation } from '../domain/UnionAffiliation.ts';
+import { NoAffiliation } from '../domain/NoAffiliation.ts';
+import { ServiceCharge } from '../domain/ServiceCharge.ts';
 import { PaymentMethodDb } from './PaymentMethodDb.ts';
-import { BiweeklySchedule } from '../../domain/BiweeklySchedule.ts';
-import { MonthlySchedule } from '../../domain/MonthlySchedule.ts';
-import { WeeklySchedule } from '../../domain/WeeklySchedule.ts';
-import { PayrollDatabase } from '../PayrollDatabase.ts';
+import { BiweeklySchedule } from '../domain/BiweeklySchedule.ts';
+import { MonthlySchedule } from '../domain/MonthlySchedule.ts';
+import { WeeklySchedule } from '../domain/WeeklySchedule.ts';
+import { PayrollDatabase } from '../payrollDatabase/PayrollDatabase.ts';
 
 export class PrismaPayrollDatabase implements PayrollDatabase {
   private classificationDb: ClassificationDb;

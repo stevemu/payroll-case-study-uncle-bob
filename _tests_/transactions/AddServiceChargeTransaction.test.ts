@@ -1,6 +1,6 @@
 import { UnionAffiliation } from '../../src/domain/UnionAffiliation.ts';
 import { AddServiceChargeTransaction } from '../../src/transactions/AddServiceChargeTransaction.ts';
-import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { testPrismaClient } from '../_utils/prismaUtil.ts';
 import { NoAffiliation } from '../../src/domain/NoAffiliation.ts';
 import { AddSalariedEmployeeTransaction } from '../../src/transactions/AddSalariedEmployeeTransaction.ts';

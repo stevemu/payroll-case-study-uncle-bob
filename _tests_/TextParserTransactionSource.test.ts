@@ -1,5 +1,5 @@
 import { PayrollDatabase } from '../src/payrollDatabase/PayrollDatabase';
-import { Reader } from '../src/reader/Reader';
+import { Reader } from '../src/textParserTransactionSource/Reader';
 import { TextParserTransactionSource } from '../src/textParserTransactionSource/TextParserTransactionSource';
 import { AddHourlyEmployeeTransaction } from '../src/transactions/AddHourlyEmployeeTransaction';
 

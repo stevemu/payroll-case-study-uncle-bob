@@ -1,4 +1,4 @@
-import { PrismaPayrollDatabase } from '../../src/payrollDatabase/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
+import { PrismaPayrollDatabase } from '../../src/PrismaPayrollDatabase/PrismaPayrollDatabase.ts';
 import { Employee } from '../../src/domain/Employee.ts';
 import { BiweeklySchedule } from '../../src/domain/BiweeklySchedule.ts';
 import { MonthlySchedule } from '../../src/domain/MonthlySchedule.ts';
